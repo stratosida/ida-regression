@@ -47,7 +47,7 @@ library(Hmisc)
 library(here)
 ```
 
-    ## here() starts at C:/R/ida-regression-private
+    ## here() starts at /cloud/project
 
 ``` r
 ## Set global ggplot theme
@@ -58,6 +58,9 @@ Read data
 ---------
 
 Load the CRS dataset.
+
+Note: crs is the original source data and a\_crs is the updated analysis
+ready dataset with additional meta-data added.
 
 ``` r
 load(here("data","a_crs.Rdata"))
@@ -87,7 +90,7 @@ Diabetes \* Crohn’s disease
 Print out descriptive summary.
 
 ``` r
-crs %>% 
+a_crs %>% 
   select(chf, afib, mi, diabetes, crohn, ulcercol, ibd) %>%
   Hmisc::describe()
 ```
@@ -161,7 +164,7 @@ to long \* Transform and spell out factors for plotting \* Plot counts
 by comorbidity
 
 ``` r
-crs %>%
+a_crs %>%
   select(id, chf, afib, diabetes, mi, copd, crohn, ulcercol, ibd) %>%
   pivot_longer(-id, names_to = "comorb", values_to = "value") %>%
   mutate(
@@ -204,7 +207,17 @@ crs %>%
 Patient characteristics
 -----------------------
 
-TODO
+TODO: bin selection and width.
+
+``` r
+a_crs %>%
+  ggplot(aes(bmi)) + 
+  geom_histogram(binwidth = 0.1) + 
+  ggtitle("Distribution of body mass index (BMI) measured at diagnosis") +
+  theme_minimal(base_size = 10) 
+```
+
+![](02_ida_univar_crs_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 Session info
 ============
@@ -213,42 +226,44 @@ Session info
 sessionInfo()
 ```
 
-    ## R version 3.5.3 (2019-03-11)
-    ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-    ## Running under: Windows 10 x64 (build 17763)
+    ## R version 3.6.0 (2019-04-26)
+    ## Platform: x86_64-pc-linux-gnu (64-bit)
+    ## Running under: Ubuntu 16.04.6 LTS
     ## 
     ## Matrix products: default
+    ## BLAS:   /usr/lib/atlas-base/atlas/libblas.so.3.0
+    ## LAPACK: /usr/lib/atlas-base/atlas/liblapack.so.3.0
     ## 
     ## locale:
-    ## [1] LC_COLLATE=English_United States.1252 
-    ## [2] LC_CTYPE=English_United States.1252   
-    ## [3] LC_MONETARY=English_United States.1252
-    ## [4] LC_NUMERIC=C                          
-    ## [5] LC_TIME=English_United States.1252    
+    ##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+    ##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+    ##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+    ## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
     ## 
     ## attached base packages:
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] here_0.1          Hmisc_4.2-0       Formula_1.2-3     survival_2.44-1.1
+    ## [1] here_0.1          Hmisc_4.3-0       Formula_1.2-3     survival_2.44-1.1
     ## [5] lattice_0.20-38   tidyr_1.0.0       dplyr_0.8.3       ggplot2_3.2.1    
-    ## [9] rmarkdown_1.12   
+    ## [9] rmarkdown_2.0    
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] tidyselect_0.2.5    xfun_0.6            purrr_0.3.3        
-    ##  [4] splines_3.5.3       colorspace_1.4-1    vctrs_0.2.1        
-    ##  [7] htmltools_0.3.6     yaml_2.2.0          base64enc_0.1-3    
-    ## [10] rlang_0.4.2         pillar_1.4.2        foreign_0.8-71     
+    ##  [1] tidyselect_0.2.5    xfun_0.11           purrr_0.3.3        
+    ##  [4] splines_3.6.0       colorspace_1.4-1    vctrs_0.2.1        
+    ##  [7] htmltools_0.4.0     yaml_2.2.0          base64enc_0.1-3    
+    ## [10] rlang_0.4.2         pillar_1.4.3        foreign_0.8-71     
     ## [13] glue_1.3.1          withr_2.1.2         RColorBrewer_1.1-2 
-    ## [16] lifecycle_0.1.0     stringr_1.4.0       munsell_0.5.0      
-    ## [19] gtable_0.3.0        htmlwidgets_1.3     evaluate_0.13      
-    ## [22] labeling_0.3        latticeExtra_0.6-28 knitr_1.26         
-    ## [25] htmlTable_1.13.1    Rcpp_1.0.1          acepack_1.4.1      
-    ## [28] backports_1.1.3     scales_1.0.0        checkmate_1.9.1    
-    ## [31] gridExtra_2.3       digest_0.6.20       stringi_1.4.3      
-    ## [34] rprojroot_1.3-2     grid_3.5.3          tools_3.5.3        
-    ## [37] magrittr_1.5        lazyeval_0.2.2      tibble_2.1.3       
-    ## [40] cluster_2.0.7-1     crayon_1.3.4        pkgconfig_2.0.2    
-    ## [43] zeallot_0.1.0       Matrix_1.2-17       data.table_1.12.2  
-    ## [46] assertthat_0.2.1    rstudioapi_0.10     R6_2.4.0           
-    ## [49] rpart_4.1-13        nnet_7.3-12         compiler_3.5.3
+    ## [16] jpeg_0.1-8.1        lifecycle_0.1.0     stringr_1.4.0      
+    ## [19] munsell_0.5.0       gtable_0.3.0        htmlwidgets_1.5.1  
+    ## [22] evaluate_0.14       labeling_0.3        latticeExtra_0.6-29
+    ## [25] knitr_1.26          htmlTable_1.13.3    Rcpp_1.0.3         
+    ## [28] acepack_1.4.1       backports_1.1.5     scales_1.1.0       
+    ## [31] checkmate_1.9.4     farver_2.0.1        gridExtra_2.3      
+    ## [34] png_0.1-7           digest_0.6.23       stringi_1.4.3      
+    ## [37] rprojroot_1.3-2     grid_3.6.0          tools_3.6.0        
+    ## [40] magrittr_1.5        lazyeval_0.2.2      tibble_2.1.3       
+    ## [43] cluster_2.0.8       crayon_1.3.4        pkgconfig_2.0.3    
+    ## [46] zeallot_0.1.0       Matrix_1.2-17       data.table_1.12.8  
+    ## [49] assertthat_0.2.1    rstudioapi_0.10     R6_2.4.1           
+    ## [52] rpart_4.1-15        nnet_7.3-12         compiler_3.6.0
