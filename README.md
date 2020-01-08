@@ -1,2 +1,2 @@
-# ida-regression-private
-Private version of the IDA repository 
+# ida-regression
+Repository to support the IDA regression manuscript 
