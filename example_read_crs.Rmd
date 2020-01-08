@@ -1,0 +1,65 @@
+---
+title: "Example notebook to read the CRS dataset"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Set up
+
+Set up packages and path to the data set. 
+
+```{r setupR}
+library(ggplot2)
+library(dplyr)
+library(Hmisc)
+library(here)
+
+## Relative path to the data set
+crs_data_path = here("data", "crs.Rdata")
+```
+
+## Read data
+
+Load the CRS dataset.
+
+```{r}
+load(crs_data_path)
+```
+
+Glimpse at the structure of the data set. 
+
+```{r}
+crs %>% 
+  glimpse() 
+```
+
+
+## Print contents
+
+
+display the data set contents. 
+
+```{r}
+Hmisc::contents(crs) 
+```
+
+
+
+## Describe data
+
+Print a description of the data set.
+
+```{r}
+Hmisc::describe(crs) 
+```
+
+
+## Session info
+
+Print out the session info. 
+```{r}
+sessionInfo()
+```
