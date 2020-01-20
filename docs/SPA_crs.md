@@ -15,11 +15,11 @@ Results will be described by a table containing odds ratios and associated 95% c
 
 *Comments from 2019-12-17 conference call
 Marginal distribution of outcome variable to see about number of events and variables. Degrees of freedom. Known strong predictors vs predictors with unclear role.
-Possible actions:
--	Combine comorbidities as number 
--	ASA: as numeric or collapsed (1,2 vs 3,4) or categorical 1-4
--	Degrees of freedom (can reduce age and bmi to linear).
--	Combine preop chemo+radiation as preop trt*
+Possible actions:*
+-	*Combine comorbidities as number*
+-	*ASA: as numeric or collapsed (1,2 vs 3,4) or categorical 1-4*
+-	*Degrees of freedom (can reduce age and bmi to linear).*
+-	*Combine preop chemo+radiation as preop trt*
 
 
 **Source:** Mayo Clinic data courtesy of Dr. David Larson. [LINK](https://github.com/stratos-ida/ida-regression/blob/master/data/crs.csv)
