@@ -23,7 +23,7 @@ The data set includes 20,207 patients and 44 variables.
 * Time since injury (`injurytime`, hours)
 * Type of injury (`injurytype`, 'blunt', 'penetrating' or 'blunt and penetrating')
  
-Restricted cubic splines with 3 degrees of freedom with knots set to default values will be used for continuous variables. As the final prediction model should be parsimonious enough to simplify its application, a backward elimination algorithm with a significance level set at $\alpha=0.05$ will be applied to remove statistically insignificant effects. Finally, nonlinear representation of each continuous variable will be tested against linear representation at $\alpha=0.05$. In case of lacking added value of a nonlinear, it will be replaced by a linear effect.
+Restricted cubic splines with 3 degrees of freedom with knots set to default values will be used for continuous variables. As the final prediction model should be parsimonious enough to simplify its application, a backward elimination algorithm with a significance level set at $\alpha=0.05$ will be applied to remove statistically insignificant effects. Finally, nonlinear representation of each continuous variable will be tested against linear representation at $\alpha=0.05$. In case of lacking added value of a nonlinear effect, the model will be refitted with a linear effect for that variable.
 
 *Remarks*: 
 
@@ -55,7 +55,7 @@ The number of deaths computed in the data set coincides with the number reported
 
 **Source:** 
 
-[Data obtained from http://biostat.mc.vanderbilt.edu/DataSets](Data obtained from http://biostat.mc.vanderbilt.edu/DataSets). 
+Data obtained from http://biostat.mc.vanderbilt.edu/DataSets
 
 [LINK to data set](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda)
 
