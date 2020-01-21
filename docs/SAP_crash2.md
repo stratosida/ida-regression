@@ -53,9 +53,11 @@ table(crash2$earlydeath)
 The number of deaths computed in the data set coincides with the number reported in [Perel et al, BMJ 2012](https://doi.org/10.1136/bmj.e5166).
 
 
-**Source:** [Data obtained from http://biostat.mc.vanderbilt.edu/DataSets](Data obtained from http://biostat.mc.vanderbilt.edu/DataSets). 
+**Source:** 
 
-[LINK](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda)
+[Data obtained from http://biostat.mc.vanderbilt.edu/DataSets](Data obtained from http://biostat.mc.vanderbilt.edu/DataSets). 
+
+[LINK to data set](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda)
 
 **Data dictionary:**  [LINK](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/Ccrash2.html)
 
