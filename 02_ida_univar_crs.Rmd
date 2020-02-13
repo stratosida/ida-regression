@@ -19,6 +19,8 @@ library(tidyr)
 library(Hmisc)
 library(here)
 
+library(summarytools)
+
 ## Set global ggplot theme
 theme_set(theme_light(base_size = 12))
 ```
@@ -121,6 +123,13 @@ a_crs %>%
   ggtitle("Distribution of body mass index (BMI) measured at diagnosis") +
   theme_minimal(base_size = 10) 
 ```
+
+
+```{r}
+library(summarytools)   # to get an overview of a dataset with basic summary
+print(dfSummary(a_crs[,-1]), method = 'render')
+```
+
 
 
 # Session info
