@@ -1,0 +1,623 @@
+---
+title: 'Initial Data Analysis'
+author: "Center for Statistical Training and Consulting^[CSTAT thanks Marianne Huebner
+  for the development of this module.]"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: 
+   html_document:
+        code_folding: hide
+        toc: true # table of contents true
+        toc_depth: 3 # up to three depths of headings
+        number_sections: true  #number sections at each table header
+        theme: united
+        highlight: tango  #syntax highlighting styleknitr::opts_chunk$set(echo = TRUE)
+---
+
+```{r setup, echo=FALSE}
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  echo = TRUE,
+  fig.align = 'center'
+)
+```
+
+
+```{r include=FALSE, echo=FALSE, eval=FALSE}
+devtools::install_github(("andrew-leroux/rnhanesdata"))
+library(rnhanesdata)
+?rnhanesdata
+```
+
+
+```{r setupR}
+library(rmarkdown)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(Hmisc)
+
+library(summarytools)
+library(arsenal)
+
+library(gridExtra)
+
+library(GGally)
+library(VIM)
+
+library(kableExtra)
+library(pixiedust)
+
+```
+
+
+
+# Housekeeping
+
+
+Create a shortcut to the folder where you want your working directory to be.
+This will be useful later when saving your work.
+
+```{r, directory}
+
+tmpdir<-"~/Documents/Teaching/Rlabs_Github/CSTAT/"   # set the directory directly
+
+```
+
+ <a href="#top">Back to top</a>
+ 
+# Data set 
+
+The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The survey examines a nationally representative sample of about 5,000 persons each year. [Link to CDC  NHANES website](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm)
+
+The NHANES study contains objectively measured physical activity data collected using hip-worn accelerometers from multiple cohorts. High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (https://andrew-leroux.github.io/rnhanesdata/articles).
+
+
+Here, we look at the subset of participants between 50 and 85 years old from the 2003-2004 and 2005-2006 samples (n=2978) who wore a hip-worn accelerometer in the free living environment for up to 7 days.   The response ID is seqn.
+
+### Sociodemographic variables 
+
+* age at examination [years] (i.e. when participants wore the device), age
+* gender (male and female), gender
+* race/ethnicity (non-Hispanic white, non-Hispanic black, Mexican American, and other) 
+* education (< high school graduate, high school graduate/general educational development [GED], some college, and college graduate), educationadult
+* 5 year mortality,  NAs for individuals with follow up less than 5 years and alive, yr5.mort 
+* Person Months of Follow-up from MEC/Exam Date, permth.exm (follow-up time in this cohort in years = permth.exm/12) 
+* final mortality status, mortstat
+
+### Health and behavior variables 
+
+* smoking status (current smoker, former smoker [those reporting quitting within the previous 6 months], and nonsmoker), smokecigs
+* alcohol consumption, drinkstatus
+* BMI, bmi
+* obesity, bmi.cat
+* diabetes, diabetes
+* congestive heart failure, chf
+* cancer, cancer
+* stroke, stroke
+* average systolic blood pressure using the 4 measurements per participant, sys , 
+* Total cholesterol (mg/dL), lbxtc 
+* HDL cholesterol, lbdhdd  
+* mobilityproblem ("No Difficulty","Any Difficulty")
+
+### Physical activity data
+
+* total activity counts per day (TAC/d)
+* total log activity count (TLAC)
+* total minutes of moderate/vigorous physical activity (MVPA)
+* total accelerometer wear time (WT)
+* sedentary/sleep/non-wear to active transition probability (SATP)
+* active to sedentary/sleep/non-wear transition probability (ASTP): Bout length was defined as the number of consecutive minutes spent in either an active or sedentary state and a daily activity profile was created for each participant to detect alternating bouts of sedentary and active states. ASTP was defined as the probability of transitioning from an active to a sedentary state and calculated as the reciprocal of the average active bout duration. ASTP was calculated for each day and averaged across valid days to derive a single measure of ASTP for each participant. 
+
+In addition, there are total log activity count summary measures (tlac.1, tlac.2, …, tlac.12) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc. 
+
+
+
+
+```{r}
+load(paste0(tmpdir, "nhanesdat.rdata"))
+names(nhanesdat) <- make.names(casefold(names(nhanesdat)), allow_=FALSE)
+
+```
+
+
+ <a href="#top">Back to top</a>
+ 
+# Framework for a systematic initial data analysis (IDA)
+
+The main aim of IDA is seen in providing reliable knowledge about the data to enable responsible statistical analyses and interpretation.
+
+This framework was developed for a primary data collection where data are obtained to address *a predefined set of research questions*, with an elaborated analysis plan. However, IDA is often performed in more complex studies raising additional issues such as an implementation of IDA processes during ongoing data collections to detect data issues while they are potentially remediable.
+
+### Intended statistical analysis
+
+*Develop a predictive model for 5 year mortality risk in the NHANES cohort using demographic data, comorbidities, lifestyle factors, and physical activity measurements.*
+<p>
+*In the NHANES example the theoretical research objective could be to find predictors or 5-year mortality.*
+</p>
+
+### Six elements of IDA
+
+1. Meta data
+2. Data cleaning
+3. Data screening
+4. Initial IDA report
+5. Updating analysis plan
+6. IDA report for manuscript
+
+
+![IDA Framework](Figure_IDA.png)
+
+
+**Metadata** setup summarizes background information to properly conduct all following IDA steps. Beyond technical metadata such as labels or plausibility limits, this covers conceptual metadata which combines information from the study protocol, secondary information sources and information about the actual study conduct.
+<p>
+
+**Data cleaning** is performed to identify and correct technical data errors. Many errors may not be directly observed and a proper metadata setup is crucial to progress correctly and efficiently in this step
+</p>
+
+**Data screening** examines data properties to inform decisions about the realizability of the intended analyses. In contrast to the data cleaning step, the focus is on data properties, not technical errors. However, data screening may reveal structural errors that occurred during the data collection process. 
+
+**Initial data reporting** documents all insights obtained from the previous steps to the research body.
+
+**Refining and updating the analysis plan**  account for findings from the previous IDA steps by making adaptations of the analysis plan.
+
+**Reporting IDA in research papers** is necessary to ensure transparency regarding key findings and actions in the IDA steps that impacted the analysis or interpretation of results. This reporting step is based on the initial data reporting but clearly focused on the specific paper and what has been done, whereas the former provides a general overview of IDA findings and sugges- tions on ways to handle potential conflicts with the analysis plan.
+
+
+<a href="#top">Back to top</a>
+
+# Meta data
+
+Meta data may include the study information, study protocol, and a data dictionary.
+
+```{r, eval=FALSE}
+library(rnhanesdata)
+?rnhanesdata
+```
+
+
+Add missing labels for physical activity data:
+
+
+```{r}
+nhanesdat<- nhanesdat %>%
+  Hmisc::upData(labels = c(tac = 'total activity counts per day', tlac = 'total log activity count', mvpa='total minutes of moderate/vigorous physical activity', wt ='total accelerometer wear time', satp ='sedentary/sleep/non-wear to active transition probability', astp ='active to sedentary/sleep/non-wear transition probability'))
+```
+
+```{r}
+Hmisc::contents(nhanesdat) 
+cat(Hmisc::html(Hmisc::contents(nhanesdat)), file=file.path(tmpdir, "nhanesdat.html") )
+```
+
+<a href="#top">Back to top</a>
+
+# Data cleaning
+
+**Note the data we use here have already been pre-cleaned.**
+
+Steps to achieve this were done as follows.
+
+**Exclusions:** From 14631 exclude participants who were
+
+* younger than 50 years old, or 85 and older at the time they wore the accelerometer (10859 participants);
+
+* missing BMI or education predictor variables (41 participants);
+
+* had fewer than 3 days of data with at least 10 hours of estimated wear time (517 participants);
+
+*   missing mortality information (21 participants);
+
+*  alive with follow up less than 5 years (0 participants);
+
+*   missing systolic blood pressure, total cholesterol or HDL cholesterol measurements (293 participants).
+
+
+It is useful to create a flow chart to summarize inclusion/exclusion criteria. Here is a different example from another study that combined data from surveys for two different populations:
+
+
+![STROBE flowdiagram](Flowdiagram.png)
+
+There are similar flow diagrams for other types of study, e.g. randomized controlled trials (CONSORT) or meta-analyses (PRISMA). These can be found on the website
+[EQUATOR Network](https://www.equator-network.org/).
+
+
+**Recoding**
+
+* Re-level comorbidities to assign refused/don't know as not having the condition
+* Re-level education to have 3 levels and categorize don't know/refused to be missing
+* Re-level alcohol consumption to include a level for "missing"
+* Removed the "bad" days from Act_Analysis and Act_Flags
+* There is one individual with 501 minutes recorded as NA. These missing data occur on the last day they wore the device for the last 501 minutes of the day. These missing data were imputed with 0.
+
+
+Set missing 'drinkstatus' to NA
+```{r}
+indx<-which(nhanesdat$drinkstatus=='Missing alcohol')
+nhanesdat$drinkstatus[indx]<-NA
+
+```
+
+
+Check data types, labels, and first few values of each of the variables needed for the analysis:
+
+```{r}
+
+vars<- c( "yr5.mort" , "permth.exm", "bmi" , "bmi.cat", "race" ,"gender",  "diabetes", "chf" ,"chd" , "cancer", "stroke" , "educationadult" , "mobilityproblem", "drinkstatus" , "smokecigs",   "age"  ,"sys" ,"lbxtc", "lbdhdd","tac", "tlac","wt" , "mvpa", "satp", "astp", "bpxsy1", "bpxsy2","bpxsy3","bpxsy4", "drinksperweek")
+
+str(nhanesdat[,vars])
+
+x<-round(mean(nhanesdat$tlac), 2)
+```
+
+
+A quick summary of the variables can be done by using `summary(nhanesdat[,vars])` of more elaborate with the package `summarytools`.
+
+The mean of the total log activity counts is `r x`.
+
+The mean of the total log activity counts is `r round(mean(nhanesdat$tlac), 2)`.
+
+
+```{r}
+
+#library(summarytools)
+print(dfSummary(nhanesdat[,vars[-c(1,2)]]), method = 'render')
+```
+
+The outcome variable is 5 year mortality.
+
+```{r}
+
+#library(summarytools)
+print(dfSummary(nhanesdat[,vars[c(1,2)]]), method = 'render')
+```
+
+### Univariate distributions for continuous variables
+
+```{r}
+
+#library(gridExtra)
+
+g1<- ggplot(data = nhanesdat, aes(age))+geom_histogram(bins = 600, color = "black", fill = "grey")
+g2<- ggplot(data = nhanesdat, aes(bmi))+geom_histogram(bins = 600, color = "black", fill = "grey")
+g3<- ggplot(data = nhanesdat, aes(permth.exm))+geom_histogram(bins = 600, color = "black", fill = "grey")
+g4<- ggplot(data = nhanesdat, aes(tac))+geom_histogram(bins = 600, color = "black", fill = "grey")
+g5<- ggplot(data = nhanesdat, aes(mvpa))+geom_histogram(bins = 600, color = "black", fill = "grey")
+g6<- ggplot(data = nhanesdat, aes(astp))+geom_histogram(bins = 600, color = "black", fill = "grey")
+g7<- ggplot(data = nhanesdat, aes(satp))+geom_histogram(bins = 600, color = "black", fill = "grey")
+g8<- ggplot(data = nhanesdat, aes(lbxtc))+geom_histogram(bins = 600, color = "black", fill = "grey")
+g9<- ggplot(data = nhanesdat, aes(bpxsy4))+geom_histogram(bins = 600, color = "black", fill = "grey")
+
+
+grid.arrange(g1, g2,g3,g4,g5,g6,g7,g8,g9, nrow = 3)
+
+
+```
+
+If there is a marathon runner, what would the TAC be?
+
+Unrealistic high or low values may be detected by histograms or by calculating
+minimum and maximum values.  If a variable 'Chemo' is expected to have 0-1 values (non treated or treated with chemo) and instead we see  numbers 4,2,7, etc, this means that column labels may have been swapped. If we see a year of birth of 2078, this is likely 1978 instead. If the value can be checked or is obvious, it can be corrected, sometimes it is necessary to set the value to missing instead. It is good to check dates and length of time, for example subtracting the follow-up date from the data of study entry or the data of birth to make sure there are no negative time differences.
+
+
+### Univariate distributions for categorical variables
+```{r}
+
+#library(gridExtra)
+
+#  group = chemo, fill = chemo
+g1 <-nhanesdat %>% ggplot(aes(x = drinkstatus)) +  geom_bar(position = position_dodge(), fill="dark grey") +theme_bw() + theme(axis.text.x = element_text(angle = 60));
+g2 <-nhanesdat %>% ggplot(aes(x = race)) +  geom_bar(position = position_dodge(), fill="dark grey") +theme_bw() + theme(axis.text.x = element_text(angle = 60)); 
+g3 <-nhanesdat %>% ggplot(aes(x = educationadult)) +  geom_bar(position = position_dodge(), fill="dark grey") +theme_bw() + theme(axis.text.x = element_text(angle = 60));
+g4 <-nhanesdat %>% ggplot(aes(x = mobilityproblem)) +  geom_bar(position = position_dodge(), fill="dark grey") +theme_bw() ;
+g5 <-nhanesdat %>% ggplot(aes(x = bmi.cat)) +  geom_bar(position = position_dodge(), fill="dark grey") +theme_bw() 
+g6 <-nhanesdat %>% ggplot(aes(x = gender)) +  geom_bar(position = position_dodge(), fill="dark grey") +theme_bw() ;
+g7 <-nhanesdat %>% ggplot(aes(x = cancer)) +  geom_bar(position = position_dodge(), fill="dark grey") +theme_bw() ;
+g8 <-nhanesdat %>% ggplot(aes(x = chf)) +  geom_bar(position = position_dodge(), fill="dark grey") +theme_bw() ;
+g9 <-nhanesdat %>% ggplot(aes(x = stroke)) +  geom_bar(position = position_dodge(), fill="dark grey") +theme_bw() ;
+
+
+grid.arrange(g1, g2,g3,g4,g5,g6,g7,g8,g9, nrow = 3)                                                                                                          
+```
+ 
+ 
+ 
+
+### Interactive graphics
+
+```{r}
+library(plotly)
+fig <- plot_ly(nhanesdat, x = ~bmi,  color = ~gender, type="box")
+fig
+```
+
+
+### Pairwise associations
+
+Visualizing a correlation matrix between physical activity variables and age
+```{r}
+corvars<-c("age", "tac", "tlac", "wt", "mvpa", "satp", "astp")
+cor(nhanesdat[,corvars])
+
+#library(GGally)
+ggcorr(nhanesdat[,corvars])
+
+```
+
+The highest correlations are between the pairs (tac, tlac), (mvpa, tac), and (satp,tlac).
+
+Associations can be summarized in a scatter plot with "trend lines."
+```{r}
+
+g1<-ggplot(nhanesdat, aes(age, tac)) +
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE)
+
+g2<-ggplot(nhanesdat, aes(astp, tac)) +
+  geom_point() +
+  geom_smooth()
+
+g3<-ggplot(nhanesdat, aes(mvpa, tac)) +
+  geom_point() +
+  geom_smooth()
+
+g4<-ggplot(nhanesdat, aes(age, astp)) +
+  geom_point() +
+  geom_smooth()
+
+g5<-ggplot(nhanesdat, aes(satp, wt)) +
+  geom_point() +
+  geom_smooth()
+
+g6<-ggplot(nhanesdat, aes(satp, astp)) +
+  geom_point() +
+  geom_smooth()
+
+grid.arrange(g1, g2,g3, g4, g5, g6,  nrow = 2) 
+
+# geom_smooth() default method = 'loess' and formula 'y ~ x'
+
+```
+
+
+
+
+Visualization of other types of assocations:
+```{r, message=FALSE, warnings=FALSE}
+#library(GGally)
+ggpairs(nhanesdat[,c("age", "gender", "bmi", "tac")])
+
+
+```
+
+
+
+Unrealistic combinations of values can be detected by scatter plots or cross tables.
+
+
+
+<a href="#top">Back to top</a>
+
+# Data screening
+
+
+Some of the quantitative or graphical summaries are identical to the ones in the data cleaning step. However, now the focus is on data properties and potential impact on the intended statistical analysis plan.
+
+</br>
+**Review data summaries from the previous step with this new purpose in mind.**
+</br>
+
+Examples of what data screening might reveal:
+
+1. If we observe an uneven distribution of age and most of the survey respondents turn out to be around 50-60 years old, this would reveal that older participants are not well represented. 
+
+2. Health behaviors may differ between different age groups, thus there would be a question of selection bias and generalizability.
+
+
+```{r}
+summary(nhanesdat$bpxsy4)
+prop.table(table(is.na(nhanesdat$bpxsy4)))
+```
+
+Here we see that 80% of the 4th measurement of the systolic blood pressure is missing.
+
+
+
+### Missing data patterns
+```{r}
+# library(VIM)
+aggr(nhanesdat[,vars],numbers=TRUE)
+```
+
+There does not seem to be a pattern of missingness. 
+
+There may be situations where answers to question are missing depending on education level which would point to a systematic pattern.
+
+
+<p>
+
+
+
+
+
+
+
+We can check differences in variables stratified by education level, if this could have an impact on the intended analysis plan.
+
+
+```{r, results='asis'}
+hanesedu<-tableby(educationadult ~ ., data=nhanesdat[,vars], test=FALSE, numeric.stats=c("median","q1q3", "range"))
+
+# need results='asis' above for this to look good in the output
+summary(hanesedu, title = "Participant characteristics by education level")
+
+```
+
+
+Or check specific item only (total log activity count)
+```{r}
+nhanesdat %>%
+  group_by(educationadult) %>%
+  dplyr::summarise(mean(tlac, na.rm=TRUE))
+```
+
+
+
+<a href="#top">Back to top</a>
+
+# Initial data reporting
+
+An initial data report would be, for example, an R markdown file that documents all insights obtained from the previous steps to inform collaborators. 
+
+
+### Creating tables
+
+Here are two R packages with nice output for tables:
+
+
+* [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
+
+* [pixiedust](https://cran.r-project.org/web/packages/pixiedust/vignettes/pixiedust.html)
+
+
+```{r}
+tmp<-nhanesdat[,c("age", "gender", "race", "educationadult", "astp",  "satp")]
+
+# library(kableExtra)
+
+kable(tmp[1:10,], format="html", align = "c") %>%
+  kable_styling(c( "striped", "bordered")) %>%
+  row_spec(3, bold = T, color = "red", background = "yellow") %>%
+  footnote(general = "These are the first 10 participants.", general_title = "Note: ")
+  
+
+# library(pixiedust)
+fit<-lm(tac ~ gender+ age + mvpa + satp , data=nhanesdat)
+
+dust(fit, caption="Association with Total activity count", align="center") %>%
+  sprinkle(cols = c("estimate", "std.error", "statistic"), round = 3) %>%
+  sprinkle_colnames(term = "Term", std.error = "SE", statistic = "T-statistic",
+                    estimate = "Coefficient", p.value = "P-value") %>%
+  sprinkle(rows = 3, cols = 1:5,  bg = "yellow",
+           border = c("left", "right", "top", "bottom"),
+           border_color = "blue") %>% 
+  sprinkle_print_method("html")
+
+
+```
+
+
+
+<a href="#top">Back to top</a>
+
+# Refining/Updating the analysis plan
+
+
+The research questions and statistical analysis plan are established before the initial data analysis. The data screening steps might reveal that the originally planned statistical model is not feasible.
+
+There are a number of reasons for changing a statistical analysis plan. 
+
+*  **Additional exclusion of variables or participants** with too many missing values (to be noted in the flow diagram). Or use of imputation methods.
+
+
+* **Data transformation:** The distribution of  categorical variable is highly uneven which may lead to combining groups. Example: A small proportion is underweight. 
+
+```{r}
+prop.table(table(nhanesdat$bmi.cat))
+```
+
+Example: Comorbidities can have too few events. If the effect on the outcome is similar, it may be possible to combine several.
+
+```{r}
+table(nhanesdat$stroke, exclude = NULL);
+prop.table(table(nhanesdat$stroke, exclude = NULL))
+
+
+nhanesdat$cvs<-ifelse(nhanesdat$chf=="Yes" | nhanesdat$stroke=="Yes", "Yes","No" )
+
+table(nhanesdat$cvs, exclude = NULL);
+prop.table(table(nhanesdat$cvs, exclude = NULL))
+```
+
+
+
+* **Data transformation:** The distributions of a continuous variable has spikes at some values which may lead to categorization. Note, it may  not be necessary to transform skewed data to normally distributed data for regression modeling, but a log transform can de-emphasize the effect of outliers.
+
+
+```{r}
+g10<-ggplot(nhanesdat, aes(satp, tac)) +
+  geom_point() +
+  geom_smooth()
+
+g10+ facet_wrap(~gender)
+
+
+g11<-ggplot(nhanesdat, aes(satp, tlac)) +
+  geom_point() +
+  geom_smooth()
+
+g11+ facet_wrap(~gender)
+
+```
+
+
+
+* **Exclusion or transformation:** The distribution of a continuous variable is unexpectedly  bimodal (possibly indicating an error with the data collection instrument).
+Variables are highly correlated.
+
+* **Unexpected confounding:** additional variables may be added to the model
+
+
+* **Unexpected population heterogeneity:** expand inclusion/exclusion criteria
+
+
+
+**Alternatives:**
+
+* Take functional forms into account in any regression modeling and conduct careful model diagnostics to take into account such findings. 
+*  Expand the original statistical analysis plan and add sensitivity analyses.
+
+
+**Sometimes we discover during the IDA process that the original research question can not be answered.  Sometimes we discover  that no further modeling is required and that an Initial Data Analysis (descriptive summary) is enough for the manuscript.**
+
+
+
+<a href="#top">Back to top</a>
+
+# Reporting IDA findings in the final report/manuscript
+
+
+* IDA methodology to be described in Methods;
+* IDA results to be described in Methods or Results;
+* Impact of IDA on interpretation to be described in discussion.
+* Pre-planned decisions should be reported in Methods; 
+* IDA driven alterations of the analysis plan should be reported with motivation in Methods.
+* Participants’ characteristics should be checked for consistency with expectations and for potential impact on analysis and interpretation. At a minimum a statement should be included to confirm no violated expectations.
+* Full reporting of missingness, e.g. a flow chart describes unit missingness and a table for item missingness of variables.
+* Associations not involving the research question but with potential impact on interpretation of results should be reported.
+
+
+
+<a href="#top">Back to top</a>
+
+# Session info
+
+```{r}
+sessionInfo()
+```
+
+
+
+<a href="#top">Back to top</a>
+
+# References
+
+* Schmidt CO, Vach W, le Cessie S, Huebner M. STRATOS: Introducing the Initial Data Analysis Topic Group (TG3). Biometric Bulletin 2018; 35 (2): 10-11.  *This module uses text excerpts from this short introduction.*
+
+* Huebner M, le Cessie S, Schmidt CO, Vach W . A contemporary conceptual framework for initial data analysis. Observational Studies 2018; 4: 171-192. [Link](https://obsstudies.org/contemporary-conceptual-framework-initial-data-analysis/)   *This is the main paper that introduces the initial data analysis framework and explains concepts.* 
+
+* Huebner M, Vach W, le Cessie S, Schmidt CO, Lusa L. Hidden Analyses: a review of reporting practice and recommendations for more transparent reporting of initial data analyses. BMC Med Res Meth 2020; 20:61. [Link](https://bmcmedresmethodol.biomedcentral.com/track/pdf/10.1186/s12874-020-00942-y) *This paper reviews reporting practices and has recommendations for more transparency.*
+ 
+* Leek JT and Peng RD. (2015). Statistics: P values are just the tip of the iceberg. Nature, 520(7549):612. [Link](https://www.nature.com/news/polopoly_fs/1.17412!/menu/main/topColumns/topLeftColumn/pdf/520612a.pdf)
+
+
