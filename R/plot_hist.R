@@ -13,13 +13,15 @@ upper <- quantile(data %>% select({{var}}), probs = 0.75, na.rm = FALSE)
   data %>% 
     ggplot(aes({{var}})) +
     geom_histogram(binwidth = bin_width, alpha = 0.4) +
+   # geom_histogram(binwidth = function(x) 2 * IQR(x) / (length(x)^(1/3))) +
     scale_x_continuous(limits = c(min,max), 
-                       breaks= c(min, lower, mean, median, upper, max),
+                       breaks= c(min, mean, median, max),
                        guide = guide_axis(n.dodge = 2)) +
     theme_minimal()
   
 }
 
+plot_hist(data02, bmi)
 
 test <- function(data, var){
   a<-data[,var]
@@ -47,7 +49,7 @@ breaks2 <- breaks %>%
 
 mean <- median(data02$bmi, na.rm = TRUE)
 mean
-plot_hist(data02, bmi)
+
 
 
 a <- data02 %>% select(bmi)
