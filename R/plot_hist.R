@@ -39,6 +39,8 @@ breaks <- data02 %>%
             upper = quantile(bmi, probs = 0.75, na.rm = FALSE)) %>%
   mutate(id = "bmi")
 
+a <- breaks$median
+
 breaks
 breaks2 <- breaks %>% 
   tidyr::pivot_longer(-id, names_to = var, values_to = val)
