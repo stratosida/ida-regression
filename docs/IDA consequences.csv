@@ -1,9 +1,8 @@
-
 Element,Subelement,What to look at,Possible actions: Interpretation,Possible actions: SAP,Possible actions: Presentation,Examples CRASH-2,Examples Bacteremia,Examples NHANES
 ,,,Help in interpreting results,Update SAP,Update intended presentation of results,CRASH-2,Bacteremia,NHANES
 Univariate distributions,Continuous variables,General skewness,Wide CI for coefficients,Use variable as log-transformed,,,,
 ,,Outliers,Disproportional impact on results,Winsorize or transform,Model involves winsorization,,,
-,,Spike at 0,Narrow CI at 0,Use appropriate representation of variable in model,Use 2 (or more) coefficents to distinguish 0 from non-0, continuous part,,,
+,,Spike at 0,Narrow CI at 0,Use appropriate representation of variable in model,Use 2 (or more) coefficents to distinguish 0 from non-0 continuous part,,,
 ,Categorical variables,Frequencies,Comparisons to default reference probably irrelevant,Change reference category,Contrasts compare to (new) reference category,,,
 ,,Rare categories,Wide CI for coefficients,Collapse/exclude,Fewer categories to present,,,
 ,,One very frequent category,Comparisons irrelevant?,Exclude variable,Variable omitted,,,
