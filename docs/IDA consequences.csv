@@ -1,5 +1,5 @@
-General scheme,,,,,,,,
-Element,Subelement,What to look at,Possible actions:,,,Examples:,,
+
+Element,Subelement,What to look at,Possible actions: Interpretation,Possible actions: SAP,Possible actions: Presentation,Examples CRASH-2,Examples Bacteremia,Examples NHANES
 ,,,Help in interpreting results,Update SAP,Update intended presentation of results,CRASH-2,Bacteremia,NHANES
 Univariate distributions,Continuous variables,General skewness,Wide CI for coefficients,Use variable as log-transformed,,,,
 ,,Outliers,Disproportional impact on results,Winsorize or transform,Model involves winsorization,,,
