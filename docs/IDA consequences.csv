@@ -1,20 +1,20 @@
-General scheme;;;;;;;;
-Element;Subelement;What to look at;Possible actions:;;;Examples:;;
-;;;Help in interpreting results;Update SAP;Update intended presentation of results;CRASH-2;Bacteremia;NHANES
-Univariate distributions;Continuous variables;General skewness;Wide CI for coefficients;Use variable as log-transformed;;;;
-;;Outliers;Disproportional impact on results;Winsorize or transform;Model involves winsorization;;;
-;;Spike at 0;Narrow CI at 0;Use appropriate representation of variable in model;Use 2 (or more) coefficents to distinguish 0 from non-0, continuous part;;;
-;Categorical variables;Frequencies;Comparisons to default reference probably irrelevant;Change reference category;Contrasts compare to (new) reference category;;;
-;;Rare categories;Wide CI for coefficients;Collapse/exclude;Fewer categories to present;;;
-;;One very frequent category;Comparisons irrelevant?;Exclude variable;Variable omitted;;;
-Bivariate distributions;Continuous by continuous;Outliers (from the cloud);Disproportional impact on results;Winsorize or transform;Model involves winsorization;;;
-;;Correlations;Wide CI for coefficients;;;;;
-;;;;;;;;
-;Continuous by categorical;Outliers (only visible in bivariate plot);;;;;;
-;;;;;;;;
-;Categorical by categorical;Frequent/rare combinations;Comparison to default reference irrelevant;Change reference category;Contrasts compare to (new) reference category;;;
-;;;interactions relevant?;Remove interaction from model;Fewer interactions to present;;;
-Missing values;Per variable;Number and proportion;Wide CI for coefficients;Remove variable if many missing values;;;;
-;Pattern;Variables missing independently or together;;Omit variables together;Changes model;;;
-;Pattern;Variables missing dependent on levels of other variables;Systematic missingness? Model still based on representative?; IPW needed?;Weighted analysis;;;
-;Complete cases;Number and proportion;Few cases left for main CCO analysis;Multiple imputation (or other way of dealing with missing values)?;Result from MI analysis? Or applicability restricted to a subpopulation?;;;
+General scheme,,,,,,,,
+Element,Subelement,What to look at,Possible actions:,,,Examples:,,
+,,,Help in interpreting results,Update SAP,Update intended presentation of results,CRASH-2,Bacteremia,NHANES
+Univariate distributions,Continuous variables,General skewness,Wide CI for coefficients,Use variable as log-transformed,,,,
+,,Outliers,Disproportional impact on results,Winsorize or transform,Model involves winsorization,,,
+,,Spike at 0,Narrow CI at 0,Use appropriate representation of variable in model,Use 2 (or more) coefficents to distinguish 0 from non-0, continuous part,,,
+,Categorical variables,Frequencies,Comparisons to default reference probably irrelevant,Change reference category,Contrasts compare to (new) reference category,,,
+,,Rare categories,Wide CI for coefficients,Collapse/exclude,Fewer categories to present,,,
+,,One very frequent category,Comparisons irrelevant?,Exclude variable,Variable omitted,,,
+Bivariate distributions,Continuous by continuous,Outliers (from the cloud),Disproportional impact on results,Winsorize or transform,Model involves winsorization,,,
+,,Correlations,Wide CI for coefficients,,,,,
+,,,,,,,,
+,Continuous by categorical,Outliers (only visible in bivariate plot),,,,,,
+,,,,,,,,
+,Categorical by categorical,Frequent/rare combinations,Comparison to default reference irrelevant,Change reference category,Contrasts compare to (new) reference category,,,
+,,,interactions relevant?,Remove interaction from model,Fewer interactions to present,,,
+Missing values,Per variable,Number and proportion,Wide CI for coefficients,Remove variable if many missing values,,,,
+,Pattern,Variables missing independently or together,,Omit variables together,Changes model,,,
+,Pattern,Variables missing dependent on levels of other variables,Systematic missingness? Model still based on representative?, IPW needed?,Weighted analysis,,,
+,Complete cases,Number and proportion,Few cases left for main CCO analysis,Multiple imputation (or other way of dealing with missing values)?,Result from MI analysis? Or applicability restricted to a subpopulation?,,,
