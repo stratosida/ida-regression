@@ -1,27 +1,76 @@
 library(tidyverse)
+library(patchwork)
+
+
+
+
+
 plot_hist <- function(data, var, bin_width = 0.1){
 
-min <- min(data %>% select({{var}}))  
-max <- max(data %>% select({{var}}))  
-mean <- mean(data %>% select({{var}}), na.rm = TRUE)
-median <- 30
+breaks <- dplyr::summarise(data, 
+            mean = mean({{var}}, na.rm = TRUE),
+            median = median({{var}}, na.rm = TRUE),
+            min = min({{var}}),
+            max = max({{var}}),
+            lower = quantile({{var}}, probs = 0.25, na.rm = TRUE),
+            upper = quantile({{var}}, probs = 0.75, na.rm = TRUE)
+            )
 
-#median(data %>% select({{var}}), na.rm = TRUE)
-lower <- quantile(data %>% select({{var}}), probs = 0.25, na.rm = FALSE)
-upper <- quantile(data %>% select({{var}}), probs = 0.75, na.rm = FALSE)
-
-  data %>% 
-    ggplot(aes({{var}})) +
+p1 <- ggplot(data, aes({{var}})) +
     geom_histogram(binwidth = bin_width, alpha = 0.4) +
    # geom_histogram(binwidth = function(x) 2 * IQR(x) / (length(x)^(1/3))) +
-    scale_x_continuous(limits = c(min,max), 
-                       breaks= c(min, mean, median, max),
+    scale_x_continuous(limits = c(breaks$min, breaks$max), 
+                       breaks = c(breaks$min, breaks$mean, breaks$median, breaks$max),
                        guide = guide_axis(n.dodge = 2)) +
     theme_minimal()
+
+
+p2 <- data %>% ggplot(aes(x = {{var}}, y = factor(1))) + 
+  geom_boxplot() + 
+  geom_rug() +
+ # geom_point() +
+  theme_minimal()
+
   
+  
+  layout <- c(
+    area(1, 1, 1, 3),
+    area(2, 1, 4, 3)
+  )
+
+gg <- p2 / p1 + patchwork::plot_layout(design = layout)
+
+
+  
+    return(gg)
 }
 
 plot_hist(data02, bmi)
+
+crash2 %>% glimpse()
+plot_hist(crash2, cc)
+
+
+b <- data02 %>% ggplot(aes(x = bmi, y = "BMI")) + 
+  geom_boxplot() + 
+  geom_point() +
+  theme_minimal()
+
+
+library(patchwork)
+a / b
+
+
+
+
+layout <- c(
+  area(1, 1, 2, 3),
+  area(3, 1, 3, 3)
+)
+
+plot(layout)
+a / b + plot_layout(design = layout)
+
 
 test <- function(data, var){
   a<-data[,var]
