@@ -1,0 +1,102 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(here)
+library(tidyverse)
+library(janitor)
+library(summarytools)
+library(rmarkdown)
+```
+
+
+
+```{r cars}
+
+# nhanes
+#---------------------------------
+load(here::here("data", "nhanesdat.rdata"))
+nhanesdat %>% glimpse()
+
+
+nhanesdat<- nhanesdat %>%
+  Hmisc::upData(labels = c(tac = 'total activity counts per day', tlac = 'total log activity count', mvpa='total minutes of moderate/vigorous physical activity', wt ='total accelerometer wear time', satp ='sedentary/sleep/non-wear to active transition probability', astp ='active to sedentary/sleep/non-wear transition probability'))
+
+nhanesdat01 <- 
+  nhanesdat %>% janitor::clean_names()
+
+nhanesdat01 %>% glimpse()
+
+```
+
+
+```{r, results='asis'}
+st_options(style = "rmarkdown")
+
+print(summarytools::dfSummary(nhanesdat01, plain.ascii = FALSE, style = "grid", 
+          graph.magnif = 0.75, valid.col = FALSE, tmp.img.dir = "/tmp"))
+```
+
+
+
+
+
+
+
+```{r, results='asis'}
+bactermeia <- readr::read_csv(here::here("data", "Bacteremia_public.csv"))
+
+# to lower case
+bactermeia01 <- 
+  bactermeia %>% janitor::clean_names()
+
+st_options(style = "rmarkdown")
+
+print(summarytools::dfSummary(bactermeia01, plain.ascii = FALSE, style = "grid", 
+          graph.magnif = 0.75, valid.col = FALSE, tmp.img.dir = "/tmp"))
+```
+
+
+
+
+```{r, results='asis'}
+bactermeia01 %>% skimr::skim()
+```
+
+
+```{r, results='asis'}
+nhanesdat01 %>% skimr::skim()
+```
+
+
+
+
+load('data_SRHS_long.rda')
+d <- data_SRHS_long
+d <- upData(d, rename=c(gender='sex'),
+               sex  = factor(sex, 1:2, c('male', 'female')),
+               race = factor(race, 1:3, c('white', 'black', 'other')),
+               education = factor(education, 1:5, c('high school', 'GED',
+                 'high school graduate', 'some college',
+                 'college and above')), print=FALSE)
+dd <- datadist(d); options(datadist='dd')
+html(describe(d))
+
+
+```{r}
+Hmisc::html(Hmisc::describe(bactermeia01))
+```
+
+```{r}
+bactermeia01 %>%
+  dplyr::select(-blood_culture, -id) %>%
+  gtsummary::tbl_summary()
+```
+
+
+
+

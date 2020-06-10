@@ -54,3 +54,41 @@ library(ggplot2)
 data02 %>% 
   ggplot(aes(bmi)) +
   geom_histogram(binwidth = 0.1, alpha = 0.4)
+
+
+
+
+breaks <- data02 %>% 
+  select(bmi) %>% 
+  summarise(mean = mean(bmi, na.rm = TRUE),
+            median = median(bmi, na.rm = TRUE),
+            min = min(bmi),
+            max = max(bmi),
+            lower = quantile(bmi, probs = 0.25, na.rm = FALSE),
+            upper = quantile(bmi, probs = 0.75, na.rm = FALSE)) %>%
+  mutate(id = "bmi")
+
+a <- breaks$median
+
+breaks
+breaks2 <- breaks %>% 
+  tidyr::pivot_longer(-id, names_to = var, values_to = val)
+
+mean <- median(data02$bmi, na.rm = TRUE)
+mean
+
+
+
+a <- data02 %>% select(bmi)
+a
+b <- as.numeric(a$bmi)
+median(a$bmi)
+median(b)
+
+
+
+
+
+#ida_plot_hist(bactermeia01, crp, bin_width = 0.1)
+
+
