@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>IDA draft report</title>
+  <title>Chapter 2 Rectal cancer surgery dataset | IDA draft report</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="IDA draft report" />
+  <meta property="og:title" content="Chapter 2 Rectal cancer surgery dataset | IDA draft report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="IDA draft report" />
+  <meta name="twitter:title" content="Chapter 2 Rectal cancer surgery dataset | IDA draft report" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="rectal-cancer-surgery-dataset.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="crash-2-prediction-model.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -165,21 +165,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">IDA draft report</h1>
-<p class="author"><em>Compelte author list</em></p>
-<p class="date"><em>2020-06-10</em></p>
-</div>
-<div id="prerequisites" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Prerequisites</h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co"># or the development version</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></a></code></pre></div>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
-<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.name/tinytex/" class="uri">https://yihui.name/tinytex/</a>.</p>
+<div id="rectal-cancer-surgery-dataset" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Rectal cancer surgery dataset</h1>
+<p><strong>Description:</strong> The data sets includes 345 patients undergoing minimally invasive resection for rectal cancer
+from 2005 to 2011. The 44 variables describe patient characteristics (age, bmi, current smoker,
+ASA, prior abdominal surgery), surgical and treatment variables (primary procedure, preop chemo, preop radiation), post-surgical complications (ileus, wound infection, death30, readmission30, ), and comorbidities (COPD, diabetes), and time to complications and time to follow-up. Complications include post-operative ileus, abscess, leak, wound infection, small bowel obstruction, reoperation for bleeding, and renal failure.</p>
+<p><strong>Hypothetical research aim for IDA:</strong> Describe risk factors associated with the outcome ‘any complication’ developing within 30 days post surgery.</p>
+<p><strong>Statistical analysis plan:</strong>
+Outcome: All-cause complications within 30 days post surgery defined as binary variable.
+Statistical methods: Logistic regression will be used to model all-cause complications by the following independent variables: age, sex, bmi, ASA, prior abdominal surgery, minimal invasive surgery, preop chemo, preop radiation, primary procedure, diabetes, copd, current smoker.
+Categorical variables with more than two levels will enter the analyses as several dummy variables. The reference category for those variables will be chosen according to the most frequent group.
+For continuous variables, a linear or quadratic relationship with log odds of complications will be assumed.
+Results will be described by a table containing odds ratios and associated 95% confidence intervals for each variable. For nonlinearly modelled continuous variables, the log odds ratio as a function of the continuous variable will be graphically displayed, along with corresponding pointwise 95% confidence intervals. Moreover, odds ratios for comparisons between 90th, 75th, 25th and 10th percentile compared to median will be presented. A calibration plot comparing the agreement of predicted probabilities for the event and observed event rates will be constructed to check internal validity of the model. Overall model fit will be described by the area under the ROC curve and the explained variation (EV) based on the squared correlation of the predicted probabilities and the binary outcome variable. Partial explained variation (drop in EV after omitting a variable) will be computed for each variable to assess relative importance.</p>
+<p><em>Comments from 2019-12-17 conference call
+Marginal distribution of outcome variable to see about number of events and variables. Degrees of freedom. Known strong predictors vs predictors with unclear role.
+Possible actions:</em>
+- <em>Combine comorbidities as number</em>
+- <em>ASA: as numeric or collapsed (1,2 vs 3,4) or categorical 1-4</em>
+- <em>Degrees of freedom (can reduce age and bmi to linear).</em>
+- <em>Combine preop chemo+radiation as preop trt</em></p>
+<p><strong>Source:</strong> Mayo Clinic data courtesy of Dr. David Larson. <a href="https://github.com/stratos-ida/ida-regression/blob/master/data/crs.csv">LINK</a></p>
+<p><strong>Data dictionary:</strong> <a href="https://github.com/stratos-ida/ida-regression/blob/master/docs/crs.html">LINK</a></p>
+<p><strong>References:</strong>
+* Khreiss W, Huebner M, Cima R, Dozois E, Chua H, Pemberton JH, Harmson W, Larson DW. Improving Conventional Recovery With Enhanced Recovery in Minimally Invasive Surgery for Rectal Cancer. Diseases of the Colon &amp; Rectum 57 (5), 557-563
+* Huebner M, Huebner M, Cima RR, Larson DW. Timing of complications and length of stay after rectal cancer surgery. Journal of the American College of Surgeons 218 (5), 914-919</p>
 
 </div>
             </section>
@@ -187,8 +196,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="rectal-cancer-surgery-dataset.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="crash-2-prediction-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -219,11 +228,11 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bailliem/ida-regression-private/edit/master/index.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/SAP_crs.Rmd",
 "text": "Edit this chapter"
 },
 "history": {
-"link": "https://github.com/bailliem/ida-regression-private/commits/master/index.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/SAP_crs.Rmd",
 "text": "Chapter edit history"
 },
 "view": {

@@ -1,13 +1,21 @@
 bookdown::gitbook:
   css: style.css
   config:
+    sharing:
+      github: yes
+      facebook: false
     toc:
+      collapse: subsection
       before: |
         <li><a href="./">IDA report - working title</a></li>
       after: |
-        <li><a href="https://bailliem.github.io/ida-bookdown/" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
-    download: ["pdf", "epub"]
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit:
+      link: https://github.com/bailliem/ida-regression-private/edit/master/%s
+      text: "Edit this chapter"
+    history:
+      link: https://github.com/bailliem/ida-regression-private/commits/master/%s
+      text: "Chapter edit history"
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

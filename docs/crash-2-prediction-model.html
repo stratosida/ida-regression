@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>IDA draft report</title>
+  <title>Chapter 3 CRASH-2 prediction model | IDA draft report</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="IDA draft report" />
+  <meta property="og:title" content="Chapter 3 CRASH-2 prediction model | IDA draft report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="IDA draft report" />
+  <meta name="twitter:title" content="Chapter 3 CRASH-2 prediction model | IDA draft report" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="rectal-cancer-surgery-dataset.html"/>
+<link rel="prev" href="rectal-cancer-surgery-dataset.html"/>
+<link rel="next" href="pre-process-the-crs-data-set.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -165,30 +165,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">IDA draft report</h1>
-<p class="author"><em>Compelte author list</em></p>
-<p class="date"><em>2020-06-10</em></p>
-</div>
-<div id="prerequisites" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Prerequisites</h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co"># or the development version</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></a></code></pre></div>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
-<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.name/tinytex/" class="uri">https://yihui.name/tinytex/</a>.</p>
+<div id="crash-2-prediction-model" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> CRASH-2 prediction model</h1>
+<p><strong>Description:</strong> Clinical Randomisation of an Antifibrinolyticin Significant Haemorrhage(CRASH-2) was a large randomised placebo controlled trial among trauma patients with, or at risk of, significant haemorrhage, of the effects of antifibrinolytic treatment on death and transfusion requirement. The study is described at <a href="http://crash2.lshtm.ac.uk/">the original trial website</a>. A public version of the data set is found at a <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets">repository of public data sets</a> hosted by the Vanderbilt University’s Department of Biostatistics (Prof. Frank Harrell Jr.).</p>
+<p>The data set includes 20,207 patients and 44 variables.</p>
+<p><strong>Hypothetical research aim for IDA:</strong> Develop a multivariable model for early death (death within 28 days from injury) using 9 independent variables of mixed type (continuous, categorical, semicontinuous) with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome. The assumed analysis aim is in line with the prediction model presented by <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>, <a href="https://www.bmj.com/highwire/filestream/634478/field_highwire_adjunct_files/0/perp003158.ww1_default.pdf">supplement available at</a>. However, in contrast to the analysis described there, variables describing the economic region and the treatment allocation are missing in the public version of the data set, and while the data set contains 20,207 patients, the research paper mentions 20,127 patients having been included in the study.</p>
+<div id="statistical-analysis-plan" class="section level2">
+<h2><span class="header-section-number">3.1</span> Statistical analysis plan</h2>
+<p><strong>Outcome</strong>: Early death, i.e. in-hospital death within 28 days from injury (binary variable)</p>
+<p><strong>Statistical methods</strong>: Logistic regression will be used to model early death by the following independent variables deemed important to predict early death:</p>
+<ul>
+<li>Age (<code>age</code>, years)</li>
+<li>Sex (<code>sex</code>, male or female)</li>
+<li>Systolic blood pressure (<code>sbp</code>, mmHg)</li>
+<li>Heart rate (<code>hr</code>, 1/min)</li>
+<li>Respiratory rate (<code>rr</code>, 1/min)</li>
+<li>Glasgow coma score (<code>gcs</code>, points)</li>
+<li>Central capillary refill time (<code>cc</code>, seconds)</li>
+<li>Time since injury (<code>injurytime</code>, hours)</li>
+<li>Type of injury (<code>injurytype</code>, ‘blunt’, ‘penetrating’ or ‘blunt and penetrating’)</li>
+</ul>
+<p>Restricted cubic splines with 3 degrees of freedom with knots set to default values will be used for continuous variables. As the final prediction model should be parsimonious enough to simplify its application, a backward elimination algorithm with a significance level set at <span class="math inline">\(\alpha=0.05\)</span> will be applied to remove statistically insignificant effects. Finally, nonlinear representation of each continuous variable will be tested against linear representation at <span class="math inline">\(\alpha=0.05\)</span>. In case of lacking added value of a nonlinear effect, the model will be refitted with a linear effect for that variable.</p>
+<p><em>Remarks</em>:</p>
+<ul>
+<li><p>Regarding type of injury, the original paper describes its treatment in the model as follows: ‘Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as ’penetrating’ or ‘blunt and penetrating.’ ’ It is not clear from that description what happened to the ‘blunt’ group. (I assume they were collapsed with ‘blunt and penetrating’.)</p></li>
+<li><p>The original paper describes the modeling approach as follows: ‘We used a backward stepwise approach. Firstly, we included all potential prognostic factors and interaction terms that users considered plausible. These interactions included all potential predictors with type of injury, time since injury, and age. We then removed, one at a time, terms for which we found no strong evidence of an association, judged according to the P values (&lt;0.05) from the Wald test.’ This would mean they tested at least 24 interaction terms, each possibly using several degrees of freedom! In the final model, only an interaction of Glasgow coma score and type of injury was included.</p></li>
+</ul>
+<p><strong>Preparations:</strong></p>
+<p>The outcome variable, early death (i.e., death within 28 days from injury) must be computed from the time span between date of death and date of randomisation using the following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># transform ddeath and trandomisation into an interpretable date format and then compute the difference</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="co"># interpret NAs as &#39;not died within study period, at least not within 28 days&#39;</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co"># if patients died after 28 days, treat as alive </span></a>
+<a class="sourceLine" id="cb2-4" title="4"></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">#crash2$time2death &lt;- as.numeric(as.Date(crash2$ddeath) - as.Date(crash2$trandomised))</span></a>
+<a class="sourceLine" id="cb2-6" title="6"></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">#crash2$earlydeath[!is.na(crash2$time2death)] &lt;- (crash2$time2death[!is.na(crash2$time2death)] &lt;= 28) + 0   </span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co"># +0 to transform it from TRUE/FALSE to 1/0</span></a>
+<a class="sourceLine" id="cb2-9" title="9"></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#crash2$earlydeath[is.na(crash2$time2death)] &lt;- 0    # NA in time2death means alive at day 28</span></a>
+<a class="sourceLine" id="cb2-11" title="11"></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">#table(crash2$earlydeath)</span></a></code></pre></div>
+<p>The number of deaths computed in the data set coincides with the number reported in <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>.</p>
+<p><strong>Source:</strong></p>
+<p>Data obtained from <a href="http://biostat.mc.vanderbilt.edu/DataSets" class="uri">http://biostat.mc.vanderbilt.edu/DataSets</a></p>
+<p><a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda">LINK to data set</a></p>
+<p><strong>Data dictionary:</strong> <a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/Ccrash2.html">LINK</a></p>
+<p><strong>References:</strong></p>
+<ul>
+<li><p>CRASH-2 Collaborators. Effects of tranexamic acid on death, vascular occlusive events, and blood transfusion in trauma patients with significant haemorrhage (CRASH-2): a randomised, placebo-controlled trial. Lancet 2010;376:23-32</p></li>
+<li><p>Perel P, Prieto-Merino D, Shakur H, Clayton T, Lecky F, Bouamra O, Russell R, Faulkner M, Steyerberg EW, Roberts I. Predicting early death in patients with traumatic bleeding: development and validation of prognostic model. BMJ 2012; 345(aug15 1): e5166.</p></li>
+</ul>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="rectal-cancer-surgery-dataset.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rectal-cancer-surgery-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pre-process-the-crs-data-set.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -219,11 +255,11 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bailliem/ida-regression-private/edit/master/index.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/SAP_crash2.Rmd",
 "text": "Edit this chapter"
 },
 "history": {
-"link": "https://github.com/bailliem/ida-regression-private/commits/master/index.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/SAP_crash2.Rmd",
 "text": "Chapter edit history"
 },
 "view": {

@@ -7,6 +7,8 @@ delete_merged_file: true
 output_dir: "docs"
 rmd_files: [
   "index.Rmd",
+  "SAP_crs.Rmd",
+  "SAP_crash2.Rmd",
   "01_process_crs.Rmd",
   "09-references.Rmd"
 ]
