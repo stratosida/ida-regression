@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Pre-process the CRS data set | IDA draft report</title>
+  <title>Chapter 5 Pre-process the CRS data set | IDA draft report</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Pre-process the CRS data set | IDA draft report" />
+  <meta property="og:title" content="Chapter 5 Pre-process the CRS data set | IDA draft report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Pre-process the CRS data set | IDA draft report" />
+  <meta name="twitter:title" content="Chapter 5 Pre-process the CRS data set | IDA draft report" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="crash-2-prediction-model.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="bacteremia-study.html"/>
+<link rel="next" href="references-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -132,19 +132,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html"><i class="fa fa-check"></i><b>2</b> Rectal cancer surgery dataset</a></li>
+<li class="chapter" data-level="2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html"><i class="fa fa-check"></i><b>2</b> Rectal cancer surgery dataset</a><ul>
+<li class="chapter" data-level="2.1" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#description"><i class="fa fa-check"></i><b>2.1</b> Description</a></li>
+<li class="chapter" data-level="2.2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#hypothetical-research-aim-for-ida"><i class="fa fa-check"></i><b>2.2</b> Hypothetical research aim for IDA</a></li>
+<li class="chapter" data-level="2.3" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>2.3</b> Statistical analysis plan</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#comments-from-2019-12-17-conference-call"><i class="fa fa-check"></i><b>2.3.1</b> Comments from 2019-12-17 conference call</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#source"><i class="fa fa-check"></i><b>2.4</b> Source:</a></li>
+<li class="chapter" data-level="2.5" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#data-dictionary"><i class="fa fa-check"></i><b>2.5</b> Data dictionary</a></li>
+<li class="chapter" data-level="2.6" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#references"><i class="fa fa-check"></i><b>2.6</b> References</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html"><i class="fa fa-check"></i><b>3</b> CRASH-2 prediction model</a><ul>
-<li class="chapter" data-level="3.1" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>3.1</b> Statistical analysis plan</a></li>
+<li class="chapter" data-level="3.1" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#statistical-analysis-plan-1"><i class="fa fa-check"></i><b>3.1</b> Statistical analysis plan</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html"><i class="fa fa-check"></i><b>4</b> Pre-process the CRS data set</a><ul>
-<li class="chapter" data-level="4.1" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#about"><i class="fa fa-check"></i><b>4.1</b> About</a></li>
-<li class="chapter" data-level="4.2" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#set-up"><i class="fa fa-check"></i><b>4.2</b> Set up</a></li>
-<li class="chapter" data-level="4.3" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#read-data"><i class="fa fa-check"></i><b>4.3</b> Read data</a></li>
-<li class="chapter" data-level="4.4" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#check-data"><i class="fa fa-check"></i><b>4.4</b> Check data</a></li>
-<li class="chapter" data-level="4.5" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#save-data-sets"><i class="fa fa-check"></i><b>4.5</b> Save data sets</a></li>
-<li class="chapter" data-level="4.6" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#session-info"><i class="fa fa-check"></i><b>4.6</b> Session info</a></li>
+<li class="chapter" data-level="4" data-path="bacteremia-study.html"><a href="bacteremia-study.html"><i class="fa fa-check"></i><b>4</b> Bacteremia study</a><ul>
+<li class="chapter" data-level="4.1" data-path="bacteremia-study.html"><a href="bacteremia-study.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="bacteremia-study.html"><a href="bacteremia-study.html#load-the-data"><i class="fa fa-check"></i><b>4.2</b> Load the data</a></li>
+<li class="chapter" data-level="4.3" data-path="bacteremia-study.html"><a href="bacteremia-study.html#intended-statistical-analysis"><i class="fa fa-check"></i><b>4.3</b> Intended statistical analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="5" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html"><i class="fa fa-check"></i><b>5</b> Pre-process the CRS data set</a><ul>
+<li class="chapter" data-level="5.1" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#about"><i class="fa fa-check"></i><b>5.1</b> About</a></li>
+<li class="chapter" data-level="5.2" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#set-up"><i class="fa fa-check"></i><b>5.2</b> Set up</a></li>
+<li class="chapter" data-level="5.3" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#read-data"><i class="fa fa-check"></i><b>5.3</b> Read data</a></li>
+<li class="chapter" data-level="5.4" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#check-data"><i class="fa fa-check"></i><b>5.4</b> Check data</a></li>
+<li class="chapter" data-level="5.5" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#save-data-sets"><i class="fa fa-check"></i><b>5.5</b> Save data sets</a></li>
+<li class="chapter" data-level="5.6" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#session-info"><i class="fa fa-check"></i><b>5.6</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -166,19 +180,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="pre-process-the-crs-data-set" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Pre-process the CRS data set</h1>
+<h1><span class="header-section-number">Chapter 5</span> Pre-process the CRS data set</h1>
 <div id="about" class="section level2">
-<h2><span class="header-section-number">4.1</span> About</h2>
+<h2><span class="header-section-number">5.1</span> About</h2>
 <p>This notebook is for final processing of data prior to IDA e.g. completing missing meta-data, labels, etc.</p>
 </div>
 <div id="set-up" class="section level2">
-<h2><span class="header-section-number">4.2</span> Set up</h2>
+<h2><span class="header-section-number">5.2</span> Set up</h2>
 <p>Set up packages and path to the data set.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(rmarkdown)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">library</span>(rmarkdown)</a></code></pre></div>
 <pre><code>## Warning: package &#39;rmarkdown&#39; was built under R version 3.6.3</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
 <pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.6.3</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.6.3</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
@@ -188,9 +202,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">library</span>(tidyr)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">library</span>(tidyr)</a></code></pre></div>
 <pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.6.3</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">library</span>(Hmisc)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">library</span>(Hmisc)</a></code></pre></div>
 <pre><code>## Warning: package &#39;Hmisc&#39; was built under R version 3.6.3</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## Warning: package &#39;lattice&#39; was built under R version 3.6.3</code></pre>
@@ -205,12 +219,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     format.pval, units</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">library</span>(here)</a></code></pre></div>
-<pre><code>## Warning: package &#39;here&#39; was built under R version 3.6.3</code></pre>
-<pre><code>## here() starts at C:/R/Projects/ida-regression-private2</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">library</span>(here)</a></code></pre></div>
 </div>
 <div id="read-data" class="section level2">
-<h2><span class="header-section-number">4.3</span> Read data</h2>
+<h2><span class="header-section-number">5.3</span> Read data</h2>
 <p>TODO:add variable to indicate measurement type:</p>
 <ul>
 <li>med history</li>
@@ -218,13 +230,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Add additional metadata on measurement schedule</li>
 </ul>
 <p>Load the CRS dataset.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">load</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;crs.Rdata&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">load</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;crs.Rdata&quot;</span>))</a></code></pre></div>
 </div>
 <div id="check-data" class="section level2">
-<h2><span class="header-section-number">4.4</span> Check data</h2>
+<h2><span class="header-section-number">5.4</span> Check data</h2>
 <p>Check data contents and complete any misssing information including labels or units.</p>
 <p>display the data set contents.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">Hmisc<span class="op">::</span><span class="kw">contents</span>(crs) </a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">Hmisc<span class="op">::</span><span class="kw">contents</span>(crs) </a></code></pre></div>
 <pre><code>## 
 ## Data frame:crs   345 observations and 44 variables    Maximum # NAs:268
 ## 
@@ -363,19 +375,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## |primaryproc    |LAR,APR,Proctocolectomy|
 ## +---------------+-----------------------+</code></pre>
 <p>Add missing label for BMI.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">a_crs &lt;-<span class="st"> </span>crs <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="st">  </span>Hmisc<span class="op">::</span><span class="kw">upData</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="dt">bmi =</span> <span class="st">&#39;body mass index&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">a_crs &lt;-<span class="st"> </span>crs <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb35-2" title="2"><span class="st">  </span>Hmisc<span class="op">::</span><span class="kw">upData</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="dt">bmi =</span> <span class="st">&#39;body mass index&#39;</span>))</a></code></pre></div>
 <pre><code>## Input object size:    124504 bytes;   44 variables    345 observations
 ## New object size: 123656 bytes;   44 variables    345 observations</code></pre>
 </div>
 <div id="save-data-sets" class="section level2">
-<h2><span class="header-section-number">4.5</span> Save data sets</h2>
+<h2><span class="header-section-number">5.5</span> Save data sets</h2>
 <p>Save the updated data set.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">save</span>(crs, a_crs, <span class="dt">file =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;a_crs.Rdata&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">save</span>(crs, a_crs, <span class="dt">file =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;a_crs.Rdata&quot;</span>))</a></code></pre></div>
 </div>
 <div id="session-info" class="section level2">
-<h2><span class="header-section-number">4.6</span> Session info</h2>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<h2><span class="header-section-number">5.6</span> Session info</h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
 <pre><code>## R version 3.6.1 (2019-07-05)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 17763)
@@ -393,9 +405,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] here_0.1        Hmisc_4.4-0     Formula_1.2-3   survival_3.1-11
-## [5] lattice_0.20-40 tidyr_1.0.2     dplyr_0.8.5     ggplot2_3.3.0  
-## [9] rmarkdown_2.1  
+## [1] Hmisc_4.4-0     Formula_1.2-3   survival_3.1-11 lattice_0.20-40
+## [5] tidyr_1.0.2     dplyr_0.8.5     ggplot2_3.3.0   rmarkdown_2.1  
+## [9] here_0.1       
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] tidyselect_1.1.0    xfun_0.12           purrr_0.3.4        
@@ -409,8 +421,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [25] htmlTable_1.13.3    Rcpp_1.0.4.6        acepack_1.4.1      
 ## [28] scales_1.1.1        backports_1.1.7     checkmate_2.0.0    
 ## [31] gridExtra_2.3       png_0.1-7           digest_0.6.25      
-## [34] stringi_1.4.6       bookdown_0.18       rprojroot_1.3-2    
-## [37] grid_3.6.1          tools_3.6.1         magrittr_1.5       
+## [34] stringi_1.4.6       bookdown_0.18       grid_3.6.1         
+## [37] rprojroot_1.3-2     tools_3.6.1         magrittr_1.5       
 ## [40] tibble_3.0.1        cluster_2.1.0       crayon_1.3.4       
 ## [43] pkgconfig_2.0.3     ellipsis_0.3.0      Matrix_1.2-18      
 ## [46] data.table_1.12.8   assertthat_0.2.1    rstudioapi_0.11    
@@ -424,8 +436,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="crash-2-prediction-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bacteremia-study.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

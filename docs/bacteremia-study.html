@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>IDA draft report</title>
+  <title>Chapter 4 Bacteremia study | IDA draft report</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="IDA draft report" />
+  <meta property="og:title" content="Chapter 4 Bacteremia study | IDA draft report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="IDA draft report" />
+  <meta name="twitter:title" content="Chapter 4 Bacteremia study | IDA draft report" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="rectal-cancer-surgery-dataset.html"/>
+<link rel="prev" href="crash-2-prediction-model.html"/>
+<link rel="next" href="pre-process-the-crs-data-set.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -179,30 +179,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">IDA draft report</h1>
-<p class="author"><em>Compelte author list</em></p>
-<p class="date"><em>2020-06-10</em></p>
+<div id="bacteremia-study" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Bacteremia study</h1>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">4.1</span> Introduction</h2>
+<p>Ratzinger et al (2014) performed a diagnostic study in which age, sex and 49 laboratory variables can be used to diagnose bacteremia status of a blood sample using a multivariable model. Between January 2006 and December 2010, patients with the clinical suspicion to suffer from bacteraemia were included if blood culture analysis was requested by the responsible physician and blood was sampled for assessment of haematology and biochemistry. The data consists of 14,691 observations from different patients.</p>
+<p>Our version of this data was slightly modified compared to original version, and this modified version was cleared by the Medical University of Vienna for public use (DC 2019-0054).</p>
+<p>In the original paper describing the study (“Ratzinger-2013-PlosOne.PDF”), a machine learning approach was taken to diagnose a positive status of blood culture. The true status was determined for all blood samples by blood culture analysis, which is the gold standard but . Here we will make use of a multivariable logistic regression model.</p>
 </div>
-<div id="prerequisites" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Prerequisites</h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co"># or the development version</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></a></code></pre></div>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
-<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.name/tinytex/" class="uri">https://yihui.name/tinytex/</a>.</p>
+<div id="load-the-data" class="section level2">
+<h2><span class="header-section-number">4.2</span> Load the data</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(here)</a></code></pre></div>
+<pre><code>## Warning: package &#39;here&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## here() starts at C:/R/Projects/ida-regression-private2</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">bact &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;Bacteremia_public.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">dim</span>(bact)</a></code></pre></div>
+<pre><code>## [1] 14691    53</code></pre>
+</div>
+<div id="intended-statistical-analysis" class="section level2">
+<h2><span class="header-section-number">4.3</span> Intended statistical analysis</h2>
+<p>Suppose we are interested to fit a multivariable logistic regression to predict positive blood culture status based on the 49 laboratory variables, age and gender.</p>
+<p>The 49 laboratory variables are listed along with units of measurement in the original paper. <code>ID</code> is a (permuted) patient identifier, and laboratory variables are the variables from <code>MCV</code> to <code>WBC</code>. <code>BloodCulture</code> is the result of blood culture analysis and coded as string in <code>no</code> and <code>yes</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">colnames</span>(bact)</a></code></pre></div>
+<pre><code>##  [1] &quot;ID&quot;           &quot;sex&quot;          &quot;Alter&quot;        &quot;MCV&quot;          &quot;HGB&quot;         
+##  [6] &quot;HCT&quot;          &quot;PLT&quot;          &quot;MCH&quot;          &quot;MCHC&quot;         &quot;RDW&quot;         
+## [11] &quot;MPV&quot;          &quot;LYM&quot;          &quot;MONO&quot;         &quot;EOS&quot;          &quot;BASO&quot;        
+## [16] &quot;NT&quot;           &quot;APTT&quot;         &quot;FIB&quot;          &quot;NA.&quot;          &quot;K&quot;           
+## [21] &quot;CA&quot;           &quot;PHOS&quot;         &quot;MG&quot;           &quot;KREA&quot;         &quot;BUN&quot;         
+## [26] &quot;HS&quot;           &quot;GBIL&quot;         &quot;TP&quot;           &quot;ALB&quot;          &quot;AMY&quot;         
+## [31] &quot;PAMY&quot;         &quot;LIP&quot;          &quot;CHE&quot;          &quot;AP&quot;           &quot;ASAT&quot;        
+## [36] &quot;ALAT&quot;         &quot;GGT&quot;          &quot;LDH&quot;          &quot;CK&quot;           &quot;GLU&quot;         
+## [41] &quot;TRIG&quot;         &quot;CHOL&quot;         &quot;CRP&quot;          &quot;BASOR&quot;        &quot;EOSR&quot;        
+## [46] &quot;LYMR&quot;         &quot;MONOR&quot;        &quot;NEU&quot;          &quot;NEUR&quot;         &quot;PDW&quot;         
+## [51] &quot;RBC&quot;          &quot;WBC&quot;          &quot;BloodCulture&quot;</code></pre>
+<p>Briefly, initial data analysis will focus on evaluating the distribution of variables and possible transformations suggested to reduce disproportional impact of outliers, reduce the number of variables considered for analysis by evaluating collinearity, and consider exclusion of variables based on excessive missing values.</p>
+<p>For diagnosis a parsimonious model is desired. The optimal analysis strategy (preselection of predictors, data-driven selection algorithm) cannot easily be determined without proper initial data analysis.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="rectal-cancer-surgery-dataset.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="crash-2-prediction-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pre-process-the-crs-data-set.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -233,11 +254,11 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bailliem/ida-regression-private/edit/master/index.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/SAP_bacteremia.Rmd",
 "text": "Edit this chapter"
 },
 "history": {
-"link": "https://github.com/bailliem/ida-regression-private/commits/master/index.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/SAP_bacteremia.Rmd",
 "text": "Chapter edit history"
 },
 "view": {

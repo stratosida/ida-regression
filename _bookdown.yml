@@ -9,6 +9,7 @@ rmd_files: [
   "index.Rmd",
   "SAP_crs.Rmd",
   "SAP_crash2.Rmd",
+  "SAP_bacteremia.Rmd",
   "01_process_crs.Rmd",
   "09-references.Rmd"
 ]
