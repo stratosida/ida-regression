@@ -1,0 +1,12 @@
+book_filename: "IDA working draft title"
+repo: https://github.com/bailliem/ida-bookdown
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: true
+output_dir: "docs"
+rmd_files: [
+  "index.Rmd",
+  "01_process_crs.Rmd",
+  "09-references.Rmd"
+]

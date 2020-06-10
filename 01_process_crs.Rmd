@@ -1,25 +1,15 @@
----
-title: "Pre-process the CRS data set"
-output:
-  md_document:
-    variant: markdown_github
-    toc: true
-    toc_depth: 2
----
+# Pre-process the CRS data set
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-# About
+## About 
 
 This notebook is for final processing of data prior to IDA e.g. completing missing meta-data, labels, etc. 
 
-# Set up
+## Set up
 
 Set up packages and path to the data set. 
 
-```{r setupR}
+```{r }
 library(rmarkdown)
 library(ggplot2)
 library(dplyr)
@@ -30,7 +20,7 @@ library(here)
 ```
 
 
-# Read data
+## Read data
 
 TODO:add variable to indicate measurement type:
 
@@ -44,7 +34,7 @@ Load the CRS dataset.
 load(here("data","crs.Rdata"))
 ```
 
-# Check data
+## Check data
 
 Check data contents and complete any misssing information including labels or units. 
 
@@ -61,7 +51,7 @@ a_crs <- crs %>%
   Hmisc::upData(labels = c(bmi = 'body mass index'))
 ```
 
-# Save data sets
+## Save data sets
 
 Save the updated data set. 
 
@@ -69,7 +59,7 @@ Save the updated data set.
 save(crs, a_crs, file = here("data","a_crs.Rdata"))
 ```
 
-# Session info
+## Session info
 
 ```{r}
 sessionInfo()

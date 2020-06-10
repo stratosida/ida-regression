@@ -1,17 +1,6 @@
----
-title: "Univariate summaries"
-output:
-  md_document:
-    variant: markdown_github
-    toc: true
-    toc_depth: 2
----
+# Univariate summaries
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r setupR}
+```{r }
 library(rmarkdown)
 library(ggplot2)
 library(dplyr)
@@ -36,7 +25,7 @@ load(here("data","a_crs.Rdata"))
 ```
 
 
-# Descriptive summary
+## Descriptive summary
 
 Univariate analyses. 
 
@@ -126,13 +115,13 @@ a_crs %>%
 
 
 ```{r}
-library(summarytools)   # to get an overview of a dataset with basic summary
-print(dfSummary(a_crs[,-1]), method = 'render')
+#library(summarytools)   # to get an overview of a dataset with basic summary
+#print(dfSummary(a_crs[,-1]), method = 'render')
 ```
 
 
 
-# Session info
+## Session info
 
 ```{r}
 sessionInfo()
