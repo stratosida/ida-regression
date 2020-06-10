@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Univariate summaries | IDA draft report</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Univariate summaries | IDA draft report" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Univariate summaries | IDA draft report" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Compelte author list" />
+
+
+<meta name="date" content="2020-06-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="pre-process-the-crs-data-set.html"/>
+<link rel="next" href="references-1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">IDA report - working title</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html"><i class="fa fa-check"></i><b>2</b> Rectal cancer surgery dataset</a><ul>
+<li class="chapter" data-level="2.1" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#description"><i class="fa fa-check"></i><b>2.1</b> Description</a></li>
+<li class="chapter" data-level="2.2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#hypothetical-research-aim-for-ida"><i class="fa fa-check"></i><b>2.2</b> Hypothetical research aim for IDA</a></li>
+<li class="chapter" data-level="2.3" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>2.3</b> Statistical analysis plan</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#comments-from-2019-12-17-conference-call"><i class="fa fa-check"></i><b>2.3.1</b> Comments from 2019-12-17 conference call</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#source"><i class="fa fa-check"></i><b>2.4</b> Source:</a></li>
+<li class="chapter" data-level="2.5" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#data-dictionary"><i class="fa fa-check"></i><b>2.5</b> Data dictionary</a></li>
+<li class="chapter" data-level="2.6" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#references"><i class="fa fa-check"></i><b>2.6</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html"><i class="fa fa-check"></i><b>3</b> CRASH-2 prediction model</a><ul>
+<li class="chapter" data-level="3.1" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#statistical-analysis-plan-1"><i class="fa fa-check"></i><b>3.1</b> Statistical analysis plan</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bacteremia-study.html"><a href="bacteremia-study.html"><i class="fa fa-check"></i><b>4</b> Bacteremia study</a><ul>
+<li class="chapter" data-level="4.1" data-path="bacteremia-study.html"><a href="bacteremia-study.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="bacteremia-study.html"><a href="bacteremia-study.html#load-the-data"><i class="fa fa-check"></i><b>4.2</b> Load the data</a></li>
+<li class="chapter" data-level="4.3" data-path="bacteremia-study.html"><a href="bacteremia-study.html#intended-statistical-analysis"><i class="fa fa-check"></i><b>4.3</b> Intended statistical analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html"><i class="fa fa-check"></i><b>5</b> Pre-process the CRS data set</a><ul>
+<li class="chapter" data-level="5.1" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#about"><i class="fa fa-check"></i><b>5.1</b> About</a></li>
+<li class="chapter" data-level="5.2" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#set-up"><i class="fa fa-check"></i><b>5.2</b> Set up</a></li>
+<li class="chapter" data-level="5.3" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#read-data"><i class="fa fa-check"></i><b>5.3</b> Read data</a></li>
+<li class="chapter" data-level="5.4" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#check-data"><i class="fa fa-check"></i><b>5.4</b> Check data</a></li>
+<li class="chapter" data-level="5.5" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#save-data-sets"><i class="fa fa-check"></i><b>5.5</b> Save data sets</a></li>
+<li class="chapter" data-level="5.6" data-path="pre-process-the-crs-data-set.html"><a href="pre-process-the-crs-data-set.html#session-info"><i class="fa fa-check"></i><b>5.6</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="univariate-summaries.html"><a href="univariate-summaries.html"><i class="fa fa-check"></i><b>6</b> Univariate summaries</a><ul>
+<li class="chapter" data-level="6.1" data-path="univariate-summaries.html"><a href="univariate-summaries.html#read-data-1"><i class="fa fa-check"></i><b>6.1</b> Read data</a></li>
+<li class="chapter" data-level="6.2" data-path="univariate-summaries.html"><a href="univariate-summaries.html#descriptive-summary"><i class="fa fa-check"></i><b>6.2</b> Descriptive summary</a></li>
+<li class="chapter" data-level="6.3" data-path="univariate-summaries.html"><a href="univariate-summaries.html#medical-history"><i class="fa fa-check"></i><b>6.3</b> Medical history</a></li>
+<li class="chapter" data-level="6.4" data-path="univariate-summaries.html"><a href="univariate-summaries.html#patient-characteristics"><i class="fa fa-check"></i><b>6.4</b> Patient characteristics</a></li>
+<li class="chapter" data-level="6.5" data-path="univariate-summaries.html"><a href="univariate-summaries.html#session-info-1"><i class="fa fa-check"></i><b>6.5</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IDA draft report</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="univariate-summaries" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Univariate summaries</h1>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">library</span>(rmarkdown)</a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb40-4" title="4"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb40-5" title="5"><span class="kw">library</span>(Hmisc)</a>
+<a class="sourceLine" id="cb40-6" title="6"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb40-7" title="7"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## -- Attaching packages ---------------------------------------------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v tibble  3.0.1     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0
+## v purrr   0.3.4</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter()    masks stats::filter()
+## x dplyr::lag()       masks stats::lag()
+## x Hmisc::src()       masks dplyr::src()
+## x Hmisc::summarize() masks dplyr::summarize()</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">library</span>(summarytools)</a></code></pre></div>
+<pre><code>## Warning: package &#39;summarytools&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;pryr&#39;:
+##   method      from
+##   print.bytes Rcpp</code></pre>
+<pre><code>## For best results, restart R session and update pander using devtools:: or remotes::install_github(&#39;rapporter/pander&#39;)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;summarytools&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:tibble&#39;:
+## 
+##     view</code></pre>
+<pre><code>## The following objects are masked from &#39;package:Hmisc&#39;:
+## 
+##     label, label&lt;-</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co">## Set global ggplot theme</span></a>
+<a class="sourceLine" id="cb57-2" title="2"><span class="kw">theme_set</span>(<span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">12</span>))</a></code></pre></div>
+<div id="read-data-1" class="section level2">
+<h2><span class="header-section-number">6.1</span> Read data</h2>
+<p>Load the CRS dataset.</p>
+<p>Note: crs is the original source data and a_crs is the updated analysis ready dataset with additional meta-data added.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">load</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;a_crs.Rdata&quot;</span>))</a></code></pre></div>
+</div>
+<div id="descriptive-summary" class="section level2">
+<h2><span class="header-section-number">6.2</span> Descriptive summary</h2>
+<p>Univariate analyses.</p>
+<p>Calculate the number of patients.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">bigN &lt;-<span class="st"> </span><span class="kw">nrow</span>(crs)</a>
+<a class="sourceLine" id="cb59-2" title="2"><span class="kw">print</span>(bigN)</a></code></pre></div>
+<pre><code>## [1] 345</code></pre>
+</div>
+<div id="medical-history" class="section level2">
+<h2><span class="header-section-number">6.3</span> Medical history</h2>
+<p>A summary of medical history measured at <em>diagnosis</em> (TODO: check when medical history / comorbidities were assessed):
+* AFib,
+* MI
+* CHF
+* Diabetes
+* Crohn’s disease</p>
+<p>Print out descriptive summary.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">a_crs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-2" title="2"><span class="st">  </span><span class="kw">select</span>(chf, afib, mi, diabetes, crohn, ulcercol, ibd, bmi) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-3" title="3"><span class="st">  </span>Hmisc<span class="op">::</span><span class="kw">describe</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-4" title="4"><span class="st">  </span>Hmisc<span class="op">::</span><span class="kw">html</span>()</a></code></pre></div>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<script type="text/javascript">
+<!--
+    function expand_collapse(id) {
+       var e = document.getElementById(id);
+       var f = document.getElementById(id+"_earrows");
+       if(e.style.display == 'none'){
+          e.style.display = 'block';
+          f.innerHTML = '&#9650';
+       }
+       else {
+          e.style.display = 'none';
+          f.innerHTML = '&#9660';
+       }
+    }
+//-->
+</script>
+<style>
+.earrows {color:silver;font-size:11px;}
+
+fcap {
+ font-family: Verdana;
+ font-size: 12px;
+ color: MidnightBlue
+ }
+
+smg {
+ font-family: Verdana;
+ font-size: 10px;
+ color: &#808080;
+}
+
+hr.thinhr { margin-top: 0.15em; margin-bottom: 0.15em; }
+
+span.xscript {
+position: relative;
+}
+span.xscript sub {
+position: absolute;
+left: 0.1em;
+bottom: -1ex;
+}
+</style>
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">. <br><br> 8  Variables   345  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">chf</span>: congesitive heart failure <style>
+ .hmisctable624172 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable624172 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable624172 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable624172">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>345</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value          0     1
+ Frequency    332    13
+ Proportion 0.962 0.038
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">afib</span>: arterial fibrillation <style>
+ .hmisctable694766 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable694766 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable694766 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable694766">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>345</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value          0     1
+ Frequency    341     4
+ Proportion 0.988 0.012
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">mi</span>: myocardio infarction <style>
+ .hmisctable516317 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable516317 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable516317 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable516317">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>345</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value          0     1
+ Frequency    344     1
+ Proportion 0.997 0.003
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">diabetes</span> <style>
+ .hmisctable571046 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable571046 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable571046 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable571046">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>345</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value          0     1
+ Frequency    303    42
+ Proportion 0.878 0.122
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">crohn</span>: Crohn's disease <style>
+ .hmisctable238074 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable238074 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable238074 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable238074">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>345</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value          0     1
+ Frequency    343     2
+ Proportion 0.994 0.006
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">ulcercol</span>: ulceratie colitis <style>
+ .hmisctable408497 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable408497 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable408497 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable408497">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>345</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value          0     1
+ Frequency    337     8
+ Proportion 0.977 0.023
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">ibd</span>: inflammatory bowel disease <style>
+ .hmisctable994386 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable994386 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable994386 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable994386">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>345</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value          0     1
+ Frequency    335    10
+ Proportion 0.971 0.029
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">bmi</span>: body mass index<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAm0lEQVQ4je2T0RrAEAiF4/0feqKIseTD1bphWac/2wFnDABrxVKANwaEsNYsxHwPwgG4QvZz2ULvECAiBwHd4lJ9FzZI4hKQXPidExYdTi4+m5cXJRb25onr60nWPWe48hCXuFqIcYq5dhE29R+NFa6acRtX0dvEVeR4YOHsnBpz4b8fPYWugpfhunvlOKllOdLnJ/Ivn3S8jKkH+AwKssZvzKMAAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable176695 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable176695 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable176695 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable176695">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>345</td><td>0</td><td>156</td><td>1</td><td>27.27</td><td>5.425</td><td>20.60</td><td>21.34</td><td>23.90</td><td>26.70</td><td>29.90</td><td>33.46</td><td>36.60</td></tr>
+ </table>
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> : 17.2 17.9 18.3 18.5 19.0 ,  <font color="MidnightBlue">highest</font>: 41.8 42.2 42.3 42.8 47.2</span> <hr class="thinhr">
+<p>Plot of the distribution of patients with specific comorbidities measured at diagnosis.</p>
+<p>Process steps:</p>
+<ul>
+<li>Select comorbidities</li>
+<li>Transform data frame from wide to long</li>
+<li>Transform and spell out factors for plotting</li>
+<li>Plot counts by comorbidity</li>
+</ul>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># a_crs %&gt;%</span></a>
+<a class="sourceLine" id="cb62-2" title="2"><span class="co">#   select(id, chf, afib, diabetes, mi, copd, crohn, ulcercol, ibd) %&gt;%</span></a>
+<a class="sourceLine" id="cb62-3" title="3"><span class="co">#   pivot_longer(-id, names_to = &quot;comorb&quot;, values_to = &quot;value&quot;) %&gt;%</span></a>
+<a class="sourceLine" id="cb62-4" title="4"><span class="co">#   mutate(</span></a>
+<a class="sourceLine" id="cb62-5" title="5"><span class="co">#     comorb = case_when(</span></a>
+<a class="sourceLine" id="cb62-6" title="6"><span class="co">#       comorb == &quot;chf&quot; ~ &quot;Congestive heart failure&quot;,</span></a>
+<a class="sourceLine" id="cb62-7" title="7"><span class="co">#       comorb == &quot;afib&quot; ~ &quot;Atrial fibrillation&quot;,</span></a>
+<a class="sourceLine" id="cb62-8" title="8"><span class="co">#       comorb == &quot;diabetes&quot; ~ &quot;Diabetes&quot;,</span></a>
+<a class="sourceLine" id="cb62-9" title="9"><span class="co">#       comorb == &quot;copd&quot; ~ &quot;COPD&quot;,</span></a>
+<a class="sourceLine" id="cb62-10" title="10"><span class="co">#       comorb == &quot;mi&quot; ~ &quot;Myocardial infarction&quot;,</span></a>
+<a class="sourceLine" id="cb62-11" title="11"><span class="co">#       comorb == &quot;crohn&quot; ~ &quot;Crohn&#39;s disease&quot;,</span></a>
+<a class="sourceLine" id="cb62-12" title="12"><span class="co">#       comorb == &quot;ulcercol&quot; ~ &quot;Ulcerative colitis&quot;,</span></a>
+<a class="sourceLine" id="cb62-13" title="13"><span class="co">#       comorb == &quot;ibd&quot; ~ &quot;Inflammatory bowel disease&quot;</span></a>
+<a class="sourceLine" id="cb62-14" title="14"><span class="co">#     ),</span></a>
+<a class="sourceLine" id="cb62-15" title="15"><span class="co">#     value = case_when(value == &quot;0&quot; ~ &quot;no&quot;,</span></a>
+<a class="sourceLine" id="cb62-16" title="16"><span class="co">#                       value == &quot;1&quot; ~ &quot;yes&quot;)</span></a>
+<a class="sourceLine" id="cb62-17" title="17"><span class="co">#   ) %&gt;%</span></a>
+<a class="sourceLine" id="cb62-18" title="18"><span class="co">#   group_by(comorb, value) %&gt;%</span></a>
+<a class="sourceLine" id="cb62-19" title="19"><span class="co">#   summarise(n = n()) %&gt;%</span></a>
+<a class="sourceLine" id="cb62-20" title="20"><span class="co">#   mutate(</span></a>
+<a class="sourceLine" id="cb62-21" title="21"><span class="co">#     inc = n / bigN,</span></a>
+<a class="sourceLine" id="cb62-22" title="22"><span class="co">#     perc = n / bigN * 100,</span></a>
+<a class="sourceLine" id="cb62-23" title="23"><span class="co">#     plot_lab = paste0(&#39;(&#39;, n, &#39;, &#39;, round(perc, digits = 1), &#39;%)&#39;),</span></a>
+<a class="sourceLine" id="cb62-24" title="24"><span class="co">#     axis_lab = paste0(comorb, &#39; &#39;, &#39;(&#39;, n, &#39;, &#39;, round(perc, digits = 1), &#39;%)&#39;)</span></a>
+<a class="sourceLine" id="cb62-25" title="25"><span class="co">#   ) %&gt;%</span></a>
+<a class="sourceLine" id="cb62-26" title="26"><span class="co">#   filter(value == &quot;yes&quot;) %&gt;%</span></a>
+<a class="sourceLine" id="cb62-27" title="27"><span class="co">#   ggplot(aes(reorder(axis_lab, inc), inc)) +</span></a>
+<a class="sourceLine" id="cb62-28" title="28"><span class="co">#   geom_point() +</span></a>
+<a class="sourceLine" id="cb62-29" title="29"><span class="co">#   coord_flip() +</span></a>
+<a class="sourceLine" id="cb62-30" title="30"><span class="co">#   ggtitle(&quot;Proportion of patients reporting a comorbidity at diagnosis&quot;) +</span></a>
+<a class="sourceLine" id="cb62-31" title="31"><span class="co">#   theme_minimal(base_size = 10) +</span></a>
+<a class="sourceLine" id="cb62-32" title="32"><span class="co">#   theme(</span></a>
+<a class="sourceLine" id="cb62-33" title="33"><span class="co">#     panel.grid.minor = element_blank(),</span></a>
+<a class="sourceLine" id="cb62-34" title="34"><span class="co">#     panel.grid.major.y = element_blank(),</span></a>
+<a class="sourceLine" id="cb62-35" title="35"><span class="co">#     axis.title = element_blank()</span></a>
+<a class="sourceLine" id="cb62-36" title="36"><span class="co">#   )</span></a></code></pre></div>
+</div>
+<div id="patient-characteristics" class="section level2">
+<h2><span class="header-section-number">6.4</span> Patient characteristics</h2>
+<p>TODO: bin selection and width.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">a_crs <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(bmi)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb63-3" title="3"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb63-4" title="4"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Distribution of body mass index (BMI) measured at diagnosis&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb63-5" title="5"><span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">10</span>) </a></code></pre></div>
+<p><img src="IDA-working-draft-title_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co">#library(summarytools)   # to get an overview of a dataset with basic summary</span></a>
+<a class="sourceLine" id="cb64-2" title="2"><span class="co">#print(dfSummary(a_crs[,-1]), method = &#39;render&#39;)</span></a></code></pre></div>
+</div>
+<div id="session-info-1" class="section level2">
+<h2><span class="header-section-number">6.5</span> Session info</h2>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<pre><code>## R version 3.6.1 (2019-07-05)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 17763)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] summarytools_0.9.6 forcats_0.5.0      stringr_1.4.0      purrr_0.3.4       
+##  [5] readr_1.3.1        tibble_3.0.1       tidyverse_1.3.0    Hmisc_4.4-0       
+##  [9] Formula_1.2-3      survival_3.1-11    lattice_0.20-40    tidyr_1.0.2       
+## [13] dplyr_0.8.5        ggplot2_3.3.0      rmarkdown_2.1      here_0.1          
+## 
+## loaded via a namespace (and not attached):
+##  [1] httr_1.4.1          jsonlite_1.6.1      splines_3.6.1      
+##  [4] modelr_0.1.6        assertthat_0.2.1    latticeExtra_0.6-29
+##  [7] pander_0.6.3        cellranger_1.1.0    yaml_2.2.1         
+## [10] pillar_1.4.4        backports_1.1.7     glue_1.4.1         
+## [13] digest_0.6.25       pryr_0.1.4          RColorBrewer_1.1-2 
+## [16] checkmate_2.0.0     rvest_0.3.5         colorspace_1.4-1   
+## [19] plyr_1.8.6          htmltools_0.4.0     Matrix_1.2-18      
+## [22] pkgconfig_2.0.3     broom_0.5.5         haven_2.2.0        
+## [25] magick_2.3          bookdown_0.18       scales_1.1.1       
+## [28] jpeg_0.1-8.1        htmlTable_1.13.3    farver_2.0.3       
+## [31] generics_0.0.2      ellipsis_0.3.0      withr_2.2.0        
+## [34] nnet_7.3-13         cli_2.0.2           magrittr_1.5       
+## [37] crayon_1.3.4        readxl_1.3.1        evaluate_0.14      
+## [40] fs_1.3.2            fansi_0.4.1         nlme_3.1-145       
+## [43] xml2_1.2.5          foreign_0.8-76      rapportools_1.0    
+## [46] tools_3.6.1         data.table_1.12.8   hms_0.5.3          
+## [49] lifecycle_0.2.0     matrixStats_0.56.0  munsell_0.5.0      
+## [52] reprex_0.3.0        cluster_2.1.0       compiler_3.6.1     
+## [55] rlang_0.4.6         grid_3.6.1          rstudioapi_0.11    
+## [58] htmlwidgets_1.5.1   labeling_0.3        tcltk_3.6.1        
+## [61] base64enc_0.1-3     codetools_0.2-16    gtable_0.3.0       
+## [64] DBI_1.1.0           R6_2.4.1            gridExtra_2.3      
+## [67] lubridate_1.7.4     knitr_1.28          rprojroot_1.3-2    
+## [70] stringi_1.4.6       Rcpp_1.0.4.6        vctrs_0.3.0        
+## [73] rpart_4.1-15        acepack_1.4.1       png_0.1-7          
+## [76] dbplyr_1.4.2        tidyselect_1.1.0    xfun_0.12</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="pre-process-the-crs-data-set.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/02_ida_univar_crs.Rmd",
+"text": "Edit this chapter"
+},
+"history": {
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/02_ida_univar_crs.Rmd",
+"text": "Chapter edit history"
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -11,5 +11,6 @@ rmd_files: [
   "SAP_crash2.Rmd",
   "SAP_bacteremia.Rmd",
   "01_process_crs.Rmd",
+  "02_ida_univar_crs.Rmd",
   "09-references.Rmd"
 ]

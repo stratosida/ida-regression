@@ -7,7 +7,7 @@ library(dplyr)
 library(tidyr)
 library(Hmisc)
 library(here)
-
+library(tidyverse)
 library(summarytools)
 
 ## Set global ggplot theme
@@ -39,6 +39,7 @@ print(bigN)
 ## Medical history
 
 A summary of medical history measured at *diagnosis* (TODO: check when medical history / comorbidities were assessed):
+
 * AFib, 
 * MI
 * CHF
@@ -49,13 +50,15 @@ Print out descriptive summary.
 
 ```{r}
 a_crs %>% 
-  select(chf, afib, mi, diabetes, crohn, ulcercol, ibd) %>%
-  Hmisc::describe()
+  select(chf, afib, mi, diabetes, crohn, ulcercol, ibd, bmi) %>%
+  Hmisc::describe() %>%
+  Hmisc::html()
 ```
 
 Plot of the distribution of patients with specific comorbidities measured at diagnosis. 
 
 Process steps:
+
 * Select comorbidities
 * Transform data frame from wide to long
 * Transform and spell out factors for plotting
@@ -63,7 +66,16 @@ Process steps:
 
 
 ```{r}
-a_crs %>%
+a_crs %>% mutate(
+  chf = as_factor(chf),
+  afib = as_factor(afib),
+  diabetes = as_factor(diabetes),
+  mi = as_factor(mi),
+  copd  = as_factor(copd),
+  crohn  = as_factor(crohn),
+  ulcercol  = as_factor(ulcercol),
+  ibd = as_factor(ibd)
+  ) %>%
   select(id, chf, afib, diabetes, mi, copd, crohn, ulcercol, ibd) %>%
   pivot_longer(-id, names_to = "comorb", values_to = "value") %>%
   mutate(
