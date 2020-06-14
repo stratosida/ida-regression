@@ -1,0 +1,44 @@
+# Univariate summary Bacteremia dataset 
+
+```{r }
+library(rmarkdown)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(Hmisc)
+library(here)
+library(tidyverse)
+library(summarytools)
+
+## Set global ggplot theme
+theme_set(theme_light(base_size = 12))
+```
+
+## Read data
+
+Load the dataset.
+
+```{r}
+bactermeia <- readr::read_csv(here::here("data", "Bacteremia_public.csv"))
+bactermeia %>% glimpse()
+
+# to lower case
+bactermeia01 <- 
+  bactermeia %>% janitor::clean_names()
+
+bactermeia01 %>% glimpse()
+```
+
+
+```{r}
+Hmisc::html(Hmisc::describe(bactermeia01))
+```
+
+
+
+## Session info
+
+```{r}
+sessionInfo()
+```
+
