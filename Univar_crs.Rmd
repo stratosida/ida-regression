@@ -1,0 +1,141 @@
+# Univariate summary Rectal cancer surgery dataset 
+
+```{r }
+library(rmarkdown)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(Hmisc)
+library(here)
+library(tidyverse)
+library(summarytools)
+
+## Set global ggplot theme
+theme_set(theme_light(base_size = 12))
+```
+
+## Read data
+
+Load the CRS dataset.
+
+Note: crs is the original source data and a_crs is the updated analysis ready dataset with additional meta-data added. 
+
+```{r}
+load(here("data","a_crs.Rdata"))
+```
+
+
+## Descriptive summary
+
+Univariate analyses. 
+
+Calculate the number of patients.
+
+```{r}
+bigN <- nrow(crs)
+print(bigN)
+```
+
+## Medical history
+
+A summary of medical history measured at *diagnosis* (TODO: check when medical history / comorbidities were assessed):
+
+* AFib, 
+* MI
+* CHF
+* Diabetes 
+* Crohn's disease	
+
+Print out descriptive summary. 
+
+```{r}
+a_crs %>% 
+  select(chf, afib, mi, diabetes, crohn, ulcercol, ibd, bmi) %>%
+  Hmisc::describe() %>%
+  Hmisc::html()
+```
+
+Plot of the distribution of patients with specific comorbidities measured at diagnosis. 
+
+Process steps:
+
+* Select comorbidities
+* Transform data frame from wide to long
+* Transform and spell out factors for plotting
+* Plot counts by comorbidity 
+
+
+```{r}
+a_crs %>% mutate(
+  chf = as_factor(chf),
+  afib = as_factor(afib),
+  diabetes = as_factor(diabetes),
+  mi = as_factor(mi),
+  copd  = as_factor(copd),
+  crohn  = as_factor(crohn),
+  ulcercol  = as_factor(ulcercol),
+  ibd = as_factor(ibd)
+  ) %>%
+  select(id, chf, afib, diabetes, mi, copd, crohn, ulcercol, ibd) %>%
+  pivot_longer(-id, names_to = "comorb", values_to = "value") %>%
+  mutate(
+    comorb = case_when(
+      comorb == "chf" ~ "Congestive heart failure",
+      comorb == "afib" ~ "Atrial fibrillation",
+      comorb == "diabetes" ~ "Diabetes",
+      comorb == "copd" ~ "COPD",
+      comorb == "mi" ~ "Myocardial infarction",
+      comorb == "crohn" ~ "Crohn's disease",
+      comorb == "ulcercol" ~ "Ulcerative colitis",
+      comorb == "ibd" ~ "Inflammatory bowel disease"
+    ),
+    value = case_when(value == "0" ~ "no",
+                      value == "1" ~ "yes")
+  ) %>%
+  group_by(comorb, value) %>%
+  summarise(n = n()) %>%
+  mutate(
+    inc = n / bigN,
+    perc = n / bigN * 100,
+    plot_lab = paste0('(', n, ', ', round(perc, digits = 1), '%)'),
+    axis_lab = paste0(comorb, ' ', '(', n, ', ', round(perc, digits = 1), '%)')
+  ) %>%
+  filter(value == "yes") %>%
+  ggplot(aes(reorder(axis_lab, inc), inc)) +
+  geom_point() +
+  coord_flip() +
+  ggtitle("Proportion of patients reporting a comorbidity at diagnosis") +
+  theme_minimal(base_size = 10) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank(),
+    axis.title = element_blank()
+  )
+```
+
+## Patient characteristics 
+
+TODO: bin selection and width. 
+
+```{r}
+a_crs %>%
+  ggplot(aes(bmi)) + 
+  geom_histogram(binwidth = 0.1) + 
+  ggtitle("Distribution of body mass index (BMI) measured at diagnosis") +
+  theme_minimal(base_size = 10) 
+```
+
+
+```{r}
+#library(summarytools)   # to get an overview of a dataset with basic summary
+#print(dfSummary(a_crs[,-1]), method = 'render')
+```
+
+
+
+## Session info
+
+```{r}
+sessionInfo()
+```
+

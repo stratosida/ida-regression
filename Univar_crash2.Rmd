@@ -1,0 +1,36 @@
+# Univariate summary CRASH-2 dataset 
+
+```{r }
+library(here)
+library(tidyverse)
+library(janitor)
+library(summarytools)
+```
+
+## Read data
+
+Load the dataset.
+
+```{r}
+load(here::here("data", "crash2.rda"))
+crash2 %>% glimpse()
+```
+
+```{r}
+Hmisc::html(Hmisc::describe(crash2))
+```
+
+
+## Session info
+
+```{r}
+sessionInfo()
+```
+
+
+## Session info
+
+```{r}
+sessionInfo()
+```
+
