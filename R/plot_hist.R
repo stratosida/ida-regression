@@ -11,7 +11,7 @@ ida_plot_hist <- function(data, var, bin_width = 0.1){
                              upper = quantile({{var}}, probs = 0.75, na.rm = TRUE)) 
   
   lim_labels <- breaks %>%
-    pivot_longer(everything(),
+    tidyr::pivot_longer(dplyr::everything(),
                  names_to = "var",
                  values_to = "val")
   
@@ -42,7 +42,7 @@ ida_plot_hist <- function(data, var, bin_width = 0.1){
     ) +
     ggplot2::theme_minimal()  
   
-  
+  ## TODO: specify depenencies
   layout <- c(
     area(1, 1, 4, 3),
     area(5, 1, 5, 3)

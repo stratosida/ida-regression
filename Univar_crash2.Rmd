@@ -9,22 +9,63 @@ library(summarytools)
 
 ## Read data
 
-Load the dataset.
+### Load the dataset.
 
 ```{r}
 load(here::here("data", "crash2.rda"))
 crash2 %>% glimpse()
 ```
 
+### Describe the dataset
+
+#### Hmisc describe
+
 ```{r}
 Hmisc::html(Hmisc::describe(crash2))
 ```
 
+#### Summarytools
 
-## Session info
+
+```{r, results='asis'}
+st_options(style = "rmarkdown")
+
+print(
+  summarytools::dfSummary(crash2, valid.col = FALSE, graph.magnif = 0.75),
+# max.tbl.height = 300,
+  method = "render"
+)
+
+```
+
+
+
 
 ```{r}
-sessionInfo()
+#crash2 %>%
+#  dplyr::select(-blood_culture, -id) %>%
+#  gtsummary::tbl_summary()
+```
+
+
+#### skimr
+
+```{r}
+#crash2 %>% 
+#  skimr::skim() 
+```
+
+
+## Univariate summary
+
+### Continous variables
+
+#### Age
+
+```{r}
+library(patchwork)
+source(here::here("R", "plot_hist.R"))
+ida_plot_hist(crash2, age, bin_width = 1)
 ```
 
 
@@ -33,4 +74,5 @@ sessionInfo()
 ```{r}
 sessionInfo()
 ```
+
 
