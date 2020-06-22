@@ -1,5 +1,12 @@
 # CRASH-2 prediction model
 
+```{r,message = FALSE, warning = FALSE }
+library(here)
+library(tidyverse)
+library(Hmisc)
+```
+
+
 **Description:** Clinical Randomisation of an Antifibrinolyticin Significant Haemorrhage(CRASH-2)  was a large randomised placebo controlled trial among trauma patients with, or at risk of, significant haemorrhage, of the effects of antifibrinolytic treatment on death and transfusion requirement. The study is described at [the original trial website](http://crash2.lshtm.ac.uk/). A public version of the data set is found at a [repository of public data sets](http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets) hosted by the Vanderbilt University's Department of Biostatistics (Prof. Frank Harrell Jr.).
 
 The data set includes 20,207 patients and 44 variables. 
@@ -67,3 +74,14 @@ Data obtained from http://biostat.mc.vanderbilt.edu/DataSets
 * CRASH-2 Collaborators. Effects of tranexamic acid on death, vascular occlusive events, and blood transfusion in trauma patients with significant haemorrhage (CRASH-2): a randomised, placebo-controlled trial. Lancet 2010;376:23-32
 
 * Perel P, Prieto-Merino D, Shakur H, Clayton T, Lecky F, Bouamra O, Russell R, Faulkner M, Steyerberg EW, Roberts I. Predicting early death in patients with traumatic bleeding: development and validation of prognostic model. BMJ 2012; 345(aug15 1): e5166.
+
+
+
+## Crash2 data set contents
+
+```{r contents_crash2, message = FALSE} 
+load(here::here("data", "crash2.rda"))
+crash2 %>%
+  Hmisc::contents(maxlevels = 10, levelType = 'table') %>%
+  Hmisc::html()
+```

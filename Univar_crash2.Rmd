@@ -1,40 +1,66 @@
 # Univariate summary CRASH-2 dataset 
 
-```{r }
+```{r,message = FALSE, warning = FALSE }
 library(here)
 library(tidyverse)
 library(janitor)
 library(summarytools)
+library(Hmisc)
 ```
 
 ## Read data
 
 ### Load the dataset.
 
-```{r}
+```{r load_crash2, message = FALSE}
 load(here::here("data", "crash2.rda"))
-crash2 %>% glimpse()
 ```
 
 ### Describe the dataset
 
-#### Hmisc describe
+Use Hmisc describe function. 
 
-```{r}
-Hmisc::html(Hmisc::describe(crash2))
+```{r desc_crash2, message = FALSE, results='asis', warning=FALSE}
+crash2 %>%
+  Hmisc::describe(descript = "MY DATA SET TITLE") %>%
+  Hmisc::html()
 ```
+
+
+
+```{r, message = FALSE}
+# options(grType = 'plotly')
+# d <- crash2 %>%
+#   select(age, injurytime, sbp, rr, cc) %>%
+#   Hmisc::describe()
+# 
+# plot(d)
+```
+
+
+```{r, echo = FALSE, message = FALSE}
+#library(Hmisc)
+#getHdata(support2)
+#with(support2, histboxp(x=meanbp, group=dzgroup, sd=TRUE, bins=200))
+
+```
+
+
+
+
+
 
 #### Summarytools
 
 
 ```{r, results='asis'}
-st_options(style = "rmarkdown")
-
-print(
-  summarytools::dfSummary(crash2, valid.col = FALSE, graph.magnif = 0.75),
-# max.tbl.height = 300,
-  method = "render"
-)
+# st_options(style = "rmarkdown")
+# 
+# print(
+#   summarytools::dfSummary(crash2, valid.col = FALSE, graph.magnif = 0.75),
+# # max.tbl.height = 300,
+#   method = "render"
+# )
 
 ```
 
@@ -42,9 +68,27 @@ print(
 
 
 ```{r}
-#crash2 %>%
-#  dplyr::select(-blood_culture, -id) %>%
-#  gtsummary::tbl_summary()
+# crash2 %>%
+#   dplyr::select(age, injurytime, sbp, rr, cc) %>%
+#   gtsummary::tbl_summary(
+#     # split table by treatment variable
+#     #by = trt,
+#     # change variable labels
+# #    label = list(marker ~ "Marker, ng/mL",
+# #                 stage ~ "Clinical T Stage"),
+#     # change statistics printed in table
+#     statistic = list(
+#       all_continuous() ~ "{mean} ({sd}) / ({min}, {max}) / {median} / {p5} {p25} {p75} {p95}" ,
+#       all_categorical() ~ "{n} / {N} ({p}%)"
+#     )
+#   ) %>%
+#   # add statistic labels
+#   gtsummary::add_stat_label() %>%
+#   # bold variable labels, italicize levels
+#   gtsummary::bold_labels() %>%
+#   gtsummary::italicize_levels() 
+
+
 ```
 
 
@@ -63,9 +107,9 @@ print(
 #### Age
 
 ```{r}
-library(patchwork)
-source(here::here("R", "plot_hist.R"))
-ida_plot_hist(crash2, age, bin_width = 1)
+#library(patchwork)
+#source(here::here("R", "plot_hist.R"))
+#ida_plot_hist(crash2, age, bin_width = 1)
 ```
 
 
