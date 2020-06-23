@@ -1,0 +1,25 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    sharing:
+      github: yes
+      facebook: false
+    toc:
+      collapse: subsection
+      before: |
+        <li><a href="./">IDA report - working title</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit:
+      link: https://github.com/bailliem/ida-regression-private/edit/master/%s
+      text: "Edit this chapter"
+    history:
+      link: https://github.com/bailliem/ida-regression-private/commits/master/%s
+      text: "Chapter edit history"
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default

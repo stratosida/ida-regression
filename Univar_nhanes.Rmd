@@ -1,0 +1,36 @@
+# Univariate summary nhanes dataset 
+
+```{r }
+library(here)
+library(tidyverse)
+library(janitor)
+library(summarytools)
+```
+
+## Read data
+
+Load the dataset.
+
+```{r}
+# nhanes
+#---------------------------------
+load(here::here("data", "nhanesdat.rdata"))
+nhanesdat %>% glimpse()
+
+nhanesdat01 <- 
+  nhanesdat %>% janitor::clean_names()
+
+nhanesdat01 %>% glimpse()
+```
+
+```{r}
+Hmisc::html(Hmisc::describe(nhanesdat01))
+```
+
+
+## Session info
+
+```{r}
+sessionInfo()
+```
+
