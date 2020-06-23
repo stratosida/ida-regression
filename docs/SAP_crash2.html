@@ -385,7 +385,7 @@ summary {
 <li>Time since injury (<code>injurytime</code>, hours)</li>
 <li>Type of injury (<code>injurytype</code>, ‘blunt’, ‘penetrating’ or ‘blunt and penetrating’)</li>
 </ul>
-<p>Restricted cubic splines with 3 degrees of freedom with knots set to default values will be used for continuous variables. As the final prediction model should be parsimonious enough to simplify its application, a backward elimination algorithm with a significance level set at <span class="math inline">\(\alpha=0.05\)</span> will be applied to remove statistically insignificant effects. Finally, nonlinear representation of each continuous variable will be tested against linear representation at <span class="math inline">\(\alpha=0.05\)</span>. In case of lacking added value of a nonlinear, it will be replaced by a linear effect.</p>
+<p>Restricted cubic splines with 3 degrees of freedom with knots set to default values will be used for continuous variables. As the final prediction model should be parsimonious enough to simplify its application, a backward elimination algorithm with a significance level set at <span class="math inline">\(\alpha=0.05\)</span> will be applied to remove statistically insignificant effects. Finally, nonlinear representation of each continuous variable will be tested against linear representation at <span class="math inline">\(\alpha=0.05\)</span>. In case of lacking added value of a nonlinear effect, the model will be refitted with a linear effect for that variable.</p>
 <p><em>Remarks</em>:</p>
 <ul>
 <li><p>Regarding type of injury, the original paper describes its treatment in the model as follows: ‘Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as ’penetrating’ or ‘blunt and penetrating.’ ’ It is not clear from that description what happened to the ‘blunt’ group. (I assume they were collapsed with ‘blunt and penetrating’.)</p></li>
@@ -405,8 +405,9 @@ crash2$earlydeath[is.na(crash2$time2death)] &lt;- 0    # NA in time2death means 
 
 table(crash2$earlydeath)</code></pre>
 <p>The number of deaths computed in the data set coincides with the number reported in <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>.</p>
-<p><strong>Source:</strong> <a href="Data%20obtained%20from%20http://biostat.mc.vanderbilt.edu/DataSets">Data obtained from http://biostat.mc.vanderbilt.edu/DataSets</a>.</p>
-<p><a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda">LINK</a></p>
+<p><strong>Source:</strong></p>
+<p>Data obtained from <a href="http://biostat.mc.vanderbilt.edu/DataSets" class="uri">http://biostat.mc.vanderbilt.edu/DataSets</a></p>
+<p><a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda">LINK to data set</a></p>
 <p><strong>Data dictionary:</strong> <a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/Ccrash2.html">LINK</a></p>
 <p><strong>References:</strong></p>
 <ul>
