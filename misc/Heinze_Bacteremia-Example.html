@@ -1665,6 +1665,9 @@ dim(bact)</code></pre>
 ## [41] &quot;TRIG&quot;         &quot;CHOL&quot;         &quot;CRP&quot;          &quot;BASOR&quot;        &quot;EOSR&quot;        
 ## [46] &quot;LYMR&quot;         &quot;MONOR&quot;        &quot;NEU&quot;          &quot;NEUR&quot;         &quot;PDW&quot;         
 ## [51] &quot;RBC&quot;          &quot;WBC&quot;          &quot;BloodCulture&quot;</code></pre>
+<p>A data dictionary is available:</p>
+<pre class="r"><code>bact_dd&lt;-read.csv2(&quot;bacteremia-DataDictionary.csv&quot;)
+View(bact_dd)</code></pre>
 <p>Briefly, initial data analysis will focus on evaluating the distribution of variables and possible transformations suggested to reduce disproportional impact of outliers, reduce the number of variables considered for analysis by evaluating collinearity, and consider exclusion of variables based on excessive missing values.</p>
 <p>For diagnosis a parsimonious model is desired. The optimal analysis strategy (preselection of predictors, data-driven selection algorithm) cannot easily be determined without proper initial data analysis.</p>
 </div>

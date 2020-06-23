@@ -33,6 +33,15 @@ The 49 laboratory variables  are listed along with units of measurement in the o
 colnames(bact)
 ```
 
+A data dictionary is available:
+
+```{r}
+bact_dd<-read.csv2("bacteremia-DataDictionary.csv")
+View(bact_dd)
+```
+
+
+
 Briefly, initial data analysis will focus on evaluating the distribution of variables and possible transformations suggested to reduce disproportional impact of outliers, reduce the number of variables considered for analysis by evaluating collinearity, and consider exclusion of variables based on excessive missing values.
 
 For diagnosis a parsimonious model is desired. The optimal analysis strategy (preselection of predictors, data-driven selection algorithm) cannot easily be determined without proper initial data analysis. 
