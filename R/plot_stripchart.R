@@ -2,7 +2,7 @@ library(ggrepel)
 set.seed(42)
 
 
-
+crash2, age
 breaks <- data02 %>% 
   select(bmi) %>% 
   summarise(mean = mean(bmi, na.rm = TRUE),
