@@ -7,12 +7,13 @@ delete_merged_file: true
 output_dir: "docs"
 rmd_files: [
   "index.Rmd",
-  "SAP_crs.Rmd",
+  #"SAP_crs.Rmd",
   "SAP_crash2.Rmd",
   "SAP_bacteremia.Rmd",
   "SAP_nhanes.Rmd",
-  "Univar_crs.Rmd",
+  #"Univar_crs.Rmd",
   "Univar_crash2.Rmd",
+  "Multivar_crash2.Rmd",
   "Univar_bacteremia.Rmd",
   "Univar_nhanes.Rmd",
   "09-references.Rmd"

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 CRASH-2 prediction model | IDA draft report</title>
+  <title>Chapter 2 CRASH-2 prediction model | IDA draft report</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 CRASH-2 prediction model | IDA draft report" />
+  <meta property="og:title" content="Chapter 2 CRASH-2 prediction model | IDA draft report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 CRASH-2 prediction model | IDA draft report" />
+  <meta name="twitter:title" content="Chapter 2 CRASH-2 prediction model | IDA draft report" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Compelte author list" />
 
 
-<meta name="date" content="2020-06-14" />
+<meta name="date" content="2020-06-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rectal-cancer-surgery-dataset.html"/>
+<link rel="prev" href="index.html"/>
 <link rel="next" href="bacteremia-study.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,6 +50,13 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -132,52 +139,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html"><i class="fa fa-check"></i><b>2</b> Rectal cancer surgery dataset</a><ul>
-<li class="chapter" data-level="2.1" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#description"><i class="fa fa-check"></i><b>2.1</b> Description</a></li>
-<li class="chapter" data-level="2.2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#hypothetical-research-aim-for-ida"><i class="fa fa-check"></i><b>2.2</b> Hypothetical research aim for IDA</a></li>
-<li class="chapter" data-level="2.3" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>2.3</b> Statistical analysis plan</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#comments-from-2019-12-17-conference-call"><i class="fa fa-check"></i><b>2.3.1</b> Comments from 2019-12-17 conference call</a></li>
+<li class="chapter" data-level="2" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html"><i class="fa fa-check"></i><b>2</b> CRASH-2 prediction model</a><ul>
+<li class="chapter" data-level="2.1" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>2.1</b> Statistical analysis plan</a></li>
+<li class="chapter" data-level="2.2" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#crash2-data-set-contents"><i class="fa fa-check"></i><b>2.2</b> Crash2 data set contents</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#source"><i class="fa fa-check"></i><b>2.4</b> Source:</a></li>
-<li class="chapter" data-level="2.5" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#data-dictionary"><i class="fa fa-check"></i><b>2.5</b> Data dictionary</a></li>
-<li class="chapter" data-level="2.6" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#references"><i class="fa fa-check"></i><b>2.6</b> References</a></li>
+<li class="chapter" data-level="3" data-path="bacteremia-study.html"><a href="bacteremia-study.html"><i class="fa fa-check"></i><b>3</b> Bacteremia study</a><ul>
+<li class="chapter" data-level="3.1" data-path="bacteremia-study.html"><a href="bacteremia-study.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="bacteremia-study.html"><a href="bacteremia-study.html#load-the-data"><i class="fa fa-check"></i><b>3.2</b> Load the data</a></li>
+<li class="chapter" data-level="3.3" data-path="bacteremia-study.html"><a href="bacteremia-study.html#intended-statistical-analysis"><i class="fa fa-check"></i><b>3.3</b> Intended statistical analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html"><i class="fa fa-check"></i><b>3</b> CRASH-2 prediction model</a><ul>
-<li class="chapter" data-level="3.1" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#statistical-analysis-plan-1"><i class="fa fa-check"></i><b>3.1</b> Statistical analysis plan</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="bacteremia-study.html"><a href="bacteremia-study.html"><i class="fa fa-check"></i><b>4</b> Bacteremia study</a><ul>
-<li class="chapter" data-level="4.1" data-path="bacteremia-study.html"><a href="bacteremia-study.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="bacteremia-study.html"><a href="bacteremia-study.html#load-the-data"><i class="fa fa-check"></i><b>4.2</b> Load the data</a></li>
-<li class="chapter" data-level="4.3" data-path="bacteremia-study.html"><a href="bacteremia-study.html#intended-statistical-analysis"><i class="fa fa-check"></i><b>4.3</b> Intended statistical analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="sap-nhanes.html"><a href="sap-nhanes.html"><i class="fa fa-check"></i><b>5</b> SAP nhanes</a><ul>
-<li class="chapter" data-level="5.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#data-set"><i class="fa fa-check"></i><b>5.1</b> Data set</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#sociodemographic-variables"><i class="fa fa-check"></i><b>5.1.1</b> Sociodemographic variables</a></li>
-<li class="chapter" data-level="5.1.2" data-path="sap-nhanes.html"><a href="sap-nhanes.html#health-and-behavior-variables"><i class="fa fa-check"></i><b>5.1.2</b> Health and behavior variables</a></li>
-<li class="chapter" data-level="5.1.3" data-path="sap-nhanes.html"><a href="sap-nhanes.html#physical-activity-data"><i class="fa fa-check"></i><b>5.1.3</b> Physical activity data</a></li>
+<li class="chapter" data-level="4" data-path="sap-nhanes.html"><a href="sap-nhanes.html"><i class="fa fa-check"></i><b>4</b> SAP nhanes</a><ul>
+<li class="chapter" data-level="4.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#data-set"><i class="fa fa-check"></i><b>4.1</b> Data set</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#sociodemographic-variables"><i class="fa fa-check"></i><b>4.1.1</b> Sociodemographic variables</a></li>
+<li class="chapter" data-level="4.1.2" data-path="sap-nhanes.html"><a href="sap-nhanes.html#health-and-behavior-variables"><i class="fa fa-check"></i><b>4.1.2</b> Health and behavior variables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="sap-nhanes.html"><a href="sap-nhanes.html#physical-activity-data"><i class="fa fa-check"></i><b>4.1.3</b> Physical activity data</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html"><i class="fa fa-check"></i><b>6</b> Univariate summary Rectal cancer surgery dataset</a><ul>
-<li class="chapter" data-level="6.1" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#read-data"><i class="fa fa-check"></i><b>6.1</b> Read data</a></li>
-<li class="chapter" data-level="6.2" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#descriptive-summary"><i class="fa fa-check"></i><b>6.2</b> Descriptive summary</a></li>
-<li class="chapter" data-level="6.3" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#medical-history"><i class="fa fa-check"></i><b>6.3</b> Medical history</a></li>
-<li class="chapter" data-level="6.4" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#patient-characteristics"><i class="fa fa-check"></i><b>6.4</b> Patient characteristics</a></li>
-<li class="chapter" data-level="6.5" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#session-info"><i class="fa fa-check"></i><b>6.5</b> Session info</a></li>
+<li class="chapter" data-level="5" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html"><i class="fa fa-check"></i><b>5</b> Univariate summary CRASH-2 dataset</a><ul>
+<li class="chapter" data-level="5.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#read-data"><i class="fa fa-check"></i><b>5.1</b> Read data</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#load-the-dataset."><i class="fa fa-check"></i><b>5.1.1</b> Load the dataset.</a></li>
+<li class="chapter" data-level="5.1.2" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#describe-the-dataset"><i class="fa fa-check"></i><b>5.1.2</b> Describe the dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html"><i class="fa fa-check"></i><b>7</b> Univariate summary CRASH-2 dataset</a><ul>
-<li class="chapter" data-level="7.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#read-data-1"><i class="fa fa-check"></i><b>7.1</b> Read data</a></li>
-<li class="chapter" data-level="7.2" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#session-info-1"><i class="fa fa-check"></i><b>7.2</b> Session info</a></li>
-<li class="chapter" data-level="7.3" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#session-info-2"><i class="fa fa-check"></i><b>7.3</b> Session info</a></li>
+<li class="chapter" data-level="5.2" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#univariate-summary"><i class="fa fa-check"></i><b>5.2</b> Univariate summary</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#continous-variables"><i class="fa fa-check"></i><b>5.2.1</b> Continous variables</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html"><i class="fa fa-check"></i><b>8</b> Univariate summary Bacteremia dataset</a><ul>
-<li class="chapter" data-level="8.1" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#read-data-2"><i class="fa fa-check"></i><b>8.1</b> Read data</a></li>
-<li class="chapter" data-level="8.2" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#session-info-3"><i class="fa fa-check"></i><b>8.2</b> Session info</a></li>
+<li class="chapter" data-level="5.3" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#session-info"><i class="fa fa-check"></i><b>5.3</b> Session info</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html"><i class="fa fa-check"></i><b>9</b> Univariate summary nhanes dataset</a><ul>
-<li class="chapter" data-level="9.1" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#read-data-3"><i class="fa fa-check"></i><b>9.1</b> Read data</a></li>
-<li class="chapter" data-level="9.2" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#session-info-4"><i class="fa fa-check"></i><b>9.2</b> Session info</a></li>
+<li class="chapter" data-level="6" data-path="multivariate-crash2.html"><a href="multivariate-crash2.html"><i class="fa fa-check"></i><b>6</b> Multivariate Crash2</a><ul>
+<li class="chapter" data-level="6.1" data-path="multivariate-crash2.html"><a href="multivariate-crash2.html#read-data-1"><i class="fa fa-check"></i><b>6.1</b> Read data</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="multivariate-crash2.html"><a href="multivariate-crash2.html#load-the-dataset.-1"><i class="fa fa-check"></i><b>6.1.1</b> Load the dataset.</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html"><i class="fa fa-check"></i><b>7</b> Univariate summary Bacteremia dataset</a><ul>
+<li class="chapter" data-level="7.1" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#read-data-2"><i class="fa fa-check"></i><b>7.1</b> Read data</a></li>
+<li class="chapter" data-level="7.2" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#session-info-1"><i class="fa fa-check"></i><b>7.2</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html"><i class="fa fa-check"></i><b>8</b> Univariate summary nhanes dataset</a><ul>
+<li class="chapter" data-level="8.1" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#read-data-3"><i class="fa fa-check"></i><b>8.1</b> Read data</a></li>
+<li class="chapter" data-level="8.2" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#session-info-2"><i class="fa fa-check"></i><b>8.2</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -199,12 +200,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="crash-2-prediction-model" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> CRASH-2 prediction model</h1>
+<h1><span class="header-section-number">Chapter 2</span> CRASH-2 prediction model</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw">library</span>(Hmisc)</a></code></pre></div>
 <p><strong>Description:</strong> Clinical Randomisation of an Antifibrinolyticin Significant Haemorrhage(CRASH-2) was a large randomised placebo controlled trial among trauma patients with, or at risk of, significant haemorrhage, of the effects of antifibrinolytic treatment on death and transfusion requirement. The study is described at <a href="http://crash2.lshtm.ac.uk/">the original trial website</a>. A public version of the data set is found at a <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets">repository of public data sets</a> hosted by the Vanderbilt University’s Department of Biostatistics (Prof. Frank Harrell Jr.).</p>
 <p>The data set includes 20,207 patients and 44 variables.</p>
 <p><strong>Hypothetical research aim for IDA:</strong> Develop a multivariable model for early death (death within 28 days from injury) using 9 independent variables of mixed type (continuous, categorical, semicontinuous) with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome. The assumed analysis aim is in line with the prediction model presented by <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>, <a href="https://www.bmj.com/highwire/filestream/634478/field_highwire_adjunct_files/0/perp003158.ww1_default.pdf">supplement available at</a>. However, in contrast to the analysis described there, variables describing the economic region and the treatment allocation are missing in the public version of the data set, and while the data set contains 20,207 patients, the research paper mentions 20,127 patients having been included in the study.</p>
-<div id="statistical-analysis-plan-1" class="section level2">
-<h2><span class="header-section-number">3.1</span> Statistical analysis plan</h2>
+<div id="statistical-analysis-plan" class="section level2">
+<h2><span class="header-section-number">2.1</span> Statistical analysis plan</h2>
 <p><strong>Outcome</strong>: Early death, i.e. in-hospital death within 28 days from injury (binary variable)</p>
 <p><strong>Statistical methods</strong>: Logistic regression will be used to model early death by the following independent variables deemed important to predict early death:</p>
 <ul>
@@ -226,18 +230,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>Preparations:</strong></p>
 <p>The outcome variable, early death (i.e., death within 28 days from injury) must be computed from the time span between date of death and date of randomisation using the following code:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># transform ddeath and trandomisation into an interpretable date format and then compute the difference</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="co"># interpret NAs as &#39;not died within study period, at least not within 28 days&#39;</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co"># if patients died after 28 days, treat as alive </span></a>
-<a class="sourceLine" id="cb2-4" title="4"></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co">#crash2$time2death &lt;- as.numeric(as.Date(crash2$ddeath) - as.Date(crash2$trandomised))</span></a>
-<a class="sourceLine" id="cb2-6" title="6"></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co">#crash2$earlydeath[!is.na(crash2$time2death)] &lt;- (crash2$time2death[!is.na(crash2$time2death)] &lt;= 28) + 0   </span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co"># +0 to transform it from TRUE/FALSE to 1/0</span></a>
-<a class="sourceLine" id="cb2-9" title="9"></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co">#crash2$earlydeath[is.na(crash2$time2death)] &lt;- 0    # NA in time2death means alive at day 28</span></a>
-<a class="sourceLine" id="cb2-11" title="11"></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co">#table(crash2$earlydeath)</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># transform ddeath and trandomisation into an interpretable date format and then compute the difference</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="co"># interpret NAs as &#39;not died within study period, at least not within 28 days&#39;</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co"># if patients died after 28 days, treat as alive </span></a>
+<a class="sourceLine" id="cb3-4" title="4"></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co">#crash2$time2death &lt;- as.numeric(as.Date(crash2$ddeath) - as.Date(crash2$trandomised))</span></a>
+<a class="sourceLine" id="cb3-6" title="6"></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#crash2$earlydeath[!is.na(crash2$time2death)] &lt;- (crash2$time2death[!is.na(crash2$time2death)] &lt;= 28) + 0   </span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co"># +0 to transform it from TRUE/FALSE to 1/0</span></a>
+<a class="sourceLine" id="cb3-9" title="9"></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#crash2$earlydeath[is.na(crash2$time2death)] &lt;- 0    # NA in time2death means alive at day 28</span></a>
+<a class="sourceLine" id="cb3-11" title="11"></a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="co">#table(crash2$earlydeath)</span></a></code></pre></div>
 <p>The number of deaths computed in the data set coincides with the number reported in <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>.</p>
 <p><strong>Source:</strong></p>
 <p>Data obtained from <a href="http://biostat.mc.vanderbilt.edu/DataSets" class="uri">http://biostat.mc.vanderbilt.edu/DataSets</a></p>
@@ -248,6 +252,594 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>CRASH-2 Collaborators. Effects of tranexamic acid on death, vascular occlusive events, and blood transfusion in trauma patients with significant haemorrhage (CRASH-2): a randomised, placebo-controlled trial. Lancet 2010;376:23-32</p></li>
 <li><p>Perel P, Prieto-Merino D, Shakur H, Clayton T, Lecky F, Bouamra O, Russell R, Faulkner M, Steyerberg EW, Roberts I. Predicting early death in patients with traumatic bleeding: development and validation of prognostic model. BMJ 2012; 345(aug15 1): e5166.</p></li>
 </ul>
+</div>
+<div id="crash2-data-set-contents" class="section level2">
+<h2><span class="header-section-number">2.2</span> Crash2 data set contents</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">load</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;crash2.rda&quot;</span>))</a>
+<a class="sourceLine" id="cb4-2" title="2">crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span>Hmisc<span class="op">::</span><span class="kw">contents</span>(<span class="dt">maxlevels =</span> <span class="dv">10</span>, <span class="dt">levelType =</span> <span class="st">&#39;table&#39;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">  </span>Hmisc<span class="op">::</span><span class="kw">html</span>()</a></code></pre></div>
+<hr><h4>Data frame:.</h4>20207 observations and 44 variables, maximum # NAs:17121  
+ <hr>
+ <style>
+ .hmisctable524931 {
+ border: 1px solid gray;
+ border-collapse: collapse;
+ font-size: 100%;
+ }
+ .hmisctable524931 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable524931 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable524931" border="1">
+ <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
+ <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
+ <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
+ <tr><td>trandomised</td><td>Date of Randomization</td><td></td><td></td><td>Date</td><td>double</td><td>    0</td></tr>
+ <tr><td>outcomeid</td><td>Unique Number From Outcome Database</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>sex</td><td></td><td></td><td><a href="#levels.sex">  2</a></td><td></td><td>integer</td><td>    1</td></tr>
+ <tr><td>age</td><td></td><td></td><td></td><td></td><td>integer</td><td>    4</td></tr>
+ <tr><td>injurytime</td><td>Hours Since Injury</td><td></td><td></td><td>numeric</td><td>double</td><td>   11</td></tr>
+ <tr><td>injurytype</td><td></td><td></td><td><a href="#levels.injurytype">  3</a></td><td></td><td>integer</td><td>    0</td></tr>
+ <tr><td>sbp</td><td>Systolic Blood Pressure</td><td>mmHg</td><td></td><td>integer</td><td>integer</td><td>  320</td></tr>
+ <tr><td>rr</td><td>Respiratory Rate</td><td>/min</td><td></td><td>integer</td><td>integer</td><td>  191</td></tr>
+ <tr><td>cc</td><td>Central Capillary Refille Time</td><td>s</td><td></td><td>integer</td><td>integer</td><td>  611</td></tr>
+ <tr><td>hr</td><td>Heart Rate</td><td>/min</td><td></td><td>integer</td><td>integer</td><td>  137</td></tr>
+ <tr><td>gcseye</td><td>Glasgow Coma Score Eye Opening</td><td></td><td></td><td>integer</td><td>integer</td><td>  732</td></tr>
+ <tr><td>gcsmotor</td><td>Glasgow Coma Score Motor Response</td><td></td><td></td><td>integer</td><td>integer</td><td>  732</td></tr>
+ <tr><td>gcsverbal</td><td>Glasgow Coma Score Verbal Response</td><td></td><td></td><td>integer</td><td>integer</td><td>  735</td></tr>
+ <tr><td>gcs</td><td>Glasgow Coma Score Total</td><td></td><td></td><td>integer</td><td>integer</td><td>   23</td></tr>
+ <tr><td>ddeath</td><td>Date of Death</td><td></td><td></td><td>Date</td><td>double</td><td>17121</td></tr>
+ <tr><td>cause</td><td>Main Cause of Death</td><td></td><td><a href="#levels.cause">  7</a></td><td></td><td>integer</td><td>17118</td></tr>
+ <tr><td>scauseother</td><td>Description of Other Cause of Death</td><td></td><td><a href="#levels.scauseother">227</a></td><td></td><td>integer</td><td>    0</td></tr>
+ <tr><td>status</td><td>Status of Patient at Outcome if Alive</td><td></td><td><a href="#levels.status">  3</a></td><td></td><td>integer</td><td> 3169</td></tr>
+ <tr><td>ddischarge</td><td>Date of discharge, transfer to other hospital or day 28 from randomization</td><td></td><td></td><td>Date</td><td>double</td><td> 3185</td></tr>
+ <tr><td>condition</td><td>Condition of Patient at Outcome if Alive</td><td></td><td><a href="#levels.condition">  5</a></td><td></td><td>integer</td><td> 3251</td></tr>
+ <tr><td>ndaysicu</td><td>Number of Days Spent in ICU</td><td></td><td></td><td>numeric</td><td>double</td><td>  182</td></tr>
+ <tr><td>bheadinj</td><td>Significant Head Injury</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bneuro</td><td>Neurosurgery Done</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bchest</td><td>Chest Surgery Done</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>babdomen</td><td>Abdominal Surgery Done</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bpelvis</td><td>Pelvis Surgery Done</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bpe</td><td>Pulmonary Embolism</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bdvt</td><td>Deep Vein Thrombosis</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bstroke</td><td>Stroke</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bbleed</td><td>Surgery for Bleeding</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bmi</td><td>Myocardial Infarction</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bgi</td><td>Gastrointestinal Bleeding</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bloading</td><td>Complete Loading Dose of Trial Drug Given</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bmaint</td><td>Complete Maintenance Dose of Trial Drug Given</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>btransf</td><td>Blood Products Transfusion</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>ncell</td><td>Number of Units of Red Call Products Transfused</td><td></td><td></td><td>numeric</td><td>double</td><td> 9963</td></tr>
+ <tr><td>nplasma</td><td>Number of Units of Fresh Frozen Plasma Transfused</td><td></td><td></td><td>integer</td><td>integer</td><td> 9964</td></tr>
+ <tr><td>nplatelets</td><td>Number of Units of Platelets Transfused</td><td></td><td></td><td>integer</td><td>integer</td><td> 9964</td></tr>
+ <tr><td>ncryo</td><td>Number of Units of Cryoprecipitate Transfused</td><td></td><td></td><td>integer</td><td>integer</td><td> 9964</td></tr>
+ <tr><td>bvii</td><td>Recombinant Factor VIIa Given</td><td></td><td></td><td>integer</td><td>integer</td><td>  374</td></tr>
+ <tr><td>boxid</td><td>Treatment Box Number</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
+ <tr><td>packnum</td><td>Treatment Pack Number</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
+ </table>
+
+ <hr>
+ <h5>Category Levels</h5>
+ <a name="levels.source"><h6>source</h6>
+ <li>telephone</li>
+
+ <li>telephone entered manually</li>
+
+ <li>electronic CRF by email</li>
+
+ <li>paper CRF enteredd in electronic CRF</li>
+
+ <li>electronic CRF</li>
+
+ <a name="levels.sex"><h6>sex</h6>
+ <li>male</li>
+
+ <li>female</li>
+
+ <a name="levels.injurytype"><h6>injurytype</h6>
+ <li>blunt</li>
+
+ <li>penetrating</li>
+
+ <li>blunt and penetrating</li>
+
+ <a name="levels.cause"><h6>cause</h6>
+ <li>bleeding</li>
+
+ <li>head injury</li>
+
+ <li>myocardial infarction</li>
+
+ <li>stroke</li>
+
+ <li>pulmonary embolism</li>
+
+ <li>multi organ failure</li>
+
+ <li>other</li>
+
+ <a name="levels.scauseother"><h6>scauseother</h6>
+ <li></li>
+
+ <li>Acute Hypoxia</li>
+
+ <li>ACUTE LUNG INJURY</li>
+
+ <li>Acute Pulmonary Oedema</li>
+
+ <li>Acute Renal Failure</li>
+
+ <li>ACUTE RESPIRATORY DISTRESS SYNDROME (ARDS)</li>
+
+ <li>acute respiratory failure</li>
+
+ <li>acute respiratory failure+sepsis</li>
+
+ <li>air amboli (embolism)</li>
+
+ <li>Air embolism caused by penetrating lung trauma</li>
+
+ <li>Anaeurysma aortae thoracis dissecans</li>
+
+ <li>Angina pectoris and congestive cardiac failure</li>
+
+ <li>Aortic dissection</li>
+
+ <li>ARDS</li>
+
+ <li>ARDS-MOF</li>
+
+ <li>Arrhythmia(VT)</li>
+
+ <li>ARRITMIA CARDIACA</li>
+
+ <li>arrythmia-arrest</li>
+
+ <li>Aspiration</li>
+
+ <li>ASPIRATION OF GASTRIC CONTENTS</li>
+
+ <li>Aspiration Pneum</li>
+
+ <li>Aspiration pneumonia</li>
+
+ <li>ASPIRATION PNEUMONITIS</li>
+
+ <li>ATENTADO BALA CRANEO (Head injury)</li>
+
+ <li>bleeding & head injury</li>
+
+ <li>Bleeding & Head Injury</li>
+
+ <li>Bleeding + Severe Head injury</li>
+
+ <li>Bleeding and head injury</li>
+
+ <li>BLEEDING and HEAD INJURY</li>
+
+ <li>Bleeding, Head injury</li>
+
+ <li>Bleeding, Head Injury</li>
+
+ <li>Bleeding, Head Injury, Bronchial aspiration</li>
+
+ <li>Bleeding, Head injury, Maxillo-facial injury</li>
+
+ <li>Bleeding, Head Injury, Multi organ failure</li>
+
+ <li>Bleeding, Head Injury, Multi organ Failure</li>
+
+ <li>Bleeding, Head injury, Pneumothorax, pelvis fracture</li>
+
+ <li>Bleeding, multi organ failure</li>
+
+ <li>Bleeding, Multi organ failure</li>
+
+ <li>Bleeding, Multi organ failure,  DIC</li>
+
+ <li>Bleeding, Multi organ failure, Sepsis</li>
+
+ <li>Bleeding, Multiple organ failure, coagulopathy and acidosis</li>
+
+ <li>blunt abdominal injury</li>
+
+ <li>Blunt trauma abdomen, Blunt trauma chest, Severe head injury</li>
+
+ <li>body sent for post mortem exam</li>
+
+ <li>Brain death caused by a massive cerebral infarction caused b</li>
+
+ <li>brain oedema</li>
+
+ <li>Brain oedema</li>
+
+ <li>Bronconeumonia Nosocomial</li>
+
+ <li>C1-C2  dislocate , head  injury</li>
+
+ <li>Cardiac arrest</li>
+
+ <li>CARDIAC ARREST</li>
+
+ <li>Cardiac arrest of unknown cause, probably intoxication</li>
+
+ <li>CARDIAC DISRITMIA</li>
+
+ <li>CARDIAC TAMPONADE</li>
+
+ <li>CARDIO RESP ARREST</li>
+
+ <li>Cardiogenic shock caused by traumatic myocardial infarction</li>
+
+ <li>Cardiorespiratory Arrest</li>
+
+ <li>cardiorespiratory failure</li>
+
+ <li>Cerebral death caused by massive cerebral infarction caused</li>
+
+ <li>Cerebral trauma</li>
+
+ <li>cervical spine injury</li>
+
+ <li>CHEST INJURY</li>
+
+ <li>Chest trauma with internal hemorrhage</li>
+
+ <li>choque septico</li>
+
+ <li>CHOQUE SEPTICO</li>
+
+ <li>CID (DIC)</li>
+
+ <li>Coagulopathy</li>
+
+ <li>COAGULOPATIA</li>
+
+ <li>COAGULOPATIA - CID (DIC)</li>
+
+ <li>Combination of severe scalp bleeding - penetrating brain inj</li>
+
+ <li>Combined chest injury and pulmonary emphysema</li>
+
+ <li>Complete C2-C3 Spinal section. Respiratory Arrest</li>
+
+ <li>pulmonary contusion</li>
+
+ <li>d7vc</li>
+
+ <li>DIC</li>
+
+ <li>DISTRESS RESPIRATORIO</li>
+
+ <li>Encefalopatia hipoxico isquemica</li>
+
+ <li>ethylic coma</li>
+
+ <li>falla ventilatoria</li>
+
+ <li>FALLA VENTILATORIA/SHOCK MEDULAR</li>
+
+ <li>Fat Embolism</li>
+
+ <li>Fat embolism following # femur</li>
+
+ <li>pelvic fracture</li>
+
+ <li>Head injury</li>
+
+ <li>Head injury & Bleeding</li>
+
+ <li>head injury & multi organ failure</li>
+
+ <li>Head injury & Shock state</li>
+
+ <li>HEAD INJURY AND BLEEDING</li>
+
+ <li>HEAD INJURY, LUNG CONTOSION</li>
+
+ <li>Head Injury, Multi organ failure</li>
+
+ <li>Head Injury, Multi Organ failure</li>
+
+ <li>Head Injury, Pulmonary Embolism, Multi organ failure</li>
+
+ <li>HEAD INJURY/MULTI ORGAN FAILURE</li>
+
+ <li>Hepatic failure secondary to descompensation of hepatic cirr</li>
+
+ <li>hERIDA CARDIACA</li>
+
+ <li>High spinal cord transection</li>
+
+ <li>Hypovolemic shock</li>
+
+ <li>Hypovolemic Shock</li>
+
+ <li>Hypoxia + chest injury, pulmonary contusions</li>
+
+ <li>Insuficiencia Respiratoria</li>
+
+ <li>internal bleeding</li>
+
+ <li>INTRAABDOMINAL INJURY</li>
+
+ <li>ISCHEMIC BRAIN</li>
+
+ <li>maxillo facial injury</li>
+
+ <li>Meningitis</li>
+
+ <li>MENINGITIS (SEPTICAEMIA)</li>
+
+ <li>missed visceral injury</li>
+
+ <li>Missing data</li>
+
+ <li>muerte cerebral</li>
+
+ <li>MUERTE SUBITA</li>
+
+ <li>Multi organ failure & Head injury</li>
+
+ <li>Multi Organ Failure secondary to Shock & Bleeding</li>
+
+ <li>Multi organ failure, DIC</li>
+
+ <li>Multi organ failure, Sepsis</li>
+
+ <li>Multi organ failure, SEPSIS</li>
+
+ <li>Multi organ failure:ARDS</li>
+
+ <li>MULTI-ORGAN FAILURE   body sent for medicolegal examination</li>
+
+ <li>multiple injuries</li>
+
+ <li>Multiple Injuries</li>
+
+ <li>MULTIPLE INJURIES</li>
+
+ <li>Multiple trauma</li>
+
+ <li>Multiple Trauma</li>
+
+ <li>MULTIPLE TRAUMA</li>
+
+ <li>MULTPLE  FRACTURE</li>
+
+ <li>neumothorax a tensi</li>
+
+ <li>Neurogenic Shock</li>
+
+ <li>Neurogenic shock (spinal cord lesion)</li>
+
+ <li>Orthostatic Pneumonia</li>
+
+ <li>Orthostatic pneumonia/aspirational pneumonitis</li>
+
+ <li>PACIENTE CON TRAUMA VASCULAR EN MIEMBRO SUPERIOR DERECHO...</li>
+
+ <li>Paro Cardio-respiratorio</li>
+
+ <li>PELVIC FRACTURE</li>
+
+ <li>PNEUMONIA</li>
+
+ <li>Pneumonia and sepsis</li>
+
+ <li>Pneumonia with sepsis</li>
+
+ <li>Pneumonia+ARDS</li>
+
+ <li>pneumonia+sepsis</li>
+
+ <li>Pneumothorax</li>
+
+ <li>POLITRAUMATISMO SEVERO</li>
+
+ <li>Poly Trauma</li>
+
+ <li>polytrauma</li>
+
+ <li>Polytrauma</li>
+
+ <li>POLYTRAUMA</li>
+
+ <li>Post mortem not done</li>
+
+ <li>PRIMARY BRAINSTEM FAILURE</li>
+
+ <li>Prolong shock</li>
+
+ <li>Pulmonary aspiration</li>
+
+ <li>Pulmonary contusion</li>
+
+ <li>RABDOMIOLISIS</li>
+
+ <li>REFRACTORY SHOCK</li>
+
+ <li>REFRACTORY SHOCK? CAUSE</li>
+
+ <li>RESPIRATORY  FAILURE</li>
+
+ <li>RESPIRATORY DISTREES</li>
+
+ <li>respiratory failure</li>
+
+ <li>Respiratory failure</li>
+
+ <li>Respiratory Failure</li>
+
+ <li>RESPIRATORY FAILURE</li>
+
+ <li>RESPIRATORY FAILURE DUE TO BILATERAL BRONCHOPNEUMONIA</li>
+
+ <li>Respiratory failure due to high cervical  spine (C3/C4) frac</li>
+
+ <li>RESPIRATORY FAILURE FOLLOWING BILATERAL BRONCHOPNEUMONIA</li>
+
+ <li>respiratory failure, lung contusion</li>
+
+ <li>Respiratory Failure. Spinal Lesion in C3-C4.</li>
+
+ <li>respiratory failure(cord injury)</li>
+
+ <li>respiratory insufficiency secondary to chest trauma</li>
+
+ <li>Respiratoy failure</li>
+
+ <li>SANGRADO (bleeding)</li>
+
+ <li>Sangrado (bleeding), SDRA</li>
+
+ <li>SANGRADO (bleeding),TRAUMA CRANEANO (head injury), MOF</li>
+
+ <li>SANGRADO (bleeding)/PELVIS INESTABLE</li>
+
+ <li>SDRA</li>
+
+ <li>sepsis</li>
+
+ <li>Sepsis</li>
+
+ <li>SEPSIS</li>
+
+ <li>SEPSIS FULMINANATE POSTESPLENECTOMIA</li>
+
+ <li>Sepsis of Gastrointestinal Origin</li>
+
+ <li>Sepsis por anaerobios</li>
+
+ <li>sepsis,fallo multorganico</li>
+
+ <li>Septcaemia</li>
+
+ <li>SEPTIC</li>
+
+ <li>septic shock</li>
+
+ <li>Septic shock</li>
+
+ <li>SEPTIC SHOCK</li>
+
+ <li>Septic shock caused by gram negative bacillus meningitis</li>
+
+ <li>Septic shock caused by peritonitis</li>
+
+ <li>Septic shock of unknown origin by gram negative bacilli</li>
+
+ <li>Septic shock secondary to gas gangrene in lower extremities</li>
+
+ <li>septicaemia</li>
+
+ <li>SEPTICAEMIA</li>
+
+ <li>Septiceamic Shock</li>
+
+ <li>Septicemia</li>
+
+ <li>severe aneamia & hypothermia</li>
+
+ <li>severe liver & spleen laceration,internal bleeding</li>
+
+ <li>Severe lung injury</li>
+
+ <li>Severe malaria and severe head injury</li>
+
+ <li>severe polytrauma</li>
+
+ <li>Severe polytrauma due to motor vehicle accident</li>
+
+ <li>shck septico</li>
+
+ <li>Shock</li>
+
+ <li>SHOCK DISTRIBUTIVO</li>
+
+ <li>Shock due to injuries sustained.</li>
+
+ <li>SHOCK due to Sustained Injuries</li>
+
+ <li>Shock Hipovolemico</li>
+
+ <li>SHOCK NEUROGENICO</li>
+
+ <li>Shock septico</li>
+
+ <li>SHOCK SEPTICO</li>
+
+ <li>shock septico, shock hemorragico, shock refractario</li>
+
+ <li>Shock, Bleeding & Multi Organ Failure</li>
+
+ <li>Shock, Head Injury</li>
+
+ <li>Shock, Head Injury, Generalised Spine Injury, Bleeding.</li>
+
+ <li>SIRS</li>
+
+ <li>Spinal cord shock vs. Hipovolemic shock</li>
+
+ <li>Spinal shock</li>
+
+ <li>SPINAL SHOCK</li>
+
+ <li>SUBARACHNOID HEMORRHAGE</li>
+
+ <li>sucidal drugs ingestion</li>
+
+ <li>Sudden Arrest</li>
+
+ <li>Sudden cardiac arrest</li>
+
+ <li>Sudden respiratoy distress</li>
+
+ <li>Taponamiento cardiaco</li>
+
+ <li>TBI and blunt thoracic trauma</li>
+
+ <li>TETANUS AND SEPSIS</li>
+
+ <li>tracheal bronchial tree bleeding</li>
+
+ <li>trauma raquimedular</li>
+
+ <li>Traumatic Shock</li>
+
+ <li>Type I Respiratory failure</li>
+
+ <li>Unsurvivable injuries</li>
+
+ <li>Visceral injury</li>
+
+ <a name="levels.status"><h6>status</h6>
+ <li>discharged</li>
+
+ <li>still in hospital</li>
+
+ <li>transferred to other hospital</li>
+
+ <a name="levels.condition"><h6>condition</h6>
+ <li>no symptoms</li>
+
+ <li>minor symptoms</li>
+
+ <li>some restriction in lifestyle but independent</li>
+
+ <li>dependent, but not requiring constant attention</li>
+
+ <li>fully dependent, requiring attention day and night</li>
+
+
 
 </div>
 </div>
@@ -256,7 +848,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="rectal-cancer-surgery-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="bacteremia-study.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

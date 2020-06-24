@@ -1,0 +1,41 @@
+# Multivariate Crash2
+
+
+This code is a continous by example
+
+```{r,message = FALSE, warning = FALSE }
+library(here)
+library(tidyverse)
+library(janitor)
+library(summarytools)
+library(Hmisc)
+```
+
+## Read data
+
+### Load the dataset.
+
+```{r, message = FALSE}
+load(here::here("data", "crash2.rda"))
+```
+
+
+
+with(support2, histboxp(x=meanbp, group=dzgroup, sd=TRUE, bins=200))
+
+
+
+```{r, echo = FALSE, message = FALSE}
+crash2 %>%
+  filter(!(is.na(bmi))) %>%
+  with(., histboxp(x = age, group = bmi, sd=TRUE, bins=200))
+
+```
+
+```{r, echo = FALSE, message = FALSE}
+crash2 %>%
+  filter(!(is.na(bmi))) %>%
+  with(., histboxp(x = sbp, group = bmi, sd=TRUE, bins=200))
+
+```
+
