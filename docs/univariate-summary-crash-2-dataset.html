@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Univariate summary CRASH-2 dataset | IDA draft report</title>
+  <title>Chapter 5 Univariate summary CRASH-2 dataset | IDA draft report</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Univariate summary CRASH-2 dataset | IDA draft report" />
+  <meta property="og:title" content="Chapter 5 Univariate summary CRASH-2 dataset | IDA draft report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Univariate summary CRASH-2 dataset | IDA draft report" />
+  <meta name="twitter:title" content="Chapter 5 Univariate summary CRASH-2 dataset | IDA draft report" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="Compelte author list" />
 
 
-<meta name="date" content="2020-06-14" />
+<meta name="date" content="2020-06-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="univariate-summary-rectal-cancer-surgery-dataset.html"/>
-<link rel="next" href="univariate-summary-bacteremia-dataset.html"/>
+<link rel="prev" href="sap-nhanes.html"/>
+<link rel="next" href="multivariate-crash2.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,13 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -132,52 +139,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html"><i class="fa fa-check"></i><b>2</b> Rectal cancer surgery dataset</a><ul>
-<li class="chapter" data-level="2.1" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#description"><i class="fa fa-check"></i><b>2.1</b> Description</a></li>
-<li class="chapter" data-level="2.2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#hypothetical-research-aim-for-ida"><i class="fa fa-check"></i><b>2.2</b> Hypothetical research aim for IDA</a></li>
-<li class="chapter" data-level="2.3" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>2.3</b> Statistical analysis plan</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#comments-from-2019-12-17-conference-call"><i class="fa fa-check"></i><b>2.3.1</b> Comments from 2019-12-17 conference call</a></li>
+<li class="chapter" data-level="2" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html"><i class="fa fa-check"></i><b>2</b> CRASH-2 prediction model</a><ul>
+<li class="chapter" data-level="2.1" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>2.1</b> Statistical analysis plan</a></li>
+<li class="chapter" data-level="2.2" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#crash2-data-set-contents"><i class="fa fa-check"></i><b>2.2</b> Crash2 data set contents</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#source"><i class="fa fa-check"></i><b>2.4</b> Source:</a></li>
-<li class="chapter" data-level="2.5" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#data-dictionary"><i class="fa fa-check"></i><b>2.5</b> Data dictionary</a></li>
-<li class="chapter" data-level="2.6" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#references"><i class="fa fa-check"></i><b>2.6</b> References</a></li>
+<li class="chapter" data-level="3" data-path="bacteremia-study.html"><a href="bacteremia-study.html"><i class="fa fa-check"></i><b>3</b> Bacteremia study</a><ul>
+<li class="chapter" data-level="3.1" data-path="bacteremia-study.html"><a href="bacteremia-study.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="bacteremia-study.html"><a href="bacteremia-study.html#load-the-data"><i class="fa fa-check"></i><b>3.2</b> Load the data</a></li>
+<li class="chapter" data-level="3.3" data-path="bacteremia-study.html"><a href="bacteremia-study.html#intended-statistical-analysis"><i class="fa fa-check"></i><b>3.3</b> Intended statistical analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html"><i class="fa fa-check"></i><b>3</b> CRASH-2 prediction model</a><ul>
-<li class="chapter" data-level="3.1" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#statistical-analysis-plan-1"><i class="fa fa-check"></i><b>3.1</b> Statistical analysis plan</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="bacteremia-study.html"><a href="bacteremia-study.html"><i class="fa fa-check"></i><b>4</b> Bacteremia study</a><ul>
-<li class="chapter" data-level="4.1" data-path="bacteremia-study.html"><a href="bacteremia-study.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="bacteremia-study.html"><a href="bacteremia-study.html#load-the-data"><i class="fa fa-check"></i><b>4.2</b> Load the data</a></li>
-<li class="chapter" data-level="4.3" data-path="bacteremia-study.html"><a href="bacteremia-study.html#intended-statistical-analysis"><i class="fa fa-check"></i><b>4.3</b> Intended statistical analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="sap-nhanes.html"><a href="sap-nhanes.html"><i class="fa fa-check"></i><b>5</b> SAP nhanes</a><ul>
-<li class="chapter" data-level="5.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#data-set"><i class="fa fa-check"></i><b>5.1</b> Data set</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#sociodemographic-variables"><i class="fa fa-check"></i><b>5.1.1</b> Sociodemographic variables</a></li>
-<li class="chapter" data-level="5.1.2" data-path="sap-nhanes.html"><a href="sap-nhanes.html#health-and-behavior-variables"><i class="fa fa-check"></i><b>5.1.2</b> Health and behavior variables</a></li>
-<li class="chapter" data-level="5.1.3" data-path="sap-nhanes.html"><a href="sap-nhanes.html#physical-activity-data"><i class="fa fa-check"></i><b>5.1.3</b> Physical activity data</a></li>
+<li class="chapter" data-level="4" data-path="sap-nhanes.html"><a href="sap-nhanes.html"><i class="fa fa-check"></i><b>4</b> SAP nhanes</a><ul>
+<li class="chapter" data-level="4.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#data-set"><i class="fa fa-check"></i><b>4.1</b> Data set</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#sociodemographic-variables"><i class="fa fa-check"></i><b>4.1.1</b> Sociodemographic variables</a></li>
+<li class="chapter" data-level="4.1.2" data-path="sap-nhanes.html"><a href="sap-nhanes.html#health-and-behavior-variables"><i class="fa fa-check"></i><b>4.1.2</b> Health and behavior variables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="sap-nhanes.html"><a href="sap-nhanes.html#physical-activity-data"><i class="fa fa-check"></i><b>4.1.3</b> Physical activity data</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html"><i class="fa fa-check"></i><b>6</b> Univariate summary Rectal cancer surgery dataset</a><ul>
-<li class="chapter" data-level="6.1" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#read-data"><i class="fa fa-check"></i><b>6.1</b> Read data</a></li>
-<li class="chapter" data-level="6.2" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#descriptive-summary"><i class="fa fa-check"></i><b>6.2</b> Descriptive summary</a></li>
-<li class="chapter" data-level="6.3" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#medical-history"><i class="fa fa-check"></i><b>6.3</b> Medical history</a></li>
-<li class="chapter" data-level="6.4" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#patient-characteristics"><i class="fa fa-check"></i><b>6.4</b> Patient characteristics</a></li>
-<li class="chapter" data-level="6.5" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#session-info"><i class="fa fa-check"></i><b>6.5</b> Session info</a></li>
+<li class="chapter" data-level="5" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html"><i class="fa fa-check"></i><b>5</b> Univariate summary CRASH-2 dataset</a><ul>
+<li class="chapter" data-level="5.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#read-data"><i class="fa fa-check"></i><b>5.1</b> Read data</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#load-the-dataset."><i class="fa fa-check"></i><b>5.1.1</b> Load the dataset.</a></li>
+<li class="chapter" data-level="5.1.2" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#describe-the-dataset"><i class="fa fa-check"></i><b>5.1.2</b> Describe the dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html"><i class="fa fa-check"></i><b>7</b> Univariate summary CRASH-2 dataset</a><ul>
-<li class="chapter" data-level="7.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#read-data-1"><i class="fa fa-check"></i><b>7.1</b> Read data</a></li>
-<li class="chapter" data-level="7.2" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#session-info-1"><i class="fa fa-check"></i><b>7.2</b> Session info</a></li>
-<li class="chapter" data-level="7.3" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#session-info-2"><i class="fa fa-check"></i><b>7.3</b> Session info</a></li>
+<li class="chapter" data-level="5.2" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#univariate-summary"><i class="fa fa-check"></i><b>5.2</b> Univariate summary</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#continous-variables"><i class="fa fa-check"></i><b>5.2.1</b> Continous variables</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html"><i class="fa fa-check"></i><b>8</b> Univariate summary Bacteremia dataset</a><ul>
-<li class="chapter" data-level="8.1" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#read-data-2"><i class="fa fa-check"></i><b>8.1</b> Read data</a></li>
-<li class="chapter" data-level="8.2" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#session-info-3"><i class="fa fa-check"></i><b>8.2</b> Session info</a></li>
+<li class="chapter" data-level="5.3" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#session-info"><i class="fa fa-check"></i><b>5.3</b> Session info</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html"><i class="fa fa-check"></i><b>9</b> Univariate summary nhanes dataset</a><ul>
-<li class="chapter" data-level="9.1" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#read-data-3"><i class="fa fa-check"></i><b>9.1</b> Read data</a></li>
-<li class="chapter" data-level="9.2" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#session-info-4"><i class="fa fa-check"></i><b>9.2</b> Session info</a></li>
+<li class="chapter" data-level="6" data-path="multivariate-crash2.html"><a href="multivariate-crash2.html"><i class="fa fa-check"></i><b>6</b> Multivariate Crash2</a><ul>
+<li class="chapter" data-level="6.1" data-path="multivariate-crash2.html"><a href="multivariate-crash2.html#read-data-1"><i class="fa fa-check"></i><b>6.1</b> Read data</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="multivariate-crash2.html"><a href="multivariate-crash2.html#load-the-dataset.-1"><i class="fa fa-check"></i><b>6.1.1</b> Load the dataset.</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html"><i class="fa fa-check"></i><b>7</b> Univariate summary Bacteremia dataset</a><ul>
+<li class="chapter" data-level="7.1" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#read-data-2"><i class="fa fa-check"></i><b>7.1</b> Read data</a></li>
+<li class="chapter" data-level="7.2" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#session-info-1"><i class="fa fa-check"></i><b>7.2</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html"><i class="fa fa-check"></i><b>8</b> Univariate summary nhanes dataset</a><ul>
+<li class="chapter" data-level="8.1" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#read-data-3"><i class="fa fa-check"></i><b>8.1</b> Read data</a></li>
+<li class="chapter" data-level="8.2" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#session-info-2"><i class="fa fa-check"></i><b>8.2</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -199,81 +200,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="univariate-summary-crash-2-dataset" class="section level1">
-<h1><span class="header-section-number">Chapter 7</span> Univariate summary CRASH-2 dataset</h1>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb58-2" title="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb58-3" title="3"><span class="kw">library</span>(janitor)</a></code></pre></div>
-<pre><code>## Warning: package &#39;janitor&#39; was built under R version 3.6.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;janitor&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     chisq.test, fisher.test</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="kw">library</span>(summarytools)</a></code></pre></div>
-<div id="read-data-1" class="section level2">
-<h2><span class="header-section-number">7.1</span> Read data</h2>
-<p>Load the dataset.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">load</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;crash2.rda&quot;</span>))</a>
-<a class="sourceLine" id="cb63-2" title="2">crash2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glimpse</span>()</a></code></pre></div>
-<pre><code>## Rows: 20,207
-## Columns: 44
-## $ entryid     &lt;labelled&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
-## $ source      &lt;fct&gt; electronic CRF by email, electronic CRF by email, elect...
-## $ trandomised &lt;date&gt; 2005-06-11, 2005-05-29, 2005-05-25, 2005-05-26, 2005-0...
-## $ outcomeid   &lt;labelled&gt; 2, 190, 4, 5, 1154, 6, 7, 8, 44, 144, 57, 58, 122,...
-## $ sex         &lt;fct&gt; male, female, male, male, female, male, male, male, mal...
-## $ age         &lt;int&gt; 50, 27, 30, 40, 23, 19, 27, 16, 29, 44, 41, 56, 65, 37,...
-## $ injurytime  &lt;labelled&gt; 1.00, 1.00, 1.00, 2.00, 4.00, 3.00, 0.50, 1.00, 1....
-## $ injurytype  &lt;fct&gt; blunt, blunt, blunt, penetrating, penetrating, penetrat...
-## $ sbp         &lt;labelled&gt; 75, 100, 70, 60, 80, 90, 90, 90, 116, 160, 120, 60...
-## $ rr          &lt;labelled&gt; 28, 20, 26, 20, 22, 30, 26, 28, 15, 12, 15, 9, 20,...
-## $ cc          &lt;labelled&gt; 5, 2, 6, 5, 3, 5, 5, 2, 3, 2, 3, 3, 5, 5, 5, 3, 3,...
-## $ hr          &lt;labelled&gt; 120, 80, 130, 120, 100, 90, 96, 118, 118, 130, 70,...
-## $ gcseye      &lt;labelled&gt; 1, 4, 4, 2, 3, 4, 4, 4, 1, 4, 4, 1, 4, 4, 3, 1, 1,...
-## $ gcsmotor    &lt;labelled&gt; 1, 6, 6, 5, 6, 6, 6, 6, 1, 6, 6, 1, 6, 6, 5, 3, 3,...
-## $ gcsverbal   &lt;labelled&gt; 1, 5, 4, 3, 5, 5, 5, 5, 1, 5, 5, 1, 4, 5, 4, 1, 1,...
-## $ gcs         &lt;labelled&gt; 3, 15, 14, 10, 14, 15, 15, 15, 3, 15, 15, 3, 14, 1...
-## $ ddeath      &lt;date&gt; 2005-06-14, NA, NA, 2005-05-28, NA, 2005-06-05, NA, NA...
-## $ cause       &lt;fct&gt; head injury, NA, NA, multi organ failure, NA, other, NA...
-## $ scauseother &lt;fct&gt; , , , , , PNEUMONIA, , , , , , , , , , , , , , , , , , ...
-## $ status      &lt;fct&gt; NA, discharged, discharged, NA, discharged, NA, dischar...
-## $ ddischarge  &lt;date&gt; NA, 2005-06-24, 2005-06-08, NA, 2005-06-24, NA, 2005-0...
-## $ condition   &lt;fct&gt; NA, &quot;minor symptoms&quot;, &quot;no symptoms&quot;, NA, &quot;no symptoms&quot;,...
-## $ ndaysicu    &lt;labelled&gt; 0, 0, 6, 2, 0, 9, 7, 0, 7, 4, 7, 23, 1, 2, 3, 3, 2...
-## $ bheadinj    &lt;labelled&gt; 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1,...
-## $ bneuro      &lt;labelled&gt; 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1,...
-## $ bchest      &lt;labelled&gt; 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,...
-## $ babdomen    &lt;labelled&gt; 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0,...
-## $ bpelvis     &lt;labelled&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
-## $ bpe         &lt;labelled&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
-## $ bdvt        &lt;labelled&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
-## $ bstroke     &lt;labelled&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
-## $ bbleed      &lt;labelled&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,...
-## $ bmi         &lt;labelled&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
-## $ bgi         &lt;labelled&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,...
-## $ bloading    &lt;labelled&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-## $ bmaint      &lt;labelled&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
-## $ btransf     &lt;labelled&gt; 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1,...
-## $ ncell       &lt;labelled&gt; 1, NA, 2, 4, NA, 2, 1, 1, 16, NA, 8, 4, NA, 4, 3, ...
-## $ nplasma     &lt;labelled&gt; 0, NA, 0, 0, NA, 0, 0, 0, 9, NA, 11, 9, NA, 0, 0, ...
-## $ nplatelets  &lt;labelled&gt; 0, NA, 0, 0, NA, 0, 0, 0, 22, NA, 10, 0, NA, 0, 0,...
-## $ ncryo       &lt;labelled&gt; 0, NA, 0, 0, NA, 0, 0, 0, 0, NA, 0, 0, NA, 0, 0, N...
-## $ bvii        &lt;labelled&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
-## $ boxid       &lt;labelled&gt; 2001, 2001, 2011, 2011, 2011, 2011, 2011, 2011, 40...
-## $ packnum     &lt;labelled&gt; 25, 28, 21, 22, 23, 24, 25, 28, 41, 41, 42, 43, 81...</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">Hmisc<span class="op">::</span><span class="kw">html</span>(Hmisc<span class="op">::</span><span class="kw">describe</span>(crash2))</a></code></pre></div>
-<pre><code>## Warning in png(file, width = 1 + k * w, height = h): &#39;width=16, height=13&#39; are
-## unlikely values in pixels</code></pre>
-<pre><code>## Warning in png(file, width = 1 + k * w, height = h): &#39;width=10, height=13&#39; are
-## unlikely values in pixels</code></pre>
-<pre><code>## Warning in png(file, width = 1 + k * w, height = h): &#39;width=16, height=13&#39; are
-## unlikely values in pixels</code></pre>
-<pre><code>## Warning in png(file, width = 1 + k * w, height = h): &#39;width=19, height=13&#39; are
-## unlikely values in pixels</code></pre>
-<pre><code>## Warning in png(file, width = 1 + k * w, height = h): &#39;width=10, height=13&#39; are
-## unlikely values in pixels</code></pre>
-<pre><code>## Warning in png(file, width = 1 + k * w, height = h): &#39;width=16, height=13&#39; are
-## unlikely values in pixels</code></pre>
+<h1><span class="header-section-number">Chapter 5</span> Univariate summary CRASH-2 dataset</h1>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="kw">library</span>(janitor)</a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="kw">library</span>(summarytools)</a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="kw">library</span>(Hmisc)</a></code></pre></div>
+<div id="read-data" class="section level2">
+<h2><span class="header-section-number">5.1</span> Read data</h2>
+<div id="load-the-dataset." class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Load the dataset.</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">load</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;crash2.rda&quot;</span>))</a></code></pre></div>
+</div>
+<div id="describe-the-dataset" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Describe the dataset</h3>
+<p>Use Hmisc describe function.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="st">  </span>Hmisc<span class="op">::</span><span class="kw">describe</span>(<span class="dt">descript =</span> <span class="st">&quot;MY DATA SET TITLE&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="st">  </span>Hmisc<span class="op">::</span><span class="kw">html</span>()</a></code></pre></div>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <script type="text/javascript">
 <!--
@@ -317,65 +261,65 @@ left: 0.1em;
 bottom: -1ex;
 }
 </style>
- <font color="MidnightBlue"><div align=center><span style="font-weight:bold">crash2 <br><br> 44  Variables   20207  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">entryid</span>: Unique Numbers for Entry Forms<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">MY DATA SET TITLE <br><br> 44  Variables   20207  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">entryid</span>: Unique Numbers for Entry Forms<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAQ0lEQVQ4je3TsQ0AQAhCUXX/oc/DylhZQeGf4CUE88ykcpAiY0t6AZKeC7JzLVJ2qb3xV39kK2a1I1sxO9cuZZfoHx9reQCQzx59LQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable896653 {
+ .hmisctable532344 {
  border: none;
  font-size: 85%;
  }
- .hmisctable896653 td {
+ .hmisctable532344 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable896653 th {
+ .hmisctable532344 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable896653">
+ <table class="hmisctable532344">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20207</td><td>0</td><td>20207</td><td>1</td><td>10132</td><td>6760</td><td> 1011</td><td> 2022</td><td> 5060</td><td>10130</td><td>15204</td><td>18242</td><td>19255</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :     1     2     3     4     5 ,  <font color="MidnightBlue">highest</font>: 20266 20267 20268 20269 20270</span> <hr class="thinhr"> <span style="font-weight:bold">source</span>: Method of Transmission of Entry Form to CC<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAMAAACXZR4WAAAACVBMVEUAAADMzMz////1iUV5AAAAKUlEQVQImWNgBAMGBkYoYGACAwYoDWRRQ4BUWxgYSBKAYLDxDGBbIBgAiGgBKa79/KkAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable219786 {
+ .hmisctable841512 {
  border: none;
  font-size: 85%;
  }
- .hmisctable219786 td {
+ .hmisctable841512 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable219786 th {
+ .hmisctable841512 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable219786">
+ <table class="hmisctable841512">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>20207</td><td>0</td><td>5</td></tr>
  </table>
  <style>
- .hmisctable158021 {
+ .hmisctable342637 {
  border: none;
  font-size: 85%;
  }
- .hmisctable158021 td {
+ .hmisctable342637 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable158021 th {
+ .hmisctable342637 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable158021">
+ <table class="hmisctable342637">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>telephone                           </td><td>telephone entered manually          </td><td>electronic CRF by email             </td><td>paper CRF enteredd in electronic CRF</td><td>electronic CRF                      </td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>telephone                           </td><td>telephone entered manually          </td><td>electronic CRF by email             </td><td>paper CRF enteredd in electronic CRF</td><td>electronic CRF                      </td></tr>
  </table>
@@ -387,63 +331,63 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAjUlE
  2006-07-19 2007-06-10 2008-06-06 2009-02-26 2009-08-27 2009-10-28 
  </pre>
  <style>
- .hmisctable226863 {
+ .hmisctable920058 {
  border: none;
  font-size: 85%;
  }
- .hmisctable226863 td {
+ .hmisctable920058 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable226863 th {
+ .hmisctable920058 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable226863">
+ <table class="hmisctable920058">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>2005-05-19</td><td>2005-05-22</td><td>2005-05-25</td><td>2005-05-26</td><td>2005-05-27</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>2010-01-11</td><td>2010-01-12</td><td>2010-01-14</td><td>2010-01-22</td><td>2010-01-23</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">outcomeid</span>: Unique Number From Outcome Database<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAQ0lEQVQ4je3TsQ0AMAgDQWD/oUNwFdGEChf+CU6ybJ4ZVV6kyLYlb1EkuX6TaxZcbG+84Y/bih523Fb05JrF7CL94wG8gQCglVs6JAAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable721351 {
+ .hmisctable266382 {
  border: none;
  font-size: 74%;
  }
- .hmisctable721351 td {
+ .hmisctable266382 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable721351 th {
+ .hmisctable266382 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable721351">
+ <table class="hmisctable266382">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20127</td><td>80</td><td>20127</td><td>1</td><td>10112</td><td>6734</td><td> 1010</td><td> 2023</td><td> 5062</td><td>10116</td><td>15164</td><td>18185</td><td>19193</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :     1     2     3     4     5 ,  <font color="MidnightBlue">highest</font>: 20195 20196 20197 20198 20199</span> <hr class="thinhr"> <span style="font-weight:bold">sex</span> <style>
- .hmisctable529574 {
+ .hmisctable750537 {
  border: none;
  font-size: 85%;
  }
- .hmisctable529574 td {
+ .hmisctable750537 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable529574 th {
+ .hmisctable750537 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable529574">
+ <table class="hmisctable750537">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>20206</td><td>1</td><td>2</td></tr>
  </table>
@@ -454,64 +398,64 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAQ0lE
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">age</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAhUlEQVQ4jc3TSw6AIAwE0Kn3P7TyUaAtCpFqJ8YmbnxKBzQSoJ32wTYSoJ32eXhRhnh0BQtzMe3XroRCTDF6cLF0XBa+u4IJ15FYyVxLy5Z2P1VDoVq38vdMjnXWxYjn4nlyoXaJ5fvVJZmrTnepizNf8EKVlDpBLeNs6BrsUh8RcrPDbQcg0QqG35KihwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable213175 {
+ .hmisctable586285 {
  border: none;
  font-size: 85%;
  }
- .hmisctable213175 td {
+ .hmisctable586285 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable213175 th {
+ .hmisctable586285 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable213175">
+ <table class="hmisctable586285">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20203</td><td>4</td><td>84</td><td>0.999</td><td>34.56</td><td>15.55</td><td>18</td><td>19</td><td>24</td><td>30</td><td>43</td><td>55</td><td>64</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1 14 15 16 17 ,  <font color="MidnightBlue">highest</font>: 92 94 95 96 99</span> <hr class="thinhr"> <span style="font-weight:bold">injurytime</span>: Hours Since Injury<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAWklEQVQ4je3VOwoAIAxEwY33P7Qm+G/U7hVuIQophsCirEQyWpRKFCcq3/UWuAsHiyaKV8i2L9rGhosFc42qi0SbXKil7S4KzIu4uOKzrC31S38e+mNXY9czGQXhDQPyr+JzAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable155951 {
+ .hmisctable863697 {
  border: none;
  font-size: 85%;
  }
- .hmisctable155951 td {
+ .hmisctable863697 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable155951 th {
+ .hmisctable863697 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable155951">
+ <table class="hmisctable863697">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20196</td><td>11</td><td>93</td><td>0.972</td><td>2.844</td><td>2.35</td><td>0.5</td><td>1.0</td><td>1.0</td><td>2.0</td><td>4.0</td><td>6.0</td><td>7.0</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0.10  0.15  0.20  0.25  0.30 ,  <font color="MidnightBlue">highest</font>: 22.00 45.00 48.00 72.00 96.00</span> <hr class="thinhr"> <span style="font-weight:bold">injurytype</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQImWNgYIQBBgYmGCCKCeUyMIC0wk2Ai+JlMjCgMKEmMDAAADRjAKoEq8d0AAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable116203 {
+ .hmisctable736616 {
  border: none;
  font-size: 85%;
  }
- .hmisctable116203 td {
+ .hmisctable736616 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable116203 th {
+ .hmisctable736616 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable116203">
+ <table class="hmisctable736616">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>20207</td><td>0</td><td>3</td></tr>
  </table>
@@ -522,64 +466,64 @@ iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lE
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">sbp</span>: Systolic Blood Pressure <span style='font-family:Verdana;font-size:75%;'>mmHg</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAeUlEQVQ4jeWTUQ6AMAhDO+9/aC2LQZ2a0bEf5aOQZdAXElCEAJSumMUiBKSumIXUBNdJ8RUug/kzV/ROsMtJ02N4X5O21j/1gNFypdOlciXS9UxqrN+5UujiXFtmacUz1yicnZcfF2sKXU2uCXePsS/u4Y41l3rb1BUP7gxgD5zU4QAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable749464 {
+ .hmisctable806915 {
  border: none;
  font-size: 85%;
  }
- .hmisctable749464 td {
+ .hmisctable806915 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable749464 th {
+ .hmisctable806915 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable749464">
+ <table class="hmisctable806915">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>19887</td><td>320</td><td>173</td><td>0.989</td><td>98.45</td><td>27.86</td><td> 60</td><td> 70</td><td> 80</td><td> 95</td><td>110</td><td>130</td><td>143</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   4  10  12  20  25 ,  <font color="MidnightBlue">highest</font>: 225 230 234 240 250</span> <hr class="thinhr"> <span style="font-weight:bold">rr</span>: Respiratory Rate <span style='font-family:Verdana;font-size:75%;'>/min</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAdklEQVQ4je2T2wrAMAhD4/7/o9eumyCt1j6Yp4VAL0h7UAKJBWwKioQrFnYFRfq5zpTj4tMluIbJCuPWwqgmK2yENos/zTQXeZr+VzMUEy3LBTKa84nFgcdVx9iDBhO8xyvNVQsL3vdEPfIl5qh3uvtC359pyw0sKAx5Ml+DtwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable292935 {
+ .hmisctable149634 {
  border: none;
  font-size: 85%;
  }
- .hmisctable292935 td {
+ .hmisctable149634 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable292935 th {
+ .hmisctable149634 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable292935">
+ <table class="hmisctable149634">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20016</td><td>191</td><td>68</td><td>0.99</td><td>23.06</td><td>7.052</td><td>14</td><td>16</td><td>20</td><td>22</td><td>26</td><td>30</td><td>35</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1  2  3  4  5 ,  <font color="MidnightBlue">highest</font>: 90 91 94 95 96</span> <hr class="thinhr"> <span style="font-weight:bold">cc</span>: Central Capillary Refille Time <span style='font-family:Verdana;font-size:75%;'>s</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAD0AAAANCAMAAAAtxpZ2AAAACVBMVEUAAADMzMz////1iUV5AAAAOklEQVQokdXRMQoAMAgEwT3//+ggFsEmxVlIth8EDwnkRgDh9rm2OUo9+rl/e6arTW1yerXA3eC5BjoXeQULuh8a6gAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable946006 {
+ .hmisctable426230 {
  border: none;
  font-size: 85%;
  }
- .hmisctable946006 td {
+ .hmisctable426230 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable946006 th {
+ .hmisctable426230 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable946006">
+ <table class="hmisctable426230">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>19596</td><td>611</td><td>20</td><td>0.945</td><td>3.267</td><td>1.67</td><td>1</td><td>2</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
  </table>
@@ -594,43 +538,43 @@ iVBORw0KGgoAAAANSUhEUgAAAD0AAAANCAMAAAAtxpZ2AAAACVBMVEUAAADMzMz////1iUV5AAAAOklE
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">hr</span>: Heart Rate <span style='font-family:Verdana;font-size:75%;'>/min</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAc0lEQVQ4je2T6wqAIBSDZ+//0HkhbVB4aoOCGng5PxyfR4ekCxizS1h0AWPeFtnT4fFzXfP4EpcjO/s8mmIp3Y5a9Ip3PEBhLhXPxQVQ8SRXRUFTX5nrPl34YG9HVCJX+fs1RMUrnQwuwprbtfjmPWUxjxVbmQwFkspBGQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable856179 {
+ .hmisctable398473 {
  border: none;
  font-size: 85%;
  }
- .hmisctable856179 td {
+ .hmisctable398473 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable856179 th {
+ .hmisctable398473 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable856179">
+ <table class="hmisctable398473">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20070</td><td>137</td><td>173</td><td>0.996</td><td>104.5</td><td>23.38</td><td> 70</td><td> 80</td><td> 90</td><td>105</td><td>120</td><td>130</td><td>140</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   3   4   5   6  10 ,  <font color="MidnightBlue">highest</font>: 190 192 198 200 220</span> <hr class="thinhr"> <span style="font-weight:bold">gcseye</span>: Glasgow Coma Score Eye Opening<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAMAAACXZR4WAAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQImWNgRAEMDAxMKIBKAuTZAhUFUdgEwCSUAxEAGc0IpYAYAIghAR5+GojGAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable910397 {
+ .hmisctable141079 {
  border: none;
  font-size: 85%;
  }
- .hmisctable910397 td {
+ .hmisctable141079 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable910397 th {
+ .hmisctable141079 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable910397">
+ <table class="hmisctable141079">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>19475</td><td>732</td><td>5</td><td>0.822</td><td>2.948</td><td>1.414</td></tr>
  </table>
@@ -641,22 +585,22 @@ iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAMAAACXZR4WAAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lE
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">gcsmotor</span>: Glasgow Coma Score Motor Response<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAABYAAAANCAMAAACae25RAAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQYlWNgxAIYGBiYsAAaC9PEJSAR3MIMaGIwYZDNcMQAQkAMAAwHAbPGyMlJAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable341944 {
+ .hmisctable896996 {
  border: none;
  font-size: 85%;
  }
- .hmisctable341944 td {
+ .hmisctable896996 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable341944 th {
+ .hmisctable896996 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable341944">
+ <table class="hmisctable896996">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>19475</td><td>732</td><td>7</td><td>0.782</td><td>4.794</td><td>1.797</td></tr>
  </table>
@@ -667,22 +611,22 @@ iVBORw0KGgoAAAANSUhEUgAAABYAAAANCAMAAACae25RAAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lE
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">gcsverbal</span>: Glasgow Coma Score Verbal Response<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAABMAAAANCAMAAAB8UqUVAAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQYlWNgRAcMDAxM6IAGYmTZC+JCxBASUDEGnGIoFMhiIEahAMDoAVcEiR5yAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable832775 {
+ .hmisctable811848 {
  border: none;
  font-size: 85%;
  }
- .hmisctable832775 td {
+ .hmisctable811848 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable832775 th {
+ .hmisctable811848 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable832775">
+ <table class="hmisctable811848">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>19472</td><td>735</td><td>6</td><td>0.857</td><td>3.611</td><td>1.833</td></tr>
  </table>
@@ -693,22 +637,22 @@ iVBORw0KGgoAAAANSUhEUgAAABMAAAANCAMAAAB8UqUVAAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lE
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">gcs</span>: Glasgow Coma Score Total<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAACgAAAANCAMAAADsQdzaAAAACVBMVEUAAADMzMz////1iUV5AAAAK0lEQVQokWNgJAYwMDAyMBEDGBiYhoTC4eFrkCoCCqFKoAjkKQwEoRiQEACOggNMVmIG8gAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable822303 {
+ .hmisctable476042 {
  border: none;
  font-size: 85%;
  }
- .hmisctable822303 td {
+ .hmisctable476042 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable822303 th {
+ .hmisctable476042 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable822303">
+ <table class="hmisctable476042">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20184</td><td>23</td><td>13</td><td>0.863</td><td>12.47</td><td>3.594</td><td> 4</td><td> 6</td><td>11</td><td>15</td><td>15</td><td>15</td><td>15</td></tr>
  </table>
@@ -729,124 +673,124 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAk0lE
  2006-06-29 2007-05-01 2008-05-03 2009-02-18 2009-08-23 2009-10-21 
  </pre>
  <style>
- .hmisctable525027 {
+ .hmisctable301487 {
  border: none;
  font-size: 85%;
  }
- .hmisctable525027 td {
+ .hmisctable301487 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable525027 th {
+ .hmisctable301487 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable525027">
+ <table class="hmisctable301487">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>2005-05-28</td><td>2005-06-05</td><td>2005-06-12</td><td>2005-06-14</td><td>2005-06-22</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>2010-01-09</td><td>2010-01-15</td><td>2010-01-17</td><td>2010-01-20</td><td>2010-01-24</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">cause</span>: Main Cause of Death<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAABYAAAANCAMAAACae25RAAAACVBMVEUAAADMzMz////1iUV5AAAALElEQVQYlWNgZGRkYGBEBwwMTEwgjAZoK0yRSyAcUoQZGHAKQ1wCQUAMEQAA+hQBmHDagFgAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable192788 {
+ .hmisctable967408 {
  border: none;
  font-size: 85%;
  }
- .hmisctable192788 td {
+ .hmisctable967408 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable192788 th {
+ .hmisctable967408 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable192788">
+ <table class="hmisctable967408">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>3089</td><td>17118</td><td>7</td></tr>
  </table>
  <style>
- .hmisctable313947 {
+ .hmisctable510525 {
  border: none;
  font-size: 85%;
  }
- .hmisctable313947 td {
+ .hmisctable510525 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable313947 th {
+ .hmisctable510525 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable313947">
+ <table class="hmisctable510525">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>bleeding             </td><td>head injury          </td><td>myocardial infarction</td><td>stroke               </td><td>pulmonary embolism   </td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>myocardial infarction</td><td>stroke               </td><td>pulmonary embolism   </td><td>multi organ failure  </td><td>other                </td></tr>
  </table>
   bleeding (1064, 0.344), head injury (1225, 0.397), myocardial infarction (29, 0.009), stroke (13, 0.004), pulmonary embolism (40, 0.013), multi organ failure (447, 0.145), other (271, 0.088) <hr class="thinhr"> <span style="font-weight:bold">scauseother</span>: Description of Other Cause of Death <style>
- .hmisctable996013 {
+ .hmisctable283017 {
  border: none;
  font-size: 85%;
  }
- .hmisctable996013 td {
+ .hmisctable283017 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable996013 th {
+ .hmisctable283017 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable996013">
+ <table class="hmisctable283017">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>20207</td><td>0</td><td>227</td></tr>
  </table>
  <style>
- .hmisctable818787 {
+ .hmisctable952298 {
  border: none;
  font-size: 85%;
  }
- .hmisctable818787 td {
+ .hmisctable952298 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable818787 th {
+ .hmisctable952298 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable818787">
+ <table class="hmisctable952298">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>                          </td><td>Acute Hypoxia             </td><td>ACUTE LUNG INJURY         </td><td>Acute Pulmonary Oedema    </td><td>Acute Renal Failure       </td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>trauma raquimedular       </td><td>Traumatic Shock           </td><td>Type I Respiratory failure</td><td>Unsurvivable injuries     </td><td>Visceral injury           </td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">status</span>: Status of Patient at Outcome if Alive<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAH0lEQVQImWNgYIQBBgYmGCCNSbYJYC4DA8gEsCkMDAA5cADEv6lXIAAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable322519 {
+ .hmisctable505609 {
  border: none;
  font-size: 85%;
  }
- .hmisctable322519 td {
+ .hmisctable505609 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable322519 th {
+ .hmisctable505609 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable322519">
+ <table class="hmisctable505609">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>17038</td><td>3169</td><td>3</td></tr>
  </table>
@@ -867,518 +811,671 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAfklE
  2006-08-04 2007-06-30 2008-06-25 2009-03-12 2009-09-08 2009-11-09 
  </pre>
  <style>
- .hmisctable901198 {
+ .hmisctable981185 {
  border: none;
  font-size: 85%;
  }
- .hmisctable901198 td {
+ .hmisctable981185 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable901198 th {
+ .hmisctable981185 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable901198">
+ <table class="hmisctable981185">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>2005-05-26</td><td>2005-06-03</td><td>2005-06-06</td><td>2005-06-08</td><td>2005-06-10</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>2010-02-02</td><td>2010-02-03</td><td>2010-02-04</td><td>2010-02-07</td><td>2010-02-10</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">condition</span>: Condition of Patient at Outcome if Alive<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAMAAACXZR4WAAAACVBMVEUAAADMzMz////1iUV5AAAAM0lEQVQImWNgZGRkYGBEAAYmJiYGEAEDRAsgxDAFILYgLAJJQVVAVJEswMCARQBuCwQDAHkwAPh+8VbKAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable166680 {
+ .hmisctable609107 {
  border: none;
  font-size: 85%;
  }
- .hmisctable166680 td {
+ .hmisctable609107 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable166680 th {
+ .hmisctable609107 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable166680">
+ <table class="hmisctable609107">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>16956</td><td>3251</td><td>5</td></tr>
  </table>
  <style>
- .hmisctable150386 {
+ .hmisctable177520 {
  border: none;
  font-size: 85%;
  }
- .hmisctable150386 td {
+ .hmisctable177520 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable150386 th {
+ .hmisctable177520 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable150386">
+ <table class="hmisctable177520">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>no symptoms                                       </td><td>minor symptoms                                    </td><td>some restriction in lifestyle but independent     </td><td>dependent, but not requiring constant attention   </td><td>fully dependent, requiring attention day and night</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>no symptoms                                       </td><td>minor symptoms                                    </td><td>some restriction in lifestyle but independent     </td><td>dependent, but not requiring constant attention   </td><td>fully dependent, requiring attention day and night</td></tr>
  </table>
   no symptoms (2817, 0.166), minor symptoms (6115, 0.361), some restriction in lifestyle but independent (4085, 0.241), dependent, but not requiring constant attention (2567, 0.151), fully dependent, requiring attention day and night (1372, 0.081) <hr class="thinhr"> <span style="font-weight:bold">ndaysicu</span>: Number of Days Spent in ICU<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJQAAAANCAMAAAB4i7dtAAAACVBMVEUAAADMzMz////1iUV5AAAATUlEQVQ4jWNgZGRgYBxkgIGJiQGIBxcYdRSxYNRRxAKG0dxHJBh1FLEA4qhB5i6Yo0BgoN0CB+DcBwVAJiMyQZoAftXgTAUnMPMbCgsAd8YM3zFInn4AAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable761156 {
+ .hmisctable926496 {
  border: none;
  font-size: 85%;
  }
- .hmisctable761156 td {
+ .hmisctable926496 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable761156 th {
+ .hmisctable926496 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable761156">
+ <table class="hmisctable926496">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20025</td><td>182</td><td>49</td><td>0.822</td><td>2.662</td><td>4.249</td><td> 0</td><td> 0</td><td> 0</td><td> 0</td><td> 3</td><td> 8</td><td>14</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0.00  0.12  0.30  0.50  1.00 ,  <font color="MidnightBlue">highest</font>: 40.00 43.00 45.00 54.00 58.00</span> <hr class="thinhr"> <span style="font-weight:bold">bheadinj</span>: Significant Head Injury <style>
- .hmisctable215500 {
+ .hmisctable959996 {
  border: none;
  font-size: 85%;
  }
- .hmisctable215500 td {
+ .hmisctable959996 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable215500 th {
+ .hmisctable959996 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable215500">
+ <table class="hmisctable959996">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.652</td><td>6422</td><td>0.3191</td><td>0.4346</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bneuro</span>: Neurosurgery Done <style>
- .hmisctable809179 {
+ .hmisctable892518 {
  border: none;
  font-size: 85%;
  }
- .hmisctable809179 td {
+ .hmisctable892518 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable809179 th {
+ .hmisctable892518 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable809179">
+ <table class="hmisctable892518">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.28</td><td>2099</td><td>0.1043</td><td>0.1868</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bchest</span>: Chest Surgery Done <style>
- .hmisctable789494 {
+ .hmisctable112408 {
  border: none;
  font-size: 85%;
  }
- .hmisctable789494 td {
+ .hmisctable112408 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable789494 th {
+ .hmisctable112408 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable789494">
+ <table class="hmisctable112408">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.385</td><td>3043</td><td>0.1512</td><td>0.2567</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">babdomen</span>: Abdominal Surgery Done <style>
- .hmisctable709187 {
+ .hmisctable566850 {
  border: none;
  font-size: 85%;
  }
- .hmisctable709187 td {
+ .hmisctable566850 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable709187 th {
+ .hmisctable566850 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable709187">
+ <table class="hmisctable566850">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.563</td><td>5042</td><td>0.2505</td><td>0.3755</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bpelvis</span>: Pelvis Surgery Done <style>
- .hmisctable289208 {
+ .hmisctable110429 {
  border: none;
  font-size: 85%;
  }
- .hmisctable289208 td {
+ .hmisctable110429 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable289208 th {
+ .hmisctable110429 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable289208">
+ <table class="hmisctable110429">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.185</td><td>1331</td><td>0.06613</td><td>0.1235</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bpe</span>: Pulmonary Embolism <style>
- .hmisctable998633 {
+ .hmisctable891020 {
  border: none;
  font-size: 85%;
  }
- .hmisctable998633 td {
+ .hmisctable891020 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable998633 th {
+ .hmisctable891020 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable998633">
+ <table class="hmisctable891020">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.021</td><td>139</td><td>0.006906</td><td>0.01372</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bdvt</span>: Deep Vein Thrombosis <style>
- .hmisctable784155 {
+ .hmisctable572422 {
  border: none;
  font-size: 85%;
  }
- .hmisctable784155 td {
+ .hmisctable572422 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable784155 th {
+ .hmisctable572422 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable784155">
+ <table class="hmisctable572422">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.012</td><td>81</td><td>0.004024</td><td>0.008017</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bstroke</span>: Stroke <style>
- .hmisctable655438 {
+ .hmisctable966138 {
  border: none;
  font-size: 85%;
  }
- .hmisctable655438 td {
+ .hmisctable966138 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable655438 th {
+ .hmisctable966138 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable655438">
+ <table class="hmisctable966138">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.018</td><td>121</td><td>0.006012</td><td>0.01195</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bbleed</span>: Surgery for Bleeding <style>
- .hmisctable238900 {
+ .hmisctable191043 {
  border: none;
  font-size: 85%;
  }
- .hmisctable238900 td {
+ .hmisctable191043 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable238900 th {
+ .hmisctable191043 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable238900">
+ <table class="hmisctable191043">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.214</td><td>1553</td><td>0.07716</td><td>0.1424</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bmi</span>: Myocardial Infarction <style>
- .hmisctable975375 {
+ .hmisctable557392 {
  border: none;
  font-size: 85%;
  }
- .hmisctable975375 td {
+ .hmisctable557392 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable975375 th {
+ .hmisctable557392 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable975375">
+ <table class="hmisctable557392">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.013</td><td>87</td><td>0.004323</td><td>0.008608</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bgi</span>: Gastrointestinal Bleeding <style>
- .hmisctable367649 {
+ .hmisctable966598 {
  border: none;
  font-size: 85%;
  }
- .hmisctable367649 td {
+ .hmisctable966598 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable367649 th {
+ .hmisctable966598 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable367649">
+ <table class="hmisctable966598">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.039</td><td>264</td><td>0.01312</td><td>0.02589</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bloading</span>: Complete Loading Dose of Trial Drug Given <style>
- .hmisctable447822 {
+ .hmisctable114624 {
  border: none;
  font-size: 85%;
  }
- .hmisctable447822 td {
+ .hmisctable114624 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable447822 th {
+ .hmisctable114624 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable447822">
+ <table class="hmisctable114624">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.027</td><td>19944</td><td>0.9909</td><td>0.01802</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">bmaint</span>: Complete Maintenance Dose of Trial Drug Given <style>
- .hmisctable735151 {
+ .hmisctable643927 {
  border: none;
  font-size: 85%;
  }
- .hmisctable735151 td {
+ .hmisctable643927 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable735151 th {
+ .hmisctable643927 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable735151">
+ <table class="hmisctable643927">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.163</td><td>18965</td><td>0.9423</td><td>0.1088</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">btransf</span>: Blood Products Transfusion <style>
- .hmisctable383066 {
+ .hmisctable326039 {
  border: none;
  font-size: 85%;
  }
- .hmisctable383066 td {
+ .hmisctable326039 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable383066 th {
+ .hmisctable326039 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable383066">
+ <table class="hmisctable326039">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>20127</td><td>80</td><td>2</td><td>0.75</td><td>10232</td><td>0.5084</td><td>0.4999</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">ncell</span>: Number of Units of Red Call Products Transfused<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAI4AAAANCAMAAABIB6ZMAAAACVBMVEUAAADMzMz////1iUV5AAAAXUlEQVQ4je2TQQoAIAgEd/v/o7NMSpDoZgcnIrPLIC2oAPwBNAVW5FI6N6aFuJROxAyUxAr4Ilt7OoPs4bTSueF10v90oJM5phEnHNAOaa/1UoSP5BFW2MX1XKpkd8A2DAGzLX2aAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable262945 {
+ .hmisctable870984 {
  border: none;
  font-size: 85%;
  }
- .hmisctable262945 td {
+ .hmisctable870984 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable262945 th {
+ .hmisctable870984 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable262945">
+ <table class="hmisctable870984">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>10244</td><td>9963</td><td>47</td><td>0.966</td><td>3.919</td><td>3.445</td><td> 1</td><td> 1</td><td> 2</td><td> 3</td><td> 5</td><td> 8</td><td>11</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0.0  0.5  1.0  1.5  2.0 ,  <font color="MidnightBlue">highest</font>: 45.0 46.0 49.0 54.0 60.0</span> <hr class="thinhr"> <span style="font-weight:bold">nplasma</span>: Number of Units of Fresh Frozen Plasma Transfused<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAIgAAAANCAMAAABFGdYLAAAACVBMVEUAAADMzMz////1iUV5AAAARklEQVQ4jWNgZGRgYBwEgIGJiQGIBx6MOgQdjDoEHTCM5ho0MOoQdDDqEHQAyTUQyMiAAnFzCChlBBNQJjRPoGURZEGIQgDQfgvfio4AgwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable433871 {
+ .hmisctable248016 {
  border: none;
  font-size: 85%;
  }
- .hmisctable433871 td {
+ .hmisctable248016 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable433871 th {
+ .hmisctable248016 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable433871">
+ <table class="hmisctable248016">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>10243</td><td>9964</td><td>45</td><td>0.59</td><td>1.44</td><td>2.46</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>5</td><td>8</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0  1  2  3  4 ,  <font color="MidnightBlue">highest</font>: 46 53 56 59 60</span> <hr class="thinhr"> <span style="font-weight:bold">nplatelets</span>: Number of Units of Platelets Transfused<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAH8AAAANCAMAAAC3iUHrAAAACVBMVEUAAADMzMz////1iUV5AAAAOklEQVQ4jWNgZGRgYBw4wMDExADEAwZG7R/h9o+m/1H7R7L9oPQPzAFghERhiiBLQPMMmCQ/94B0AgBujwsT9a+boAAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable482309 {
+ .hmisctable322856 {
  border: none;
  font-size: 85%;
  }
- .hmisctable482309 td {
+ .hmisctable322856 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable482309 th {
+ .hmisctable322856 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable482309">
+ <table class="hmisctable322856">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>10243</td><td>9964</td><td>42</td><td>0.218</td><td>0.5526</td><td>1.057</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>4</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0  1  2  3  4 ,  <font color="MidnightBlue">highest</font>: 38 41 42 45 87</span> <hr class="thinhr"> <span style="font-weight:bold">ncryo</span>: Number of Units of Cryoprecipitate Transfused<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAFUAAAANCAMAAADv9tLyAAAACVBMVEUAAADMzMz////1iUV5AAAANElEQVQ4jWNgZGBgpDpgYGJgYKI6GDWVRqaOpoFRU4FpgAFMIGMgAYQQBCKgfDjGnwAYGQFAGAdbHi1V6wAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable716564 {
+ .hmisctable393823 {
  border: none;
  font-size: 85%;
  }
- .hmisctable716564 td {
+ .hmisctable393823 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable716564 th {
+ .hmisctable393823 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable716564">
+ <table class="hmisctable393823">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>10243</td><td>9964</td><td>28</td><td>0.11</td><td>0.2577</td><td>0.5038</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0  1  2  3  4 ,  <font color="MidnightBlue">highest</font>: 28 30 33 36 61</span> <hr class="thinhr"> <span style="font-weight:bold">bvii</span>: Recombinant Factor VIIa Given <style>
- .hmisctable383361 {
+ .hmisctable763290 {
  border: none;
  font-size: 85%;
  }
- .hmisctable383361 td {
+ .hmisctable763290 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable383361 th {
+ .hmisctable763290 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable383361">
+ <table class="hmisctable763290">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
  <tr><td>19833</td><td>374</td><td>2</td><td>0.007</td><td>46</td><td>0.002319</td><td>0.004628</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">boxid</span>: Treatment Box Number<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAG0AAAANCAMAAACU0hA+AAAACVBMVEUAAADMzMz////1iUV5AAAAcUlEQVQ4je2SQQ6AMAgEF/7/aLUVpUAJvRhN3FOTyXTbZEFEaKF2IhtAcADTXOJtgpnlwuPENilME5i6raOJE8JaG55sw1va3J0DWSoMTKjZnYkWGcLaJrUJ+7Px+Smsf03Mv+2jbX52mO8KC6N04q5uj3UF8ZHwQWgAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable689617 {
+ .hmisctable113760 {
  border: none;
  font-size: 85%;
  }
- .hmisctable689617 td {
+ .hmisctable113760 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable689617 th {
+ .hmisctable113760 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable689617">
+ <table class="hmisctable113760">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20207</td><td>0</td><td>2728</td><td>1</td><td>5131</td><td>2767</td><td>2140</td><td>2276</td><td>2734</td><td>4464</td><td>8226</td><td>8674</td><td>8829</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> : 2001 2002 2003 2004 2005 ,  <font color="MidnightBlue">highest</font>: 9055 9056 9057 9061 9065</span> <hr class="thinhr"> <span style="font-weight:bold">packnum</span>: Treatment Pack Number<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJEAAAANCAMAAACeonwpAAAACVBMVEUAAADMzMz////1iUV5AAAAWElEQVQ4je2TOwoAMAhDE+9/6NKh9IOWFBw6+FyDBuGBxAp9lIyAsgFm2DEPIaIgnapG1Sij0eFR4IEQeXHteuq/H1WjapTRyBUAfcAxrmtrQrUvOjWXkQ2whwkGHgJ1uQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable401479 {
+ .hmisctable663337 {
  border: none;
  font-size: 85%;
  }
- .hmisctable401479 td {
+ .hmisctable663337 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable401479 th {
+ .hmisctable663337 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable401479">
+ <table class="hmisctable663337">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20207</td><td>0</td><td>48</td><td>0.998</td><td>51.35</td><td>27.62</td><td>22</td><td>23</td><td>27</td><td>45</td><td>82</td><td>86</td><td>88</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> : 21 22 23 24 25 ,  <font color="MidnightBlue">highest</font>: 94 95 96 97 98</span> <hr class="thinhr">
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># crash2 %&gt;%</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="co">#   dplyr::select(age, injurytime, sbp, rr, cc) %&gt;%</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="co">#   gtsummary::tbl_summary(</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="co">#     # split table by treatment variable</span></a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="co">#     #by = trt,</span></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="co">#     # change variable labels</span></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="co"># #    label = list(marker ~ &quot;Marker, ng/mL&quot;,</span></a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="co"># #                 stage ~ &quot;Clinical T Stage&quot;),</span></a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="co">#     # change statistics printed in table</span></a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="co">#     statistic = list(</span></a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="co">#       all_continuous() ~ &quot;{mean} ({sd}) / ({min}, {max}) / {median} / {p5} {p25} {p75} {p95}&quot; ,</span></a>
+<a class="sourceLine" id="cb12-12" title="12"><span class="co">#       all_categorical() ~ &quot;{n} / {N} ({p}%)&quot;</span></a>
+<a class="sourceLine" id="cb12-13" title="13"><span class="co">#     )</span></a>
+<a class="sourceLine" id="cb12-14" title="14"><span class="co">#   ) %&gt;%</span></a>
+<a class="sourceLine" id="cb12-15" title="15"><span class="co">#   # add statistic labels</span></a>
+<a class="sourceLine" id="cb12-16" title="16"><span class="co">#   gtsummary::add_stat_label() %&gt;%</span></a>
+<a class="sourceLine" id="cb12-17" title="17"><span class="co">#   # bold variable labels, italicize levels</span></a>
+<a class="sourceLine" id="cb12-18" title="18"><span class="co">#   gtsummary::bold_labels() %&gt;%</span></a>
+<a class="sourceLine" id="cb12-19" title="19"><span class="co">#   gtsummary::italicize_levels() </span></a></code></pre></div>
 </div>
-<div id="session-info-1" class="section level2">
-<h2><span class="header-section-number">7.2</span> Session info</h2>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+</div>
+<div id="univariate-summary" class="section level2">
+<h2><span class="header-section-number">5.2</span> Univariate summary</h2>
+<div id="continous-variables" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Continous variables</h3>
+<div id="age" class="section level4">
+<h4><span class="header-section-number">5.2.1.1</span> Age</h4>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co">#library(patchwork)</span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="co">#source(here::here(&quot;R&quot;, &quot;plot_hist.R&quot;))</span></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="co">#ida_plot_hist(crash2, age, bin_width = 1)</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">x &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(crash2<span class="op">$</span>age)</a>
+<a class="sourceLine" id="cb14-2" title="2"></a>
+<a class="sourceLine" id="cb14-3" title="3">p1 &lt;-</a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="st">  </span>crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="kw">aes</span>(age)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-6" title="6"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">center =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-7" title="7"><span class="st">   </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-8" title="8"><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">limit=</span><span class="kw">c</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x)), </a>
+<a class="sourceLine" id="cb14-9" title="9">                     <span class="dt">breaks=</span><span class="kw">round</span>(<span class="kw">fivenum</span>(x),<span class="dv">1</span>)) <span class="op">+</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb14-10" title="10"><span class="st">   </span>ggplot2<span class="op">::</span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-11" title="11"><span class="st">    </span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb14-12" title="12">      <span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb14-13" title="13">      <span class="dt">panel.grid.major.x =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb14-14" title="14">      <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb14-15" title="15">      <span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb14-16" title="16">      <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>()</a>
+<a class="sourceLine" id="cb14-17" title="17">   )</a>
+<a class="sourceLine" id="cb14-18" title="18"></a>
+<a class="sourceLine" id="cb14-19" title="19">p2 &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb14-20" title="20"><span class="st">  </span>crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-21" title="21"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> age, <span class="dt">y =</span> <span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-22" title="22"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.shape =</span> <span class="ot">NA</span>, <span class="dt">width =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-23" title="23"><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">limit=</span><span class="kw">c</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x)), </a>
+<a class="sourceLine" id="cb14-24" title="24">                     <span class="dt">breaks=</span><span class="kw">round</span>(<span class="kw">fivenum</span>(x),<span class="dv">1</span>)) <span class="op">+</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb14-25" title="25"><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-26" title="26"><span class="st">    </span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb14-27" title="27">      <span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb14-28" title="28">      <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb14-29" title="29">      <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb14-30" title="30">      <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>()</a>
+<a class="sourceLine" id="cb14-31" title="31">   )</a>
+<a class="sourceLine" id="cb14-32" title="32"></a>
+<a class="sourceLine" id="cb14-33" title="33">p3 &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb14-34" title="34"><span class="st">  </span>crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-35" title="35"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> age, <span class="dt">y =</span> <span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-36" title="36"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">height =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-37" title="37"><span class="st">    </span><span class="kw">geom_rug</span>(<span class="dt">sides=</span><span class="st">&quot;b&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-38" title="38"><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">limit=</span><span class="kw">c</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x)), </a>
+<a class="sourceLine" id="cb14-39" title="39">                     <span class="dt">breaks=</span><span class="kw">round</span>(<span class="kw">fivenum</span>(x),<span class="dv">1</span>)) <span class="op">+</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb14-40" title="40"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-41" title="41"><span class="st">    </span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb14-42" title="42">      <span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb14-43" title="43">      <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb14-44" title="44">      <span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb14-45" title="45">      <span class="dt">axis.text =</span> <span class="kw">element_blank</span>()</a>
+<a class="sourceLine" id="cb14-46" title="46">   )</a>
+<a class="sourceLine" id="cb14-47" title="47"></a>
+<a class="sourceLine" id="cb14-48" title="48"></a>
+<a class="sourceLine" id="cb14-49" title="49">layout &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb14-50" title="50">  patchwork<span class="op">::</span><span class="kw">area</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb14-51" title="51">  patchwork<span class="op">::</span><span class="kw">area</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb14-52" title="52">  patchwork<span class="op">::</span><span class="kw">area</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb14-53" title="53">)</a>
+<a class="sourceLine" id="cb14-54" title="54"></a>
+<a class="sourceLine" id="cb14-55" title="55">gg &lt;-<span class="st"> </span>p3 <span class="op">/</span><span class="st"> </span>p1 <span class="op">/</span><span class="st"> </span>p2 <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-56" title="56"><span class="st">  </span>patchwork<span class="op">::</span><span class="kw">plot_layout</span>(<span class="dt">design =</span> layout)</a>
+<a class="sourceLine" id="cb14-57" title="57"></a>
+<a class="sourceLine" id="cb14-58" title="58">gg</a></code></pre></div>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="IDA-working-draft-title_files/figure-html/unnamed-chunk-10-1.png" width="768" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># p2 &lt;- data %&gt;%</span></a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="co">#   ggplot(aes(x = {{var}}, y = factor(1))) +</span></a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="co">#   geom_jitter(alpha = 0.2, colour = &quot;red&quot;) +</span></a>
+<a class="sourceLine" id="cb18-4" title="4"><span class="co">#   #  geom_boxplot() +</span></a>
+<a class="sourceLine" id="cb18-5" title="5"><span class="co">#   #    scale_x_continuous(</span></a>
+<a class="sourceLine" id="cb18-6" title="6"><span class="co">#   #      limits = c(breaks$min, breaks$max)</span></a>
+<a class="sourceLine" id="cb18-7" title="7"><span class="co">#   #      ,</span></a>
+<a class="sourceLine" id="cb18-8" title="8"><span class="co">#   #      breaks = c(breaks$min, breaks$mean, breaks$median, breaks$max),</span></a>
+<a class="sourceLine" id="cb18-9" title="9"><span class="co">#   #      guide = guide_axis(n.dodge = 2)</span></a>
+<a class="sourceLine" id="cb18-10" title="10"><span class="co">#   #    ) +</span></a>
+<a class="sourceLine" id="cb18-11" title="11"><span class="co">#   ggplot2::theme_minimal()</span></a>
+<a class="sourceLine" id="cb18-12" title="12"><span class="co"># </span></a>
+<a class="sourceLine" id="cb18-13" title="13"></a>
+<a class="sourceLine" id="cb18-14" title="14"><span class="co"># </span></a>
+<a class="sourceLine" id="cb18-15" title="15"><span class="co"># layout &lt;- c(</span></a>
+<a class="sourceLine" id="cb18-16" title="16"><span class="co">#   patchwork::area(1, 1, 1, 3),</span></a>
+<a class="sourceLine" id="cb18-17" title="17"><span class="co">#   patchwork::area(2, 1, 5, 3),</span></a>
+<a class="sourceLine" id="cb18-18" title="18"><span class="co">#   patchwork::area(6, 1, 6, 3)</span></a>
+<a class="sourceLine" id="cb18-19" title="19"><span class="co"># )</span></a>
+<a class="sourceLine" id="cb18-20" title="20"><span class="co"># </span></a>
+<a class="sourceLine" id="cb18-21" title="21"><span class="co"># gg &lt;- p2 / p1 / p3 +</span></a>
+<a class="sourceLine" id="cb18-22" title="22"><span class="co">#   patchwork::plot_layout(design = layout)</span></a>
+<a class="sourceLine" id="cb18-23" title="23"></a>
+<a class="sourceLine" id="cb18-24" title="24"><span class="co"># #  +</span></a>
+<a class="sourceLine" id="cb18-25" title="25"><span class="co"># #    theme(</span></a>
+<a class="sourceLine" id="cb18-26" title="26"><span class="co"># #      panel.grid.major = element_blank(),</span></a>
+<a class="sourceLine" id="cb18-27" title="27"><span class="co"># #      panel.grid.minor = element_blank(),</span></a>
+<a class="sourceLine" id="cb18-28" title="28"><span class="co"># #      axis.title = element_blank(),</span></a>
+<a class="sourceLine" id="cb18-29" title="29"><span class="co"># #      axis.text = element_blank()</span></a>
+<a class="sourceLine" id="cb18-30" title="30"><span class="co"># #   )</span></a>
+<a class="sourceLine" id="cb18-31" title="31"><span class="co"># </span></a>
+<a class="sourceLine" id="cb18-32" title="32"><span class="co"># </span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">x &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(crash2<span class="op">$</span>sbp)</a>
+<a class="sourceLine" id="cb19-2" title="2"></a>
+<a class="sourceLine" id="cb19-3" title="3">p1 &lt;-</a>
+<a class="sourceLine" id="cb19-4" title="4"><span class="st">  </span>crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-5" title="5"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="kw">aes</span>(sbp)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb19-6" title="6"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">center =</span> <span class="dv">0</span>, <span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb19-7" title="7"><span class="st">   </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb19-8" title="8"><span class="st">    </span><span class="kw">scale_x_continuous</span>(</a>
+<a class="sourceLine" id="cb19-9" title="9">      <span class="dt">limit=</span><span class="kw">c</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x)), </a>
+<a class="sourceLine" id="cb19-10" title="10">                     <span class="dt">breaks=</span><span class="kw">round</span>(<span class="kw">fivenum</span>(x),<span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-11" title="11"><span class="st">   </span>ggplot2<span class="op">::</span><span class="kw">theme_minimal</span>()</a>
+<a class="sourceLine" id="cb19-12" title="12"></a>
+<a class="sourceLine" id="cb19-13" title="13">p2 &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb19-14" title="14"><span class="st">  </span>crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-15" title="15"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> sbp, <span class="dt">y =</span> <span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb19-16" title="16"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.shape =</span> <span class="ot">NA</span>, <span class="dt">width =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-17" title="17"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x =</span> sbp, <span class="dt">y =</span> <span class="fl">0.2</span>), <span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">height =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb19-18" title="18"><span class="st">    </span><span class="kw">scale_x_continuous</span>(</a>
+<a class="sourceLine" id="cb19-19" title="19">      <span class="dt">limit=</span><span class="kw">c</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x)), </a>
+<a class="sourceLine" id="cb19-20" title="20">                     <span class="dt">breaks=</span><span class="kw">round</span>(<span class="kw">fivenum</span>(x),<span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-21" title="21"><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_minimal</span>()</a>
+<a class="sourceLine" id="cb19-22" title="22"></a>
+<a class="sourceLine" id="cb19-23" title="23">p1 <span class="op">/</span><span class="st"> </span>p2</a></code></pre></div>
+<pre><code>## Warning: Removed 320 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 320 rows containing non-finite values (stat_boxplot).</code></pre>
+<pre><code>## Warning: Removed 320 rows containing missing values (geom_point).</code></pre>
+<p><img src="IDA-working-draft-title_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="session-info" class="section level2">
+<h2><span class="header-section-number">5.3</span> Session info</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
 <pre><code>## R version 3.6.1 (2019-07-05)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 17763)
@@ -1396,95 +1493,39 @@ iVBORw0KGgoAAAANSUhEUgAAAJEAAAANCAMAAACeonwpAAAACVBMVEUAAADMzMz////1iUV5AAAAWElE
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] janitor_2.0.1      summarytools_0.9.6 forcats_0.5.0      stringr_1.4.0     
-##  [5] purrr_0.3.4        readr_1.3.1        tibble_3.0.1       tidyverse_1.3.0   
-##  [9] Hmisc_4.4-0        Formula_1.2-3      survival_3.1-11    lattice_0.20-40   
-## [13] tidyr_1.0.2        dplyr_0.8.5        ggplot2_3.3.0      rmarkdown_2.1     
-## [17] here_0.1          
+##  [1] summarytools_0.9.6 janitor_2.0.1      Hmisc_4.4-0        Formula_1.2-3     
+##  [5] survival_3.2-3     lattice_0.20-40    forcats_0.5.0      stringr_1.4.0     
+##  [9] dplyr_0.8.5        purrr_0.3.4        readr_1.3.1        tidyr_1.0.2       
+## [13] tibble_3.0.1       ggplot2_3.3.0      tidyverse_1.3.0    here_0.1          
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] nlme_3.1-145        matrixStats_0.56.0  fs_1.3.2           
 ##  [4] lubridate_1.7.4     RColorBrewer_1.1-2  httr_1.4.1         
 ##  [7] rprojroot_1.3-2     tools_3.6.1         backports_1.1.7    
-## [10] utf8_1.1.4          R6_2.4.1            rpart_4.1-15       
-## [13] DBI_1.1.0           colorspace_1.4-1    nnet_7.3-13        
-## [16] withr_2.2.0         tidyselect_1.1.0    gridExtra_2.3      
-## [19] compiler_3.6.1      cli_2.0.2           rvest_0.3.5        
-## [22] htmlTable_1.13.3    xml2_1.2.5          labeling_0.3       
-## [25] bookdown_0.18       scales_1.1.1        checkmate_2.0.0    
-## [28] digest_0.6.25       foreign_0.8-76      base64enc_0.1-3    
+## [10] R6_2.4.1            rpart_4.1-15        DBI_1.1.0          
+## [13] colorspace_1.4-1    nnet_7.3-13         withr_2.2.0        
+## [16] tidyselect_1.1.0    gridExtra_2.3       compiler_3.6.1     
+## [19] cli_2.0.2           rvest_0.3.5         htmlTable_1.13.3   
+## [22] xml2_1.2.5          labeling_0.3        bookdown_0.18      
+## [25] scales_1.1.1        checkmate_2.0.0     digest_0.6.25      
+## [28] foreign_0.8-76      rmarkdown_2.1       base64enc_0.1-3    
 ## [31] jpeg_0.1-8.1        pkgconfig_2.0.3     htmltools_0.4.0    
 ## [34] dbplyr_1.4.2        htmlwidgets_1.5.1   rlang_0.4.6        
 ## [37] readxl_1.3.1        rstudioapi_0.11     pryr_0.1.4         
-## [40] generics_0.0.2      farver_2.0.3        jsonlite_1.6.1     
+## [40] farver_2.0.3        generics_0.0.2      jsonlite_1.6.1     
 ## [43] acepack_1.4.1       magrittr_1.5        rapportools_1.0    
-## [46] Matrix_1.2-18       Rcpp_1.0.4.6        munsell_0.5.0      
-## [49] fansi_0.4.1         lifecycle_0.2.0     stringi_1.4.6      
-## [52] yaml_2.2.1          snakecase_0.11.0    plyr_1.8.6         
-## [55] grid_3.6.1          crayon_1.3.4        haven_2.2.0        
-## [58] splines_3.6.1       pander_0.6.3        hms_0.5.3          
-## [61] magick_2.3          knitr_1.28          pillar_1.4.4       
-## [64] tcltk_3.6.1         codetools_0.2-16    reprex_0.3.0       
-## [67] glue_1.4.1          evaluate_0.14       latticeExtra_0.6-29
-## [70] data.table_1.12.8   modelr_0.1.6        png_0.1-7          
-## [73] vctrs_0.3.0         cellranger_1.1.0    gtable_0.3.0       
-## [76] assertthat_0.2.1    xfun_0.12           broom_0.5.5        
-## [79] cluster_2.1.0       ellipsis_0.3.0</code></pre>
-</div>
-<div id="session-info-2" class="section level2">
-<h2><span class="header-section-number">7.3</span> Session info</h2>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
-<pre><code>## R version 3.6.1 (2019-07-05)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 17763)
-## 
-## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] janitor_2.0.1      summarytools_0.9.6 forcats_0.5.0      stringr_1.4.0     
-##  [5] purrr_0.3.4        readr_1.3.1        tibble_3.0.1       tidyverse_1.3.0   
-##  [9] Hmisc_4.4-0        Formula_1.2-3      survival_3.1-11    lattice_0.20-40   
-## [13] tidyr_1.0.2        dplyr_0.8.5        ggplot2_3.3.0      rmarkdown_2.1     
-## [17] here_0.1          
-## 
-## loaded via a namespace (and not attached):
-##  [1] nlme_3.1-145        matrixStats_0.56.0  fs_1.3.2           
-##  [4] lubridate_1.7.4     RColorBrewer_1.1-2  httr_1.4.1         
-##  [7] rprojroot_1.3-2     tools_3.6.1         backports_1.1.7    
-## [10] utf8_1.1.4          R6_2.4.1            rpart_4.1-15       
-## [13] DBI_1.1.0           colorspace_1.4-1    nnet_7.3-13        
-## [16] withr_2.2.0         tidyselect_1.1.0    gridExtra_2.3      
-## [19] compiler_3.6.1      cli_2.0.2           rvest_0.3.5        
-## [22] htmlTable_1.13.3    xml2_1.2.5          labeling_0.3       
-## [25] bookdown_0.18       scales_1.1.1        checkmate_2.0.0    
-## [28] digest_0.6.25       foreign_0.8-76      base64enc_0.1-3    
-## [31] jpeg_0.1-8.1        pkgconfig_2.0.3     htmltools_0.4.0    
-## [34] dbplyr_1.4.2        htmlwidgets_1.5.1   rlang_0.4.6        
-## [37] readxl_1.3.1        rstudioapi_0.11     pryr_0.1.4         
-## [40] generics_0.0.2      farver_2.0.3        jsonlite_1.6.1     
-## [43] acepack_1.4.1       magrittr_1.5        rapportools_1.0    
-## [46] Matrix_1.2-18       Rcpp_1.0.4.6        munsell_0.5.0      
-## [49] fansi_0.4.1         lifecycle_0.2.0     stringi_1.4.6      
-## [52] yaml_2.2.1          snakecase_0.11.0    plyr_1.8.6         
-## [55] grid_3.6.1          crayon_1.3.4        haven_2.2.0        
-## [58] splines_3.6.1       pander_0.6.3        hms_0.5.3          
-## [61] magick_2.3          knitr_1.28          pillar_1.4.4       
-## [64] tcltk_3.6.1         codetools_0.2-16    reprex_0.3.0       
-## [67] glue_1.4.1          evaluate_0.14       latticeExtra_0.6-29
-## [70] data.table_1.12.8   modelr_0.1.6        png_0.1-7          
-## [73] vctrs_0.3.0         cellranger_1.1.0    gtable_0.3.0       
-## [76] assertthat_0.2.1    xfun_0.12           broom_0.5.5        
-## [79] cluster_2.1.0       ellipsis_0.3.0</code></pre>
+## [46] patchwork_1.0.0     Matrix_1.2-18       Rcpp_1.0.4.6       
+## [49] munsell_0.5.0       fansi_0.4.1         lifecycle_0.2.0    
+## [52] stringi_1.4.6       yaml_2.2.1          snakecase_0.11.0   
+## [55] plyr_1.8.6          grid_3.6.1          crayon_1.3.4       
+## [58] haven_2.2.0         splines_3.6.1       pander_0.6.3       
+## [61] hms_0.5.3           magick_2.3          knitr_1.28         
+## [64] pillar_1.4.4        tcltk_3.6.1         codetools_0.2-16   
+## [67] reprex_0.3.0        glue_1.4.1          evaluate_0.14      
+## [70] latticeExtra_0.6-29 data.table_1.12.8   modelr_0.1.6       
+## [73] png_0.1-7           vctrs_0.3.0         cellranger_1.1.0   
+## [76] gtable_0.3.0        assertthat_0.2.1    xfun_0.12          
+## [79] broom_0.5.5         cluster_2.1.0       ellipsis_0.3.0</code></pre>
 
 </div>
 </div>
@@ -1493,8 +1534,8 @@ iVBORw0KGgoAAAANSUhEUgAAAJEAAAANCAMAAACeonwpAAAACVBMVEUAAADMzMz////1iUV5AAAAWElE
           </div>
         </div>
       </div>
-<a href="univariate-summary-rectal-cancer-surgery-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-summary-bacteremia-dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sap-nhanes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multivariate-crash2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

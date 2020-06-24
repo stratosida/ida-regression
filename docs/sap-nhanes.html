@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 SAP nhanes | IDA draft report</title>
+  <title>Chapter 4 SAP nhanes | IDA draft report</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 SAP nhanes | IDA draft report" />
+  <meta property="og:title" content="Chapter 4 SAP nhanes | IDA draft report" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 SAP nhanes | IDA draft report" />
+  <meta name="twitter:title" content="Chapter 4 SAP nhanes | IDA draft report" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Compelte author list" />
 
 
-<meta name="date" content="2020-06-14" />
+<meta name="date" content="2020-06-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="bacteremia-study.html"/>
-<link rel="next" href="univariate-summary-rectal-cancer-surgery-dataset.html"/>
+<link rel="next" href="univariate-summary-crash-2-dataset.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,13 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -132,52 +139,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html"><i class="fa fa-check"></i><b>2</b> Rectal cancer surgery dataset</a><ul>
-<li class="chapter" data-level="2.1" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#description"><i class="fa fa-check"></i><b>2.1</b> Description</a></li>
-<li class="chapter" data-level="2.2" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#hypothetical-research-aim-for-ida"><i class="fa fa-check"></i><b>2.2</b> Hypothetical research aim for IDA</a></li>
-<li class="chapter" data-level="2.3" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>2.3</b> Statistical analysis plan</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#comments-from-2019-12-17-conference-call"><i class="fa fa-check"></i><b>2.3.1</b> Comments from 2019-12-17 conference call</a></li>
+<li class="chapter" data-level="2" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html"><i class="fa fa-check"></i><b>2</b> CRASH-2 prediction model</a><ul>
+<li class="chapter" data-level="2.1" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#statistical-analysis-plan"><i class="fa fa-check"></i><b>2.1</b> Statistical analysis plan</a></li>
+<li class="chapter" data-level="2.2" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#crash2-data-set-contents"><i class="fa fa-check"></i><b>2.2</b> Crash2 data set contents</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#source"><i class="fa fa-check"></i><b>2.4</b> Source:</a></li>
-<li class="chapter" data-level="2.5" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#data-dictionary"><i class="fa fa-check"></i><b>2.5</b> Data dictionary</a></li>
-<li class="chapter" data-level="2.6" data-path="rectal-cancer-surgery-dataset.html"><a href="rectal-cancer-surgery-dataset.html#references"><i class="fa fa-check"></i><b>2.6</b> References</a></li>
+<li class="chapter" data-level="3" data-path="bacteremia-study.html"><a href="bacteremia-study.html"><i class="fa fa-check"></i><b>3</b> Bacteremia study</a><ul>
+<li class="chapter" data-level="3.1" data-path="bacteremia-study.html"><a href="bacteremia-study.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="bacteremia-study.html"><a href="bacteremia-study.html#load-the-data"><i class="fa fa-check"></i><b>3.2</b> Load the data</a></li>
+<li class="chapter" data-level="3.3" data-path="bacteremia-study.html"><a href="bacteremia-study.html#intended-statistical-analysis"><i class="fa fa-check"></i><b>3.3</b> Intended statistical analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html"><i class="fa fa-check"></i><b>3</b> CRASH-2 prediction model</a><ul>
-<li class="chapter" data-level="3.1" data-path="crash-2-prediction-model.html"><a href="crash-2-prediction-model.html#statistical-analysis-plan-1"><i class="fa fa-check"></i><b>3.1</b> Statistical analysis plan</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="bacteremia-study.html"><a href="bacteremia-study.html"><i class="fa fa-check"></i><b>4</b> Bacteremia study</a><ul>
-<li class="chapter" data-level="4.1" data-path="bacteremia-study.html"><a href="bacteremia-study.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="bacteremia-study.html"><a href="bacteremia-study.html#load-the-data"><i class="fa fa-check"></i><b>4.2</b> Load the data</a></li>
-<li class="chapter" data-level="4.3" data-path="bacteremia-study.html"><a href="bacteremia-study.html#intended-statistical-analysis"><i class="fa fa-check"></i><b>4.3</b> Intended statistical analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="sap-nhanes.html"><a href="sap-nhanes.html"><i class="fa fa-check"></i><b>5</b> SAP nhanes</a><ul>
-<li class="chapter" data-level="5.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#data-set"><i class="fa fa-check"></i><b>5.1</b> Data set</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#sociodemographic-variables"><i class="fa fa-check"></i><b>5.1.1</b> Sociodemographic variables</a></li>
-<li class="chapter" data-level="5.1.2" data-path="sap-nhanes.html"><a href="sap-nhanes.html#health-and-behavior-variables"><i class="fa fa-check"></i><b>5.1.2</b> Health and behavior variables</a></li>
-<li class="chapter" data-level="5.1.3" data-path="sap-nhanes.html"><a href="sap-nhanes.html#physical-activity-data"><i class="fa fa-check"></i><b>5.1.3</b> Physical activity data</a></li>
+<li class="chapter" data-level="4" data-path="sap-nhanes.html"><a href="sap-nhanes.html"><i class="fa fa-check"></i><b>4</b> SAP nhanes</a><ul>
+<li class="chapter" data-level="4.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#data-set"><i class="fa fa-check"></i><b>4.1</b> Data set</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="sap-nhanes.html"><a href="sap-nhanes.html#sociodemographic-variables"><i class="fa fa-check"></i><b>4.1.1</b> Sociodemographic variables</a></li>
+<li class="chapter" data-level="4.1.2" data-path="sap-nhanes.html"><a href="sap-nhanes.html#health-and-behavior-variables"><i class="fa fa-check"></i><b>4.1.2</b> Health and behavior variables</a></li>
+<li class="chapter" data-level="4.1.3" data-path="sap-nhanes.html"><a href="sap-nhanes.html#physical-activity-data"><i class="fa fa-check"></i><b>4.1.3</b> Physical activity data</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html"><i class="fa fa-check"></i><b>6</b> Univariate summary Rectal cancer surgery dataset</a><ul>
-<li class="chapter" data-level="6.1" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#read-data"><i class="fa fa-check"></i><b>6.1</b> Read data</a></li>
-<li class="chapter" data-level="6.2" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#descriptive-summary"><i class="fa fa-check"></i><b>6.2</b> Descriptive summary</a></li>
-<li class="chapter" data-level="6.3" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#medical-history"><i class="fa fa-check"></i><b>6.3</b> Medical history</a></li>
-<li class="chapter" data-level="6.4" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#patient-characteristics"><i class="fa fa-check"></i><b>6.4</b> Patient characteristics</a></li>
-<li class="chapter" data-level="6.5" data-path="univariate-summary-rectal-cancer-surgery-dataset.html"><a href="univariate-summary-rectal-cancer-surgery-dataset.html#session-info"><i class="fa fa-check"></i><b>6.5</b> Session info</a></li>
+<li class="chapter" data-level="5" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html"><i class="fa fa-check"></i><b>5</b> Univariate summary CRASH-2 dataset</a><ul>
+<li class="chapter" data-level="5.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#read-data"><i class="fa fa-check"></i><b>5.1</b> Read data</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#load-the-dataset."><i class="fa fa-check"></i><b>5.1.1</b> Load the dataset.</a></li>
+<li class="chapter" data-level="5.1.2" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#describe-the-dataset"><i class="fa fa-check"></i><b>5.1.2</b> Describe the dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html"><i class="fa fa-check"></i><b>7</b> Univariate summary CRASH-2 dataset</a><ul>
-<li class="chapter" data-level="7.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#read-data-1"><i class="fa fa-check"></i><b>7.1</b> Read data</a></li>
-<li class="chapter" data-level="7.2" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#session-info-1"><i class="fa fa-check"></i><b>7.2</b> Session info</a></li>
-<li class="chapter" data-level="7.3" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#session-info-2"><i class="fa fa-check"></i><b>7.3</b> Session info</a></li>
+<li class="chapter" data-level="5.2" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#univariate-summary"><i class="fa fa-check"></i><b>5.2</b> Univariate summary</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#continous-variables"><i class="fa fa-check"></i><b>5.2.1</b> Continous variables</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html"><i class="fa fa-check"></i><b>8</b> Univariate summary Bacteremia dataset</a><ul>
-<li class="chapter" data-level="8.1" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#read-data-2"><i class="fa fa-check"></i><b>8.1</b> Read data</a></li>
-<li class="chapter" data-level="8.2" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#session-info-3"><i class="fa fa-check"></i><b>8.2</b> Session info</a></li>
+<li class="chapter" data-level="5.3" data-path="univariate-summary-crash-2-dataset.html"><a href="univariate-summary-crash-2-dataset.html#session-info"><i class="fa fa-check"></i><b>5.3</b> Session info</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html"><i class="fa fa-check"></i><b>9</b> Univariate summary nhanes dataset</a><ul>
-<li class="chapter" data-level="9.1" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#read-data-3"><i class="fa fa-check"></i><b>9.1</b> Read data</a></li>
-<li class="chapter" data-level="9.2" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#session-info-4"><i class="fa fa-check"></i><b>9.2</b> Session info</a></li>
+<li class="chapter" data-level="6" data-path="multivariate-crash2.html"><a href="multivariate-crash2.html"><i class="fa fa-check"></i><b>6</b> Multivariate Crash2</a><ul>
+<li class="chapter" data-level="6.1" data-path="multivariate-crash2.html"><a href="multivariate-crash2.html#read-data-1"><i class="fa fa-check"></i><b>6.1</b> Read data</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="multivariate-crash2.html"><a href="multivariate-crash2.html#load-the-dataset.-1"><i class="fa fa-check"></i><b>6.1.1</b> Load the dataset.</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html"><i class="fa fa-check"></i><b>7</b> Univariate summary Bacteremia dataset</a><ul>
+<li class="chapter" data-level="7.1" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#read-data-2"><i class="fa fa-check"></i><b>7.1</b> Read data</a></li>
+<li class="chapter" data-level="7.2" data-path="univariate-summary-bacteremia-dataset.html"><a href="univariate-summary-bacteremia-dataset.html#session-info-1"><i class="fa fa-check"></i><b>7.2</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html"><i class="fa fa-check"></i><b>8</b> Univariate summary nhanes dataset</a><ul>
+<li class="chapter" data-level="8.1" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#read-data-3"><i class="fa fa-check"></i><b>8.1</b> Read data</a></li>
+<li class="chapter" data-level="8.2" data-path="univariate-summary-nhanes-dataset.html"><a href="univariate-summary-nhanes-dataset.html#session-info-2"><i class="fa fa-check"></i><b>8.2</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -199,14 +200,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="sap-nhanes" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> SAP nhanes</h1>
+<h1><span class="header-section-number">Chapter 4</span> SAP nhanes</h1>
 <div id="data-set" class="section level2">
-<h2><span class="header-section-number">5.1</span> Data set</h2>
+<h2><span class="header-section-number">4.1</span> Data set</h2>
 <p>The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The survey examines a nationally representative sample of about 5,000 persons each year. <a href="https://www.cdc.gov/nchs/nhanes/about_nhanes.htm">Link to CDC NHANES website</a></p>
 <p>The NHANES study contains objectively measured physical activity data collected using hip-worn accelerometers from multiple cohorts. High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (<a href="https://andrew-leroux.github.io/rnhanesdata/articles" class="uri">https://andrew-leroux.github.io/rnhanesdata/articles</a>).</p>
 <p>Here, we look at the subset of participants between 50 and 85 years old from the 2003-2004 and 2005-2006 samples (n=2978) who wore a hip-worn accelerometer in the free living environment for up to 7 days. The response ID is seqn.</p>
 <div id="sociodemographic-variables" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Sociodemographic variables</h3>
+<h3><span class="header-section-number">4.1.1</span> Sociodemographic variables</h3>
 <ul>
 <li>age at examination [years] (i.e. when participants wore the device), age</li>
 <li>gender (male and female), gender</li>
@@ -218,7 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="health-and-behavior-variables" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> Health and behavior variables</h3>
+<h3><span class="header-section-number">4.1.2</span> Health and behavior variables</h3>
 <ul>
 <li>smoking status (current smoker, former smoker [those reporting quitting within the previous 6 months], and nonsmoker), smokecigs</li>
 <li>alcohol consumption, drinkstatus</li>
@@ -236,7 +237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="physical-activity-data" class="section level3">
-<h3><span class="header-section-number">5.1.3</span> Physical activity data</h3>
+<h3><span class="header-section-number">4.1.3</span> Physical activity data</h3>
 <ul>
 <li>total activity counts per day (TAC/d)</li>
 <li>total log activity count (TLAC)</li>
@@ -256,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="bacteremia-study.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-summary-rectal-cancer-surgery-dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="univariate-summary-crash-2-dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
