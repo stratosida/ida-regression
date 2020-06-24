@@ -1,6 +1,13 @@
-# ida-regression
+# ida-regression -- CHANGE TITLE
 
-Repository to support the IDA regression manuscript 
+<!-- badges: start -->
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Lifecycle:experimental](https://img.shields.io/badge/lifecycle-maturing-green.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+
+<!-- badges: end -->
+
+
+# Repository to support the IDA regression manuscript 
 
 ## Project Description
 
