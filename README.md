@@ -1,39 +1,95 @@
-# ida-regression -- CHANGE TITLE
+# Initial data analysis in the context of regression modeling
 
 <!-- badges: start -->
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Lifecycle:experimental](https://img.shields.io/badge/lifecycle-maturing-green.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-
 <!-- badges: end -->
+
+#### -- Project Status: Active  [Active, On-Hold, Completed]
+#### -- Project Updates: 
+
+* last updated: 2020-07-01 by Marianne Huebner. Update: Add Readme file
+* Date: 2020-06-30 by Mark Baillie. Update: Create Bookdown
+
+#### Abbreviations
+IDA - initial data analysis </br>
+SAP - statistical analysis plan
 
 
 # Repository to support the IDA regression manuscript 
+The focus of this document/website is to provide examples on conducting initial data analysis (IDA) in a reproducible manner in the context of intended regression analyses.
+
+
 
 ## Project Description
 
-Provide a brief overview of your project. At the start this can be taken from your Scope or SoW. As you go add to this as necessary, and at the end right a summary of your analysis  
+The aim is to provide sample reports for initial data analyses before executing the statistical analysis plan (SAP) for regression modeling.
 
-#### -- Project Status: [Active, On-Hold, Completed]
+Six steps of the IDA framework are
+
+1. Meta data set-up
+2. Data cleaning
+3. Data screening
+4. Initial data reporting
+5. Updating/refining the statistical analysis plan
+6. reporting of IDA findings in research papers
+
+In general, we assume that meta data exist and data cleaning has already been done. We created hypothetical statistical analyses plans for each of the data sets. 
+ 
+## Project Outcomes
+ 
+1. Sample IDA reports to illustrate steps 3 and 4 of the IDA framework
+2. Recommendations for IDA (step 3 of IDA framework) 
+2. Explanation and elaboration of potential consequences to the SAP as a result of IDA findings (step 5 of IDA framework)
+3. Recommendations for reporting of IDA for regression analyses (step 6 of IDA framework)
+4. Manuscript with scope of regression model, results and consequences of IDA 
+
+ 
 
 ## Installation instructions
 
-Anything the user needs to install to run the code. This could be a conda environemnt in Python or might be packages and their
-version in R. Include code if necessary. 
+The IDA reports are created with Rmarkdown and Bookdown. 
+
+1. Environment: Rstudio
+2. Create a project in Rstudio with subfolders "data" and "docs"
+3. Download data sets to add to you data folder.
+4. Download (which Rmd/ yml files?)
+5. Run bookdown file?????
 
 
 ## Structure  
 
-Give a brief description of the directories in your project and what files they contain. Example:
 
-* src - Any analysis scripts, might contain functions or setup scripts  
-* reports - Analysis reports. Could be RNotebook, RMarkdown, Jupyter Notebook etc.
-    * /figures - Example sub folder for reports. Any intermediate figures produced
-* data - Any data that is used in scripts, although, we are not supposed to store data on Git  
-* docs - Any documentation or set-up instructions
+* main - General files
+    * Statistical analysis plan (SAP) for three data sets  ("_bacteremia", "_crash2", "_nhanes")
+    * univariate Rmarkdown ("univar_Rmd")
+    * multivariate Rmarkdown files ("multivar_.Rmd")
+    * bookdown file ("bookdown.yml")
+    
+* data - Repository for example data sets and their data dictionaries *(add data sets to Open Science Framework?)*
+    * Bacteremia
+    * Crash2  [Data sets from Vanderbilt University](http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets) 
+    * NHANES
+    
+* docs - IDA reports
+    * html outputs of IDA
+    * references
+    
+* R - R functions for data visualization
 
 ## Authors
 
-Provide authors so other people viewing your project know who to contact
+Mark Baillie </br>
+Novartis, </br>
+Email: mark.baillie@novartis.com
 
 
-**This is only a basic template. Please add to this as you see necessary. Make it as easy as possible for a new person viewing this for the first time to understand what your anaylsis is about, how to set it up, run it and get the same results you got.**
+Georg Heinze </br>
+Medical University, Vienna, Austria</br>
+Email: georg.heinze@meduniwien.ac.at
+
+Marianne Huebner </br>
+Department of Statistics and Probability, Michigan State University, East Lansing, MI, USA</br>
+Email: huebner@msu.edu
+
+
