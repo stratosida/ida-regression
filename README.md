@@ -84,7 +84,13 @@ Huebner M, le Cessie S, Schmidt CO, Vach W . A contemporary conceptual framework
 Huebner M, Vach W, le Cessie S, Schmidt C, Lusa L. Hidden Analyses: a review of reporting practice and recommendations for more transparent reporting of initial data analyses. BMC Med Res Meth 2020; 20:61 [Link](https://bmcmedresmethodol.biomedcentral.com/track/pdf/10.1186/s12874-020-00942-y)
 
 
+## Funding
 
+None. </br>
+Contributors are from the [STRATOS Initiative](https://stratos-initiative.org).
+
+-TG2: Selection of variables and functional forms in multivariable analyses.</br>
+-[TG3](https://www.stratosida.org): Initial data analysis
 
 ## Authors
 
