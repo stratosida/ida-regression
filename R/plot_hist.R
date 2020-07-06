@@ -48,7 +48,7 @@ ida_plot_hist <- function(data, var, bin_width = 0.1) {
 
 p2 <- data %>%
   ggplot(aes(x = {{var}}, y = factor(1))) +
-  geom_jitter(alpha = 0.2, colour = "red") +
+  geom_jitter(alpha = 0.2, colour = "firebrick") +
   #  geom_boxplot() +
   #    scale_x_continuous(
   #      limits = c(breaks$min, breaks$max)
@@ -64,7 +64,7 @@ p3 <- data %>%
   geom_boxplot() +
   scale_x_continuous(
     #limits = c(breaks$min, breaks$max),
-    breaks = c(breaks$min, breaks$Q1, breaks$mean, breaks$median, breaks$Q3, breaks$max),
+    breaks = c(round(breaks$min), round(breaks$Q1), round(breaks$mean), round(breaks$median), round(breaks$Q3), round(breaks$max)),
     guide = guide_axis(n.dodge = 2)) +
   ggplot2::theme_minimal()
 
