@@ -28,4 +28,4 @@ with(support2, histboxp(x=meanbp, group=dzgroup, sd=TRUE, bins=200))
 support2 %>% glimpse()
 with(support2, histboxp(x=age, group=death   , sd=TRUE, bins=200))
 
-with(crash2, histboxp(x=age , sd=TRUE, bins=200))
+with(crash3, histboxp(x=sbp , sd=TRUE, bins=200))
