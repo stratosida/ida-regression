@@ -1,6 +1,7 @@
 
-# Multivariate Crash2
+#  Bivariate distributions
 
+Multivariate Crash2
 
 This code is a continous by example
 
@@ -26,7 +27,7 @@ crash2 <- Hmisc::upData(crash2,
 ```
 
 
-### Historgrams
+### Histograms
 
 ```{r, echo = FALSE, message = FALSE}
 crash2 %>%

@@ -1,18 +1,30 @@
 --- 
-title: "Regression without regrets: Workflow of initial data analyses"
+title: "Regression without regrets"
+subtitle: "Workflow of initial data analyses"
 author: "TODO: Compelte author list"
 date: "`r Sys.Date()`"
+knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: bailliem/ida-regression-private
 description: "The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses."
 ---
 
-# Regression without regrets: Workflow of initial data analyses
+
+# Regression without regrets: Workflow of initial data analyses {-}
+
+# Overiew
+
+```{r include = FALSE}
+#source("common.R")
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(tidyverse)
+```
+
 
 The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses.
 

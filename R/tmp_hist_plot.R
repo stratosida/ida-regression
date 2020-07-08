@@ -1,4 +1,5 @@
 ida_plot_all <- function(data, var, n.dodge = 1) {
+  
   ## summary statistics
   nmiss <- data %>% filter(is.na(.data[[var]])) %>% tally()
   bign <- data %>% filter(!is.na(.data[[var]])) %>% tally()
@@ -6,7 +7,7 @@ ida_plot_all <- function(data, var, n.dodge = 1) {
   # for calculating five number summary
   x <- as.numeric(data[[var]])
   
-  
+  # title for plot
   title <-
     paste0("Univariate summary of ", label(data[[var]]), " [", units(data[[var]]), "]")
   
@@ -25,7 +26,7 @@ ida_plot_all <- function(data, var, n.dodge = 1) {
   
   
   p2 <-
-    crash2 %>%
+    data %>%
     filter(!is.na(.data[[var]])) %>%
     ggplot2::ggplot(aes(as.numeric(.data[[var]]))) +
     geom_histogram(
@@ -51,7 +52,7 @@ ida_plot_all <- function(data, var, n.dodge = 1) {
   
 
   p1 <-
-    crash2 %>%
+    data %>%
     filter(!is.na(.data[[var]])) %>%
     ggplot(aes(x = as.numeric(.data[[var]]), y = 0)) +
     geom_jitter(
@@ -75,7 +76,7 @@ ida_plot_all <- function(data, var, n.dodge = 1) {
 
 
   p3 <-
-    crash2 %>%
+    data %>%
     filter(!is.na(.data[[var]])) %>%
     ggplot(aes(x = as.numeric(.data[[var]]), y = 0)) +
     geom_boxplot(outlier.shape = NA, width = 0.1) +
@@ -99,23 +100,6 @@ ida_plot_all <- function(data, var, n.dodge = 1) {
     patchwork::plot_annotation(title = title,
                                caption = caption)
   
-  gg
+  return(gg)
   
 }
-
-ida_plot_all(crash2, "age")
-ida_plot_all(crash2, "rr")
-
-
-
-
-
-# test_fun <- function(data, var){
-#   nmiss <- data %>% filter(is.na(.data[[var]])) %>% tally()
-#   n <- data %>% filter(!is.na(.data[[var]])) %>% tally()
-#   paste0(nmiss, " ", n, " " , label(crash2[[var]]), " [", units(crash2[[var]]), "]")
-# }
-#
-# test_fun(crash2, "age")
-#
-#      

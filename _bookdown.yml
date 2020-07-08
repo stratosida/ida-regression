@@ -1,21 +1,18 @@
-book_filename: "IDA working draft title"
+book_filename: "IDA working draft"
 repo: https://github.com/bailliem/ida-bookdown
 language:
   ui:
     chapter_name: "Chapter "
 delete_merged_file: true
+new_session: true
 output_dir: "docs"
 rmd_files: [
   "index.Rmd",
   "IDA_framework.Rmd",
   "scope.Rmd",
   "data_screen.Rmd",
+  "Intro_crash2.Rmd",
   "SAP_crash2.Rmd",
   "Univar_crash2.Rmd",
   "Multivar_crash2.Rmd",
-  "SAP_bacteremia.Rmd",
-  "SAP_nhanes.Rmd",
-  "Univar_bacteremia.Rmd",
-  "Univar_nhanes.Rmd",
-  "09-references.Rmd"
 ]

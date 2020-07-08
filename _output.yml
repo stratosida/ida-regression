@@ -4,8 +4,9 @@ bookdown::gitbook:
     sharing:
       github: yes
       facebook: false
+      twitter: true
     toc:
-      collapse: subsection
+      collapse: section
       before: |
         <li><a href="./">IDA report - working title</a></li>
       after: |
@@ -16,6 +17,7 @@ bookdown::gitbook:
     history:
       link: https://github.com/bailliem/ida-regression-private/commits/master/%s
       text: "Chapter edit history"
+    download: ["rmd", "epub"]
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

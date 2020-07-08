@@ -1,4 +1,6 @@
-# Univariate summary CRASH-2 dataset 
+# Univariate distributions
+
+Univariate summary CRASH-2 dataset 
 
 ```{r,message = FALSE, warning = FALSE }
 library(here)
@@ -7,7 +9,6 @@ library(janitor)
 library(summarytools)
 library(Hmisc)
 source(here("R", "tmp_hist_plot.R"))
-
 ```
 
 ## Read data
