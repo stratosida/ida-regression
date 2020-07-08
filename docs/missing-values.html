@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Data screening and possible actions | Regression without regrets</title>
+  <title>4.3 Missing values | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta property="og:title" content="4.3 Missing values | Regression without regrets" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bailliem/ida-regression-private" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta name="twitter:title" content="4.3 Missing values | Regression without regrets" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="scope-of-the-regression-analyses-for-the-examples.html"/>
-<link rel="next" href="univariate-distributions.html"/>
+<link rel="prev" href="bivariate-distributions.html"/>
+<link rel="next" href="crash-2-overview.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -206,17 +206,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-screening-and-possible-actions" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Data screening and possible actions</h1>
-<p><strong>TODO: Check for copy and paste errors in table.</strong></p>
+<div id="missing-values" class="section level2">
+<h2><span class="header-section-number">4.3</span> Missing values</h2>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>What to look at</th>
+<th>Possible actions: Interpretation</th>
+<th>Possible actions: SAP</th>
+<th>Possible actions: Presentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Per variable</td>
+<td>Number and proportion</td>
+<td>Wide CI for coefficients</td>
+<td>Remove variable if many missing values</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Pattern</td>
+<td>Variables missing independently or together</td>
+<td></td>
+<td>Omit variables together</td>
+<td>Changes model</td>
+</tr>
+<tr class="odd">
+<td>Pattern</td>
+<td>Variables missing dependent on levels of other variables</td>
+<td>Systematic missingness? Model still based on representative?</td>
+<td>IPW needed?</td>
+<td>Weighted analysis</td>
+</tr>
+<tr class="even">
+<td>Complete cases</td>
+<td>Number and proportion</td>
+<td>Few cases left for main CCO analysis</td>
+<td>Multiple imputation (or other way of dealing with missing values)?</td>
+<td>Result from MI analysis? Or applicability restricted to a subpopulation?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>References</strong></p>
+<p>Huebner M, le Cessie S, Schmidt CO, Vach W . A contemporary conceptual framework for initial data analysis. Observational Studies 2018; 4: 171-192. Link</p>
+<p>Harrell</p>
+<p>[…]</p>
+
 </div>
+<!-- </div> -->
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="scope-of-the-regression-analyses-for-the-examples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bivariate-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="crash-2-overview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

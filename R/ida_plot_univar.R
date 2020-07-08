@@ -1,19 +1,43 @@
-ida_plot_all <- function(data, var, n.dodge = 1) {
+#' Function to generate a combined plot summary of univariate distributions
+#' including 
+#'  * jittered strip plot to show observed values
+#'  * spike histogram with reference lines on 5 -number summary
+#'  * boxplot 
+#'  
+#'
+#' @param data input dataset
+#' @param var variable to summarise
+#' @param n_dodge if the 5 number summary clashes, split over n lines.
+#'               Default is display over 1 line
+#' @param bin_width Width of the histogram bin
+#'
+#' @return gg ggplot object
+#' @export
+#'
+#' @examples
+ida_plot_univar <- function(data, var, n_dodge = 1, bin_width = 1) {
   
-  ## summary statistics
-  nmiss <- data %>% filter(is.na(.data[[var]])) %>% tally()
-  bign <- data %>% filter(!is.na(.data[[var]])) %>% tally()
+  ## number of missing observations
+  nmiss <-
+    data %>% dplyr::filter(is.na(.data[[var]])) %>% dplyr::tally()
   
-  # for calculating five number summary
+  ## number of non missing observations
+  bign <-
+    data %>% dplyr::filter(!is.na(.data[[var]])) %>% dplyr::tally()
+  
+  # vector of variable for calculating five number summary
   x <- as.numeric(data[[var]])
   
   # title for plot
   title <-
     paste0("Univariate summary of ", label(data[[var]]), " [", units(data[[var]]), "]")
   
+  # labels for histogram
   y_axis <- "Number of subjects"
-  x_axis <- paste0(label(data[[var]]), " [", units(data[[var]]), "]")
+  x_axis <-
+    paste0(label(data[[var]]), " [", units(data[[var]]), "]")
   
+  # caption to summarise missing data
   caption <-
     paste0(
       "All observed values, the distribution and the, min, max and interquartile range are reported\n",
@@ -24,33 +48,7 @@ ida_plot_all <- function(data, var, n.dodge = 1) {
       " subjects with missing values are not presented."
     )
   
-  
-  p2 <-
-    data %>%
-    filter(!is.na(.data[[var]])) %>%
-    ggplot2::ggplot(aes(as.numeric(.data[[var]]))) +
-    geom_histogram(
-      binwidth = 1,
-      center = 0,
-      alpha = 0.6,
-      fill = "firebrick2"
-    ) +
-    geom_rug() +
-   scale_x_continuous(limit = c(min(x), max(x)),
-                       breaks = round(fivenum(x), 1),
-                      guide = guide_axis(n.dodge = n.dodge)) +
-    ylab(y_axis) +
-    ggplot2::theme_minimal() +
-    theme(
-      #axis.title.y = element_text(angle = 0),
-      #    panel.grid.major.y = element_blank(),
-      panel.grid.major.x = element_line(colour = "grey", size = 0.5),
-      panel.grid.minor = element_blank(),
-      axis.title.x = element_blank()
-      #    axis.text.x = element_blank()
-    )
-  
-
+  ## strip plot
   p1 <-
     data %>%
     filter(!is.na(.data[[var]])) %>%
@@ -73,8 +71,32 @@ ida_plot_all <- function(data, var, n.dodge = 1) {
       axis.text = element_blank()
     )
   
-
-
+  ## plot histogram
+  p2 <-
+    data %>%
+    filter(!is.na(.data[[var]])) %>%
+    ggplot2::ggplot(aes(as.numeric(.data[[var]]))) +
+    geom_histogram(
+      binwidth = bin_width,
+      center = 0,
+      alpha = 0.6,
+      fill = "firebrick2"
+    ) +
+    geom_rug() +
+    scale_x_continuous(
+      limit = c(min(x), max(x)),
+      breaks = round(fivenum(x), 1),
+      guide = guide_axis(n.dodge = n_dodge)
+    ) +
+    ylab(y_axis) +
+    ggplot2::theme_minimal() +
+    theme(
+      panel.grid.major.x = element_line(colour = "grey", size = 0.5),
+      panel.grid.minor = element_blank(),
+      axis.title.x = element_blank()
+    )
+  
+  ## boxplot
   p3 <-
     data %>%
     filter(!is.na(.data[[var]])) %>%
@@ -90,11 +112,14 @@ ida_plot_all <- function(data, var, n.dodge = 1) {
       axis.title.y = element_blank(),
       axis.text = element_blank()
     )
-      
+  
+  # layout for combined plot
+  # histogram has more area
   layout <- c(patchwork::area(1, 1, 1, 6),
               patchwork::area(2, 1, 5, 6),
               patchwork::area(6, 1, 6, 6))
   
+  ## combine plots
   gg <- p1 / p2 / p3 +
     patchwork::plot_layout(design = layout) +
     patchwork::plot_annotation(title = title,

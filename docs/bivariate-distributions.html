@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Data screening and possible actions | Regression without regrets</title>
+  <title>4.2 Bivariate distributions | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta property="og:title" content="4.2 Bivariate distributions | Regression without regrets" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bailliem/ida-regression-private" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta name="twitter:title" content="4.2 Bivariate distributions | Regression without regrets" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="scope-of-the-regression-analyses-for-the-examples.html"/>
-<link rel="next" href="univariate-distributions.html"/>
+<link rel="prev" href="univariate-distributions.html"/>
+<link rel="next" href="missing-values.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -206,17 +206,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-screening-and-possible-actions" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Data screening and possible actions</h1>
-<p><strong>TODO: Check for copy and paste errors in table.</strong></p>
+<div id="bivariate-distributions" class="section level2">
+<h2><span class="header-section-number">4.2</span> Bivariate distributions</h2>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>What to look at</th>
+<th>Possible actions: Interpretation</th>
+<th>Possible actions: SAP</th>
+<th>Possible actions: Presentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Continuous by continuous</td>
+<td>Outliers (from the cloud)</td>
+<td>Disproportional impact on results</td>
+<td>Winsorize or transform</td>
+<td>Model involves winsorization</td>
+</tr>
+<tr class="even">
+<td>Continuous by continuous</td>
+<td>Correlations</td>
+<td>Wide CI for coefficients</td>
+<td>Winsorize or transform</td>
+<td>Model involves winsorization</td>
+</tr>
+<tr class="odd">
+<td>Continuous by categorical</td>
+<td>Outliers (only visible in bivariate plot)</td>
+<td>Wide CI for coefficients</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Categorical by categorical</td>
+<td>Frequent/rare combinations</td>
+<td>Comparison to default reference irrelevant</td>
+<td>Change reference category</td>
+<td>Contrasts compare to (new) reference category</td>
+</tr>
+<tr class="odd">
+<td>Categorical by categorical</td>
+<td>Frequent/rare combinations</td>
+<td>interactions relevant?</td>
+<td>Remove interaction from model</td>
+<td>Fewer interactions to present</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="scope-of-the-regression-analyses-for-the-examples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="univariate-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="missing-values.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

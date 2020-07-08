@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Data screening and possible actions | Regression without regrets</title>
+  <title>5.2 Crash2 dataset contents | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta property="og:title" content="5.2 Crash2 dataset contents | Regression without regrets" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bailliem/ida-regression-private" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta name="twitter:title" content="5.2 Crash2 dataset contents | Regression without regrets" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="scope-of-the-regression-analyses-for-the-examples.html"/>
-<link rel="next" href="univariate-distributions.html"/>
+<link rel="prev" href="introduction-to-crash-2.html"/>
+<link rel="next" href="statistical-analysis-plan.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -206,17 +206,145 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-screening-and-possible-actions" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Data screening and possible actions</h1>
-<p><strong>TODO: Check for copy and paste errors in table.</strong></p>
+<div id="crash2-dataset-contents" class="section level2">
+<h2><span class="header-section-number">5.2</span> Crash2 dataset contents</h2>
+<hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
+ <hr>
+ <style>
+ .hmisctable553354 {
+ border: 1px solid gray;
+ border-collapse: collapse;
+ font-size: 100%;
+ }
+ .hmisctable553354 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable553354 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable553354" border="1">
+ <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
+ <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
+ <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
+ <tr><td>trandomised</td><td>Date of Randomization</td><td></td><td></td><td>Date</td><td>double</td><td>    0</td></tr>
+ <tr><td>outcomeid</td><td>Unique Number From Outcome Database</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>sex</td><td></td><td></td><td><a href="#levels.sex">  2</a></td><td></td><td>integer</td><td>    1</td></tr>
+ <tr><td>age</td><td></td><td></td><td></td><td></td><td>integer</td><td>    4</td></tr>
+ <tr><td>injurytime</td><td>Hours Since Injury</td><td></td><td></td><td>numeric</td><td>double</td><td>   11</td></tr>
+ <tr><td>injurytype</td><td></td><td></td><td><a href="#levels.injurytype">  3</a></td><td></td><td>integer</td><td>    0</td></tr>
+ <tr><td>sbp</td><td>Systolic Blood Pressure</td><td>mmHg</td><td></td><td>integer</td><td>integer</td><td>  320</td></tr>
+ <tr><td>rr</td><td>Respiratory Rate</td><td>/min</td><td></td><td>integer</td><td>integer</td><td>  191</td></tr>
+ <tr><td>cc</td><td>Central Capillary Refille Time</td><td>s</td><td></td><td>integer</td><td>integer</td><td>  611</td></tr>
+ <tr><td>hr</td><td>Heart Rate</td><td>/min</td><td></td><td>integer</td><td>integer</td><td>  137</td></tr>
+ <tr><td>gcseye</td><td>Glasgow Coma Score Eye Opening</td><td></td><td></td><td>integer</td><td>integer</td><td>  732</td></tr>
+ <tr><td>gcsmotor</td><td>Glasgow Coma Score Motor Response</td><td></td><td></td><td>integer</td><td>integer</td><td>  732</td></tr>
+ <tr><td>gcsverbal</td><td>Glasgow Coma Score Verbal Response</td><td></td><td></td><td>integer</td><td>integer</td><td>  735</td></tr>
+ <tr><td>gcs</td><td>Glasgow Coma Score Total</td><td></td><td></td><td>integer</td><td>integer</td><td>   23</td></tr>
+ <tr><td>ddeath</td><td>Date of Death</td><td></td><td></td><td>Date</td><td>double</td><td>17121</td></tr>
+ <tr><td>cause</td><td>Main Cause of Death</td><td></td><td><a href="#levels.cause">  7</a></td><td></td><td>integer</td><td>17118</td></tr>
+ <tr><td>scauseother</td><td>Description of Other Cause of Death</td><td></td><td><a href="#levels.scauseother">227</a></td><td></td><td>integer</td><td>    0</td></tr>
+ <tr><td>status</td><td>Status of Patient at Outcome if Alive</td><td></td><td><a href="#levels.status">  3</a></td><td></td><td>integer</td><td> 3169</td></tr>
+ <tr><td>ddischarge</td><td>Date of discharge, transfer to other hospital or day 28 from randomization</td><td></td><td></td><td>Date</td><td>double</td><td> 3185</td></tr>
+ <tr><td>condition</td><td>Condition of Patient at Outcome if Alive</td><td></td><td><a href="#levels.condition">  5</a></td><td></td><td>integer</td><td> 3251</td></tr>
+ <tr><td>ndaysicu</td><td>Number of Days Spent in ICU</td><td></td><td></td><td>numeric</td><td>double</td><td>  182</td></tr>
+ <tr><td>bheadinj</td><td>Significant Head Injury</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bneuro</td><td>Neurosurgery Done</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bchest</td><td>Chest Surgery Done</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>babdomen</td><td>Abdominal Surgery Done</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bpelvis</td><td>Pelvis Surgery Done</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bpe</td><td>Pulmonary Embolism</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bdvt</td><td>Deep Vein Thrombosis</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bstroke</td><td>Stroke</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bbleed</td><td>Surgery for Bleeding</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bmi</td><td>Myocardial Infarction</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bgi</td><td>Gastrointestinal Bleeding</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bloading</td><td>Complete Loading Dose of Trial Drug Given</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>bmaint</td><td>Complete Maintenance Dose of Trial Drug Given</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>btransf</td><td>Blood Products Transfusion</td><td></td><td></td><td>integer</td><td>integer</td><td>   80</td></tr>
+ <tr><td>ncell</td><td>Number of Units of Red Call Products Transfused</td><td></td><td></td><td>numeric</td><td>double</td><td> 9963</td></tr>
+ <tr><td>nplasma</td><td>Number of Units of Fresh Frozen Plasma Transfused</td><td></td><td></td><td>integer</td><td>integer</td><td> 9964</td></tr>
+ <tr><td>nplatelets</td><td>Number of Units of Platelets Transfused</td><td></td><td></td><td>integer</td><td>integer</td><td> 9964</td></tr>
+ <tr><td>ncryo</td><td>Number of Units of Cryoprecipitate Transfused</td><td></td><td></td><td>integer</td><td>integer</td><td> 9964</td></tr>
+ <tr><td>bvii</td><td>Recombinant Factor VIIa Given</td><td></td><td></td><td>integer</td><td>integer</td><td>  374</td></tr>
+ <tr><td>boxid</td><td>Treatment Box Number</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
+ <tr><td>packnum</td><td>Treatment Pack Number</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
+ </table>
+
+ <hr>
+ <style>
+ .hmisctable847278 {
+ border: 1px solid gray;
+ border-collapse: collapse;
+ font-size: 100%;
+ }
+ .hmisctable847278 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable847278 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable847278" border="1">
+ <tr><th>Variable</th><th>Levels</th></tr>
+ <tr><td><a name="levels.source">source</a></td><td>telephone</td></tr>
+ <tr><td></td><td>telephone entered manually</td></tr>
+ <tr><td></td><td>electronic CRF by email</td></tr>
+ <tr><td></td><td>paper CRF enteredd in electronic CRF</td></tr>
+ <tr><td></td><td>electronic CRF</td></tr>
+ <tr><td><a name="levels.status">sex</a></td><td>male</td></tr>
+ <tr><td></td><td>female</td></tr>
+ <tr><td><a name="levels.source">injurytype</a></td><td>blunt</td></tr>
+ <tr><td></td><td>penetrating</td></tr>
+ <tr><td></td><td>blunt and penetrating</td></tr>
+ <tr><td><a name="levels.cause">cause</a></td><td>bleeding</td></tr>
+ <tr><td></td><td>head injury</td></tr>
+ <tr><td></td><td>myocardial infarction</td></tr>
+ <tr><td></td><td>stroke</td></tr>
+ <tr><td></td><td>pulmonary embolism</td></tr>
+ <tr><td></td><td>multi organ failure</td></tr>
+ <tr><td></td><td>other</td></tr>
+ <tr><td><a name="levels.cause">scauseother</a></td><td></td></tr>
+ <tr><td></td><td>Acute Hypoxia</td></tr>
+ <tr><td></td><td>ACUTE LUNG INJURY</td></tr>
+ <tr><td></td><td>Acute Pulmonary Oedema</td></tr>
+ <tr><td></td><td>Acute Renal Failure</td></tr>
+ <tr><td></td><td>ACUTE RESPIRATORY DISTRESS SYNDROME (ARDS)</td></tr>
+ <tr><td></td><td>acute respiratory failure</td></tr>
+ <tr><td></td><td>acute respiratory failure+sepsis</td></tr>
+ <tr><td></td><td>air amboli (embolism)</td></tr>
+ <tr><td></td><td>Air embolism caused by penetrating lung trauma</td></tr>
+ <tr><td></td><td>...</td></tr>
+ <tr><td><a name="levels.source">status</a></td><td>discharged</td></tr>
+ <tr><td></td><td>still in hospital</td></tr>
+ <tr><td></td><td>transferred to other hospital</td></tr>
+ <tr><td><a name="levels.cause">condition</a></td><td>no symptoms</td></tr>
+ <tr><td></td><td>minor symptoms</td></tr>
+ <tr><td></td><td>some restriction in lifestyle but independent</td></tr>
+ <tr><td></td><td>dependent, but not requiring constant attention</td></tr>
+ <tr><td></td><td>fully dependent, requiring attention day and night</td></tr>
+ </table>
+
+ <hr>
+
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="scope-of-the-regression-analyses-for-the-examples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-crash-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistical-analysis-plan.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,18 +375,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bailliem/ida-regression-private/edit/master/data_screen.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/Intro_crash2.Rmd",
 "text": "Edit this chapter"
 },
 "history": {
-"link": "https://github.com/bailliem/ida-regression-private/commits/master/data_screen.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/Intro_crash2.Rmd",
 "text": "Chapter edit history"
 },
 "view": {
 "link": null,
 "text": null
 },
-"download": ["https://github.com/bailliem/ida-regression-private/raw/master/data_screen.Rmd", "IDA working draft.epub"],
+"download": ["https://github.com/bailliem/ida-regression-private/raw/master/Intro_crash2.Rmd", "IDA working draft.epub"],
 "toc": {
 "collapse": "section"
 }

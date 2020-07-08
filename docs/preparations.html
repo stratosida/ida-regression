@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Data screening and possible actions | Regression without regrets</title>
+  <title>6.4 Preparations | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta property="og:title" content="6.4 Preparations | Regression without regrets" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bailliem/ida-regression-private" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta name="twitter:title" content="6.4 Preparations | Regression without regrets" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="scope-of-the-regression-analyses-for-the-examples.html"/>
-<link rel="next" href="univariate-distributions.html"/>
+<link rel="prev" href="remarks.html"/>
+<link rel="next" href="sources.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -206,17 +206,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-screening-and-possible-actions" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Data screening and possible actions</h1>
-<p><strong>TODO: Check for copy and paste errors in table.</strong></p>
+<div id="preparations" class="section level2">
+<h2><span class="header-section-number">6.4</span> Preparations</h2>
+<p>The outcome variable, early death (i.e., death within 28 days from injury) must be computed from the time span between date of death and date of randomisation using the following logic:</p>
+<ul>
+<li>transform ddeath and trandomisation into an interpretable date format and then compute the difference</li>
+<li>interpret NAs as ‘not died within study period, at least not within 28 days’</li>
+<li>if patients died after 28 days, treat as alive</li>
+</ul>
+<p>This can be dervived using the following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">load</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;crash2.rda&quot;</span>))</a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3">crash2<span class="op">$</span>time2death &lt;-</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="st">  </span><span class="kw">as.numeric</span>(<span class="kw">as.Date</span>(crash2<span class="op">$</span>ddeath) <span class="op">-</span><span class="st"> </span><span class="kw">as.Date</span>(crash2<span class="op">$</span>trandomised))</a>
+<a class="sourceLine" id="cb2-5" title="5"></a>
+<a class="sourceLine" id="cb2-6" title="6">crash2<span class="op">$</span>earlydeath[<span class="op">!</span><span class="kw">is.na</span>(crash2<span class="op">$</span>time2death)] &lt;-</a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="st">  </span>(crash2<span class="op">$</span>time2death[<span class="op">!</span><span class="kw">is.na</span>(crash2<span class="op">$</span>time2death)] <span class="op">&lt;=</span><span class="st"> </span><span class="dv">28</span>) <span class="op">+</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb2-8" title="8"></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co"># +0 to transform it from TRUE/FALSE to 1/0</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co"># NA in time2death means alive at day 28</span></a>
+<a class="sourceLine" id="cb2-11" title="11">crash2<span class="op">$</span>earlydeath[<span class="kw">is.na</span>(crash2<span class="op">$</span>time2death)] &lt;-<span class="st"> </span><span class="dv">0</span>    </a>
+<a class="sourceLine" id="cb2-12" title="12"></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="kw">table</span>(crash2<span class="op">$</span>earlydeath)</a></code></pre></div>
+<pre><code>## 
+##     0     1 
+## 17131  3076</code></pre>
+<p>The number of deaths computed in the data set coincides with the number reported in <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="scope-of-the-regression-analyses-for-the-examples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="remarks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,18 +270,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bailliem/ida-regression-private/edit/master/data_screen.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/SAP_crash2.Rmd",
 "text": "Edit this chapter"
 },
 "history": {
-"link": "https://github.com/bailliem/ida-regression-private/commits/master/data_screen.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/SAP_crash2.Rmd",
 "text": "Chapter edit history"
 },
 "view": {
 "link": null,
 "text": null
 },
-"download": ["https://github.com/bailliem/ida-regression-private/raw/master/data_screen.Rmd", "IDA working draft.epub"],
+"download": ["https://github.com/bailliem/ida-regression-private/raw/master/SAP_crash2.Rmd", "IDA working draft.epub"],
 "toc": {
 "collapse": "section"
 }

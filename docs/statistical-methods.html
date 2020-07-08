@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Data screening and possible actions | Regression without regrets</title>
+  <title>6.2 Statistical methods | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta property="og:title" content="6.2 Statistical methods | Regression without regrets" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bailliem/ida-regression-private" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta name="twitter:title" content="6.2 Statistical methods | Regression without regrets" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="scope-of-the-regression-analyses-for-the-examples.html"/>
-<link rel="next" href="univariate-distributions.html"/>
+<link rel="prev" href="outcome.html"/>
+<link rel="next" href="remarks.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -206,17 +206,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-screening-and-possible-actions" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Data screening and possible actions</h1>
-<p><strong>TODO: Check for copy and paste errors in table.</strong></p>
+<div id="statistical-methods" class="section level2">
+<h2><span class="header-section-number">6.2</span> Statistical methods</h2>
+<p>Logistic regression will be used to model early death by the following independent variables deemed important to predict early death:</p>
+<ul>
+<li>Age (<code>age</code>, years)</li>
+<li>Sex (<code>sex</code>, male or female)</li>
+<li>Systolic blood pressure (<code>sbp</code>, mmHg)</li>
+<li>Heart rate (<code>hr</code>, 1/min)</li>
+<li>Respiratory rate (<code>rr</code>, 1/min)</li>
+<li>Glasgow coma score (<code>gcs</code>, points)</li>
+<li>Central capillary refill time (<code>cc</code>, seconds)</li>
+<li>Time since injury (<code>injurytime</code>, hours)</li>
+<li>Type of injury (<code>injurytype</code>, ‘blunt’, ‘penetrating’ or ‘blunt and penetrating’)</li>
+</ul>
+<p>Restricted cubic splines with 3 degrees of freedom with knots set to default values will be used for continuous variables. As the final prediction model should be parsimonious enough to simplify its application, a backward elimination algorithm with a significance level set at <span class="math inline">\(\alpha=0.05\)</span> will be applied to remove statistically insignificant effects. Finally, nonlinear representation of each continuous variable will be tested against linear representation at <span class="math inline">\(\alpha=0.05\)</span>. In case of lacking added value of a nonlinear effect, the model will be refitted with a linear effect for that variable.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="scope-of-the-regression-analyses-for-the-examples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="outcome.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="remarks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,18 +259,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bailliem/ida-regression-private/edit/master/data_screen.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/SAP_crash2.Rmd",
 "text": "Edit this chapter"
 },
 "history": {
-"link": "https://github.com/bailliem/ida-regression-private/commits/master/data_screen.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/SAP_crash2.Rmd",
 "text": "Chapter edit history"
 },
 "view": {
 "link": null,
 "text": null
 },
-"download": ["https://github.com/bailliem/ida-regression-private/raw/master/data_screen.Rmd", "IDA working draft.epub"],
+"download": ["https://github.com/bailliem/ida-regression-private/raw/master/SAP_crash2.Rmd", "IDA working draft.epub"],
 "toc": {
 "collapse": "section"
 }

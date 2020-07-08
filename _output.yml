@@ -1,5 +1,6 @@
 bookdown::gitbook:
-  css: style.css
+  css: css/style.css
+  split_by: section
   config:
     sharing:
       github: yes

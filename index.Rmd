@@ -23,6 +23,7 @@ description: "The focus of this document/website is to provide guidance on condu
 #source("common.R")
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 library(tidyverse)
+source(here("R", "ida_plot_univar.R"))
 ```
 
 

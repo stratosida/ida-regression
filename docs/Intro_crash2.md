@@ -18,23 +18,23 @@ The data set includes 20,207 patients and 44 variables.
 <!--html_preserve--><hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable818856 {
+ .hmisctable553354 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable818856 td {
+ .hmisctable553354 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable818856 th {
+ .hmisctable553354 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable818856" border="1">
+ <table class="hmisctable553354" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
@@ -84,23 +84,23 @@ The data set includes 20,207 patients and 44 variables.
 
  <hr>
  <style>
- .hmisctable106007 {
+ .hmisctable847278 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable106007 td {
+ .hmisctable847278 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable106007 th {
+ .hmisctable847278 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable106007" border="1">
+ <table class="hmisctable847278" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.source">source</a></td><td>telephone</td></tr>
  <tr><td></td><td>telephone entered manually</td></tr>

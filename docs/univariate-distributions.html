@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Data screening and possible actions | Regression without regrets</title>
+  <title>4.1 Univariate distributions | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta property="og:title" content="4.1 Univariate distributions | Regression without regrets" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bailliem/ida-regression-private" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Data screening and possible actions | Regression without regrets" />
+  <meta name="twitter:title" content="4.1 Univariate distributions | Regression without regrets" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="scope-of-the-regression-analyses-for-the-examples.html"/>
-<link rel="next" href="univariate-distributions.html"/>
+<link rel="prev" href="data-screening-and-possible-actions.html"/>
+<link rel="next" href="bivariate-distributions.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -206,17 +206,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-screening-and-possible-actions" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Data screening and possible actions</h1>
-<p><strong>TODO: Check for copy and paste errors in table.</strong></p>
+<div id="univariate-distributions" class="section level2">
+<h2><span class="header-section-number">4.1</span> Univariate distributions</h2>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>What to look at</th>
+<th>Possible actions: Interpretation</th>
+<th>Possible actions: SAP</th>
+<th>Possible actions: Presentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Continuous variables</td>
+<td>General skewness</td>
+<td>Help in interpreting results</td>
+<td>Update SAP</td>
+<td>Update intended presentation of results</td>
+</tr>
+<tr class="even">
+<td>Continuous variables</td>
+<td>General skewness</td>
+<td>Wide CI for coefficients</td>
+<td>Use variable as log-transformed</td>
+<td>Update intended presentation of results</td>
+</tr>
+<tr class="odd">
+<td>Continuous variables</td>
+<td>Outliers</td>
+<td>Disproportional impact on results</td>
+<td>Winsorize or transform</td>
+<td>Model involves winsorization</td>
+</tr>
+<tr class="even">
+<td>Continuous variables</td>
+<td>Spike at 0</td>
+<td>Narrow CI at 0</td>
+<td>Use appropriate representation of variable in model</td>
+<td>Use 2 (or more) coefficents to distinguish 0 from non-0 continuous part</td>
+</tr>
+<tr class="odd">
+<td>Categorical variables</td>
+<td>Frequencies</td>
+<td>Comparisons to default reference probably irrelevant</td>
+<td>Change reference category</td>
+<td>Contrasts compare to (new) reference category</td>
+</tr>
+<tr class="even">
+<td>Categorical variables</td>
+<td>Rare categories</td>
+<td>Wide CI for coefficients</td>
+<td>Collapse/exclude</td>
+<td>Fewer categories to present</td>
+</tr>
+<tr class="odd">
+<td>Categorical variables</td>
+<td>One very frequent category</td>
+<td>Comparisons irrelevant?</td>
+<td>Exclude variable</td>
+<td>Variable omitted</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="scope-of-the-regression-analyses-for-the-examples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-screening-and-possible-actions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bivariate-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
