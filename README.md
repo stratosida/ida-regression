@@ -1,11 +1,13 @@
 # Initial data analysis in the context of regression modeling
 
 <!-- badges: start -->
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Lifecycle:experimental](https://img.shields.io/badge/lifecycle-maturing-green.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+<a alt = "Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public." href="http://www.repostatus.org/#wip"><img src="http://www.repostatus.org/badges/latest/wip.svg" height = 20 /></a>
 <!-- badges: end -->
 
-#### -- Project Status: Active  [Active, On-Hold, Completed]
+This bookdown book is a *work in progress*. We'll update this `README` and the repo status when ready! 
+
 #### -- Project Updates: 
 
 * last updated: 2020-07-01 by Marianne Huebner. Update: Add Readme file
@@ -18,7 +20,6 @@ SAP - statistical analysis plan
 
 # Repository to support the IDA regression manuscript 
 The focus of this document/website is to provide examples on conducting initial data analysis (IDA) in a reproducible manner in the context of intended regression analyses.
-
 
 
 ## Project Description
@@ -45,16 +46,38 @@ In general, we assume that meta data exist and data cleaning has already been do
 4. Manuscript with scope of regression model, results and consequences of IDA 
 
  
-
 ## Installation instructions
 
-The IDA reports are created with Rmarkdown and Bookdown. 
+The IDA reports are created with R, Rstudio and Bookdown. 
 
 1. Environment: Rstudio
 2. Create a project in Rstudio with subfolders "data" and "docs"
 3. Download data sets to add to you data folder.
 4. Download (which Rmd/ yml files?)
 5. Run bookdown file?????
+
+Here are the requirements to preview the site locally 
+
+1. Get a local copy of the website source.
+   
+1. Start R in your new directory. 
+   
+1. Install the required packages. This can be achieved through the use pak or similar to install the needed packages (only the ones that you don't already have) using the [pak package](https://pak.r-lib.org/index.html).
+
+```r
+pkg_list <- c("bookdown", "devtools", "glue", "gridExtra",  "htmltools",
+              "httr", "knitr", "RColorBrewer", "rebird", "rmarkdown",
+              "tidyverse", "usethis", "rstudio/gt")
+
+# install.packages("pak")
+pak::pkg_install(pkg_list)
+```
+
+1. You should now be able to render the site in all the usual ways for bookdown, such as `bookdown::render_book()` or *Addins > Preview Book*.
+
+<!--TODO: Change pkg_list to not be static>
+
+Note: the package list above is currently static, so consider that it may not be up to date.
 
 
 ## Structure  
