@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 SAP nhanes | Regression without regrets: Workflow of initial data analyses</title>
+  <title>Chapter 3 Scope of the regression analyses for the examples | Regression without regrets: Workflow of initial data analyses</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 SAP nhanes | Regression without regrets: Workflow of initial data analyses" />
+  <meta property="og:title" content="Chapter 3 Scope of the regression analyses for the examples | Regression without regrets: Workflow of initial data analyses" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 SAP nhanes | Regression without regrets: Workflow of initial data analyses" />
+  <meta name="twitter:title" content="Chapter 3 Scope of the regression analyses for the examples | Regression without regrets: Workflow of initial data analyses" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bacteremia-study.html"/>
-<link rel="next" href="univariate-summary-bacteremia-dataset.html"/>
+<link rel="prev" href="ida-framework.html"/>
+<link rel="next" href="data-screening-and-possible-actions.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -213,65 +213,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sap-nhanes" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> SAP nhanes</h1>
-<div id="data-set" class="section level2">
-<h2><span class="header-section-number">9.1</span> Data set</h2>
-<p>The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The survey examines a nationally representative sample of about 5,000 persons each year. <a href="https://www.cdc.gov/nchs/nhanes/about_nhanes.htm">Link to CDC NHANES website</a></p>
-<p>The NHANES study contains objectively measured physical activity data collected using hip-worn accelerometers from multiple cohorts. High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (<a href="https://andrew-leroux.github.io/rnhanesdata/articles" class="uri">https://andrew-leroux.github.io/rnhanesdata/articles</a>).</p>
-<p>Here, we look at the subset of participants between 50 and 85 years old from the 2003-2004 and 2005-2006 samples (n=2978) who wore a hip-worn accelerometer in the free living environment for up to 7 days. The response ID is seqn.</p>
-<div id="sociodemographic-variables" class="section level3">
-<h3><span class="header-section-number">9.1.1</span> Sociodemographic variables</h3>
-<ul>
-<li>age at examination [years] (i.e. when participants wore the device), age</li>
-<li>gender (male and female), gender</li>
-<li>race/ethnicity (non-Hispanic white, non-Hispanic black, Mexican American, and other)</li>
-<li>education (&lt; high school graduate, high school graduate/general educational development [GED], some college, and college graduate), educationadult</li>
-<li>5 year mortality, NAs for individuals with follow up less than 5 years and alive, yr5.mort</li>
-<li>Person Months of Follow-up from MEC/Exam Date, permth.exm (follow-up time in this cohort in years = permth.exm/12)</li>
-<li>final mortality status, mortstat</li>
-</ul>
-</div>
-<div id="health-and-behavior-variables" class="section level3">
-<h3><span class="header-section-number">9.1.2</span> Health and behavior variables</h3>
-<ul>
-<li>smoking status (current smoker, former smoker [those reporting quitting within the previous 6 months], and nonsmoker), smokecigs</li>
-<li>alcohol consumption, drinkstatus</li>
-<li>BMI, bmi</li>
-<li>obesity, bmi.cat</li>
-<li>diabetes, diabetes</li>
-<li>congestive heart failure, chf</li>
-<li>cancer, cancer</li>
-<li>stroke, stroke</li>
-<li>average systolic blood pressure using the 4 measurements per participant, sys ,</li>
-<li>Total cholesterol (mg/dL), lbxtc</li>
-<li>HDL cholesterol, lbdhdd<br />
-</li>
-<li>mobilityproblem (“No Difficulty”,“Any Difficulty”)</li>
-</ul>
-</div>
-<div id="physical-activity-data" class="section level3">
-<h3><span class="header-section-number">9.1.3</span> Physical activity data</h3>
-<ul>
-<li>total activity counts per day (TAC/d)</li>
-<li>total log activity count (TLAC)</li>
-<li>total minutes of moderate/vigorous physical activity (MVPA)</li>
-<li>total accelerometer wear time (WT)</li>
-<li>sedentary/sleep/non-wear to active transition probability (SATP)</li>
-<li>active to sedentary/sleep/non-wear transition probability (ASTP): Bout length was defined as the number of consecutive minutes spent in either an active or sedentary state and a daily activity profile was created for each participant to detect alternating bouts of sedentary and active states. ASTP was defined as the probability of transitioning from an active to a sedentary state and calculated as the reciprocal of the average active bout duration. ASTP was calculated for each day and averaged across valid days to derive a single measure of ASTP for each participant.</li>
-</ul>
-<p>In addition, there are total log activity count summary measures (tlac.1, tlac.2, …, tlac.12) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc.</p>
+<div id="scope-of-the-regression-analyses-for-the-examples" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Scope of the regression analyses for the examples</h1>
+<p>Regression models can be used for a wide range of purposes, for the purpose of these examples the assumptions on the regression analysis set-up in this paper are listed in Table 1. Thus, IDA tasks will be explained in a well-defined, practically relevant setting. Since a key principle is that IDA does not touch the research question no associations between dependent (outcome) and independent (non-outcome) variables are considered.</p>
+<p><em>Table 1:</em> The scope of the regression analyses considered for IDA tasks</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspects of the research plan</th>
+<th>Assumptions in this paper</th>
+<th>Reason for the assumption</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dependent (outcome) variable</td>
+<td>One dependent variable that can be continuous or binary; exclude time-to-event or longitudinal outcomes</td>
+<td>Explain IDA tasks in a well-defined, practically relevant setting</td>
+</tr>
+<tr class="even">
+<td>Regression models</td>
+<td>Models with linear predictors</td>
+<td>Explain IDA tasks in a well-defined, practically relevant setting</td>
+</tr>
+<tr class="odd">
+<td>Purpose of regression model</td>
+<td>Adjust effect of one variable of interest for confounders; quantify the effects of explanatory variables on the outcome</td>
+<td>Explain IDA tasks in a well-defined, practically relevant setting</td>
+</tr>
+<tr class="even">
+<td>Independent variables</td>
+<td>“explanatory” or “confounder” depending on purpose of model; small to moderate number of mixed types; Not high dimensional; no repeated measurements</td>
+<td>To demonstrate IDA approaches for a mix of variables likely to be encountered in practice</td>
+</tr>
+<tr class="odd">
+<td>Statistical analysis plan</td>
+<td>Exists, defines the outcome variable, the type of regression model to be used, and a set of independent variables</td>
+<td>IDA does not touch the research question, but may lead to an update or refinement of the analysis plan</td>
+</tr>
+</tbody>
+</table>
+<p><strong>References</strong>:</p>
+<p>Vach W. Regression Models as a Tool in Medical Research. Chapman/Hall CRC 2012</p>
+<p>Harrell FE. Regression Modeling Strategies. Springer (2nd ed) 2015</p>
+<p>Royston P and Sauerbrei W. Multivariable Model Building. Wiley (2008)</p>
+<p>[…]</p>
 
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="bacteremia-study.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-summary-bacteremia-dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ida-framework.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-screening-and-possible-actions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,11 +302,11 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bailliem/ida-regression-private/edit/master/SAP_nhanes.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/scope.Rmd",
 "text": "Edit this chapter"
 },
 "history": {
-"link": "https://github.com/bailliem/ida-regression-private/commits/master/SAP_nhanes.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/scope.Rmd",
 "text": "Chapter edit history"
 },
 "view": {

@@ -1,9 +1,10 @@
+
 # Multivariate Crash2
 
 
 This code is a continous by example
 
-```{r,message = FALSE, warning = FALSE }
+```{r, echo = FALSE, message = FALSE, warning = FALSE }
 library(here)
 library(tidyverse)
 library(janitor)
@@ -11,19 +12,21 @@ library(summarytools)
 library(Hmisc)
 ```
 
-## Read data
+## Read data 
 
 ### Load the dataset.
 
 ```{r, message = FALSE}
 load(here::here("data", "crash2.rda"))
+
+crash2 <- Hmisc::upData(crash2,
+                        labels = c(age = 'Age'),
+                        units = c(age = "years"))
+
 ```
 
 
-
-with(support2, histboxp(x=meanbp, group=dzgroup, sd=TRUE, bins=200))
-
-
+### Historgrams
 
 ```{r, echo = FALSE, message = FALSE}
 crash2 %>%
@@ -32,10 +35,124 @@ crash2 %>%
 
 ```
 
-```{r, echo = FALSE, message = FALSE}
-crash2 %>%
-  filter(!(is.na(bmi))) %>%
-  with(., histboxp(x = sbp, group = bmi, sd=TRUE, bins=200))
+
+---
+title: Multivariate Crash2
+output: html_document
+---
+
+
+## Age {.tabset}
+
+### Continous 
+
+```{r}
+
+crash2 %>% dplyr::filter(!is.na(sbp)) %>% tally()
+crash2 %>% dplyr::filter(is.na(sbp)) %>% tally()
+
+bigN <- crash2 %>% dplyr::filter(!is.na(sbp) & !is.na(age)) %>% tally()
+n_miss <- crash2 %>% dplyr::filter(is.na(sbp) | is.na(age)) %>% tally()
+
+title <-
+  paste0("Plot of ", Hmisc::label(crash2$age), " and ", Hmisc::label(crash2$sbp))
+
+caption <-
+  paste0(
+    "n = ",
+    bigN,
+    " subjects displayed.\n",
+    n_miss,
+    " subjects with a missing value in at least one of the variables."
+  )
+
+
+x_axis <- paste0(Hmisc::label(crash2$age), " [", Hmisc::units(crash2$age), "]")
+y_axis <- paste0(Hmisc::label(crash2$sbp), " [", Hmisc::units(crash2$sbp), "]")
+
+
+p1 <- crash2 %>%
+  dplyr::filter(!is.na(sbp) & !is.na(age)) %>%
+  mutate(sbp = as.numeric(sbp), 
+         age = as.numeric(age)) %>%
+  ggplot(aes(x = sbp, y = age)) +
+  ylab(x_axis) +
+  xlab(y_axis) +
+  labs(
+    title = title,
+    caption = caption
+  ) +
+  geom_point(shape = 16, #size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+p1
 
 ```
+
+### Continous2
+
+```{r}
+p1 <- crash2 %>%
+  filter(!is.na(sbp) & !is.na(age)) %>%
+  mutate(sbp = as.numeric(sbp), 
+         age = as.numeric(age)) %>%
+  ggplot(aes(x = sbp, y = age)) +
+  geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+p2 <- crash2 %>%
+  filter(!is.na(sbp) & !is.na(hr)) %>%
+  mutate(sbp = as.numeric(sbp), 
+         age = as.numeric(hr)) %>%
+  ggplot(aes(x = sbp, y = hr)) +
+  geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+
+p3 <- crash2 %>%
+  filter(!is.na(sbp) & !is.na(rr)) %>%
+  mutate(sbp = as.numeric(sbp), 
+         age = as.numeric(rr)) %>%
+  ggplot(aes(x = sbp, y = rr)) +
+  geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+
+p4 <- crash2 %>%
+  filter(!is.na(hr) & !is.na(age)) %>%
+  mutate(sbp = as.numeric(hr), 
+         age = as.numeric(age)) %>%
+  ggplot(aes(x = hr, y = age)) +
+  geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+```
+
+
+### Continous3 
+
+```{r}
+
+library(patchwork)
+(p1 + p2 ) / (p3 + p4)
+```
+
+
+
+## {-}
 

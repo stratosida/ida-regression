@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 SAP nhanes | Regression without regrets: Workflow of initial data analyses</title>
+  <title>Chapter 4 Data screening and possible actions | Regression without regrets: Workflow of initial data analyses</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 SAP nhanes | Regression without regrets: Workflow of initial data analyses" />
+  <meta property="og:title" content="Chapter 4 Data screening and possible actions | Regression without regrets: Workflow of initial data analyses" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 SAP nhanes | Regression without regrets: Workflow of initial data analyses" />
+  <meta name="twitter:title" content="Chapter 4 Data screening and possible actions | Regression without regrets: Workflow of initial data analyses" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bacteremia-study.html"/>
-<link rel="next" href="univariate-summary-bacteremia-dataset.html"/>
+<link rel="prev" href="scope-of-the-regression-analyses-for-the-examples.html"/>
+<link rel="next" href="crash-2-prediction-model.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -213,56 +213,194 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sap-nhanes" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> SAP nhanes</h1>
-<div id="data-set" class="section level2">
-<h2><span class="header-section-number">9.1</span> Data set</h2>
-<p>The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The survey examines a nationally representative sample of about 5,000 persons each year. <a href="https://www.cdc.gov/nchs/nhanes/about_nhanes.htm">Link to CDC NHANES website</a></p>
-<p>The NHANES study contains objectively measured physical activity data collected using hip-worn accelerometers from multiple cohorts. High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (<a href="https://andrew-leroux.github.io/rnhanesdata/articles" class="uri">https://andrew-leroux.github.io/rnhanesdata/articles</a>).</p>
-<p>Here, we look at the subset of participants between 50 and 85 years old from the 2003-2004 and 2005-2006 samples (n=2978) who wore a hip-worn accelerometer in the free living environment for up to 7 days. The response ID is seqn.</p>
-<div id="sociodemographic-variables" class="section level3">
-<h3><span class="header-section-number">9.1.1</span> Sociodemographic variables</h3>
-<ul>
-<li>age at examination [years] (i.e. when participants wore the device), age</li>
-<li>gender (male and female), gender</li>
-<li>race/ethnicity (non-Hispanic white, non-Hispanic black, Mexican American, and other)</li>
-<li>education (&lt; high school graduate, high school graduate/general educational development [GED], some college, and college graduate), educationadult</li>
-<li>5 year mortality, NAs for individuals with follow up less than 5 years and alive, yr5.mort</li>
-<li>Person Months of Follow-up from MEC/Exam Date, permth.exm (follow-up time in this cohort in years = permth.exm/12)</li>
-<li>final mortality status, mortstat</li>
-</ul>
+<div id="data-screening-and-possible-actions" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Data screening and possible actions</h1>
+<p><strong>TODO: Check for copy and paste errors in table.</strong></p>
+<div id="univariate-distributions" class="section level2">
+<h2><span class="header-section-number">4.1</span> Univariate distributions</h2>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>What to look at</th>
+<th>Possible actions: Interpretation</th>
+<th>Possible actions: SAP</th>
+<th>Possible actions: Presentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Continuous variables</td>
+<td>General skewness</td>
+<td>Help in interpreting results</td>
+<td>Update SAP</td>
+<td>Update intended presentation of results</td>
+</tr>
+<tr class="even">
+<td>Continuous variables</td>
+<td>General skewness</td>
+<td>Wide CI for coefficients</td>
+<td>Use variable as log-transformed</td>
+<td>Update intended presentation of results</td>
+</tr>
+<tr class="odd">
+<td>Continuous variables</td>
+<td>Outliers</td>
+<td>Disproportional impact on results</td>
+<td>Winsorize or transform</td>
+<td>Model involves winsorization</td>
+</tr>
+<tr class="even">
+<td>Continuous variables</td>
+<td>Spike at 0</td>
+<td>Narrow CI at 0</td>
+<td>Use appropriate representation of variable in model</td>
+<td>Use 2 (or more) coefficents to distinguish 0 from non-0 continuous part</td>
+</tr>
+<tr class="odd">
+<td>Categorical variables</td>
+<td>Frequencies</td>
+<td>Comparisons to default reference probably irrelevant</td>
+<td>Change reference category</td>
+<td>Contrasts compare to (new) reference category</td>
+</tr>
+<tr class="even">
+<td>Categorical variables</td>
+<td>Rare categories</td>
+<td>Wide CI for coefficients</td>
+<td>Collapse/exclude</td>
+<td>Fewer categories to present</td>
+</tr>
+<tr class="odd">
+<td>Categorical variables</td>
+<td>One very frequent category</td>
+<td>Comparisons irrelevant?</td>
+<td>Exclude variable</td>
+<td>Variable omitted</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="health-and-behavior-variables" class="section level3">
-<h3><span class="header-section-number">9.1.2</span> Health and behavior variables</h3>
-<ul>
-<li>smoking status (current smoker, former smoker [those reporting quitting within the previous 6 months], and nonsmoker), smokecigs</li>
-<li>alcohol consumption, drinkstatus</li>
-<li>BMI, bmi</li>
-<li>obesity, bmi.cat</li>
-<li>diabetes, diabetes</li>
-<li>congestive heart failure, chf</li>
-<li>cancer, cancer</li>
-<li>stroke, stroke</li>
-<li>average systolic blood pressure using the 4 measurements per participant, sys ,</li>
-<li>Total cholesterol (mg/dL), lbxtc</li>
-<li>HDL cholesterol, lbdhdd<br />
-</li>
-<li>mobilityproblem (“No Difficulty”,“Any Difficulty”)</li>
-</ul>
+<div id="bivariate-distributions" class="section level2">
+<h2><span class="header-section-number">4.2</span> Bivariate distributions</h2>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>What to look at</th>
+<th>Possible actions: Interpretation</th>
+<th>Possible actions: SAP</th>
+<th>Possible actions: Presentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Continuous by continuous</td>
+<td>Outliers (from the cloud)</td>
+<td>Disproportional impact on results</td>
+<td>Winsorize or transform</td>
+<td>Model involves winsorization</td>
+</tr>
+<tr class="even">
+<td>Continuous by continuous</td>
+<td>Correlations</td>
+<td>Wide CI for coefficients</td>
+<td>Winsorize or transform</td>
+<td>Model involves winsorization</td>
+</tr>
+<tr class="odd">
+<td>Continuous by categorical</td>
+<td>Outliers (only visible in bivariate plot)</td>
+<td>Wide CI for coefficients</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Categorical by categorical</td>
+<td>Frequent/rare combinations</td>
+<td>Comparison to default reference irrelevant</td>
+<td>Change reference category</td>
+<td>Contrasts compare to (new) reference category</td>
+</tr>
+<tr class="odd">
+<td>Categorical by categorical</td>
+<td>Frequent/rare combinations</td>
+<td>interactions relevant?</td>
+<td>Remove interaction from model</td>
+<td>Fewer interactions to present</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="physical-activity-data" class="section level3">
-<h3><span class="header-section-number">9.1.3</span> Physical activity data</h3>
-<ul>
-<li>total activity counts per day (TAC/d)</li>
-<li>total log activity count (TLAC)</li>
-<li>total minutes of moderate/vigorous physical activity (MVPA)</li>
-<li>total accelerometer wear time (WT)</li>
-<li>sedentary/sleep/non-wear to active transition probability (SATP)</li>
-<li>active to sedentary/sleep/non-wear transition probability (ASTP): Bout length was defined as the number of consecutive minutes spent in either an active or sedentary state and a daily activity profile was created for each participant to detect alternating bouts of sedentary and active states. ASTP was defined as the probability of transitioning from an active to a sedentary state and calculated as the reciprocal of the average active bout duration. ASTP was calculated for each day and averaged across valid days to derive a single measure of ASTP for each participant.</li>
-</ul>
-<p>In addition, there are total log activity count summary measures (tlac.1, tlac.2, …, tlac.12) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc.</p>
+<div id="missing-values" class="section level2">
+<h2><span class="header-section-number">4.3</span> Missing values</h2>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>What to look at</th>
+<th>Possible actions: Interpretation</th>
+<th>Possible actions: SAP</th>
+<th>Possible actions: Presentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Per variable</td>
+<td>Number and proportion</td>
+<td>Wide CI for coefficients</td>
+<td>Remove variable if many missing values</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Pattern</td>
+<td>Variables missing independently or together</td>
+<td></td>
+<td>Omit variables together</td>
+<td>Changes model</td>
+</tr>
+<tr class="odd">
+<td>Pattern</td>
+<td>Variables missing dependent on levels of other variables</td>
+<td>Systematic missingness? Model still based on representative?</td>
+<td>IPW needed?</td>
+<td>Weighted analysis</td>
+</tr>
+<tr class="even">
+<td>Complete cases</td>
+<td>Number and proportion</td>
+<td>Few cases left for main CCO analysis</td>
+<td>Multiple imputation (or other way of dealing with missing values)?</td>
+<td>Result from MI analysis? Or applicability restricted to a subpopulation?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>References</strong></p>
+<p>Huebner M, le Cessie S, Schmidt CO, Vach W . A contemporary conceptual framework for initial data analysis. Observational Studies 2018; 4: 171-192. Link</p>
+<p>Harrell</p>
+<p>[…]</p>
 
-</div>
 </div>
 </div>
             </section>
@@ -270,8 +408,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="bacteremia-study.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-summary-bacteremia-dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="scope-of-the-regression-analyses-for-the-examples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="crash-2-prediction-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,11 +440,11 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bailliem/ida-regression-private/edit/master/SAP_nhanes.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/data_screen.Rmd",
 "text": "Edit this chapter"
 },
 "history": {
-"link": "https://github.com/bailliem/ida-regression-private/commits/master/SAP_nhanes.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/data_screen.Rmd",
 "text": "Chapter edit history"
 },
 "view": {
