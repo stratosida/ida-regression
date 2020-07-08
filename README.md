@@ -63,7 +63,6 @@ Here are the requirements to preview the site locally
 1. Start R in your new directory. 
    
 1. Install the required packages. This can be achieved through the use pak or similar to install the needed packages (only the ones that you don't already have) using the [pak package](https://pak.r-lib.org/index.html).
-
 ```r
 pkg_list <- c("bookdown", "devtools", "glue", "gridExtra",  "htmltools",
               "httr", "knitr", "RColorBrewer", "rebird", "rmarkdown",
@@ -73,9 +72,7 @@ pkg_list <- c("bookdown", "devtools", "glue", "gridExtra",  "htmltools",
 pak::pkg_install(pkg_list)
 ```
 
-1. You should now be able to render the site in all the usual ways for bookdown, such as `bookdown::render_book()` or *Addins > Preview Book*.
-
-<!--TODO: Change pkg_list to not be static>
+You should now be able to render the site in all the usual ways for bookdown, such as `bookdown::render_book()` or *Addins > Preview Book*.
 
 Note: the package list above is currently static, so consider that it may not be up to date.
 
