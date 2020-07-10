@@ -25,23 +25,23 @@ Display the source dataset contents. The dataset is in the **data-raw** folder o
 <!--html_preserve--><hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable440141 {
+ .hmisctable101912 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable440141 td {
+ .hmisctable101912 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable440141 th {
+ .hmisctable101912 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable440141" border="1">
+ <table class="hmisctable101912" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
@@ -91,23 +91,23 @@ Display the source dataset contents. The dataset is in the **data-raw** folder o
 
  <hr>
  <style>
- .hmisctable451079 {
+ .hmisctable823090 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable451079 td {
+ .hmisctable823090 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable451079 th {
+ .hmisctable823090 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable451079" border="1">
+ <table class="hmisctable823090" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.source">source</a></td><td>telephone</td></tr>
  <tr><td></td><td>telephone entered manually</td></tr>
@@ -191,13 +191,44 @@ crash2_subset <-
 
 
 ## Complete metadata by adding missing labels.
-a_crash2 <- Hmisc::upData(crash2_subset,
-               labels = c(age = 'Age', sex = "Gender"),
-               units = c(age = "years", injurytime = "hours", gcs = "points"))
+a_crash2 <- Hmisc::upData(
+  crash2_subset,
+  labels = c(
+    age = 'Age',
+    sex = "Sex", 
+    injurytype = "Injury type", 
+    time2death = "Time from randomization to day of death"),
+  units = c(
+    age = "years",
+    injurytime = "hours",
+    gcs = "points", 
+    time2death = "days"
+  )
+)
 ```
 
 Input object size:	 1221480 bytes;	 12 variables	 20207 observations
-New object size:	1222968 bytes;	12 variables	20207 observations
+New object size:	1223272 bytes;	12 variables	20207 observations
+
+```r
+## Derivie outcome variable
+a_crash2$time2death <-
+  as.numeric(as.Date(a_crash2$ddeath) - as.Date(a_crash2$trandomised))
+
+a_crash2$earlydeath[!is.na(a_crash2$time2death)] <-
+  (a_crash2$time2death[!is.na(a_crash2$time2death)] <= 28) + 0
+
+# +0 to transform it from TRUE/FALSE to 1/0
+# NA in time2death means alive at day 28
+a_crash2$earlydeath[is.na(a_crash2$time2death)] <- 0    
+
+## Add meta data
+a_crash2 <- Hmisc::upData(a_crash2 ,
+               labels = c(earlydeath = 'Death within 28 days from injury'))
+```
+
+Input object size:	 1546808 bytes;	 14 variables	 20207 observations
+New object size:	1385720 bytes;	14 variables	20207 observations
 
 ```r
 ## Display contents
@@ -206,60 +237,62 @@ Hmisc::html(Hmisc::contents(a_crash2),
             levelType = 'table')
 ```
 
-<!--html_preserve--><hr><h4>Data frame:a_crash2</h4>20207 observations and 12 variables, maximum # NAs:17121  
+<!--html_preserve--><hr><h4>Data frame:a_crash2</h4>20207 observations and 14 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable600570 {
+ .hmisctable309215 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable600570 td {
+ .hmisctable309215 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable600570 th {
+ .hmisctable309215 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable600570" border="1">
+ <table class="hmisctable309215" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>trandomised</td><td>Date of Randomization</td><td></td><td></td><td>Date</td><td>double</td><td>    0</td></tr>
  <tr><td>ddeath</td><td>Date of Death</td><td></td><td></td><td>Date</td><td>double</td><td>17121</td></tr>
  <tr><td>age</td><td>Age</td><td>years</td><td></td><td>integer</td><td>integer</td><td>    4</td></tr>
- <tr><td>sex</td><td>Gender</td><td></td><td><a href="#levels.sex">2</a></td><td></td><td>integer</td><td>    1</td></tr>
+ <tr><td>sex</td><td>Sex</td><td></td><td><a href="#levels.sex">2</a></td><td></td><td>integer</td><td>    1</td></tr>
  <tr><td>sbp</td><td>Systolic Blood Pressure</td><td>mmHg</td><td></td><td>integer</td><td>integer</td><td>  320</td></tr>
  <tr><td>hr</td><td>Heart Rate</td><td>/min</td><td></td><td>integer</td><td>integer</td><td>  137</td></tr>
  <tr><td>rr</td><td>Respiratory Rate</td><td>/min</td><td></td><td>integer</td><td>integer</td><td>  191</td></tr>
  <tr><td>gcs</td><td>Glasgow Coma Score Total</td><td>points</td><td></td><td>integer</td><td>integer</td><td>   23</td></tr>
  <tr><td>cc</td><td>Central Capillary Refille Time</td><td>s</td><td></td><td>integer</td><td>integer</td><td>  611</td></tr>
  <tr><td>injurytime</td><td>Hours Since Injury</td><td>hours</td><td></td><td>numeric</td><td>double</td><td>   11</td></tr>
- <tr><td>injurytype</td><td></td><td></td><td><a href="#levels.injurytype">3</a></td><td></td><td>integer</td><td>    0</td></tr>
+ <tr><td>injurytype</td><td>Injury type</td><td></td><td><a href="#levels.injurytype">3</a></td><td></td><td>integer</td><td>    0</td></tr>
+ <tr><td>time2death</td><td></td><td></td><td></td><td></td><td>integer</td><td>17121</td></tr>
+ <tr><td>earlydeath</td><td>Death within 28 days from injury</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  </table>
 
  <hr>
  <style>
- .hmisctable664926 {
+ .hmisctable849944 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable664926 td {
+ .hmisctable849944 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable664926 th {
+ .hmisctable849944 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable664926" border="1">
+ <table class="hmisctable849944" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.sex">sex</a></td><td>male</td></tr>
  <tr><td></td><td>female</td></tr>

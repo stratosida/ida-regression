@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-ida_plot_univar <- function(data, var, n_dodge = 1, bin_width = 1) {
+ida_plot_univar <- function(data, var, n_dodge = 1, n_bins = 200 ) {
   
   ## number of missing observations
   nmiss <-
@@ -77,7 +77,7 @@ ida_plot_univar <- function(data, var, n_dodge = 1, bin_width = 1) {
     filter(!is.na(.data[[var]])) %>%
     ggplot2::ggplot(aes(as.numeric(.data[[var]]))) +
     geom_histogram(
-      binwidth = bin_width,
+      bins = n_bins,
       center = 0,
       alpha = 0.6,
       fill = "firebrick2"

@@ -75,11 +75,6 @@ a_crash2 %>%
 ```
 
 
----
-title: Multivariate a_crash2
-output: html_document
----
-
 
 ## Age 
 

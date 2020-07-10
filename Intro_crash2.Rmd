@@ -77,9 +77,37 @@ crash2_subset <-
 
 
 ## Complete metadata by adding missing labels.
-a_crash2 <- Hmisc::upData(crash2_subset,
-               labels = c(age = 'Age', sex = "Gender"),
-               units = c(age = "years", injurytime = "hours", gcs = "points"))
+a_crash2 <- Hmisc::upData(
+  crash2_subset,
+  labels = c(
+    age = 'Age',
+    sex = "Sex", 
+    injurytype = "Injury type", 
+    time2death = "Time from randomization to day of death"),
+  units = c(
+    age = "years",
+    injurytime = "hours",
+    gcs = "points", 
+    time2death = "days"
+  )
+)
+
+
+## Derivie outcome variable
+a_crash2$time2death <-
+  as.numeric(as.Date(a_crash2$ddeath) - as.Date(a_crash2$trandomised))
+
+a_crash2$earlydeath[!is.na(a_crash2$time2death)] <-
+  (a_crash2$time2death[!is.na(a_crash2$time2death)] <= 28) + 0
+
+# +0 to transform it from TRUE/FALSE to 1/0
+# NA in time2death means alive at day 28
+a_crash2$earlydeath[is.na(a_crash2$time2death)] <- 0    
+
+## Add meta data
+a_crash2 <- Hmisc::upData(a_crash2 ,
+               labels = c(earlydeath = 'Death within 28 days from injury'))
+
 
 ## Display contents
 Hmisc::html(Hmisc::contents(a_crash2),
