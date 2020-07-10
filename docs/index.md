@@ -2,7 +2,7 @@
 title: "Regression without regrets"
 subtitle: "Workflow of initial data analyses"
 author: "TODO: Compelte author list"
-date: "2020-07-08"
+date: "2020-07-10"
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: bookdown::gitbook

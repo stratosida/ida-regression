@@ -15,4 +15,5 @@ rmd_files: [
   "SAP_crash2.Rmd",
   "Univar_crash2.Rmd",
   "Multivar_crash2.Rmd",
+  "Missing_crash2.Rmd"
 ]

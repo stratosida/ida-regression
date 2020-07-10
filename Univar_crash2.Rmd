@@ -5,79 +5,151 @@ Univariate summary CRASH-2 dataset
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 library(here)
 library(tidyverse)
-library(janitor)
 library(Hmisc)
-source(here("R", "ida_plot_univar.R"))
+source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
 ```
 
 
-```{r load_crash2, message = FALSE, echo=FALSE}
+```{r load_a_crash2, message = FALSE, echo=FALSE}
 ## Load the dataset.
-load(here::here("data", "crash2.rda"))
-```
-
-```{r}
-## TODO: Move out to data prep
-## Complete metadata by adding missing labels. 
-crash2 <- Hmisc::upData(crash2,
-               labels = c(age = 'Age'),
-               units = c(age = "years"))
+load(here::here("data", "a_crash2.rda"))
 ```
 
 
+## Describe the dataset
 
-### Describe the dataset
+Using Hmisc describe function, provide an overview of the data set is provided including histograms of continuous variables.  
 
-Use Hmisc describe function. 
+### All variables
 
-```{r desc_crash2, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
-crash2 %>%
-  Hmisc::describe(descript = "Crash2 data set") %>%
-  Hmisc::html()
+**TODO: Should we plot the maringal distribution of the outcome? Also if we perform the variable drop, then this becomes a more meaningful description. We could also select variables here.**
+
+```{r desc_a_crash2, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+a_crash2 %>%
+  Hmisc::describe(descript = "Crash-2") %>%
+  Hmisc::html(size = 80)
 ```
 
 
-## Univariate summary
+### Continous plots 
+
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+
+a_crash2 %>%
+  dplyr::select(age, sbp, rr, cc, hr) %>%
+  mutate_all(as.numeric) %>%
+  tidyr::pivot_longer(dplyr::everything(),
+                      names_to = "var",
+                      values_to = "value") %>%
+  ggplot(aes(value)) +
+  geom_histogram(bins = 200) + 
+  facet_wrap( ~var, scales = "free") +
+  theme_minimal()
+
+
+```
+
+
+Evidence of digit preference. Explore further with targeted summaries. 
+
+### Categorical plots
+
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  dplyr::select(sex, injurytype) %>%
+  mutate_all(forcats::fct_explicit_na, "NA") %>%
+  tidyr::pivot_longer(
+    dplyr::everything(),
+    names_to = "var",
+    values_to = "value",
+    values_drop_na = FALSE
+  ) %>%
+  dplyr::group_by(var, value) %>%
+  dplyr::summarize(N = n()) %>%
+  dplyr::mutate(freq = N / sum(N),
+                pct = round((freq * 100), 1),
+                axis_lab = paste0(value, ' ', '(', N, ', ', round(pct, digits = 1), '%)')) %>%
+  ggplot(aes(
+    x = reorder(axis_lab, pct),
+    y = pct,
+    label = pct
+  )) +
+  geom_point(color = "firebrick",
+             alpha = 0.6,
+             size = 2) +
+  ylab("Percentage (%)") +
+  scale_y_continuous(limits = c(0, 100)) +
+  labs(caption = "Number and percentage of subjects reported in brackets.\nNA = missing") +
+  facet_wrap(~ var, ncol = 1, scales = "free_y") +
+  coord_flip() +
+  theme_minimal(base_size = 10) +
+  theme(axis.title.y = element_blank(),
+        panel.grid.minor = element_blank())
+
+```
+
+
+## Univariate summaries 
+
+More detailed univariate summaries for the variables of interest are also provided. 
 
 ### Continous variables
 
 #### Age
 
-
-Plot age. 
-
-
-
 ```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of subject age [years]" , echo=FALSE}
-ida_plot_univar(crash2, "age", n_dodge = 1)
+## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
+ida_plot_univar(a_crash2, "age", bin_width = 1, n_dodge = 1)
 ```
 
 
 #### Blood pressure
 
-Plot blood pressure. 
-
 ```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of SBP" , echo=FALSE}
-ida_plot_univar(crash2, "sbp", n_dodge = 1)
+ida_plot_univar(a_crash2, "sbp", bin_width = 1, n_dodge = 1)
 ```
 
 
 
-#### RR
+#### Respiratory rate
 
 
 ```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of respiratory rate" , echo=FALSE}
-ida_plot_univar(crash2, "rr", n_dodge = 2)
+ida_plot_univar(a_crash2, "rr", bin_width = 1, n_dodge = 2)
 ```
 
 
-#### RR
+#### Heart rate
 
 
 ```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of heart rate", echo=FALSE}
-ida_plot_univar(crash2, "hr", n_dodge = 1)
+ida_plot_univar(a_crash2, "hr", bin_width = 1, n_dodge = 1)
 ```
 
+#### Glasgow coma score
+
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of Total Glasgow coma score", echo=FALSE}
+ida_plot_univar(a_crash2, "gcs", bin_width = 0.1, n_dodge = 1)
+```
+
+
+#### Central capillary refill time
+
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of Central capillary refill time", echo=FALSE}
+ida_plot_univar(a_crash2, "cc", n_dodge = 1, bin_width = 0.5)
+```
+
+
+#### Hours since injury
+
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of hours since injury", echo=FALSE}
+ida_plot_univar(a_crash2, "injurytime", n_dodge = 3, bin_width = 0.1)
+```
 
 
 

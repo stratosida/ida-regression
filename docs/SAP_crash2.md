@@ -35,7 +35,7 @@ Restricted cubic splines with 3 degrees of freedom with knots set to default val
 The outcome variable, early death (i.e., death within 28 days from injury) must be computed from the time span between date of death and date of randomisation using the following logic:
 
 * transform ddeath and trandomisation into an interpretable date format and then compute the difference
-* interpret NAs as 'not died within study period, at least not within 28 days'
+* interpret missing (i.e. NAs) as 'not died within study period, at least not within 28 days'
 * if patients died after 28 days, treat as alive 
 
 
@@ -43,19 +43,17 @@ This can be dervived using the following code:
 
 
 ```r
-load(here::here("data", "crash2.rda"))
+a_crash2$time2death <-
+  as.numeric(as.Date(a_crash2$ddeath) - as.Date(a_crash2$trandomised))
 
-crash2$time2death <-
-  as.numeric(as.Date(crash2$ddeath) - as.Date(crash2$trandomised))
-
-crash2$earlydeath[!is.na(crash2$time2death)] <-
-  (crash2$time2death[!is.na(crash2$time2death)] <= 28) + 0
+a_crash2$earlydeath[!is.na(a_crash2$time2death)] <-
+  (a_crash2$time2death[!is.na(a_crash2$time2death)] <= 28) + 0
 
 # +0 to transform it from TRUE/FALSE to 1/0
 # NA in time2death means alive at day 28
-crash2$earlydeath[is.na(crash2$time2death)] <- 0    
+a_crash2$earlydeath[is.na(a_crash2$time2death)] <- 0    
 
-table(crash2$earlydeath)
+table(a_crash2$earlydeath)
 ```
 
 ```
@@ -63,6 +61,16 @@ table(crash2$earlydeath)
 ##     0     1 
 ## 17131  3076
 ```
+
+**TODO: This is deriving the outcome variable. We are writing this back to the analysis data set. It is important we run the scripts in sequence from updating meta-data to deriving the outcome, or we do this in one step.**
+
+
+```
+## Input object size:	 1546504 bytes;	 14 variables	 20207 observations
+## New object size:	1385496 bytes;	14 variables	20207 observations
+```
+
+
 
 The number of deaths computed in the data set coincides with the number reported in [Perel et al, BMJ 2012](https://doi.org/10.1136/bmj.e5166).
 

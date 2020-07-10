@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Univariate distributions | Regression without regrets</title>
+  <title>Chapter 7 Univariate distributions | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Univariate distributions | Regression without regrets" />
+  <meta property="og:title" content="Chapter 7 Univariate distributions | Regression without regrets" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bailliem/ida-regression-private" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Univariate distributions | Regression without regrets" />
+  <meta name="twitter:title" content="Chapter 7 Univariate distributions | Regression without regrets" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="TODO: Compelte author list" />
 
 
-<meta name="date" content="2020-07-08" />
+<meta name="date" content="2020-07-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="references.html"/>
-<link rel="next" href="univariate-summary.html"/>
+<link rel="prev" href="statistical-analysis-plan.html"/>
+<link rel="next" href="bivariate-distributions-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -141,46 +141,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Regression without regrets: Workflow of initial data analyses</a></li>
-<li class="chapter" data-level="1" data-path="ida-framework.html"><a href="ida-framework.html"><i class="fa fa-check"></i><b>1</b> IDA Framework</a></li>
-<li class="chapter" data-level="2" data-path="scope-of-the-regression-analyses-for-the-examples.html"><a href="scope-of-the-regression-analyses-for-the-examples.html"><i class="fa fa-check"></i><b>2</b> Scope of the regression analyses for the examples</a></li>
-<li class="chapter" data-level="3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html"><i class="fa fa-check"></i><b>3</b> Data screening and possible actions</a><ul>
-<li class="chapter" data-level="3.1" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i><b>3.1</b> Univariate distributions</a></li>
-<li class="chapter" data-level="3.2" data-path="bivariate-distributions.html"><a href="bivariate-distributions.html"><i class="fa fa-check"></i><b>3.2</b> Bivariate distributions</a></li>
-<li class="chapter" data-level="3.3" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>3.3</b> Missing values</a></li>
+<li class="chapter" data-level="1" data-path="overiew.html"><a href="overiew.html"><i class="fa fa-check"></i><b>1</b> Overiew</a></li>
+<li class="chapter" data-level="2" data-path="ida-framework.html"><a href="ida-framework.html"><i class="fa fa-check"></i><b>2</b> IDA Framework</a></li>
+<li class="chapter" data-level="3" data-path="scope-of-the-regression-analyses-for-the-examples.html"><a href="scope-of-the-regression-analyses-for-the-examples.html"><i class="fa fa-check"></i><b>3</b> Scope of the regression analyses for the examples</a></li>
+<li class="chapter" data-level="4" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html"><i class="fa fa-check"></i><b>4</b> Data screening and possible actions</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#univariate-distributions"><i class="fa fa-check"></i><b>4.1</b> Univariate distributions</a></li>
+<li class="chapter" data-level="4.2" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#bivariate-distributions"><i class="fa fa-check"></i><b>4.2</b> Bivariate distributions</a></li>
+<li class="chapter" data-level="4.3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#missing-values"><i class="fa fa-check"></i><b>4.3</b> Missing values</a></li>
 </ul></li>
 <li class="part"><span><b>I CRASH-2</b></span></li>
-<li class="chapter" data-level="4" data-path="crash-2-overview.html"><a href="crash-2-overview.html"><i class="fa fa-check"></i><b>4</b> CRASH-2 overview</a><ul>
-<li class="chapter" data-level="4.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html"><i class="fa fa-check"></i><b>4.1</b> Introduction to CRASH-2</a></li>
-<li class="chapter" data-level="4.2" data-path="crash2-dataset-contents.html"><a href="crash2-dataset-contents.html"><i class="fa fa-check"></i><b>4.2</b> Crash2 dataset contents</a></li>
+<li class="chapter" data-level="5" data-path="crash-2-overview.html"><a href="crash-2-overview.html"><i class="fa fa-check"></i><b>5</b> CRASH-2 overview</a><ul>
+<li class="chapter" data-level="5.1" data-path="crash-2-overview.html"><a href="crash-2-overview.html#introduction-to-crash-2"><i class="fa fa-check"></i><b>5.1</b> Introduction to CRASH-2</a></li>
+<li class="chapter" data-level="5.2" data-path="crash-2-overview.html"><a href="crash-2-overview.html#crash2-dataset-contents"><i class="fa fa-check"></i><b>5.2</b> Crash2 dataset contents</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="crash-2-overview.html"><a href="crash-2-overview.html#source-dataset"><i class="fa fa-check"></i><b>5.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="5.2.2" data-path="crash-2-overview.html"><a href="crash-2-overview.html#updated-analysis-dataset"><i class="fa fa-check"></i><b>5.2.2</b> Updated analysis dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html"><i class="fa fa-check"></i><b>5</b> Statistical analysis plan</a><ul>
-<li class="chapter" data-level="5.1" data-path="outcome.html"><a href="outcome.html"><i class="fa fa-check"></i><b>5.1</b> Outcome</a></li>
-<li class="chapter" data-level="5.2" data-path="statistical-methods.html"><a href="statistical-methods.html"><i class="fa fa-check"></i><b>5.2</b> Statistical methods</a></li>
-<li class="chapter" data-level="5.3" data-path="remarks.html"><a href="remarks.html"><i class="fa fa-check"></i><b>5.3</b> Remarks</a></li>
-<li class="chapter" data-level="5.4" data-path="preparations.html"><a href="preparations.html"><i class="fa fa-check"></i><b>5.4</b> Preparations</a></li>
-<li class="chapter" data-level="5.5" data-path="sources.html"><a href="sources.html"><i class="fa fa-check"></i><b>5.5</b> Sources</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="sources.html"><a href="sources.html#data-dictionary"><i class="fa fa-check"></i><b>5.5.1</b> Data dictionary</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>5.6</b> References</a></li>
+<li class="chapter" data-level="6" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html"><i class="fa fa-check"></i><b>6</b> Statistical analysis plan</a><ul>
+<li class="chapter" data-level="6.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#outcome"><i class="fa fa-check"></i><b>6.1</b> Outcome</a></li>
+<li class="chapter" data-level="6.2" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#statistical-methods"><i class="fa fa-check"></i><b>6.2</b> Statistical methods</a></li>
+<li class="chapter" data-level="6.3" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#remarks"><i class="fa fa-check"></i><b>6.3</b> Remarks</a></li>
+<li class="chapter" data-level="6.4" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#preparations"><i class="fa fa-check"></i><b>6.4</b> Preparations</a></li>
+<li class="chapter" data-level="6.5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#sources"><i class="fa fa-check"></i><b>6.5</b> Sources</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#data-dictionary"><i class="fa fa-check"></i><b>6.5.1</b> Data dictionary</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="univariate-distributions-1.html"><a href="univariate-distributions-1.html"><i class="fa fa-check"></i><b>6</b> Univariate distributions</a><ul>
-<li class="chapter" data-level="6.0.1" data-path="univariate-distributions-1.html"><a href="univariate-distributions-1.html#describe-the-dataset"><i class="fa fa-check"></i><b>6.0.1</b> Describe the dataset</a></li>
-<li class="chapter" data-level="6.1" data-path="univariate-summary.html"><a href="univariate-summary.html"><i class="fa fa-check"></i><b>6.1</b> Univariate summary</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="univariate-summary.html"><a href="univariate-summary.html#continous-variables"><i class="fa fa-check"></i><b>6.1.1</b> Continous variables</a></li>
+<li class="chapter" data-level="6.6" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#references"><i class="fa fa-check"></i><b>6.6</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>6.2</b> Session info</a></li>
+<li class="chapter" data-level="7" data-path="univariate-distributions-1.html"><a href="univariate-distributions-1.html"><i class="fa fa-check"></i><b>7</b> Univariate distributions</a><ul>
+<li class="chapter" data-level="7.1" data-path="univariate-distributions-1.html"><a href="univariate-distributions-1.html#describe-the-dataset"><i class="fa fa-check"></i><b>7.1</b> Describe the dataset</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="univariate-distributions-1.html"><a href="univariate-distributions-1.html#all-variables"><i class="fa fa-check"></i><b>7.1.1</b> All variables</a></li>
+<li class="chapter" data-level="7.1.2" data-path="univariate-distributions-1.html"><a href="univariate-distributions-1.html#continous-plots"><i class="fa fa-check"></i><b>7.1.2</b> Continous plots</a></li>
+<li class="chapter" data-level="7.1.3" data-path="univariate-distributions-1.html"><a href="univariate-distributions-1.html#categorical-plots"><i class="fa fa-check"></i><b>7.1.3</b> Categorical plots</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html"><i class="fa fa-check"></i><b>7</b> Bivariate distributions</a><ul>
-<li class="chapter" data-level="7.1" data-path="read-data.html"><a href="read-data.html"><i class="fa fa-check"></i><b>7.1</b> Read data</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="read-data.html"><a href="read-data.html#load-the-dataset."><i class="fa fa-check"></i><b>7.1.1</b> Load the dataset.</a></li>
-<li class="chapter" data-level="7.1.2" data-path="read-data.html"><a href="read-data.html#histograms"><i class="fa fa-check"></i><b>7.1.2</b> Histograms</a></li>
+<li class="chapter" data-level="7.2" data-path="univariate-distributions-1.html"><a href="univariate-distributions-1.html#univariate-summaries"><i class="fa fa-check"></i><b>7.2</b> Univariate summaries</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="univariate-distributions-1.html"><a href="univariate-distributions-1.html#continous-variables"><i class="fa fa-check"></i><b>7.2.1</b> Continous variables</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="age-1.html"><a href="age-1.html"><i class="fa fa-check"></i><b>7.2</b> Age</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="age-1.html"><a href="age-1.html#continous"><i class="fa fa-check"></i><b>7.2.1</b> Continous</a></li>
-<li class="chapter" data-level="7.2.2" data-path="age-1.html"><a href="age-1.html#continous2"><i class="fa fa-check"></i><b>7.2.2</b> Continous2</a></li>
-<li class="chapter" data-level="7.2.3" data-path="age-1.html"><a href="age-1.html#continous3"><i class="fa fa-check"></i><b>7.2.3</b> Continous3</a></li>
+<li class="chapter" data-level="7.3" data-path="univariate-distributions-1.html"><a href="univariate-distributions-1.html#session-info"><i class="fa fa-check"></i><b>7.3</b> Session info</a></li>
 </ul></li>
-<li><a href="section.html#section"></a></li>
+<li class="chapter" data-level="8" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html"><i class="fa fa-check"></i><b>8</b> Bivariate distributions</a><ul>
+<li class="chapter" data-level="8.1" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#read-data"><i class="fa fa-check"></i><b>8.1</b> Read data</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#load-the-dataset."><i class="fa fa-check"></i><b>8.1.1</b> Load the dataset.</a></li>
+<li class="chapter" data-level="8.1.2" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#summary"><i class="fa fa-check"></i><b>8.1.2</b> Summary</a></li>
+<li class="chapter" data-level="8.1.3" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#histograms"><i class="fa fa-check"></i><b>8.1.3</b> Histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#age-1"><i class="fa fa-check"></i><b>8.2</b> Age</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#continous"><i class="fa fa-check"></i><b>8.2.1</b> Continous</a></li>
+<li class="chapter" data-level="8.2.2" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#continous2"><i class="fa fa-check"></i><b>8.2.2</b> Continous2</a></li>
+<li class="chapter" data-level="8.2.3" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#continous3"><i class="fa fa-check"></i><b>8.2.3</b> Continous3</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#session-info-1"><i class="fa fa-check"></i><b>8.3</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>9</b> Missing data</a><ul>
+<li class="chapter" data-level="9.1" data-path="missing-data.html"><a href="missing-data.html#session-info-2"><i class="fa fa-check"></i><b>9.1</b> Session info</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -203,18 +215,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="univariate-distributions-1" class="section level1">
-<h1><span class="header-section-number">Chapter 6</span> Univariate distributions</h1>
+<h1><span class="header-section-number">Chapter 7</span> Univariate distributions</h1>
 <p>Univariate summary CRASH-2 dataset</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">## </span><span class="al">TODO</span><span class="co">: Move out to data prep</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="co">## Complete metadata by adding missing labels. </span></a>
-<a class="sourceLine" id="cb1-3" title="3">crash2 &lt;-<span class="st"> </span>Hmisc<span class="op">::</span><span class="kw">upData</span>(crash2,</a>
-<a class="sourceLine" id="cb1-4" title="4">               <span class="dt">labels =</span> <span class="kw">c</span>(<span class="dt">age =</span> <span class="st">&#39;Age&#39;</span>),</a>
-<a class="sourceLine" id="cb1-5" title="5">               <span class="dt">units =</span> <span class="kw">c</span>(<span class="dt">age =</span> <span class="st">&quot;years&quot;</span>))</a></code></pre></div>
-<pre><code>## Input object size:    4094896 bytes;  44 variables    20207 observations
-## New object size: 4095640 bytes;  44 variables    20207 observations</code></pre>
-<div id="describe-the-dataset" class="section level3">
-<h3><span class="header-section-number">6.0.1</span> Describe the dataset</h3>
-<p>Use Hmisc describe function.</p>
+<div id="describe-the-dataset" class="section level2">
+<h2><span class="header-section-number">7.1</span> Describe the dataset</h2>
+<p>Using Hmisc describe function, provide an overview of the data set is provided including histograms of continuous variables.</p>
+<div id="all-variables" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> All variables</h3>
+<p><strong>TODO: Should we plot the maringal distribution of the outcome? Also if we perform the variable drop, then this becomes a more meaningful description. We could also select variables here.</strong></p>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <script type="text/javascript">
 <!--
@@ -258,133 +266,119 @@ left: 0.1em;
 bottom: -1ex;
 }
 </style>
- <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Crash2 data set <br><br> 44  Variables   20207  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">entryid</span>: Unique Numbers for Entry Forms<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Crash-2 <br><br> 14  Variables   20207  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">entryid</span>: Unique Numbers for Entry Forms<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAQ0lEQVQ4je3TsQ0AQAhCUXX/oc/DylhZQeGf4CUE88ykcpAiY0t6AZKeC7JzLVJ2qb3xV39kK2a1I1sxO9cuZZfoHx9reQCQzx59LQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable862139 {
+ .hmisctable514241 {
  border: none;
- font-size: 85%;
+ font-size: 80%;
  }
- .hmisctable862139 td {
+ .hmisctable514241 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable862139 th {
+ .hmisctable514241 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable862139">
+ <table class="hmisctable514241">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20207</td><td>0</td><td>20207</td><td>1</td><td>10132</td><td>6760</td><td> 1011</td><td> 2022</td><td> 5060</td><td>10130</td><td>15204</td><td>18242</td><td>19255</td></tr>
  </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :     1     2     3     4     5 ,  <font color="MidnightBlue">highest</font>: 20266 20267 20268 20269 20270</span> <hr class="thinhr"> <span style="font-weight:bold">source</span>: Method of Transmission of Entry Form to CC<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAMAAACXZR4WAAAACVBMVEUAAADMzMz////1iUV5AAAAKUlEQVQImWNgBAMGBkYoYGACAwYoDWRRQ4BUWxgYSBKAYLDxDGBbIBgAiGgBKa79/KkAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable671013 {
- border: none;
- font-size: 85%;
- }
- .hmisctable671013 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable671013 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable671013">
- <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>20207</td><td>0</td><td>5</td></tr>
- </table>
- <style>
- .hmisctable533625 {
- border: none;
- font-size: 85%;
- }
- .hmisctable533625 td {
- text-align: right;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable533625 th {
- color: Black;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: bold;
- }
- </style>
- <table class="hmisctable533625">
- <tr><td><font color="MidnightBlue">lowest</font> :</td><td>telephone                           </td><td>telephone entered manually          </td><td>electronic CRF by email             </td><td>paper CRF enteredd in electronic CRF</td><td>electronic CRF                      </td></tr>
- <tr><td><font color="MidnightBlue">highest</font>:</td><td>telephone                           </td><td>telephone entered manually          </td><td>electronic CRF by email             </td><td>paper CRF enteredd in electronic CRF</td><td>electronic CRF                      </td></tr>
- </table>
-  telephone (86, 0.004), telephone entered manually (6, 0.000), electronic CRF by email (13767, 0.681), paper CRF enteredd in electronic CRF (1711, 0.085), electronic CRF (4637, 0.229) <hr class="thinhr"> <span style="font-weight:bold">trandomised</span>: Date of Randomization<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAjUlEQVQ4jcWT2w7AIAhD6/7/ozdHme4Sh9HGPhiMgge1SGIByEN32iYUit5LP6kqJju85joGhmf0QHuAiricpC2n4axGE3DZeRHd9wm4WNS7j3J9s1rFIatlt6FEMxT3o/fAbvh9B66kqeA7+u6SJeIJcHFRDNDBNfZjp5KhhlpNZLr8iERjrSYypcy0A7OlBnDWMD1pAAAAAElFTkSuQmCC" alt="image" /></div> <pre style="font-size:85%;">
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :     1     2     3     4     5 ,  <font color="MidnightBlue">highest</font>: 20266 20267 20268 20269 20270</span> <hr class="thinhr"> <span style="font-weight:bold">trandomised</span>: Date of Randomization<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAjUlEQVQ4jcWT2w7AIAhD6/7/ozdHme4Sh9HGPhiMgge1SGIByEN32iYUit5LP6kqJju85joGhmf0QHuAiricpC2n4axGE3DZeRHd9wm4WNS7j3J9s1rFIatlt6FEMxT3o/fAbvh9B66kqeA7+u6SJeIJcHFRDNDBNfZjp5KhhlpNZLr8iERjrSYypcy0A7OlBnDWMD1pAAAAAElFTkSuQmCC" alt="image" /></div> <pre style="font-size:80%;">
           n    missing   distinct       Info       Mean        Gmd        .05 
       20207          0       1664          1 2008-04-01      466.9 2006-03-10 
         .10        .25        .50        .75        .90        .95 
  2006-07-19 2007-06-10 2008-06-06 2009-02-26 2009-08-27 2009-10-28 
  </pre>
  <style>
- .hmisctable521201 {
+ .hmisctable700669 {
  border: none;
  font-size: 85%;
  }
- .hmisctable521201 td {
+ .hmisctable700669 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable521201 th {
+ .hmisctable700669 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable521201">
+ <table class="hmisctable700669">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>2005-05-19</td><td>2005-05-22</td><td>2005-05-25</td><td>2005-05-26</td><td>2005-05-27</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>2010-01-11</td><td>2010-01-12</td><td>2010-01-14</td><td>2010-01-22</td><td>2010-01-23</td></tr>
  </table>
- <hr class="thinhr"> <span style="font-weight:bold">outcomeid</span>: Unique Number From Outcome Database<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAQ0lEQVQ4je3TsQ0AMAgDQWD/oUNwFdGEChf+CU6ybJ4ZVV6kyLYlb1EkuX6TaxZcbG+84Y/bih523Fb05JrF7CL94wG8gQCglVs6JAAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable870111 {
- border: none;
- font-size: 74%;
- }
- .hmisctable870111 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable870111 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable870111">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>20127</td><td>80</td><td>20127</td><td>1</td><td>10112</td><td>6734</td><td> 1010</td><td> 2023</td><td> 5062</td><td>10116</td><td>15164</td><td>18185</td><td>19193</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :     1     2     3     4     5 ,  <font color="MidnightBlue">highest</font>: 20195 20196 20197 20198 20199</span> <hr class="thinhr"> <span style="font-weight:bold">sex</span> <style>
- .hmisctable887293 {
+ <hr class="thinhr"> <span style="font-weight:bold">ddeath</span>: Date of Death<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAk0lEQVQ4jcWTCxLAEAxEl/sfuiWSCUX97YzGtCRPY2EOCOjfYg8I/VUuclVp93LBiwjcI0yQ4UooV3FJVR8AJhDxCsSyDLqE69sCSq3rJlzgFbV3Kt+QvbzBQPEdKrOej6jfj3IePtskQUHFPkZ/kwmsbNpD88el7+d+hkau6PMNplBacR1pUaPEj2SiWSctk3FMD8C7BuvPoQ4QAAAAAElFTkSuQmCC" alt="image" /></div> <pre style="font-size:80%;">
+          n    missing   distinct       Info       Mean        Gmd        .05 
+       3086      17121       1320          1 2008-03-08      477.7 2006-02-11 
+        .10        .25        .50        .75        .90        .95 
+ 2006-06-29 2007-05-01 2008-05-03 2009-02-18 2009-08-23 2009-10-21 
+ </pre>
+ <style>
+ .hmisctable983045 {
  border: none;
  font-size: 85%;
  }
- .hmisctable887293 td {
+ .hmisctable983045 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable983045 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable983045">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>2005-05-28</td><td>2005-06-05</td><td>2005-06-12</td><td>2005-06-14</td><td>2005-06-22</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>2010-01-09</td><td>2010-01-15</td><td>2010-01-17</td><td>2010-01-20</td><td>2010-01-24</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">age</span>: Age <span style='font-family:Verdana;font-size:75%;'>years</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAhUlEQVQ4jc3TSw6AIAwE0Kn3P7TyUaAtCpFqJ8YmbnxKBzQSoJ32wTYSoJ32eXhRhnh0BQtzMe3XroRCTDF6cLF0XBa+u4IJ15FYyVxLy5Z2P1VDoVq38vdMjnXWxYjn4nlyoXaJ5fvVJZmrTnepizNf8EKVlDpBLeNs6BrsUh8RcrPDbQcg0QqG35KihwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable931214 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable931214 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable887293 th {
+ .hmisctable931214 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable887293">
+ <table class="hmisctable931214">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>20203</td><td>4</td><td>84</td><td>0.999</td><td>34.56</td><td>15.55</td><td>18</td><td>19</td><td>24</td><td>30</td><td>43</td><td>55</td><td>64</td></tr>
+ </table>
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1 14 15 16 17 ,  <font color="MidnightBlue">highest</font>: 92 94 95 96 99</span> <hr class="thinhr"> <span style="font-weight:bold">sex</span>: Gender <style>
+ .hmisctable581538 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable581538 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable581538 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable581538">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>20206</td><td>1</td><td>2</td></tr>
  </table>
@@ -393,263 +387,87 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAQ0lE
  Frequency   16935   3271
  Proportion  0.838  0.162
  </pre>
- <hr class="thinhr"> <span style="font-weight:bold">age</span>: Age <span style='font-family:Verdana;font-size:75%;'>years</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAhUlEQVQ4jc3TSw6AIAwE0Kn3P7TyUaAtCpFqJ8YmbnxKBzQSoJ32wTYSoJ32eXhRhnh0BQtzMe3XroRCTDF6cLF0XBa+u4IJ15FYyVxLy5Z2P1VDoVq38vdMjnXWxYjn4nlyoXaJ5fvVJZmrTnepizNf8EKVlDpBLeNs6BrsUh8RcrPDbQcg0QqG35KihwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable820189 {
- border: none;
- font-size: 85%;
- }
- .hmisctable820189 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable820189 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable820189">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>20203</td><td>4</td><td>84</td><td>0.999</td><td>34.56</td><td>15.55</td><td>18</td><td>19</td><td>24</td><td>30</td><td>43</td><td>55</td><td>64</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1 14 15 16 17 ,  <font color="MidnightBlue">highest</font>: 92 94 95 96 99</span> <hr class="thinhr"> <span style="font-weight:bold">injurytime</span>: Hours Since Injury<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAWklEQVQ4je3VOwoAIAxEwY33P7Qm+G/U7hVuIQophsCirEQyWpRKFCcq3/UWuAsHiyaKV8i2L9rGhosFc42qi0SbXKil7S4KzIu4uOKzrC31S38e+mNXY9czGQXhDQPyr+JzAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable695339 {
- border: none;
- font-size: 85%;
- }
- .hmisctable695339 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable695339 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable695339">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>20196</td><td>11</td><td>93</td><td>0.972</td><td>2.844</td><td>2.35</td><td>0.5</td><td>1.0</td><td>1.0</td><td>2.0</td><td>4.0</td><td>6.0</td><td>7.0</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0.10  0.15  0.20  0.25  0.30 ,  <font color="MidnightBlue">highest</font>: 22.00 45.00 48.00 72.00 96.00</span> <hr class="thinhr"> <span style="font-weight:bold">injurytype</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQImWNgYIQBBgYmGCCKCeUyMIC0wk2Ai+JlMjCgMKEmMDAAADRjAKoEq8d0AAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable600730 {
- border: none;
- font-size: 85%;
- }
- .hmisctable600730 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable600730 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable600730">
- <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>20207</td><td>0</td><td>3</td></tr>
- </table>
- <pre style="font-size:85%;">
- Value                      blunt           penetrating blunt and penetrating
- Frequency                  11189                  6552                  2466
- Proportion                 0.554                 0.324                 0.122
- </pre>
  <hr class="thinhr"> <span style="font-weight:bold">sbp</span>: Systolic Blood Pressure <span style='font-family:Verdana;font-size:75%;'>mmHg</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAeUlEQVQ4jeWTUQ6AMAhDO+9/aC2LQZ2a0bEf5aOQZdAXElCEAJSumMUiBKSumIXUBNdJ8RUug/kzV/ROsMtJ02N4X5O21j/1gNFypdOlciXS9UxqrN+5UujiXFtmacUz1yicnZcfF2sKXU2uCXePsS/u4Y41l3rb1BUP7gxgD5zU4QAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable639454 {
+ .hmisctable790455 {
  border: none;
- font-size: 85%;
+ font-size: 80%;
  }
- .hmisctable639454 td {
+ .hmisctable790455 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable639454 th {
+ .hmisctable790455 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable639454">
+ <table class="hmisctable790455">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>19887</td><td>320</td><td>173</td><td>0.989</td><td>98.45</td><td>27.86</td><td> 60</td><td> 70</td><td> 80</td><td> 95</td><td>110</td><td>130</td><td>143</td></tr>
  </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   4  10  12  20  25 ,  <font color="MidnightBlue">highest</font>: 225 230 234 240 250</span> <hr class="thinhr"> <span style="font-weight:bold">rr</span>: Respiratory Rate <span style='font-family:Verdana;font-size:75%;'>/min</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAdklEQVQ4je2T2wrAMAhD4/7/o9eumyCt1j6Yp4VAL0h7UAKJBWwKioQrFnYFRfq5zpTj4tMluIbJCuPWwqgmK2yENos/zTQXeZr+VzMUEy3LBTKa84nFgcdVx9iDBhO8xyvNVQsL3vdEPfIl5qh3uvtC359pyw0sKAx5Ml+DtwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable541307 {
- border: none;
- font-size: 85%;
- }
- .hmisctable541307 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable541307 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable541307">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>20016</td><td>191</td><td>68</td><td>0.99</td><td>23.06</td><td>7.052</td><td>14</td><td>16</td><td>20</td><td>22</td><td>26</td><td>30</td><td>35</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1  2  3  4  5 ,  <font color="MidnightBlue">highest</font>: 90 91 94 95 96</span> <hr class="thinhr"> <span style="font-weight:bold">cc</span>: Central Capillary Refille Time <span style='font-family:Verdana;font-size:75%;'>s</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAD0AAAANCAMAAAAtxpZ2AAAACVBMVEUAAADMzMz////1iUV5AAAAOklEQVQokdXRMQoAMAgEwT3//+ggFsEmxVlIth8EDwnkRgDh9rm2OUo9+rl/e6arTW1yerXA3eC5BjoXeQULuh8a6gAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable301952 {
- border: none;
- font-size: 85%;
- }
- .hmisctable301952 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable301952 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable301952">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>19596</td><td>611</td><td>20</td><td>0.945</td><td>3.267</td><td>1.67</td><td>1</td><td>2</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1  2  3  4  5 ,  <font color="MidnightBlue">highest</font>: 17 18 20 30 60</span> <pre style="font-size:85%;">
- Value          1     2     3     4     5     6     7     8     9    10    11    12
- Frequency   1510  5328  6020  3367  1805   802   268   271    45   139     3     7
- Proportion 0.077 0.272 0.307 0.172 0.092 0.041 0.014 0.014 0.002 0.007 0.000 0.000
-                                                           
- Value         13    15    16    17    18    20    30    60
- Frequency      3    19     3     1     1     2     1     1
- Proportion 0.000 0.001 0.000 0.000 0.000 0.000 0.000 0.000
- </pre>
- <hr class="thinhr"> <span style="font-weight:bold">hr</span>: Heart Rate <span style='font-family:Verdana;font-size:75%;'>/min</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   4  10  12  20  25 ,  <font color="MidnightBlue">highest</font>: 225 230 234 240 250</span> <hr class="thinhr"> <span style="font-weight:bold">hr</span>: Heart Rate <span style='font-family:Verdana;font-size:75%;'>/min</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAc0lEQVQ4je2T6wqAIBSDZ+//0HkhbVB4aoOCGng5PxyfR4ekCxizS1h0AWPeFtnT4fFzXfP4EpcjO/s8mmIp3Y5a9Ip3PEBhLhXPxQVQ8SRXRUFTX5nrPl34YG9HVCJX+fs1RMUrnQwuwprbtfjmPWUxjxVbmQwFkspBGQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable277494 {
+ .hmisctable881624 {
  border: none;
- font-size: 85%;
+ font-size: 80%;
  }
- .hmisctable277494 td {
+ .hmisctable881624 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable277494 th {
+ .hmisctable881624 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable277494">
+ <table class="hmisctable881624">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20070</td><td>137</td><td>173</td><td>0.996</td><td>104.5</td><td>23.38</td><td> 70</td><td> 80</td><td> 90</td><td>105</td><td>120</td><td>130</td><td>140</td></tr>
  </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   3   4   5   6  10 ,  <font color="MidnightBlue">highest</font>: 190 192 198 200 220</span> <hr class="thinhr"> <span style="font-weight:bold">gcseye</span>: Glasgow Coma Score Eye Opening<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAMAAACXZR4WAAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQImWNgRAEMDAxMKIBKAuTZAhUFUdgEwCSUAxEAGc0IpYAYAIghAR5+GojGAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable828888 {
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   3   4   5   6  10 ,  <font color="MidnightBlue">highest</font>: 190 192 198 200 220</span> <hr class="thinhr"> <span style="font-weight:bold">rr</span>: Respiratory Rate <span style='font-family:Verdana;font-size:75%;'>/min</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAdklEQVQ4je2T2wrAMAhD4/7/o9eumyCt1j6Yp4VAL0h7UAKJBWwKioQrFnYFRfq5zpTj4tMluIbJCuPWwqgmK2yENos/zTQXeZr+VzMUEy3LBTKa84nFgcdVx9iDBhO8xyvNVQsL3vdEPfIl5qh3uvtC359pyw0sKAx5Ml+DtwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable597914 {
  border: none;
- font-size: 85%;
+ font-size: 80%;
  }
- .hmisctable828888 td {
+ .hmisctable597914 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable828888 th {
+ .hmisctable597914 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable828888">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>19475</td><td>732</td><td>5</td><td>0.822</td><td>2.948</td><td>1.414</td></tr>
+ <table class="hmisctable597914">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>20016</td><td>191</td><td>68</td><td>0.99</td><td>23.06</td><td>7.052</td><td>14</td><td>16</td><td>20</td><td>22</td><td>26</td><td>30</td><td>35</td></tr>
  </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> : 0 1 2 3 4 ,  <font color="MidnightBlue">highest</font>: 0 1 2 3 4</span> <pre style="font-size:85%;">
- Value          0     1     2     3     4
- Frequency   1639  2653  1615  2740 10828
- Proportion 0.084 0.136 0.083 0.141 0.556
- </pre>
- <hr class="thinhr"> <span style="font-weight:bold">gcsmotor</span>: Glasgow Coma Score Motor Response<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAABYAAAANCAMAAACae25RAAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQYlWNgxAIYGBiYsAAaC9PEJSAR3MIMaGIwYZDNcMQAQkAMAAwHAbPGyMlJAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable646503 {
- border: none;
- font-size: 85%;
- }
- .hmisctable646503 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable646503 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable646503">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>19475</td><td>732</td><td>7</td><td>0.782</td><td>4.794</td><td>1.797</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> : 0 1 2 3 4 ,  <font color="MidnightBlue">highest</font>: 2 3 4 5 6</span> <pre style="font-size:85%;">
- Value          0     1     2     3     4     5     6
- Frequency   1639   789   607   658  1144  3009 11629
- Proportion 0.084 0.041 0.031 0.034 0.059 0.155 0.597
- </pre>
- <hr class="thinhr"> <span style="font-weight:bold">gcsverbal</span>: Glasgow Coma Score Verbal Response<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAABMAAAANCAMAAAB8UqUVAAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQYlWNgRAcMDAxM6IAGYmTZC+JCxBASUDEGnGIoFMhiIEahAMDoAVcEiR5yAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable383115 {
- border: none;
- font-size: 85%;
- }
- .hmisctable383115 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable383115 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable383115">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>19472</td><td>735</td><td>6</td><td>0.857</td><td>3.611</td><td>1.833</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> : 0 1 2 3 4 ,  <font color="MidnightBlue">highest</font>: 1 2 3 4 5</span> <pre style="font-size:85%;">
- Value          0     1     2     3     4     5
- Frequency   1642  2568  1200   903  3161  9998
- Proportion 0.084 0.132 0.062 0.046 0.162 0.513
- </pre>
- <hr class="thinhr"> <span style="font-weight:bold">gcs</span>: Glasgow Coma Score Total<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1  2  3  4  5 ,  <font color="MidnightBlue">highest</font>: 90 91 94 95 96</span> <hr class="thinhr"> <span style="font-weight:bold">gcs</span>: Glasgow Coma Score Total <span style='font-family:Verdana;font-size:75%;'>points</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAACgAAAANCAMAAADsQdzaAAAACVBMVEUAAADMzMz////1iUV5AAAAK0lEQVQokWNgJAYwMDAyMBEDGBiYhoTC4eFrkCoCCqFKoAjkKQwEoRiQEACOggNMVmIG8gAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable461982 {
+ .hmisctable810047 {
  border: none;
- font-size: 85%;
+ font-size: 80%;
  }
- .hmisctable461982 td {
+ .hmisctable810047 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable461982 th {
+ .hmisctable810047 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable461982">
+ <table class="hmisctable810047">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20184</td><td>23</td><td>13</td><td>0.863</td><td>12.47</td><td>3.594</td><td> 4</td><td> 6</td><td>11</td><td>15</td><td>15</td><td>15</td><td>15</td></tr>
  </table>
@@ -662,660 +480,258 @@ iVBORw0KGgoAAAANSUhEUgAAACgAAAANCAMAAADsQdzaAAAACVBMVEUAAADMzMz////1iUV5AAAAK0lE
  Frequency  10346
  Proportion 0.513
  </pre>
- <hr class="thinhr"> <span style="font-weight:bold">ddeath</span>: Date of Death<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAk0lEQVQ4jcWTCxLAEAxEl/sfuiWSCUX97YzGtCRPY2EOCOjfYg8I/VUuclVp93LBiwjcI0yQ4UooV3FJVR8AJhDxCsSyDLqE69sCSq3rJlzgFbV3Kt+QvbzBQPEdKrOej6jfj3IePtskQUHFPkZ/kwmsbNpD88el7+d+hkau6PMNplBacR1pUaPEj2SiWSctk3FMD8C7BuvPoQ4QAAAAAElFTkSuQmCC" alt="image" /></div> <pre style="font-size:85%;">
-          n    missing   distinct       Info       Mean        Gmd        .05 
-       3086      17121       1320          1 2008-03-08      477.7 2006-02-11 
-        .10        .25        .50        .75        .90        .95 
- 2006-06-29 2007-05-01 2008-05-03 2009-02-18 2009-08-23 2009-10-21 
+ <hr class="thinhr"> <span style="font-weight:bold">cc</span>: Central Capillary Refille Time <span style='font-family:Verdana;font-size:75%;'>s</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAD0AAAANCAMAAAAtxpZ2AAAACVBMVEUAAADMzMz////1iUV5AAAAOklEQVQokdXRMQoAMAgEwT3//+ggFsEmxVlIth8EDwnkRgDh9rm2OUo9+rl/e6arTW1yerXA3eC5BjoXeQULuh8a6gAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable392100 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable392100 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable392100 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable392100">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>19596</td><td>611</td><td>20</td><td>0.945</td><td>3.267</td><td>1.67</td><td>1</td><td>2</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+ </table>
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1  2  3  4  5 ,  <font color="MidnightBlue">highest</font>: 17 18 20 30 60</span> <pre style="font-size:85%;">
+ Value          1     2     3     4     5     6     7     8     9    10    11    12
+ Frequency   1510  5328  6020  3367  1805   802   268   271    45   139     3     7
+ Proportion 0.077 0.272 0.307 0.172 0.092 0.041 0.014 0.014 0.002 0.007 0.000 0.000
+                                                           
+ Value         13    15    16    17    18    20    30    60
+ Frequency      3    19     3     1     1     2     1     1
+ Proportion 0.000 0.001 0.000 0.000 0.000 0.000 0.000 0.000
  </pre>
- <style>
- .hmisctable456960 {
+ <hr class="thinhr"> <span style="font-weight:bold">injurytime</span>: Hours Since Injury <span style='font-family:Verdana;font-size:75%;'>hours</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAWklEQVQ4je3VOwoAIAxEwY33P7Qm+G/U7hVuIQophsCirEQyWpRKFCcq3/UWuAsHiyaKV8i2L9rGhosFc42qi0SbXKil7S4KzIu4uOKzrC31S38e+mNXY9czGQXhDQPyr+JzAAAAAElFTkSuQmCC" alt="image" /></div> <style>
+ .hmisctable660865 {
  border: none;
- font-size: 85%;
+ font-size: 80%;
  }
- .hmisctable456960 td {
- text-align: right;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable456960 th {
- color: Black;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: bold;
- }
- </style>
- <table class="hmisctable456960">
- <tr><td><font color="MidnightBlue">lowest</font> :</td><td>2005-05-28</td><td>2005-06-05</td><td>2005-06-12</td><td>2005-06-14</td><td>2005-06-22</td></tr>
- <tr><td><font color="MidnightBlue">highest</font>:</td><td>2010-01-09</td><td>2010-01-15</td><td>2010-01-17</td><td>2010-01-20</td><td>2010-01-24</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">cause</span>: Main Cause of Death<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAABYAAAANCAMAAACae25RAAAACVBMVEUAAADMzMz////1iUV5AAAALElEQVQYlWNgZGRkYGBEBwwMTEwgjAZoK0yRSyAcUoQZGHAKQ1wCQUAMEQAA+hQBmHDagFgAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable117291 {
- border: none;
- font-size: 85%;
- }
- .hmisctable117291 td {
+ .hmisctable660865 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable117291 th {
+ .hmisctable660865 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable117291">
- <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>3089</td><td>17118</td><td>7</td></tr>
+ <table class="hmisctable660865">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>20196</td><td>11</td><td>93</td><td>0.972</td><td>2.844</td><td>2.35</td><td>0.5</td><td>1.0</td><td>1.0</td><td>2.0</td><td>4.0</td><td>6.0</td><td>7.0</td></tr>
  </table>
- <style>
- .hmisctable978165 {
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0.10  0.15  0.20  0.25  0.30 ,  <font color="MidnightBlue">highest</font>: 22.00 45.00 48.00 72.00 96.00</span> <hr class="thinhr"> <span style="font-weight:bold">injurytype</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQImWNgYIQBBgYmGCCKCeUyMIC0wk2Ai+JlMjCgMKEmMDAAADRjAKoEq8d0AAAAAElFTkSuQmCC" alt="image" /></div> <style>
+ .hmisctable438150 {
  border: none;
- font-size: 85%;
+ font-size: 80%;
  }
- .hmisctable978165 td {
- text-align: right;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable978165 th {
- color: Black;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: bold;
- }
- </style>
- <table class="hmisctable978165">
- <tr><td><font color="MidnightBlue">lowest</font> :</td><td>bleeding             </td><td>head injury          </td><td>myocardial infarction</td><td>stroke               </td><td>pulmonary embolism   </td></tr>
- <tr><td><font color="MidnightBlue">highest</font>:</td><td>myocardial infarction</td><td>stroke               </td><td>pulmonary embolism   </td><td>multi organ failure  </td><td>other                </td></tr>
- </table>
-  bleeding (1064, 0.344), head injury (1225, 0.397), myocardial infarction (29, 0.009), stroke (13, 0.004), pulmonary embolism (40, 0.013), multi organ failure (447, 0.145), other (271, 0.088) <hr class="thinhr"> <span style="font-weight:bold">scauseother</span>: Description of Other Cause of Death <style>
- .hmisctable974526 {
- border: none;
- font-size: 85%;
- }
- .hmisctable974526 td {
+ .hmisctable438150 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable974526 th {
+ .hmisctable438150 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable974526">
+ <table class="hmisctable438150">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>20207</td><td>0</td><td>227</td></tr>
- </table>
- <style>
- .hmisctable677200 {
- border: none;
- font-size: 85%;
- }
- .hmisctable677200 td {
- text-align: right;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable677200 th {
- color: Black;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: bold;
- }
- </style>
- <table class="hmisctable677200">
- <tr><td><font color="MidnightBlue">lowest</font> :</td><td>                          </td><td>Acute Hypoxia             </td><td>ACUTE LUNG INJURY         </td><td>Acute Pulmonary Oedema    </td><td>Acute Renal Failure       </td></tr>
- <tr><td><font color="MidnightBlue">highest</font>:</td><td>trauma raquimedular       </td><td>Traumatic Shock           </td><td>Type I Respiratory failure</td><td>Unsurvivable injuries     </td><td>Visceral injury           </td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">status</span>: Status of Patient at Outcome if Alive<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAH0lEQVQImWNgYIQBBgYmGCCNSbYJYC4DA8gEsCkMDAA5cADEv6lXIAAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable952903 {
- border: none;
- font-size: 85%;
- }
- .hmisctable952903 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable952903 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable952903">
- <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>17038</td><td>3169</td><td>3</td></tr>
+ <tr><td>20207</td><td>0</td><td>3</td></tr>
  </table>
  <pre style="font-size:85%;">
- Value                         discharged             still in hospital
- Frequency                          13681                          1969
- Proportion                         0.803                         0.116
-                                         
- Value      transferred to other hospital
- Frequency                           1388
- Proportion                         0.081
+ Value                      blunt           penetrating blunt and penetrating
+ Frequency                  11189                  6552                  2466
+ Proportion                 0.554                 0.324                 0.122
  </pre>
- <hr class="thinhr"> <span style="font-weight:bold">ddischarge</span>: Date of discharge, transfer to other hospital or day 28 from randomization<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAfklEQVQ4jcXTiwqAMAgF0Jv//9E1TSaVe7tug8GY7kCIIz7AQA1FB5zuqgiKaa8xJ3bzC7eoFCeLnlg52+K6GeXwteyytCBXTVSySoMl46YTx/u4KWXBPM4BnGjvtsezIkbzkn27lB1u6HL9onFdO35RY0jmEekDMDlJ63KZTpJZBwR6QcwiAAAAAElFTkSuQmCC" alt="image" /></div> <pre style="font-size:85%;">
-          n    missing   distinct       Info       Mean        Gmd        .05 
-      17022       3185       1658          1 2008-04-18      464.7 2006-03-24 
-        .10        .25        .50        .75        .90        .95 
- 2006-08-04 2007-06-30 2008-06-25 2009-03-12 2009-09-08 2009-11-09 
- </pre>
- <style>
- .hmisctable470482 {
+ <hr class="thinhr"> <span style="font-weight:bold">time2death</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAHYAAAANCAMAAABLnGohAAAACVBMVEUAAADMzMz////1iUV5AAAAOElEQVQ4jWNgZGBgpD9gYGJgYKI/GHnWDoC9A2UtMCUPQFIeYYE88qylv73glIwEKE2hhAQZIBgATkwKTCjCCS8AAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable688645 {
  border: none;
- font-size: 85%;
+ font-size: 80%;
  }
- .hmisctable470482 td {
- text-align: right;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable470482 th {
- color: Black;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: bold;
- }
- </style>
- <table class="hmisctable470482">
- <tr><td><font color="MidnightBlue">lowest</font> :</td><td>2005-05-26</td><td>2005-06-03</td><td>2005-06-06</td><td>2005-06-08</td><td>2005-06-10</td></tr>
- <tr><td><font color="MidnightBlue">highest</font>:</td><td>2010-02-02</td><td>2010-02-03</td><td>2010-02-04</td><td>2010-02-07</td><td>2010-02-10</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">condition</span>: Condition of Patient at Outcome if Alive<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAMAAACXZR4WAAAACVBMVEUAAADMzMz////1iUV5AAAAM0lEQVQImWNgZGRkYGBEAAYmJiYGEAEDRAsgxDAFILYgLAJJQVVAVJEswMCARQBuCwQDAHkwAPh+8VbKAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable692829 {
- border: none;
- font-size: 85%;
- }
- .hmisctable692829 td {
+ .hmisctable688645 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable692829 th {
+ .hmisctable688645 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable692829">
- <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>16956</td><td>3251</td><td>5</td></tr>
- </table>
- <style>
- .hmisctable747317 {
- border: none;
- font-size: 85%;
- }
- .hmisctable747317 td {
- text-align: right;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable747317 th {
- color: Black;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: bold;
- }
- </style>
- <table class="hmisctable747317">
- <tr><td><font color="MidnightBlue">lowest</font> :</td><td>no symptoms                                       </td><td>minor symptoms                                    </td><td>some restriction in lifestyle but independent     </td><td>dependent, but not requiring constant attention   </td><td>fully dependent, requiring attention day and night</td></tr>
- <tr><td><font color="MidnightBlue">highest</font>:</td><td>no symptoms                                       </td><td>minor symptoms                                    </td><td>some restriction in lifestyle but independent     </td><td>dependent, but not requiring constant attention   </td><td>fully dependent, requiring attention day and night</td></tr>
- </table>
-  no symptoms (2817, 0.166), minor symptoms (6115, 0.361), some restriction in lifestyle but independent (4085, 0.241), dependent, but not requiring constant attention (2567, 0.151), fully dependent, requiring attention day and night (1372, 0.081) <hr class="thinhr"> <span style="font-weight:bold">ndaysicu</span>: Number of Days Spent in ICU<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJQAAAANCAMAAAB4i7dtAAAACVBMVEUAAADMzMz////1iUV5AAAATUlEQVQ4jWNgZGRgYBxkgIGJiQGIBxcYdRSxYNRRxAKG0dxHJBh1FLEA4qhB5i6Yo0BgoN0CB+DcBwVAJiMyQZoAftXgTAUnMPMbCgsAd8YM3zFInn4AAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable790803 {
- border: none;
- font-size: 85%;
- }
- .hmisctable790803 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable790803 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable790803">
+ <table class="hmisctable688645">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>20025</td><td>182</td><td>49</td><td>0.822</td><td>2.662</td><td>4.249</td><td> 0</td><td> 0</td><td> 0</td><td> 0</td><td> 3</td><td> 8</td><td>14</td></tr>
+ <tr><td>3086</td><td>17121</td><td>39</td><td>0.943</td><td>3.623</td><td>5.347</td><td> 0</td><td> 0</td><td> 0</td><td> 1</td><td> 4</td><td>10</td><td>15</td></tr>
  </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0.00  0.12  0.30  0.50  1.00 ,  <font color="MidnightBlue">highest</font>: 40.00 43.00 45.00 54.00 58.00</span> <hr class="thinhr"> <span style="font-weight:bold">bheadinj</span>: Significant Head Injury <style>
- .hmisctable130251 {
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   0   1   2   3   4 ,  <font color="MidnightBlue">highest</font>:  40 266 343 384 397</span> <hr class="thinhr"> <span style="font-weight:bold">earlydeath</span>: All-cause mortality. Death within 28 days from injury (1 = early death) <style>
+ .hmisctable286794 {
  border: none;
- font-size: 85%;
+ font-size: 80%;
  }
- .hmisctable130251 td {
+ .hmisctable286794 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable130251 th {
+ .hmisctable286794 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable130251">
+ <table class="hmisctable286794">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.652</td><td>6422</td><td>0.3191</td><td>0.4346</td></tr>
+ <tr><td>20207</td><td>0</td><td>2</td><td>0.387</td><td>3076</td><td>0.1522</td><td>0.2581</td></tr>
  </table>
- <hr class="thinhr"> <span style="font-weight:bold">bneuro</span>: Neurosurgery Done <style>
- .hmisctable436002 {
- border: none;
- font-size: 85%;
- }
- .hmisctable436002 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable436002 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable436002">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.28</td><td>2099</td><td>0.1043</td><td>0.1868</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">bchest</span>: Chest Surgery Done <style>
- .hmisctable168573 {
- border: none;
- font-size: 85%;
- }
- .hmisctable168573 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable168573 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable168573">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.385</td><td>3043</td><td>0.1512</td><td>0.2567</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">babdomen</span>: Abdominal Surgery Done <style>
- .hmisctable104311 {
- border: none;
- font-size: 85%;
- }
- .hmisctable104311 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable104311 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable104311">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.563</td><td>5042</td><td>0.2505</td><td>0.3755</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">bpelvis</span>: Pelvis Surgery Done <style>
- .hmisctable461316 {
- border: none;
- font-size: 85%;
- }
- .hmisctable461316 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable461316 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable461316">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.185</td><td>1331</td><td>0.06613</td><td>0.1235</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">bpe</span>: Pulmonary Embolism <style>
- .hmisctable362159 {
- border: none;
- font-size: 85%;
- }
- .hmisctable362159 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable362159 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable362159">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.021</td><td>139</td><td>0.006906</td><td>0.01372</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">bdvt</span>: Deep Vein Thrombosis <style>
- .hmisctable621007 {
- border: none;
- font-size: 85%;
- }
- .hmisctable621007 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable621007 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable621007">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.012</td><td>81</td><td>0.004024</td><td>0.008017</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">bstroke</span>: Stroke <style>
- .hmisctable917961 {
- border: none;
- font-size: 85%;
- }
- .hmisctable917961 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable917961 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable917961">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.018</td><td>121</td><td>0.006012</td><td>0.01195</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">bbleed</span>: Surgery for Bleeding <style>
- .hmisctable744274 {
- border: none;
- font-size: 85%;
- }
- .hmisctable744274 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable744274 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable744274">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.214</td><td>1553</td><td>0.07716</td><td>0.1424</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">bmi</span>: Myocardial Infarction <style>
- .hmisctable505600 {
- border: none;
- font-size: 85%;
- }
- .hmisctable505600 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable505600 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable505600">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.013</td><td>87</td><td>0.004323</td><td>0.008608</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">bgi</span>: Gastrointestinal Bleeding <style>
- .hmisctable954672 {
- border: none;
- font-size: 85%;
- }
- .hmisctable954672 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable954672 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable954672">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.039</td><td>264</td><td>0.01312</td><td>0.02589</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">bloading</span>: Complete Loading Dose of Trial Drug Given <style>
- .hmisctable463430 {
- border: none;
- font-size: 85%;
- }
- .hmisctable463430 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable463430 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable463430">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.027</td><td>19944</td><td>0.9909</td><td>0.01802</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">bmaint</span>: Complete Maintenance Dose of Trial Drug Given <style>
- .hmisctable668661 {
- border: none;
- font-size: 85%;
- }
- .hmisctable668661 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable668661 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable668661">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.163</td><td>18965</td><td>0.9423</td><td>0.1088</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">btransf</span>: Blood Products Transfusion <style>
- .hmisctable408617 {
- border: none;
- font-size: 85%;
- }
- .hmisctable408617 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable408617 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable408617">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>20127</td><td>80</td><td>2</td><td>0.75</td><td>10232</td><td>0.5084</td><td>0.4999</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">ncell</span>: Number of Units of Red Call Products Transfused<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAI4AAAANCAMAAABIB6ZMAAAACVBMVEUAAADMzMz////1iUV5AAAAXUlEQVQ4je2TQQoAIAgEd/v/o7NMSpDoZgcnIrPLIC2oAPwBNAVW5FI6N6aFuJROxAyUxAr4Ilt7OoPs4bTSueF10v90oJM5phEnHNAOaa/1UoSP5BFW2MX1XKpkd8A2DAGzLX2aAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable465352 {
- border: none;
- font-size: 85%;
- }
- .hmisctable465352 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable465352 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable465352">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>10244</td><td>9963</td><td>47</td><td>0.966</td><td>3.919</td><td>3.445</td><td> 1</td><td> 1</td><td> 2</td><td> 3</td><td> 5</td><td> 8</td><td>11</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0.0  0.5  1.0  1.5  2.0 ,  <font color="MidnightBlue">highest</font>: 45.0 46.0 49.0 54.0 60.0</span> <hr class="thinhr"> <span style="font-weight:bold">nplasma</span>: Number of Units of Fresh Frozen Plasma Transfused<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAIgAAAANCAMAAABFGdYLAAAACVBMVEUAAADMzMz////1iUV5AAAARklEQVQ4jWNgZGRgYBwEgIGJiQGIBx6MOgQdjDoEHTCM5ho0MOoQdDDqEHQAyTUQyMiAAnFzCChlBBNQJjRPoGURZEGIQgDQfgvfio4AgwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable210205 {
- border: none;
- font-size: 85%;
- }
- .hmisctable210205 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable210205 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable210205">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>10243</td><td>9964</td><td>45</td><td>0.59</td><td>1.44</td><td>2.46</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>5</td><td>8</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0  1  2  3  4 ,  <font color="MidnightBlue">highest</font>: 46 53 56 59 60</span> <hr class="thinhr"> <span style="font-weight:bold">nplatelets</span>: Number of Units of Platelets Transfused<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAH8AAAANCAMAAAC3iUHrAAAACVBMVEUAAADMzMz////1iUV5AAAAOklEQVQ4jWNgZGRgYBw4wMDExADEAwZG7R/h9o+m/1H7R7L9oPQPzAFghERhiiBLQPMMmCQ/94B0AgBujwsT9a+boAAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable700458 {
- border: none;
- font-size: 85%;
- }
- .hmisctable700458 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable700458 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable700458">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>10243</td><td>9964</td><td>42</td><td>0.218</td><td>0.5526</td><td>1.057</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>4</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0  1  2  3  4 ,  <font color="MidnightBlue">highest</font>: 38 41 42 45 87</span> <hr class="thinhr"> <span style="font-weight:bold">ncryo</span>: Number of Units of Cryoprecipitate Transfused<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAFUAAAANCAMAAADv9tLyAAAACVBMVEUAAADMzMz////1iUV5AAAANElEQVQ4jWNgZGBgpDpgYGJgYKI6GDWVRqaOpoFRU4FpgAFMIGMgAYQQBCKgfDjGnwAYGQFAGAdbHi1V6wAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable982137 {
- border: none;
- font-size: 85%;
- }
- .hmisctable982137 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable982137 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable982137">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>10243</td><td>9964</td><td>28</td><td>0.11</td><td>0.2577</td><td>0.5038</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0  1  2  3  4 ,  <font color="MidnightBlue">highest</font>: 28 30 33 36 61</span> <hr class="thinhr"> <span style="font-weight:bold">bvii</span>: Recombinant Factor VIIa Given <style>
- .hmisctable398634 {
- border: none;
- font-size: 85%;
- }
- .hmisctable398634 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable398634 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable398634">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Sum</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>19833</td><td>374</td><td>2</td><td>0.007</td><td>46</td><td>0.002319</td><td>0.004628</td></tr>
- </table>
- <hr class="thinhr"> <span style="font-weight:bold">boxid</span>: Treatment Box Number<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAG0AAAANCAMAAACU0hA+AAAACVBMVEUAAADMzMz////1iUV5AAAAcUlEQVQ4je2SQQ6AMAgEF/7/aLUVpUAJvRhN3FOTyXTbZEFEaKF2IhtAcADTXOJtgpnlwuPENilME5i6raOJE8JaG55sw1va3J0DWSoMTKjZnYkWGcLaJrUJ+7Px+Smsf03Mv+2jbX52mO8KC6N04q5uj3UF8ZHwQWgAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable364718 {
- border: none;
- font-size: 85%;
- }
- .hmisctable364718 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable364718 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable364718">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>20207</td><td>0</td><td>2728</td><td>1</td><td>5131</td><td>2767</td><td>2140</td><td>2276</td><td>2734</td><td>4464</td><td>8226</td><td>8674</td><td>8829</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> : 2001 2002 2003 2004 2005 ,  <font color="MidnightBlue">highest</font>: 9055 9056 9057 9061 9065</span> <hr class="thinhr"> <span style="font-weight:bold">packnum</span>: Treatment Pack Number<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJEAAAANCAMAAACeonwpAAAACVBMVEUAAADMzMz////1iUV5AAAAWElEQVQ4je2TOwoAMAhDE+9/6NKh9IOWFBw6+FyDBuGBxAp9lIyAsgFm2DEPIaIgnapG1Sij0eFR4IEQeXHteuq/H1WjapTRyBUAfcAxrmtrQrUvOjWXkQ2whwkGHgJ1uQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable916417 {
- border: none;
- font-size: 85%;
- }
- .hmisctable916417 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable916417 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable916417">
- <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>20207</td><td>0</td><td>48</td><td>0.998</td><td>51.35</td><td>27.62</td><td>22</td><td>23</td><td>27</td><td>45</td><td>82</td><td>86</td><td>88</td></tr>
- </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> : 21 22 23 24 25 ,  <font color="MidnightBlue">highest</font>: 94 95 96 97 98</span> <hr class="thinhr">
+ <hr class="thinhr">
+</div>
+<div id="continous-plots" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Continous plots</h3>
+<p><img src="Univar_crash2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Evidence of digit preference. Explore further with targeted summaries.</p>
+</div>
+<div id="categorical-plots" class="section level3">
+<h3><span class="header-section-number">7.1.3</span> Categorical plots</h3>
+<p><img src="Univar_crash2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+</div>
+<div id="univariate-summaries" class="section level2">
+<h2><span class="header-section-number">7.2</span> Univariate summaries</h2>
+<p>More detailed univariate summaries for the variables of interest are also provided.</p>
+<div id="continous-variables" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Continous variables</h3>
+<div id="age" class="section level4">
+<h4><span class="header-section-number">7.2.1.1</span> Age</h4>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="Univar_crash2_files/figure-html/unnamed-chunk-4-1.png" alt="Distribution of subject age [years]" width="768" />
+<p class="caption">
+Figure 7.1: Distribution of subject age [years]
+</p>
+</div>
+</div>
+<div id="blood-pressure" class="section level4">
+<h4><span class="header-section-number">7.2.1.2</span> Blood pressure</h4>
+<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<img src="Univar_crash2_files/figure-html/unnamed-chunk-5-1.png" alt="Distribution of SBP" width="768" />
+<p class="caption">
+Figure 7.2: Distribution of SBP
+</p>
+</div>
+</div>
+<div id="respiratory-rate" class="section level4">
+<h4><span class="header-section-number">7.2.1.3</span> Respiratory rate</h4>
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="Univar_crash2_files/figure-html/unnamed-chunk-6-1.png" alt="Distribution of respiratory rate" width="768" />
+<p class="caption">
+Figure 7.3: Distribution of respiratory rate
+</p>
+</div>
+</div>
+<div id="heart-rate" class="section level4">
+<h4><span class="header-section-number">7.2.1.4</span> Heart rate</h4>
+<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<img src="Univar_crash2_files/figure-html/unnamed-chunk-7-1.png" alt="Distribution of heart rate" width="768" />
+<p class="caption">
+Figure 7.4: Distribution of heart rate
+</p>
+</div>
+</div>
+<div id="glasgow-coma-score" class="section level4">
+<h4><span class="header-section-number">7.2.1.5</span> Glasgow coma score</h4>
+<div class="figure"><span id="fig:unnamed-chunk-8"></span>
+<img src="Univar_crash2_files/figure-html/unnamed-chunk-8-1.png" alt="Distribution of Total Glasgow coma score" width="768" />
+<p class="caption">
+Figure 7.5: Distribution of Total Glasgow coma score
+</p>
+</div>
+</div>
+<div id="central-capillary-refill-time" class="section level4">
+<h4><span class="header-section-number">7.2.1.6</span> Central capillary refill time</h4>
+<div class="figure"><span id="fig:unnamed-chunk-9"></span>
+<img src="Univar_crash2_files/figure-html/unnamed-chunk-9-1.png" alt="Distribution of Central capillary refill time" width="768" />
+<p class="caption">
+Figure 7.6: Distribution of Central capillary refill time
+</p>
+</div>
+</div>
+<div id="hours-since-injury" class="section level4">
+<h4><span class="header-section-number">7.2.1.7</span> Hours since injury</h4>
+<div class="figure"><span id="fig:unnamed-chunk-10"></span>
+<img src="Univar_crash2_files/figure-html/unnamed-chunk-10-1.png" alt="Distribution of hours since injury" width="768" />
+<p class="caption">
+Figure 7.7: Distribution of hours since injury
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="session-info" class="section level2">
+<h2><span class="header-section-number">7.3</span> Session info</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<pre><code>## R version 3.6.1 (2019-07-05)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 17763)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] Hmisc_4.4-0     Formula_1.2-3   survival_3.2-3  lattice_0.20-40
+##  [5] forcats_0.5.0   stringr_1.4.0   dplyr_0.8.5     purrr_0.3.4    
+##  [9] readr_1.3.1     tidyr_1.0.2     tibble_3.0.1    ggplot2_3.3.0  
+## [13] tidyverse_1.3.0 here_0.1       
+## 
+## loaded via a namespace (and not attached):
+##  [1] httr_1.4.1          jsonlite_1.6.1      splines_3.6.1      
+##  [4] modelr_0.1.6        assertthat_0.2.1    highr_0.8          
+##  [7] latticeExtra_0.6-29 cellranger_1.1.0    yaml_2.2.1         
+## [10] pillar_1.4.4        backports_1.1.7     glue_1.4.1         
+## [13] digest_0.6.25       RColorBrewer_1.1-2  checkmate_2.0.0    
+## [16] rvest_0.3.5         colorspace_1.4-1    htmltools_0.4.0    
+## [19] Matrix_1.2-18       pkgconfig_2.0.3     broom_0.5.5        
+## [22] haven_2.2.0         bookdown_0.18       patchwork_1.0.0    
+## [25] scales_1.1.1        jpeg_0.1-8.1        htmlTable_1.13.3   
+## [28] farver_2.0.3        generics_0.0.2      ellipsis_0.3.0     
+## [31] withr_2.2.0         nnet_7.3-13         cli_2.0.2          
+## [34] magrittr_1.5        crayon_1.3.4        readxl_1.3.1       
+## [37] evaluate_0.14       fs_1.3.2            fansi_0.4.1        
+## [40] nlme_3.1-145        xml2_1.2.5          foreign_0.8-76     
+## [43] tools_3.6.1         data.table_1.12.8   hms_0.5.3          
+## [46] lifecycle_0.2.0     munsell_0.5.0       reprex_0.3.0       
+## [49] cluster_2.1.0       compiler_3.6.1      rlang_0.4.6        
+## [52] grid_3.6.1          rstudioapi_0.11     htmlwidgets_1.5.1  
+## [55] base64enc_0.1-3     labeling_0.3        rmarkdown_2.1      
+## [58] gtable_0.3.0        DBI_1.1.0           R6_2.4.1           
+## [61] gridExtra_2.3       lubridate_1.7.4     knitr_1.28         
+## [64] rprojroot_1.3-2     stringi_1.4.6       Rcpp_1.0.4.6       
+## [67] vctrs_0.3.0         rpart_4.1-15        acepack_1.4.1      
+## [70] png_0.1-7           dbplyr_1.4.2        tidyselect_1.1.0   
+## [73] xfun_0.12</code></pre>
+
 </div>
 </div>
             </section>
@@ -1323,8 +739,8 @@ iVBORw0KGgoAAAANSUhEUgAAAJEAAAANCAMAAACeonwpAAAACVBMVEUAAADMzMz////1iUV5AAAAWElE
           </div>
         </div>
       </div>
-<a href="references.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="univariate-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="statistical-analysis-plan.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bivariate-distributions-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1374,6 +790,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 
 #  Bivariate distributions
 
-Multivariate Crash2
+Multivariate a_crash2
 
 This code is a continous by example
 
@@ -11,6 +11,7 @@ library(tidyverse)
 library(janitor)
 library(summarytools)
 library(Hmisc)
+library(arsenal)
 ```
 
 ## Read data 
@@ -18,45 +19,82 @@ library(Hmisc)
 ### Load the dataset.
 
 ```{r, message = FALSE}
-load(here::here("data", "crash2.rda"))
+load(here::here("data", "a_crash2.rda"))
 
-crash2 <- Hmisc::upData(crash2,
-                        labels = c(age = 'Age'),
-                        units = c(age = "years"))
+## TODO: Move out to data prep
+## TODO: Complete metadata by adding missing labels. 
+## This should be a dervived dataset stored in data as we are adding to the oirginal source dataset obtained. 
+a_crash2 <- Hmisc::upData(a_crash2,
+               labels = c(age = 'Age'),
+               units = c(age = "years", injurytime = "hours", gcs = "points"))
 
 ```
+
+
+
+### Summary 
+
+```{r, results="asis"}
+library(arsenal)
+crs.char <-
+  tableby(
+    sex ~ age + hr + rr + sbp ,
+    data = a_crash2,
+    test = FALSE,
+    numeric.stats = c("median", "q1q3", "range"), 
+    digits = 1, digits.p = 2, digits.pct = 1
+  )
+
+summary(crs.char, title = 'Patient characteristics') 
+```
+
+```{r}
+library(gtsummary)
+
+a_crash2 %>%
+  select(sex, age, hr, rr, sbp) %>%
+  gtsummary::tbl_summary(by = "sex") %>%
+  bold_labels()
+
+```
+
 
 
 ### Histograms
 
 ```{r, echo = FALSE, message = FALSE}
-crash2 %>%
-  filter(!(is.na(bmi))) %>%
-  with(., histboxp(x = age, group = bmi, sd=TRUE, bins=200))
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x = age,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
 
 ```
 
 
 ---
-title: Multivariate Crash2
+title: Multivariate a_crash2
 output: html_document
 ---
 
 
-## Age {.tabset}
+## Age 
 
 ### Continous 
 
 ```{r}
 
-crash2 %>% dplyr::filter(!is.na(sbp)) %>% tally()
-crash2 %>% dplyr::filter(is.na(sbp)) %>% tally()
+a_crash2 %>% dplyr::filter(!is.na(sbp)) %>% tally()
+a_crash2 %>% dplyr::filter(is.na(sbp)) %>% tally()
 
-bigN <- crash2 %>% dplyr::filter(!is.na(sbp) & !is.na(age)) %>% tally()
-n_miss <- crash2 %>% dplyr::filter(is.na(sbp) | is.na(age)) %>% tally()
+bigN <- a_crash2 %>% dplyr::filter(!is.na(sbp) & !is.na(age)) %>% tally()
+n_miss <- a_crash2 %>% dplyr::filter(is.na(sbp) | is.na(age)) %>% tally()
 
 title <-
-  paste0("Plot of ", Hmisc::label(crash2$age), " and ", Hmisc::label(crash2$sbp))
+  paste0("Plot of ", Hmisc::label(a_crash2$age), " and ", Hmisc::label(a_crash2$sbp))
 
 caption <-
   paste0(
@@ -68,11 +106,11 @@ caption <-
   )
 
 
-x_axis <- paste0(Hmisc::label(crash2$age), " [", Hmisc::units(crash2$age), "]")
-y_axis <- paste0(Hmisc::label(crash2$sbp), " [", Hmisc::units(crash2$sbp), "]")
+x_axis <- paste0(Hmisc::label(a_crash2$age), " [", Hmisc::units(a_crash2$age), "]")
+y_axis <- paste0(Hmisc::label(a_crash2$sbp), " [", Hmisc::units(a_crash2$sbp), "]")
 
 
-p1 <- crash2 %>%
+p1 <- a_crash2 %>%
   dplyr::filter(!is.na(sbp) & !is.na(age)) %>%
   mutate(sbp = as.numeric(sbp), 
          age = as.numeric(age)) %>%
@@ -96,7 +134,7 @@ p1
 ### Continous2
 
 ```{r}
-p1 <- crash2 %>%
+p1 <- a_crash2 %>%
   filter(!is.na(sbp) & !is.na(age)) %>%
   mutate(sbp = as.numeric(sbp), 
          age = as.numeric(age)) %>%
@@ -107,7 +145,7 @@ p1 <- crash2 %>%
   geom_rug() +
   theme_minimal()
 
-p2 <- crash2 %>%
+p2 <- a_crash2 %>%
   filter(!is.na(sbp) & !is.na(hr)) %>%
   mutate(sbp = as.numeric(sbp), 
          age = as.numeric(hr)) %>%
@@ -119,7 +157,7 @@ p2 <- crash2 %>%
   theme_minimal()
 
 
-p3 <- crash2 %>%
+p3 <- a_crash2 %>%
   filter(!is.na(sbp) & !is.na(rr)) %>%
   mutate(sbp = as.numeric(sbp), 
          age = as.numeric(rr)) %>%
@@ -131,7 +169,7 @@ p3 <- crash2 %>%
   theme_minimal()
 
 
-p4 <- crash2 %>%
+p4 <- a_crash2 %>%
   filter(!is.na(hr) & !is.na(age)) %>%
   mutate(sbp = as.numeric(hr), 
          age = as.numeric(age)) %>%
@@ -155,5 +193,10 @@ library(patchwork)
 
 
 
-## {-}
 
+
+## Session info
+
+```{r}
+sessionInfo()
+```

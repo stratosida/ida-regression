@@ -15,26 +15,33 @@ The data set includes 20,207 patients and 44 variables.
 
 ## Crash2 dataset contents
 
+### Source dataset 
+
+Display the source dataset contents. The dataset is in the **data-raw** folder of the project directory. 
+
+
+**TODO: Move the contents of the original data set to an appendix? IS it relevant for us?**
+
 <!--html_preserve--><hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable553354 {
+ .hmisctable440141 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable553354 td {
+ .hmisctable440141 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable553354 th {
+ .hmisctable440141 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable553354" border="1">
+ <table class="hmisctable440141" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
@@ -84,23 +91,23 @@ The data set includes 20,207 patients and 44 variables.
 
  <hr>
  <style>
- .hmisctable847278 {
+ .hmisctable451079 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable847278 td {
+ .hmisctable451079 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable847278 th {
+ .hmisctable451079 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable847278" border="1">
+ <table class="hmisctable451079" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.source">source</a></td><td>telephone</td></tr>
  <tr><td></td><td>telephone entered manually</td></tr>
@@ -142,3 +149,129 @@ The data set includes 20,207 patients and 44 variables.
 
  <hr>
 <!--/html_preserve-->
+
+
+### Updated analysis dataset
+
+Additional meta-data is added to the original *source* data set. We write this new modified data set back to the **data** folder after adding additional meta-data for the following variables:
+
+* **age** - add label "Age" and unit "years". 
+* **injury time** - add unit "hours". 
+* **total Glasgow coma score** - add unit "points". 
+
+**TODO:** 
+
+* Do we want to select patients at this point or leave this for the analysis phase?
+* Do we also want to do a selection of variables here to take in to the IDA phase? i.e. drop variables we do not check in IDA?
+
+As a cross check we display the contents again to ensure the additional data is added, and then write back the changes to the data folder in the file "data/a_crash2.rds". 
+
+
+```r
+## Complete metadata by adding missing labels. 
+## Generate adervived dataset stored in data as we are adding to the oirginal source dataset obtained. 
+
+## select candidate predictor variables. -- See SAP
+crash2_subset <-
+  crash2 %>%
+  dplyr::select(
+    entryid,        # patient identifer
+    trandomised,    # date of randomisation 
+    ddeath,         # date of death
+    age,            # Age (`age`, years)
+    sex,            # Sex (`sex`, male or female)
+    sbp,            # Systolic blood pressure (`sbp`, mmHg)
+    hr,             # Heart rate (`hr`, 1/min)
+    rr,             # Respiratory rate (`rr`, 1/min)
+    gcs,            # Glasgow coma score (`gcs`, points)
+    cc,             # Central capillary refill time (`cc`, seconds)
+    injurytime,     # Time since injury (`injurytime`, hours)
+    injurytype      # Type of injury (`injurytype`, 'blunt', 'penetrating' or 'blunt and penetrating')
+  )
+
+
+## Complete metadata by adding missing labels.
+a_crash2 <- Hmisc::upData(crash2_subset,
+               labels = c(age = 'Age', sex = "Gender"),
+               units = c(age = "years", injurytime = "hours", gcs = "points"))
+```
+
+Input object size:	 1221480 bytes;	 12 variables	 20207 observations
+New object size:	1222968 bytes;	12 variables	20207 observations
+
+```r
+## Display contents
+Hmisc::html(Hmisc::contents(a_crash2),
+            maxlevels = 10,
+            levelType = 'table')
+```
+
+<!--html_preserve--><hr><h4>Data frame:a_crash2</h4>20207 observations and 12 variables, maximum # NAs:17121  
+ <hr>
+ <style>
+ .hmisctable600570 {
+ border: 1px solid gray;
+ border-collapse: collapse;
+ font-size: 100%;
+ }
+ .hmisctable600570 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable600570 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable600570" border="1">
+ <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
+ <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
+ <tr><td>trandomised</td><td>Date of Randomization</td><td></td><td></td><td>Date</td><td>double</td><td>    0</td></tr>
+ <tr><td>ddeath</td><td>Date of Death</td><td></td><td></td><td>Date</td><td>double</td><td>17121</td></tr>
+ <tr><td>age</td><td>Age</td><td>years</td><td></td><td>integer</td><td>integer</td><td>    4</td></tr>
+ <tr><td>sex</td><td>Gender</td><td></td><td><a href="#levels.sex">2</a></td><td></td><td>integer</td><td>    1</td></tr>
+ <tr><td>sbp</td><td>Systolic Blood Pressure</td><td>mmHg</td><td></td><td>integer</td><td>integer</td><td>  320</td></tr>
+ <tr><td>hr</td><td>Heart Rate</td><td>/min</td><td></td><td>integer</td><td>integer</td><td>  137</td></tr>
+ <tr><td>rr</td><td>Respiratory Rate</td><td>/min</td><td></td><td>integer</td><td>integer</td><td>  191</td></tr>
+ <tr><td>gcs</td><td>Glasgow Coma Score Total</td><td>points</td><td></td><td>integer</td><td>integer</td><td>   23</td></tr>
+ <tr><td>cc</td><td>Central Capillary Refille Time</td><td>s</td><td></td><td>integer</td><td>integer</td><td>  611</td></tr>
+ <tr><td>injurytime</td><td>Hours Since Injury</td><td>hours</td><td></td><td>numeric</td><td>double</td><td>   11</td></tr>
+ <tr><td>injurytype</td><td></td><td></td><td><a href="#levels.injurytype">3</a></td><td></td><td>integer</td><td>    0</td></tr>
+ </table>
+
+ <hr>
+ <style>
+ .hmisctable664926 {
+ border: 1px solid gray;
+ border-collapse: collapse;
+ font-size: 100%;
+ }
+ .hmisctable664926 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable664926 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable664926" border="1">
+ <tr><th>Variable</th><th>Levels</th></tr>
+ <tr><td><a name="levels.sex">sex</a></td><td>male</td></tr>
+ <tr><td></td><td>female</td></tr>
+ <tr><td><a name="levels.sex">injurytype</a></td><td>blunt</td></tr>
+ <tr><td></td><td>penetrating</td></tr>
+ <tr><td></td><td>blunt and penetrating</td></tr>
+ </table>
+
+ <hr>
+<!--/html_preserve-->
+
+```r
+## Write to data folder
+save(a_crash2, file = here::here("data", "a_crash2.rda"))
+```
