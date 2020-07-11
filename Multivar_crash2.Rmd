@@ -126,7 +126,7 @@ p1
 
 ```
 
-### Continous2
+### Continous
 
 ```{r}
 p1 <- a_crash2 %>%
@@ -186,6 +186,40 @@ library(patchwork)
 (p1 + p2 ) / (p3 + p4)
 ```
 
+
+## Scatter plots with a third or fourth variable
+
+Scatter plot of age and RR by sex and injury type.
+
+
+```{r}
+ggplot(a_crash2, aes(
+  y = age,
+  x = rr
+)) +
+    geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  facet_grid(sex ~ injurytype) +
+  theme_minimal()
+```
+
+
+Scatter plot of SBP and RR by sex and injury type.
+
+```{r}
+ggplot(a_crash2, aes(
+  y = sbp,
+  x = rr
+)) +
+    geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  facet_grid(sex ~ injurytype) +
+  theme_minimal()
+```
 
 
 

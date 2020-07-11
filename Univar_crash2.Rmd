@@ -45,7 +45,7 @@ a_crash2 %>%
 
 ### Characteristics of injury
 
-```{r desc_a_crash2c, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+```{r desc_a_crash2c, message = FALSE, results='asis', warning=FALSE, echo=FALSE}
 a_crash2 %>%
   dplyr::select(all_of(injury_vars)) %>%
   Hmisc::describe(descript = "Characteristics of injury") %>%
@@ -99,7 +99,7 @@ a_crash2 %>%
 
 The Glasgow coma score, an ordinal cateogrical variable, is also displayed seperately. 
 
-```{r}
+```{r, message=FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
   dplyr::select(gcs) %>%
   dplyr::mutate(gcs = as_factor(gcs)) %>%
@@ -127,7 +127,8 @@ a_crash2 %>%
              size = 3) +
   ylab("Percentage (%)") +
   scale_y_continuous(limits = c(0, 100)) +
-  labs(caption = "Number and percentage of subjects reported in brackets.\nNA = missing") +
+  labs(title = "Glasgow coma score (point scale)",
+    caption = "Number and percentage of subjects reported in brackets.\nNA = missing") +
   coord_flip() +
   theme_minimal(base_size = 12) +
   theme(axis.title.y = element_blank(),
