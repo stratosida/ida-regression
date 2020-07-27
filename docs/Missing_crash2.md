@@ -4,13 +4,44 @@
 
 
 
+Identify complete cases and patients with missing data. 
+
+
+```r
+cc <-
+  a_crash2 %>%  
+  select(-time2death,-ddeath) %>% 
+  filter(!complete.cases(.))
+```
+
+
+
+```r
+cc %>% gg_miss_upset()
+```
+
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+
+
+
+
 ```r
 a_crash2 %>%
-  select(sex, age, sbp, hr, gcs) %>%
+  select(-time2death, -ddeath) %>%
   gg_miss_upset()
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+
+
+
+```r
+a_crash2 %>%
+  select(sex, age, sbp, hr, cc, gcs) %>%
+  gg_miss_upset()
+```
+
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 
 ```r
@@ -19,7 +50,7 @@ a_crash2 %>%
   gg_miss_var(show_pct = TRUE)
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 
 
@@ -58,7 +89,7 @@ a_crash2 %>%
 ## `forcats::fct_explicit_na`
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 
 ```r
@@ -67,7 +98,7 @@ a_crash2 %>%
   gg_miss_case()
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 
 ```r
@@ -76,7 +107,7 @@ a_crash2 %>%
   gg_miss_case(order_cases = TRUE)
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 
 ```r
@@ -85,7 +116,7 @@ a_crash2 %>%
   gg_miss_fct(fct = sex)
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 
 ## Session info

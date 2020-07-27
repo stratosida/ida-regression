@@ -24,7 +24,7 @@
 <meta name="author" content="TODO: Compelte author list" />
 
 
-<meta name="date" content="2020-07-11" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -226,17 +226,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="missing-data" class="section level1">
 <h1><span class="header-section-number">Chapter 9</span> Missing data</h1>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
-<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-2" title="2"><span class="st">    </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span><span class="kw">gg_miss_var</span>(<span class="dt">show_pct =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Identify complete cases and patients with missing data.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">cc &lt;-</a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span>a_crash2 <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death,<span class="op">-</span>ddeath) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-4" title="4"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">complete.cases</span>(.))</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">cc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
 <p><img src="Missing_crash2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-2" title="2"><span class="st">    </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-3" title="3"><span class="st">  </span><span class="kw">gg_miss_var</span>(<span class="dt">show_pct =</span> <span class="ot">TRUE</span>, <span class="dt">facet =</span> sex)</a></code></pre></div>
+<a class="sourceLine" id="cb39-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death, <span class="op">-</span>ddeath) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-3" title="3"><span class="st">  </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, cc, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="st">  </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="st">    </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="st">  </span><span class="kw">gg_miss_var</span>(<span class="dt">show_pct =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-2" title="2"><span class="st">    </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-3" title="3"><span class="st">  </span><span class="kw">gg_miss_var</span>(<span class="dt">show_pct =</span> <span class="ot">TRUE</span>, <span class="dt">facet =</span> sex)</a></code></pre></div>
 <pre><code>## Warning: Factor `sex` contains implicit NA, consider using
 ## `forcats::fct_explicit_na`
 
@@ -263,22 +274,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 ## Warning: Factor `sex` contains implicit NA, consider using
 ## `forcats::fct_explicit_na`</code></pre>
-<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-3" title="3"><span class="st">  </span><span class="kw">gg_miss_case</span>()</a></code></pre></div>
-<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-3" title="3"><span class="st">  </span><span class="kw">gg_miss_case</span>(<span class="dt">order_cases =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-3" title="3"><span class="st">  </span><span class="kw">gg_miss_fct</span>(<span class="dt">fct =</span> sex)</a></code></pre></div>
 <p><img src="Missing_crash2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-3" title="3"><span class="st">  </span><span class="kw">gg_miss_case</span>()</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw">gg_miss_case</span>(<span class="dt">order_cases =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-3" title="3"><span class="st">  </span><span class="kw">gg_miss_fct</span>(<span class="dt">fct =</span> sex)</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <div id="session-info-3" class="section level2">
 <h2><span class="header-section-number">9.1</span> Session info</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
 <pre><code>## R version 3.6.1 (2019-07-05)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 17763)
