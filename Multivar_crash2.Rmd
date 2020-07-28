@@ -1,7 +1,6 @@
 
 #  Bivariate distributions
 
-Multivariate a_crash2
 
 This code is a continous by example
 
@@ -12,57 +11,50 @@ library(janitor)
 library(summarytools)
 library(Hmisc)
 library(arsenal)
-```
+library(gtsummary)
 
 ## Read data 
-
-### Load the dataset.
-
-```{r, message = FALSE}
 load(here::here("data", "a_crash2.rda"))
-
-## TODO: Move out to data prep
-## TODO: Complete metadata by adding missing labels. 
-## This should be a dervived dataset stored in data as we are adding to the oirginal source dataset obtained. 
-a_crash2 <- Hmisc::upData(a_crash2,
-               labels = c(age = 'Age'),
-               units = c(age = "years", injurytime = "hours", gcs = "points"))
-
 ```
 
 
 
-### Summary 
+## Summary by sex
 
-```{r, results="asis"}
-library(arsenal)
+```{r, results="asis", message=FALSE, warning =FALSE , echo=FALSE}
 crs.char <-
   tableby(
     sex ~ age + hr + rr + sbp ,
     data = a_crash2,
     test = FALSE,
-    numeric.stats = c("median", "q1q3", "range"), 
+    total = FALSE,
+    numeric.stats = c("median","mean", "sd", "q1q3", "range", "Nmiss2"), 
     digits = 1, digits.p = 2, digits.pct = 1
   )
 
 summary(crs.char, title = 'Patient characteristics') 
 ```
 
-```{r}
-library(gtsummary)
-
+```{r, results="asis", message=FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
-  select(sex, age, hr, rr, sbp) %>%
-  gtsummary::tbl_summary(by = "sex") %>%
+  mutate(sex = forcats::fct_explicit_na(sex)) %>%
+  select(sex, age, hr, rr, sbp, cc, gcs, injurytime, injurytype) %>%
+  gtsummary::tbl_summary(
+    by = "sex",
+    statistic = list(all_continuous() ~ "{mean} ({sd})"),
+    digits = list(age ~ c(0, 1))
+  ) %>%
   bold_labels()
 
 ```
 
 
 
-### Histograms
+## Continous variables by sex
 
-```{r, echo = FALSE, message = FALSE}
+### Distribution of age by sex
+
+```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of age by sex"}
 a_crash2 %>%
   filter(!(is.na(sex))) %>%
   with(., histboxp(
@@ -72,8 +64,64 @@ a_crash2 %>%
     bins = 200
   ))
 
+
 ```
 
+### Distribution of systolic blood pressure by sex
+
+
+```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of systolic blood pressure by sex"}
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x = sbp,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of heart rate by sex
+
+```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of heart rate by sex" }
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x = hr,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of respiratory rate by sex
+
+```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of respiratory rate by sex" }
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x =  rr,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of centrail capillary refille time by sex
+
+```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of centrail capillary refille time by sex" }
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x =  cc,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+```
 
 
 ## Age 

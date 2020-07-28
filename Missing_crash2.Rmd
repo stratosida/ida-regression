@@ -10,9 +10,33 @@ library(naniar) ## for missing data
 load(here::here("data", "a_crash2.rda"))
 ```
 
+
+Identify complete cases and patients with missing data. 
+
+```{r}
+cc <-
+  a_crash2 %>%  
+  select(-time2death,-ddeath) %>% 
+  filter(!complete.cases(.))
+```
+
+
+```{r}
+cc %>% gg_miss_upset()
+```
+
+
+
 ```{r}
 a_crash2 %>%
-  select(sex, age, sbp, hr, gcs) %>%
+  select(-time2death, -ddeath) %>%
+  gg_miss_upset()
+```
+
+
+```{r}
+a_crash2 %>%
+  select(sex, age, sbp, hr, cc, gcs) %>%
   gg_miss_upset()
 ```
 
