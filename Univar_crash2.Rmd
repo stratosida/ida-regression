@@ -34,12 +34,12 @@ a_crash2 %>%
 ```
 
 
-### Pyhisological measurements
+### Physiological measurements
 
 ```{r desc_a_crash2b, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
 a_crash2 %>%
   dplyr::select(all_of(pyhiso_vars)) %>%
-  Hmisc::describe(descript = "Pyhisological measurements") %>%
+  Hmisc::describe(descript = "Physiological measurements") %>%
   Hmisc::html(size = 80)
 ```
 
