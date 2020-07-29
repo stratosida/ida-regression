@@ -2,10 +2,19 @@
 title: "Regression without regrets"
 subtitle: "Workflow of initial data analyses"
 author: "TODO: Compelte author list"
-date: "2020-07-28"
+date: "2020-07-29"
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output:
+  rmdformats::readthedown:
+    thumbnails: false
+    lightbox: false
+    gallery: false
+    highlight: tango
+    use_bookdown: true
+    toc_depth: 2
+    fig_caption: false
+    code_folding: hide
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike

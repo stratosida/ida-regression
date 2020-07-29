@@ -20,7 +20,7 @@ cc <-
 cc %>% gg_miss_upset()
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-3-1.png" width="768" />
 
 
 
@@ -31,7 +31,7 @@ a_crash2 %>%
   gg_miss_upset()
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-4-1.png" width="768" />
 
 
 
@@ -41,7 +41,7 @@ a_crash2 %>%
   gg_miss_upset()
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-5-1.png" width="768" />
 
 
 ```r
@@ -50,7 +50,7 @@ a_crash2 %>%
   gg_miss_var(show_pct = TRUE)
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-6-1.png" width="768" />
 
 
 
@@ -89,7 +89,7 @@ a_crash2 %>%
 ## `forcats::fct_explicit_na`
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-7-1.png" width="768" />
 
 
 ```r
@@ -98,7 +98,7 @@ a_crash2 %>%
   gg_miss_case()
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-8-1.png" width="768" />
 
 
 ```r
@@ -107,7 +107,7 @@ a_crash2 %>%
   gg_miss_case(order_cases = TRUE)
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-9-1.png" width="768" />
 
 
 ```r
@@ -116,7 +116,7 @@ a_crash2 %>%
   gg_miss_fct(fct = sex)
 ```
 
-<img src="Missing_crash2_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="Missing_crash2_files/figure-html/unnamed-chunk-10-1.png" width="768" />
 
 
 ## Session info
@@ -172,8 +172,8 @@ sessionInfo()
 ## [58] labeling_0.3        base64enc_0.1-3     rmarkdown_2.1      
 ## [61] gtable_0.3.0        DBI_1.1.0           R6_2.4.1           
 ## [64] gridExtra_2.3       lubridate_1.7.4     knitr_1.28         
-## [67] rprojroot_1.3-2     stringi_1.4.6       Rcpp_1.0.4.6       
-## [70] vctrs_0.3.0         rpart_4.1-15        acepack_1.4.1      
-## [73] png_0.1-7           dbplyr_1.4.2        tidyselect_1.1.0   
-## [76] xfun_0.12
+## [67] rprojroot_1.3-2     stringi_1.4.6       rmdformats_0.3.7   
+## [70] Rcpp_1.0.4.6        vctrs_0.3.0         rpart_4.1-15       
+## [73] acepack_1.4.1       png_0.1-7           dbplyr_1.4.2       
+## [76] tidyselect_1.1.0    xfun_0.12
 ```

@@ -23,7 +23,7 @@ Demographic measurements:
 * Age (`age`, years)
 * Sex (`sex`, male or female)
 
-Pyhisological measurements:
+Physiological measurements:
 
 * Systolic blood pressure (`sbp`, mmHg)
 * Heart rate (`hr`, 1/min)
