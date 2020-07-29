@@ -2,7 +2,7 @@
 #  Bivariate distributions
 
 
-This code is a continous by example
+This code is a continuous by example
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE }
 library(here)
@@ -50,7 +50,7 @@ a_crash2 %>%
 
 
 
-## Continous variables by sex
+## Continuous variables by sex
 
 ### Distribution of age by sex
 
@@ -110,7 +110,7 @@ a_crash2 %>%
 ```
 
 
-### Distribution of centrail capillary refille time by sex
+### Distribution of central capillary refille time by sex
 
 ```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of centrail capillary refille time by sex" }
 a_crash2 %>%
@@ -126,7 +126,7 @@ a_crash2 %>%
 
 ## Age 
 
-### Continous 
+### Continuous 
 
 ```{r}
 
@@ -174,7 +174,7 @@ p1
 
 ```
 
-### Continous
+### Continuous
 
 ```{r}
 p1 <- a_crash2 %>%
@@ -226,7 +226,7 @@ p4 <- a_crash2 %>%
 ```
 
 
-### Continous3 
+### Continuous3 
 
 ```{r}
 

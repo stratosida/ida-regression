@@ -10,8 +10,9 @@ library(naniar) ## for missing data
 load(here::here("data", "a_crash2.rda"))
 ```
 
+TODO: organise
 
-Identify complete cases and patients with missing data. 
+Identify # complete cases and patients with missing data. 
 
 ```{r}
 cc <-

@@ -1,6 +1,5 @@
-# (PART) CRASH-2 {-}
+# CRASH-2 {-}
 
-# CRASH-2 overview
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
 ## Load libraries for this chapter

@@ -77,7 +77,7 @@ a_crash2 %>%
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#uvmajudacl .gt_table {
+#jeoogvpfij .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -100,7 +100,7 @@ a_crash2 %>%
   border-left-color: #D3D3D3;
 }
 
-#uvmajudacl .gt_heading {
+#jeoogvpfij .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -112,7 +112,7 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#uvmajudacl .gt_title {
+#jeoogvpfij .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -122,7 +122,7 @@ a_crash2 %>%
   border-bottom-width: 0;
 }
 
-#uvmajudacl .gt_subtitle {
+#jeoogvpfij .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -132,13 +132,13 @@ a_crash2 %>%
   border-top-width: 0;
 }
 
-#uvmajudacl .gt_bottom_border {
+#jeoogvpfij .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uvmajudacl .gt_col_headings {
+#jeoogvpfij .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -153,7 +153,7 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#uvmajudacl .gt_col_heading {
+#jeoogvpfij .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -173,7 +173,7 @@ a_crash2 %>%
   overflow-x: hidden;
 }
 
-#uvmajudacl .gt_column_spanner_outer {
+#jeoogvpfij .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -185,15 +185,15 @@ a_crash2 %>%
   padding-right: 4px;
 }
 
-#uvmajudacl .gt_column_spanner_outer:first-child {
+#jeoogvpfij .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uvmajudacl .gt_column_spanner_outer:last-child {
+#jeoogvpfij .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uvmajudacl .gt_column_spanner {
+#jeoogvpfij .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -205,7 +205,7 @@ a_crash2 %>%
   width: 100%;
 }
 
-#uvmajudacl .gt_group_heading {
+#jeoogvpfij .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -227,7 +227,7 @@ a_crash2 %>%
   vertical-align: middle;
 }
 
-#uvmajudacl .gt_empty_group_heading {
+#jeoogvpfij .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -242,19 +242,19 @@ a_crash2 %>%
   vertical-align: middle;
 }
 
-#uvmajudacl .gt_striped {
+#jeoogvpfij .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uvmajudacl .gt_from_md > :first-child {
+#jeoogvpfij .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uvmajudacl .gt_from_md > :last-child {
+#jeoogvpfij .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uvmajudacl .gt_row {
+#jeoogvpfij .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -273,7 +273,7 @@ a_crash2 %>%
   overflow-x: hidden;
 }
 
-#uvmajudacl .gt_stub {
+#jeoogvpfij .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -285,7 +285,7 @@ a_crash2 %>%
   padding-left: 12px;
 }
 
-#uvmajudacl .gt_summary_row {
+#jeoogvpfij .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -295,7 +295,7 @@ a_crash2 %>%
   padding-right: 5px;
 }
 
-#uvmajudacl .gt_first_summary_row {
+#jeoogvpfij .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -305,7 +305,7 @@ a_crash2 %>%
   border-top-color: #D3D3D3;
 }
 
-#uvmajudacl .gt_grand_summary_row {
+#jeoogvpfij .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -315,7 +315,7 @@ a_crash2 %>%
   padding-right: 5px;
 }
 
-#uvmajudacl .gt_first_grand_summary_row {
+#jeoogvpfij .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -325,7 +325,7 @@ a_crash2 %>%
   border-top-color: #D3D3D3;
 }
 
-#uvmajudacl .gt_table_body {
+#jeoogvpfij .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -334,7 +334,7 @@ a_crash2 %>%
   border-bottom-color: #D3D3D3;
 }
 
-#uvmajudacl .gt_footnotes {
+#jeoogvpfij .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -348,13 +348,13 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#uvmajudacl .gt_footnote {
+#jeoogvpfij .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#uvmajudacl .gt_sourcenotes {
+#jeoogvpfij .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -368,46 +368,46 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#uvmajudacl .gt_sourcenote {
+#jeoogvpfij .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#uvmajudacl .gt_left {
+#jeoogvpfij .gt_left {
   text-align: left;
 }
 
-#uvmajudacl .gt_center {
+#jeoogvpfij .gt_center {
   text-align: center;
 }
 
-#uvmajudacl .gt_right {
+#jeoogvpfij .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uvmajudacl .gt_font_normal {
+#jeoogvpfij .gt_font_normal {
   font-weight: normal;
 }
 
-#uvmajudacl .gt_font_bold {
+#jeoogvpfij .gt_font_bold {
   font-weight: bold;
 }
 
-#uvmajudacl .gt_font_italic {
+#jeoogvpfij .gt_font_italic {
   font-style: italic;
 }
 
-#uvmajudacl .gt_super {
+#jeoogvpfij .gt_super {
   font-size: 65%;
 }
 
-#uvmajudacl .gt_footnote_marks {
+#jeoogvpfij .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="uvmajudacl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="jeoogvpfij" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -444,7 +444,7 @@ The number of deaths computed in the data set coincides with the number reported
 
 ## Sources
 
-Data obtained from http://biostat.mc.vanderbilt.edu/dataSets
+Data obtained from http://biostat.mc.Vanderbilt.edu/dataSets
 
 [LINK to data set](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda)
 

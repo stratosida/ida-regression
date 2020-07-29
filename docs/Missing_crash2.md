@@ -3,8 +3,9 @@
 
 
 
+TODO: organise
 
-Identify complete cases and patients with missing data. 
+Identify # complete cases and patients with missing data. 
 
 
 ```r
