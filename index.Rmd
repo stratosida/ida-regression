@@ -11,7 +11,7 @@ output:
     lightbox: false
     gallery: false
     highlight: tango
-    use_bookdown: true
+    use_bookdown: TRUE
     toc_depth: 2
     fig_caption: false
     code_folding: hide

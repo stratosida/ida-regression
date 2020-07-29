@@ -25,23 +25,23 @@ Display the source dataset contents. The dataset is in the **data-raw** folder o
 <!--html_preserve--><hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable937799 {
+ .hmisctable766464 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable937799 td {
+ .hmisctable766464 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable937799 th {
+ .hmisctable766464 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable937799" border="1">
+ <table class="hmisctable766464" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
@@ -91,23 +91,23 @@ Display the source dataset contents. The dataset is in the **data-raw** folder o
 
  <hr>
  <style>
- .hmisctable140738 {
+ .hmisctable350223 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable140738 td {
+ .hmisctable350223 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable140738 th {
+ .hmisctable350223 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable140738" border="1">
+ <table class="hmisctable350223" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.source">source</a></td><td>telephone</td></tr>
  <tr><td></td><td>telephone entered manually</td></tr>
@@ -240,23 +240,23 @@ Hmisc::html(Hmisc::contents(a_crash2),
 <!--html_preserve--><hr><h4>Data frame:a_crash2</h4>20207 observations and 14 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable174057 {
+ .hmisctable323427 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable174057 td {
+ .hmisctable323427 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable174057 th {
+ .hmisctable323427 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable174057" border="1">
+ <table class="hmisctable323427" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>trandomised</td><td>Date of Randomization</td><td></td><td></td><td>Date</td><td>double</td><td>    0</td></tr>
@@ -276,23 +276,23 @@ Hmisc::html(Hmisc::contents(a_crash2),
 
  <hr>
  <style>
- .hmisctable477231 {
+ .hmisctable462244 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable477231 td {
+ .hmisctable462244 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable477231 th {
+ .hmisctable462244 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable477231" border="1">
+ <table class="hmisctable462244" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.sex">sex</a></td><td>male</td></tr>
  <tr><td></td><td>female</td></tr>
