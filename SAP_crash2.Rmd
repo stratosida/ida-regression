@@ -84,7 +84,7 @@ The number of deaths computed in the data set coincides with the number reported
 
 ## Sources
 
-Data obtained from http://biostat.mc.vanderbilt.edu/dataSets
+Data obtained from http://biostat.mc.Vanderbilt.edu/dataSets
 
 [LINK to data set](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda)
 

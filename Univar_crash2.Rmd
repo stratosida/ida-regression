@@ -24,7 +24,7 @@ Using Hmisc describe function, provide an overview of the data set is provided i
 
 ### Demographic variables
 
-**TODO: Should we plot the maringal distribution of the outcome? **
+**TODO: Should we plot the marginal distribution of the outcome? **
 
 ```{r desc_a_crash2a, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
 a_crash2 %>%
@@ -95,9 +95,9 @@ a_crash2 %>%
 
 ```
 
-### Cateogrical ordinal plots
+### Categorical ordinal plots
 
-The Glasgow coma score, an ordinal cateogrical variable, is also displayed seperately. 
+The Glasgow coma score, an ordinal categorical variable, is also displayed separately. 
 
 ```{r, message=FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
@@ -137,9 +137,9 @@ a_crash2 %>%
 
 
 
-## Continous plots 
+## Continuous plots 
 
-A closer examination of continous predictors. 
+A closer examination of continuous predictors. 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE, fig.width=9}
 

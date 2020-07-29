@@ -9,7 +9,7 @@
 | Continuous variables | General skewness | Help in interpreting results | Update SAP | Update intended presentation of results |
 | Continuous   variables | General skewness | Wide CI for coefficients | Use variable as log-transformed | Update intended presentation of results |
 | Continuous   variables | Outliers | Disproportional impact on results | Winsorize or transform | Model involves winsorization |
-| Continuous   variables | Spike at 0 | Narrow CI at 0 | Use appropriate representation of variable in model | Use 2 (or more) coefficents to distinguish 0 from non-0 continuous part |
+| Continuous   variables | Spike at 0 | Narrow CI at 0 | Use appropriate representation of variable in model | Use 2 (or more) coefficients to distinguish 0 from non-0 continuous part |
 | Categorical variables | Frequencies | Comparisons to default reference probably irrelevant | Change reference category | Contrasts compare to (new) reference category |
 | Categorical   variables | Rare categories | Wide CI for coefficients | Collapse/exclude | Fewer categories to present |
 | Categorical   variables | One very frequent category | Comparisons irrelevant? | Exclude variable | Variable omitted |
