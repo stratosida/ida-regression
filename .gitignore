@@ -7,4 +7,5 @@ _bookdown_files
 rsconnect
 index.rds
 *.rds
+.rds
 messages.txt
