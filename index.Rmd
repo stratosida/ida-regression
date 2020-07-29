@@ -3,13 +3,13 @@ title: "Regression without regrets"
 subtitle: "Workflow of initial data analyses"
 author: "TODO: Compelte author list"
 date: "`r Sys.Date()`"
-knit: "bookdown::render_book"
+knit: "rmarkdown::render_site"
 site: bookdown::bookdown_site
 output:
   rmdformats::readthedown:
     thumbnails: false
     lightbox: false
-    gallery: false
+    gallery: TRUE
     highlight: tango
     use_bookdown: TRUE
     toc_depth: 2
@@ -26,11 +26,13 @@ description: "The focus of this document/website is to provide guidance on condu
 
 # Regression without regrets: Workflow of initial data analyses {-}
 
-# Overiew
+# Overview
 
 ```{r include = FALSE}
 #source("common.R")
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(Hmisc)
+knitrSet(lang = 'markdown', fig.path = 'figure/')
 library(tidyverse)
 library(here)
 source(here::here("R", "ida_plot_univar.R"))
