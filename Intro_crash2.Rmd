@@ -12,9 +12,10 @@ library(Hmisc)
 
 **Description:** Clinical Randomisation of an Antifibrinolyticin Significant Haemorrhage(CRASH-2)  was a large randomised placebo controlled trial among trauma patients with, or at risk of, significant haemorrhage, of the effects of antifibrinolytic treatment on death and transfusion requirement. The study is described at [the original trial website](http://crash2.lshtm.ac.uk/). A public version of the data set is found at a [repository of public data sets](http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets) hosted by the Vanderbilt University's Department of Biostatistics (Prof. Frank Harrell Jr.).
 
+A prediction model was devloped and valdiated based on this data set in "Predicting early death in patients with traumatic bleeding"  [Perel et al, BMJ 2012](https://doi.org/10.1136/bmj.e5166), [supplement available at](https://www.bmj.com/highwire/filestream/634478/field_highwire_adjunct_files/0/perp003158.ww1_default.pdf).
+
 The data set includes 20,207 patients and 44 variables. 
 
-**Hypothetical research aim for IDA:** Develop a multivariable model for early death (death within 28 days from injury) using 9 independent variables of mixed type (continuous, categorical, semicontinuous) with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome. The assumed analysis aim is in line with the prediction model presented by [Perel et al, BMJ 2012](https://doi.org/10.1136/bmj.e5166), [supplement available at](https://www.bmj.com/highwire/filestream/634478/field_highwire_adjunct_files/0/perp003158.ww1_default.pdf). However, in contrast to the analysis described there, variables describing the economic region and the treatment allocation are missing in the public version of the data set, and while the data set contains 20,207 patients, the research paper mentions 20,127 patients having been included in the study.
 
 
 ## Crash2 dataset contents
@@ -24,7 +25,7 @@ The data set includes 20,207 patients and 44 variables.
 Display the source dataset contents. The dataset is in the **data-raw** folder of the project directory. 
 
 
-**TODO: Move the contents of the original data set to an appendix? IS it relevant for us?**
+**TODO: Move the contents of the original data set to an appendix? IS it relevant for us?   No, it looks good here-MH**
 
 ```{r contents_crash2,  warning=FALSE, message=FALSE, echo=FALSE, results='asis'} 
 load(here::here("data-raw", "crash2.rda"))
