@@ -8,13 +8,22 @@ library(tidyverse)
 library(Hmisc)
 ```
 
+Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan need to be in place. 
+IDA may lead to an update or refinement of the analysis plan. To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section [SAPcrash2.Rmd].
+
+**Hypothetical research aim for IDA** is to develop a multivariable model for early death (death within 28 days from injury) using nine independent variables of mixed type (continuous, categorical, semicontinuous) with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome. 
+
+A prediction model was developed and validated based on this data set in "Predicting early death in patients with traumatic bleeding"  [Perel et al, BMJ 2012](https://doi.org/10.1136/bmj.e5166), [supplement available at]. The assumed research aim is in line with the prediction model
+
+
 ## Introduction to CRASH-2
 
 **Description:** Clinical Randomisation of an Antifibrinolyticin Significant Haemorrhage(CRASH-2)  was a large randomised placebo controlled trial among trauma patients with, or at risk of, significant haemorrhage, of the effects of antifibrinolytic treatment on death and transfusion requirement. The study is described at [the original trial website](http://crash2.lshtm.ac.uk/). A public version of the data set is found at a [repository of public data sets](http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets) hosted by the Vanderbilt University's Department of Biostatistics (Prof. Frank Harrell Jr.).
 
-A prediction model was devloped and valdiated based on this data set in "Predicting early death in patients with traumatic bleeding"  [Perel et al, BMJ 2012](https://doi.org/10.1136/bmj.e5166), [supplement available at](https://www.bmj.com/highwire/filestream/634478/field_highwire_adjunct_files/0/perp003158.ww1_default.pdf).
-
 The data set includes 20,207 patients and 44 variables. 
+
+**Note:** In contrast to the analysis described in Perel et al, variables describing the economic region and the treatment allocation are missing in the public version of the data set, and while the data set contains 20,207 patients, the research paper mentions 20,127 patients having been included in the study.
+
 
 
 
