@@ -29,6 +29,13 @@ description: "The focus of this document/website is to provide guidance on condu
 # Overview
 
 ```{r include = FALSE}
+## For reproducibility 
+library(checkpoint)
+
+## Point to a specific point in time in MRAN
+## This will install the same packages if they are not installed
+checkpoint("2020-07-01") 
+
 #source("common.R")
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 library(Hmisc)

@@ -2,6 +2,12 @@
 # Statistical analysis plan
 
 
+Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place. 
+IDA may lead to an update or refinement of the analysis plan. To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan.
+ 
+**Hypothetical research aim for IDA:** Develop a multivariable model for early death (death within 28 days from injury) using nine independent variables of mixed type (continuous, categorical, semicontinuous) with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome. 
+
+The assumed analysis aim is in line with the prediction model presented by [Perel et al, BMJ 2012](https://doi.org/10.1136/bmj.e5166), [supplement available at](https://www.bmj.com/highwire/filestream/634478/field_highwire_adjunct_files/0/perp003158.ww1_default.pdf). 
 
 ## Outcome 
 
@@ -33,7 +39,7 @@ Restricted cubic splines with 3 degrees of freedom with knots set to default val
 
 ## Remarks
 
-* Regarding type of injury, the original paper describes its treatment in the model as follows: 'Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as 'penetrating' or 'blunt and penetrating.' ' It is not clear from that description what happened to the 'blunt' group. (I assume they were collapsed with 'blunt and penetrating'.)
+* Regarding type of injury, the original paper describes its treatment in the model as follows: 'Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as 'penetrating' or 'blunt and penetrating.' ' It is not clear from that description what happened to the 'blunt' group. (I assume they were collapsed with 'blunt and penetrating'.)  ** we are going to consider the three categories, and then check aout recommendations for the final analysis-MH**
 
 * The original paper describes the modeling approach as follows: 'We used a backward step-wise approach. Firstly, we included all potential prognostic factors and interaction terms that users considered plausible. These interactions included all potential predictors with type of injury, time since injury, and age. We then removed, one at a time, terms for which we found no strong evidence of an association, judged according to the P values (<0.05) from the Wald test.'  This would mean they tested at least 24 interaction terms, each possibly using several degrees of freedom! In the final model, only an interaction of Glasgow coma score and type of injury was included.
 
@@ -77,7 +83,7 @@ a_crash2 %>%
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#jeoogvpfij .gt_table {
+#pttksacbmx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -100,7 +106,7 @@ a_crash2 %>%
   border-left-color: #D3D3D3;
 }
 
-#jeoogvpfij .gt_heading {
+#pttksacbmx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -112,7 +118,7 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#jeoogvpfij .gt_title {
+#pttksacbmx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -122,7 +128,7 @@ a_crash2 %>%
   border-bottom-width: 0;
 }
 
-#jeoogvpfij .gt_subtitle {
+#pttksacbmx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -132,13 +138,13 @@ a_crash2 %>%
   border-top-width: 0;
 }
 
-#jeoogvpfij .gt_bottom_border {
+#pttksacbmx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jeoogvpfij .gt_col_headings {
+#pttksacbmx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -153,7 +159,7 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#jeoogvpfij .gt_col_heading {
+#pttksacbmx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -173,7 +179,7 @@ a_crash2 %>%
   overflow-x: hidden;
 }
 
-#jeoogvpfij .gt_column_spanner_outer {
+#pttksacbmx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -185,15 +191,15 @@ a_crash2 %>%
   padding-right: 4px;
 }
 
-#jeoogvpfij .gt_column_spanner_outer:first-child {
+#pttksacbmx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jeoogvpfij .gt_column_spanner_outer:last-child {
+#pttksacbmx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jeoogvpfij .gt_column_spanner {
+#pttksacbmx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -205,7 +211,7 @@ a_crash2 %>%
   width: 100%;
 }
 
-#jeoogvpfij .gt_group_heading {
+#pttksacbmx .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -227,7 +233,7 @@ a_crash2 %>%
   vertical-align: middle;
 }
 
-#jeoogvpfij .gt_empty_group_heading {
+#pttksacbmx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -242,19 +248,19 @@ a_crash2 %>%
   vertical-align: middle;
 }
 
-#jeoogvpfij .gt_striped {
+#pttksacbmx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jeoogvpfij .gt_from_md > :first-child {
+#pttksacbmx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jeoogvpfij .gt_from_md > :last-child {
+#pttksacbmx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jeoogvpfij .gt_row {
+#pttksacbmx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -273,7 +279,7 @@ a_crash2 %>%
   overflow-x: hidden;
 }
 
-#jeoogvpfij .gt_stub {
+#pttksacbmx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -285,7 +291,7 @@ a_crash2 %>%
   padding-left: 12px;
 }
 
-#jeoogvpfij .gt_summary_row {
+#pttksacbmx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -295,7 +301,7 @@ a_crash2 %>%
   padding-right: 5px;
 }
 
-#jeoogvpfij .gt_first_summary_row {
+#pttksacbmx .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -305,7 +311,7 @@ a_crash2 %>%
   border-top-color: #D3D3D3;
 }
 
-#jeoogvpfij .gt_grand_summary_row {
+#pttksacbmx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -315,7 +321,7 @@ a_crash2 %>%
   padding-right: 5px;
 }
 
-#jeoogvpfij .gt_first_grand_summary_row {
+#pttksacbmx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -325,7 +331,7 @@ a_crash2 %>%
   border-top-color: #D3D3D3;
 }
 
-#jeoogvpfij .gt_table_body {
+#pttksacbmx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -334,7 +340,7 @@ a_crash2 %>%
   border-bottom-color: #D3D3D3;
 }
 
-#jeoogvpfij .gt_footnotes {
+#pttksacbmx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -348,13 +354,13 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#jeoogvpfij .gt_footnote {
+#pttksacbmx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#jeoogvpfij .gt_sourcenotes {
+#pttksacbmx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -368,46 +374,46 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#jeoogvpfij .gt_sourcenote {
+#pttksacbmx .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#jeoogvpfij .gt_left {
+#pttksacbmx .gt_left {
   text-align: left;
 }
 
-#jeoogvpfij .gt_center {
+#pttksacbmx .gt_center {
   text-align: center;
 }
 
-#jeoogvpfij .gt_right {
+#pttksacbmx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jeoogvpfij .gt_font_normal {
+#pttksacbmx .gt_font_normal {
   font-weight: normal;
 }
 
-#jeoogvpfij .gt_font_bold {
+#pttksacbmx .gt_font_bold {
   font-weight: bold;
 }
 
-#jeoogvpfij .gt_font_italic {
+#pttksacbmx .gt_font_italic {
   font-style: italic;
 }
 
-#jeoogvpfij .gt_super {
+#pttksacbmx .gt_super {
   font-size: 65%;
 }
 
-#jeoogvpfij .gt_footnote_marks {
+#pttksacbmx .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="jeoogvpfij" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="pttksacbmx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -444,13 +450,13 @@ The number of deaths computed in the data set coincides with the number reported
 
 ## Sources
 
-Data obtained from http://biostat.mc.Vanderbilt.edu/dataSets
+Data obtained from https://hbiostat.org/data/
 
-[LINK to data set](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda)
+[LINK to data set](https://hbiostat.org/data/repo/crash2.rda)
 
 ### Data dictionary  
 
-The data dictionary can be found [LINK](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/Ccrash2.html)
+The data dictionary can be found [LINK](https://hbiostat.org/data/repo/crash2.html)
 
 ## References
 
