@@ -24,7 +24,7 @@
 <meta name="author" content="TODO: Complete author list" />
 
 
-<meta name="date" content="2020-08-04" />
+<meta name="date" content="2020-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -204,7 +204,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#session-info-2"><i class="fa fa-check"></i><b>7.5</b> Session info</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>8</b> Missing data</a><ul>
-<li class="chapter" data-level="8.1" data-path="missing-data.html"><a href="missing-data.html#session-info-3"><i class="fa fa-check"></i><b>8.1</b> Session info</a></li>
+<li class="chapter" data-level="8.1" data-path="missing-data.html"><a href="missing-data.html#per-variable"><i class="fa fa-check"></i><b>8.1</b> Per variable</a></li>
+<li class="chapter" data-level="8.2" data-path="missing-data.html"><a href="missing-data.html#pattern"><i class="fa fa-check"></i><b>8.2</b> Pattern</a></li>
+<li class="chapter" data-level="8.3" data-path="missing-data.html"><a href="missing-data.html#complete-cases"><i class="fa fa-check"></i><b>8.3</b> Complete cases</a></li>
+<li class="chapter" data-level="8.4" data-path="missing-data.html"><a href="missing-data.html#session-info-3"><i class="fa fa-check"></i><b>8.4</b> Session info</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -228,10 +231,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="statistical-analysis-plan" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Statistical analysis plan</h1>
-<p>Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place.
-IDA may lead to an update or refinement of the analysis plan. To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan.</p>
-<p><strong>Hypothetical research aim for IDA:</strong> Develop a multivariable model for early death (death within 28 days from injury) using nine independent variables of mixed type (continuous, categorical, semicontinuous) with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome.</p>
-<p>The assumed analysis aim is in line with the prediction model presented by <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>, <a href="https://www.bmj.com/highwire/filestream/634478/field_highwire_adjunct_files/0/perp003158.ww1_default.pdf">supplement available at</a>.</p>
 <div id="outcome" class="section level2">
 <h2><span class="header-section-number">5.1</span> Outcome</h2>
 <p>Early death, i.e. in-hospital death within 28 days from injury (binary variable)</p>
@@ -262,7 +261,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
 <div id="remarks" class="section level2">
 <h2><span class="header-section-number">5.3</span> Remarks</h2>
 <ul>
-<li><p>Regarding type of injury, the original paper describes its treatment in the model as follows: ‘Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as ’penetrating’ or ‘blunt and penetrating.’ ’ It is not clear from that description what happened to the ‘blunt’ group. (I assume they were collapsed with ‘blunt and penetrating’.) ** we are going to consider the three categories, and then check aout recommendations for the final analysis-MH**</p></li>
+<li><p>Regarding type of injury, the original paper describes its treatment in the model as follows: ‘Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as ’penetrating’ or ‘blunt and penetrating.’ ’ It is not clear from that description what happened to the ‘blunt’ group. (I assume they were collapsed with ‘blunt and penetrating’.)</p></li>
 <li><p>The original paper describes the modeling approach as follows: ‘We used a backward step-wise approach. Firstly, we included all potential prognostic factors and interaction terms that users considered plausible. These interactions included all potential predictors with type of injury, time since injury, and age. We then removed, one at a time, terms for which we found no strong evidence of an association, judged according to the P values (&lt;0.05) from the Wald test.’ This would mean they tested at least 24 interaction terms, each possibly using several degrees of freedom! In the final model, only an interaction of Glasgow coma score and type of injury was included.</p></li>
 </ul>
 </div>
@@ -294,7 +293,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#euqygyjlgz .gt_table {
+#uanpjnqecm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -317,7 +316,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-left-color: #D3D3D3;
 }
 
-#euqygyjlgz .gt_heading {
+#uanpjnqecm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -329,7 +328,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-right-color: #D3D3D3;
 }
 
-#euqygyjlgz .gt_title {
+#uanpjnqecm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -339,7 +338,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-bottom-width: 0;
 }
 
-#euqygyjlgz .gt_subtitle {
+#uanpjnqecm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -349,13 +348,13 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-top-width: 0;
 }
 
-#euqygyjlgz .gt_bottom_border {
+#uanpjnqecm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#euqygyjlgz .gt_col_headings {
+#uanpjnqecm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -370,7 +369,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-right-color: #D3D3D3;
 }
 
-#euqygyjlgz .gt_col_heading {
+#uanpjnqecm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -390,7 +389,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   overflow-x: hidden;
 }
 
-#euqygyjlgz .gt_column_spanner_outer {
+#uanpjnqecm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -402,15 +401,15 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   padding-right: 4px;
 }
 
-#euqygyjlgz .gt_column_spanner_outer:first-child {
+#uanpjnqecm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#euqygyjlgz .gt_column_spanner_outer:last-child {
+#uanpjnqecm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#euqygyjlgz .gt_column_spanner {
+#uanpjnqecm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -422,7 +421,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   width: 100%;
 }
 
-#euqygyjlgz .gt_group_heading {
+#uanpjnqecm .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -444,7 +443,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   vertical-align: middle;
 }
 
-#euqygyjlgz .gt_empty_group_heading {
+#uanpjnqecm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -459,19 +458,19 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   vertical-align: middle;
 }
 
-#euqygyjlgz .gt_striped {
+#uanpjnqecm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#euqygyjlgz .gt_from_md > :first-child {
+#uanpjnqecm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#euqygyjlgz .gt_from_md > :last-child {
+#uanpjnqecm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#euqygyjlgz .gt_row {
+#uanpjnqecm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -490,7 +489,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   overflow-x: hidden;
 }
 
-#euqygyjlgz .gt_stub {
+#uanpjnqecm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -502,7 +501,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   padding-left: 12px;
 }
 
-#euqygyjlgz .gt_summary_row {
+#uanpjnqecm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -512,7 +511,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   padding-right: 5px;
 }
 
-#euqygyjlgz .gt_first_summary_row {
+#uanpjnqecm .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -522,7 +521,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-top-color: #D3D3D3;
 }
 
-#euqygyjlgz .gt_grand_summary_row {
+#uanpjnqecm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -532,7 +531,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   padding-right: 5px;
 }
 
-#euqygyjlgz .gt_first_grand_summary_row {
+#uanpjnqecm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -542,7 +541,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-top-color: #D3D3D3;
 }
 
-#euqygyjlgz .gt_table_body {
+#uanpjnqecm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -551,7 +550,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-bottom-color: #D3D3D3;
 }
 
-#euqygyjlgz .gt_footnotes {
+#uanpjnqecm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -565,13 +564,13 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-right-color: #D3D3D3;
 }
 
-#euqygyjlgz .gt_footnote {
+#uanpjnqecm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#euqygyjlgz .gt_sourcenotes {
+#uanpjnqecm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -585,46 +584,46 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-right-color: #D3D3D3;
 }
 
-#euqygyjlgz .gt_sourcenote {
+#uanpjnqecm .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#euqygyjlgz .gt_left {
+#uanpjnqecm .gt_left {
   text-align: left;
 }
 
-#euqygyjlgz .gt_center {
+#uanpjnqecm .gt_center {
   text-align: center;
 }
 
-#euqygyjlgz .gt_right {
+#uanpjnqecm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#euqygyjlgz .gt_font_normal {
+#uanpjnqecm .gt_font_normal {
   font-weight: normal;
 }
 
-#euqygyjlgz .gt_font_bold {
+#uanpjnqecm .gt_font_bold {
   font-weight: bold;
 }
 
-#euqygyjlgz .gt_font_italic {
+#uanpjnqecm .gt_font_italic {
   font-style: italic;
 }
 
-#euqygyjlgz .gt_super {
+#uanpjnqecm .gt_super {
   font-size: 65%;
 }
 
-#euqygyjlgz .gt_footnote_marks {
+#uanpjnqecm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="euqygyjlgz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="uanpjnqecm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -658,11 +657,11 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
 </div>
 <div id="sources" class="section level2">
 <h2><span class="header-section-number">5.5</span> Sources</h2>
-<p>Data obtained from <a href="https://hbiostat.org/data/" class="uri">https://hbiostat.org/data/</a></p>
-<p><a href="https://hbiostat.org/data/repo/crash2.rda">LINK to data set</a></p>
+<p>Data obtained from <a href="http://biostat.mc.Vanderbilt.edu/dataSets" class="uri">http://biostat.mc.Vanderbilt.edu/dataSets</a></p>
+<p><a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda">LINK to data set</a></p>
 <div id="data-dictionary" class="section level3">
 <h3><span class="header-section-number">5.5.1</span> Data dictionary</h3>
-<p>The data dictionary can be found <a href="https://hbiostat.org/data/repo/crash2.html">LINK</a></p>
+<p>The data dictionary can be found <a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/Ccrash2.html">LINK</a></p>
 </div>
 </div>
 <div id="references" class="section level2">

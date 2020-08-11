@@ -7,14 +7,80 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 library(naniar) ## for missing data 
+library(gt)
+library(kableExtra)
 load(here::here("data", "a_crash2.rda"))
 ```
 
-TODO: organise
+*TODO: organise. Structure as per table in section 4.3*
+
+## Per variable
+
+Number and percentage of missing. 
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  miss_var_summary() %>%
+  gt::gt() %>%
+    gt::cols_label(
+    variable = md("**Variable**"),
+    n_miss = md("**Missing (count)**"),
+    pct_miss = md("**Missing (%)**")
+  ) %>%
+  gt::fmt_number(
+    columns = vars(pct_miss),
+    decimals = 2
+  )
+
+```
+
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  gg_miss_var(show_pct = TRUE)
+```
+
+
+
+## Pattern
+
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  naniar::vis_miss(sort_miss = TRUE, show_perc_col = TRUE) 
+```
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  gg_miss_case()
+```
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  visdat::vis_dat()
+```
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  gg_miss_upset()
+```
+
+
+
+
+## Complete cases
+
+
 
 Identify # complete cases and patients with missing data. 
 
-```{r}
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
 cc <-
   a_crash2 %>%  
   select(-time2death,-ddeath) %>% 
@@ -22,26 +88,28 @@ cc <-
 ```
 
 
-```{r}
+
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
 cc %>% gg_miss_upset()
 ```
 
 
 
-```{r}
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
   select(-time2death, -ddeath) %>%
   gg_miss_upset()
 ```
 
 
-```{r}
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
   select(sex, age, sbp, hr, cc, gcs) %>%
   gg_miss_upset()
 ```
 
-```{r}
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
     select(sex, age, sbp, hr, gcs) %>%
   gg_miss_var(show_pct = TRUE)
@@ -49,29 +117,27 @@ a_crash2 %>%
 ```
 
 
-```{r}
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
     select(sex, age, sbp, hr, gcs) %>%
   gg_miss_var(show_pct = TRUE, facet = sex)
 
 ```
 
-```{r}
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
   select(sex, age, sbp, hr, gcs) %>%
   gg_miss_case()
 ```
 
-```{r}
-
-
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
   select(sex, age, sbp, hr, gcs) %>%
   gg_miss_case(order_cases = TRUE)
 
 ```
 
-```{r}
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
 
 a_crash2 %>%
   select(sex, age, sbp, hr, gcs) %>%
@@ -82,6 +148,6 @@ a_crash2 %>%
 
 ## Session info
 
-```{r}
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
 sessionInfo()
 ```

@@ -24,7 +24,7 @@
 <meta name="author" content="TODO: Complete author list" />
 
 
-<meta name="date" content="2020-08-04" />
+<meta name="date" content="2020-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -204,7 +204,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="bivariate-distributions-1.html"><a href="bivariate-distributions-1.html#session-info-2"><i class="fa fa-check"></i><b>7.5</b> Session info</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>8</b> Missing data</a><ul>
-<li class="chapter" data-level="8.1" data-path="missing-data.html"><a href="missing-data.html#session-info-3"><i class="fa fa-check"></i><b>8.1</b> Session info</a></li>
+<li class="chapter" data-level="8.1" data-path="missing-data.html"><a href="missing-data.html#per-variable"><i class="fa fa-check"></i><b>8.1</b> Per variable</a></li>
+<li class="chapter" data-level="8.2" data-path="missing-data.html"><a href="missing-data.html#pattern"><i class="fa fa-check"></i><b>8.2</b> Pattern</a></li>
+<li class="chapter" data-level="8.3" data-path="missing-data.html"><a href="missing-data.html#complete-cases"><i class="fa fa-check"></i><b>8.3</b> Complete cases</a></li>
+<li class="chapter" data-level="8.4" data-path="missing-data.html"><a href="missing-data.html#session-info-3"><i class="fa fa-check"></i><b>8.4</b> Session info</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -228,29 +231,464 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="missing-data" class="section level1">
 <h1><span class="header-section-number">Chapter 8</span> Missing data</h1>
-<p>TODO: organise</p>
-<p>Identify # complete cases and patients with missing data.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">cc &lt;-</a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="st">  </span>a_crash2 <span class="op">%&gt;%</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb30-3" title="3"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death,<span class="op">-</span>ddeath) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb30-4" title="4"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">complete.cases</span>(.))</a></code></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">cc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
+<p><em>TODO: organise. Structure as per table in section 4.3</em></p>
+<div id="per-variable" class="section level2">
+<h2><span class="header-section-number">8.1</span> Per variable</h2>
+<p>Number and percentage of missing.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death,<span class="op">-</span>ddeath, <span class="op">-</span>entryid, <span class="op">-</span>trandomised, <span class="op">-</span>earlydeath) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="st">  </span><span class="kw">miss_var_summary</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-4" title="4"><span class="st">  </span>gt<span class="op">::</span><span class="kw">gt</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-5" title="5"><span class="st">    </span>gt<span class="op">::</span><span class="kw">cols_label</span>(</a>
+<a class="sourceLine" id="cb30-6" title="6">    <span class="dt">variable =</span> <span class="kw">md</span>(<span class="st">&quot;**Variable**&quot;</span>),</a>
+<a class="sourceLine" id="cb30-7" title="7">    <span class="dt">n_miss =</span> <span class="kw">md</span>(<span class="st">&quot;**Missing (count)**&quot;</span>),</a>
+<a class="sourceLine" id="cb30-8" title="8">    <span class="dt">pct_miss =</span> <span class="kw">md</span>(<span class="st">&quot;**Missing (%)**&quot;</span>)</a>
+<a class="sourceLine" id="cb30-9" title="9">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-10" title="10"><span class="st">  </span>gt<span class="op">::</span><span class="kw">fmt_number</span>(</a>
+<a class="sourceLine" id="cb30-11" title="11">    <span class="dt">columns =</span> <span class="kw">vars</span>(pct_miss),</a>
+<a class="sourceLine" id="cb30-12" title="12">    <span class="dt">decimals =</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb30-13" title="13">  )</a></code></pre></div>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#xzmamidxxr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xzmamidxxr .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xzmamidxxr .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xzmamidxxr .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xzmamidxxr .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xzmamidxxr .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xzmamidxxr .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xzmamidxxr .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xzmamidxxr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xzmamidxxr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xzmamidxxr .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xzmamidxxr .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xzmamidxxr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xzmamidxxr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xzmamidxxr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xzmamidxxr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xzmamidxxr .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xzmamidxxr .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#xzmamidxxr .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xzmamidxxr .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#xzmamidxxr .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xzmamidxxr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xzmamidxxr .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xzmamidxxr .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xzmamidxxr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xzmamidxxr .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xzmamidxxr .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xzmamidxxr .gt_left {
+  text-align: left;
+}
+
+#xzmamidxxr .gt_center {
+  text-align: center;
+}
+
+#xzmamidxxr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xzmamidxxr .gt_font_normal {
+  font-weight: normal;
+}
+
+#xzmamidxxr .gt_font_bold {
+  font-weight: bold;
+}
+
+#xzmamidxxr .gt_font_italic {
+  font-style: italic;
+}
+
+#xzmamidxxr .gt_super {
+  font-size: 65%;
+}
+
+#xzmamidxxr .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="xzmamidxxr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Variable</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Missing (count)</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"><strong>Missing (%)</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">cc</td>
+      <td class="gt_row gt_center">611</td>
+      <td class="gt_row gt_right">3.02</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">sbp</td>
+      <td class="gt_row gt_center">320</td>
+      <td class="gt_row gt_right">1.58</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">rr</td>
+      <td class="gt_row gt_center">191</td>
+      <td class="gt_row gt_right">0.95</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">hr</td>
+      <td class="gt_row gt_center">137</td>
+      <td class="gt_row gt_right">0.68</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">gcs</td>
+      <td class="gt_row gt_center">23</td>
+      <td class="gt_row gt_right">0.11</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">injurytime</td>
+      <td class="gt_row gt_center">11</td>
+      <td class="gt_row gt_right">0.05</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">age</td>
+      <td class="gt_row gt_center">4</td>
+      <td class="gt_row gt_right">0.02</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">sex</td>
+      <td class="gt_row gt_center">1</td>
+      <td class="gt_row gt_right">0.00</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">injurytype</td>
+      <td class="gt_row gt_center">0</td>
+      <td class="gt_row gt_right">0.00</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death,<span class="op">-</span>ddeath, <span class="op">-</span>entryid, <span class="op">-</span>trandomised, <span class="op">-</span>earlydeath) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="st">  </span><span class="kw">gg_miss_var</span>(<span class="dt">show_pct =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="Missing_crash2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="pattern" class="section level2">
+<h2><span class="header-section-number">8.2</span> Pattern</h2>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death, <span class="op">-</span>ddeath) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-3" title="3"><span class="st">  </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death,<span class="op">-</span>ddeath, <span class="op">-</span>entryid, <span class="op">-</span>trandomised, <span class="op">-</span>earlydeath) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-3" title="3"><span class="st">  </span>naniar<span class="op">::</span><span class="kw">vis_miss</span>(<span class="dt">sort_miss =</span> <span class="ot">TRUE</span>, <span class="dt">show_perc_col =</span> <span class="ot">TRUE</span>) </a></code></pre></div>
 <p><img src="Missing_crash2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, cc, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-3" title="3"><span class="st">  </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb33-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death,<span class="op">-</span>ddeath, <span class="op">-</span>entryid, <span class="op">-</span>trandomised, <span class="op">-</span>earlydeath) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="st">  </span><span class="kw">gg_miss_case</span>()</a></code></pre></div>
 <p><img src="Missing_crash2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-2" title="2"><span class="st">    </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-3" title="3"><span class="st">  </span><span class="kw">gg_miss_var</span>(<span class="dt">show_pct =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb34-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death,<span class="op">-</span>ddeath, <span class="op">-</span>entryid, <span class="op">-</span>trandomised, <span class="op">-</span>earlydeath) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="st">  </span>visdat<span class="op">::</span><span class="kw">vis_dat</span>()</a></code></pre></div>
 <p><img src="Missing_crash2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-2" title="2"><span class="st">    </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-3" title="3"><span class="st">  </span><span class="kw">gg_miss_var</span>(<span class="dt">show_pct =</span> <span class="ot">TRUE</span>, <span class="dt">facet =</span> sex)</a></code></pre></div>
+<a class="sourceLine" id="cb35-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death,<span class="op">-</span>ddeath, <span class="op">-</span>entryid, <span class="op">-</span>trandomised, <span class="op">-</span>earlydeath) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb35-3" title="3"><span class="st">  </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="complete-cases" class="section level2">
+<h2><span class="header-section-number">8.3</span> Complete cases</h2>
+<p>Identify # complete cases and patients with missing data.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">cc &lt;-</a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="st">  </span>a_crash2 <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death,<span class="op">-</span>ddeath) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">complete.cases</span>(.))</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">cc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>time2death, <span class="op">-</span>ddeath) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, cc, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-3" title="3"><span class="st">  </span><span class="kw">gg_miss_upset</span>()</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="st">    </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="st">  </span><span class="kw">gg_miss_var</span>(<span class="dt">show_pct =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="st">    </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="st">  </span><span class="kw">gg_miss_var</span>(<span class="dt">show_pct =</span> <span class="ot">TRUE</span>, <span class="dt">facet =</span> sex)</a></code></pre></div>
 <pre><code>## Warning: Factor `sex` contains implicit NA, consider using
 ## `forcats::fct_explicit_na`
 
@@ -277,22 +715,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 ## Warning: Factor `sex` contains implicit NA, consider using
 ## `forcats::fct_explicit_na`</code></pre>
-<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span><span class="kw">gg_miss_case</span>()</a></code></pre></div>
-<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span><span class="kw">gg_miss_case</span>(<span class="dt">order_cases =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-3" title="3"><span class="st">  </span><span class="kw">gg_miss_fct</span>(<span class="dt">fct =</span> sex)</a></code></pre></div>
-<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="st">  </span><span class="kw">gg_miss_case</span>()</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-3" title="3"><span class="st">  </span><span class="kw">gg_miss_case</span>(<span class="dt">order_cases =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">a_crash2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span><span class="kw">select</span>(sex, age, sbp, hr, gcs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw">gg_miss_fct</span>(<span class="dt">fct =</span> sex)</a></code></pre></div>
+<p><img src="Missing_crash2_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
 <div id="session-info-3" class="section level2">
-<h2><span class="header-section-number">8.1</span> Session info</h2>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<h2><span class="header-section-number">8.4</span> Session info</h2>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
 <pre><code>## R version 3.6.1 (2019-07-05)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 17763)
@@ -310,38 +749,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] naniar_0.5.2    Hmisc_4.4-0     Formula_1.2-3   survival_3.2-3 
-##  [5] lattice_0.20-40 forcats_0.5.0   stringr_1.4.0   dplyr_0.8.5    
-##  [9] purrr_0.3.4     readr_1.3.1     tidyr_1.0.2     tibble_3.0.1   
-## [13] ggplot2_3.3.0   tidyverse_1.3.0 here_0.1       
+##  [1] kableExtra_1.1.0 gt_0.2.0.5       naniar_0.5.2     Hmisc_4.4-0     
+##  [5] Formula_1.2-3    survival_3.2-3   lattice_0.20-40  forcats_0.5.0   
+##  [9] stringr_1.4.0    dplyr_0.8.5      purrr_0.3.4      readr_1.3.1     
+## [13] tidyr_1.0.2      tibble_3.0.1     ggplot2_3.3.0    tidyverse_1.3.0 
+## [17] here_0.1        
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] viridis_0.5.1       httr_1.4.1          viridisLite_0.3.0  
-##  [4] jsonlite_1.6.1      splines_3.6.1       modelr_0.1.6       
-##  [7] assertthat_0.2.1    latticeExtra_0.6-29 cellranger_1.1.0   
-## [10] yaml_2.2.1          pillar_1.4.4        backports_1.1.7    
-## [13] visdat_0.5.3        glue_1.4.1          digest_0.6.25      
-## [16] RColorBrewer_1.1-2  checkmate_2.0.0     rvest_0.3.5        
-## [19] colorspace_1.4-1    plyr_1.8.6          htmltools_0.4.0    
-## [22] Matrix_1.2-18       pkgconfig_2.0.3     broom_0.5.5        
-## [25] haven_2.2.0         bookdown_0.18       scales_1.1.1       
-## [28] jpeg_0.1-8.1        htmlTable_1.13.3    farver_2.0.3       
-## [31] generics_0.0.2      ellipsis_0.3.0      UpSetR_1.4.0       
-## [34] withr_2.2.0         nnet_7.3-13         cli_2.0.2          
-## [37] magrittr_1.5        crayon_1.3.4        readxl_1.3.1       
-## [40] evaluate_0.14       fs_1.3.2            fansi_0.4.1        
-## [43] nlme_3.1-145        xml2_1.2.5          foreign_0.8-76     
-## [46] tools_3.6.1         data.table_1.12.8   hms_0.5.3          
-## [49] lifecycle_0.2.0     munsell_0.5.0       reprex_0.3.0       
-## [52] cluster_2.1.0       compiler_3.6.1      rlang_0.4.6        
-## [55] grid_3.6.1          rstudioapi_0.11     htmlwidgets_1.5.1  
-## [58] labeling_0.3        base64enc_0.1-3     rmarkdown_2.1      
-## [61] gtable_0.3.0        DBI_1.1.0           R6_2.4.1           
-## [64] gridExtra_2.3       lubridate_1.7.4     knitr_1.28         
-## [67] rprojroot_1.3-2     stringi_1.4.6       Rcpp_1.0.4.6       
-## [70] vctrs_0.3.0         rpart_4.1-15        acepack_1.4.1      
-## [73] png_0.1-7           dbplyr_1.4.2        tidyselect_1.1.0   
-## [76] xfun_0.12</code></pre>
+##  [1] nlme_3.1-145        fs_1.3.2            lubridate_1.7.4    
+##  [4] webshot_0.5.2       RColorBrewer_1.1-2  httr_1.4.1         
+##  [7] UpSetR_1.4.0        rprojroot_1.3-2     tools_3.6.1        
+## [10] backports_1.1.7     R6_2.4.1            rpart_4.1-15       
+## [13] DBI_1.1.0           colorspace_1.4-1    nnet_7.3-13        
+## [16] withr_2.2.0         tidyselect_1.1.0    gridExtra_2.3      
+## [19] compiler_3.6.1      cli_2.0.2           rvest_0.3.5        
+## [22] htmlTable_1.13.3    xml2_1.2.5          labeling_0.3       
+## [25] bookdown_0.18       sass_0.2.0          scales_1.1.1       
+## [28] checkmate_2.0.0     commonmark_1.7      digest_0.6.25      
+## [31] foreign_0.8-76      rmarkdown_2.1       base64enc_0.1-3    
+## [34] jpeg_0.1-8.1        pkgconfig_2.0.3     htmltools_0.4.0    
+## [37] dbplyr_1.4.2        htmlwidgets_1.5.1   rlang_0.4.6        
+## [40] readxl_1.3.1        rstudioapi_0.11     farver_2.0.3       
+## [43] generics_0.0.2      jsonlite_1.6.1      acepack_1.4.1      
+## [46] magrittr_1.5        Matrix_1.2-18       Rcpp_1.0.4.6       
+## [49] munsell_0.5.0       fansi_0.4.1         viridis_0.5.1      
+## [52] lifecycle_0.2.0     visdat_0.5.3        stringi_1.4.6      
+## [55] yaml_2.2.1          plyr_1.8.6          grid_3.6.1         
+## [58] crayon_1.3.4        haven_2.2.0         splines_3.6.1      
+## [61] hms_0.5.3           knitr_1.28          pillar_1.4.4       
+## [64] reprex_0.3.0        glue_1.4.1          evaluate_0.14      
+## [67] latticeExtra_0.6-29 data.table_1.12.8   modelr_0.1.6       
+## [70] png_0.1-7           vctrs_0.3.0         cellranger_1.1.0   
+## [73] gtable_0.3.0        assertthat_0.2.1    xfun_0.12          
+## [76] broom_0.5.5         viridisLite_0.3.0   cluster_2.1.0      
+## [79] ellipsis_0.3.0</code></pre>
 
 </div>
 </div>
