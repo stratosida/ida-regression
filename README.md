@@ -73,13 +73,16 @@ Note: the package list above is currently static, so consider that it may not be
 ## Structure  
 
 
-* main - General files with extensions for each of three data sets ("_bacteremia", "_crash2", "_nhanes")
-    * scope of the regression models for this project ("scope.Rmd")
-    * statistical analysis plan ("SAP_.Rmd")  
-    * univariate IDA Rmarkdown ("univar_.Rmd")
-    * multivariate IDA Rmarkdown files ("multivar_.Rmd")
-    * missingness IDA Rmarkdown files ("missing_.Rmd")
-    * bookdown file ("bookdown.yml")
+* main - General files
+    * Explanation of the IDA framework ("IDA_framework.Rmd")
+    * Description of possible IDA actions ("data_screen.Rmd")
+    * Scope of the regression models for this project ("scope.Rmd")
+    * Introduction of the three data sets  ("Intro_.Rmd") with extensions ("_bacteremia", "_crash2", "_nhanes")
+    * Statistical analysis plan ("SAP_.Rmd")  
+    * Univariate IDA Rmarkdown ("univar_.Rmd")
+    * Multivariate IDA Rmarkdown files ("multivar_.Rmd")
+    * Missingness IDA Rmarkdown files ("missing_.Rmd")
+    * Global file that includes these files as chapters ("bookdown.yml", "index.Rmd")
     
 * data - Repository for example data sets and their data dictionaries *(add data sets to Open Science Framework?)*
     * Bacteremia
