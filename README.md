@@ -95,11 +95,25 @@ Note: the package list above is currently static, so consider that it may not be
     
 * R - R functions for data visualization
 
+* assets - style files and images
+
+* Misc
+  * Data dictionaries for the data sets
+  * References for research studies using the data sets
+  * older files
+
 ## References
 
 [1] Huebner M, le Cessie S, Schmidt CO, Vach W . A contemporary conceptual framework for initial data analysis. Observational Studies 2018; 4: 171-192. [Link](https://obsstudies.org/contemporary-conceptual-framework-initial-data-analysis/)
 
 [2] Huebner M, Vach W, le Cessie S, Schmidt C, Lusa L. Hidden Analyses: a review of reporting practice and recommendations for more transparent reporting of initial data analyses. BMC Med Res Meth 2020; 20:61 [Link](https://bmcmedresmethodol.biomedcentral.com/track/pdf/10.1186/s12874-020-00942-y)
+
+[3] Perel P, Prieto-Merino D, Shakur H, Clayton T, Lecky F, Bouamra O, Russell R, Faulkner M, Steyerberg EW, Roberts I. Predicting early death in patients with traumatic bleeding: development and validation of prognostic model. BMJ 2012; 345(aug15 1): e5166. http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda
+
+[4] Ratzinger F, Dedeyan M, Rammerstorfer M, Perkmann T, Burgmann H, et al. (2014) A Risk Prediction Model for Screening Bacteremic Patients: A Cross Sectional Study. PLoS ONE 9(9): e106765. doi:10.1371/journal.pone.0106765
+
+[5] Centers for Disease Control and Prevention: National Health and Nutrition Examination Survey (NHANES). https://cdc.gov/nhanes/index.htm
+
 
 
 ## Funding
