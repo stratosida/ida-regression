@@ -48,14 +48,6 @@ source(here::here("R", "ida_plot_univar.R"))
 
 The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses.
 
-TODO: to add. create ToC dynamically:
-
-
-
-```{r eval=FALSE}
-install.packages("bookdown")
-```
-
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

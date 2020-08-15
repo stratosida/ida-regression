@@ -9,12 +9,13 @@ library(Hmisc)
 library(naniar) ## for missing data 
 library(gt)
 library(kableExtra)
+library(DT)
 load(here::here("data", "a_crash2.rda"))
 ```
 
 *TODO: organise. Structure as per table in section 4.3*
 
-## Per variable
+## Per variable missingness
 
 Number and percentage of missing. 
 
@@ -44,7 +45,7 @@ a_crash2 %>%
 
 
 
-## Pattern
+## Missingness patterns over variables
 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
@@ -78,72 +79,24 @@ a_crash2 %>%
 
 
 
-Identify # complete cases and patients with missing data. 
+List out patients with at least one missing value. 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 cc <-
   a_crash2 %>%  
   select(-time2death,-ddeath) %>% 
   filter(!complete.cases(.))
+
+DT::datatable(cc)
 ```
 
 
-
+Look at the pattern of missing for this set of patients. 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 cc %>% gg_miss_upset()
 ```
 
-
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_crash2 %>%
-  select(-time2death, -ddeath) %>%
-  gg_miss_upset()
-```
-
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_crash2 %>%
-  select(sex, age, sbp, hr, cc, gcs) %>%
-  gg_miss_upset()
-```
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_crash2 %>%
-    select(sex, age, sbp, hr, gcs) %>%
-  gg_miss_var(show_pct = TRUE)
-
-```
-
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_crash2 %>%
-    select(sex, age, sbp, hr, gcs) %>%
-  gg_miss_var(show_pct = TRUE, facet = sex)
-
-```
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_crash2 %>%
-  select(sex, age, sbp, hr, gcs) %>%
-  gg_miss_case()
-```
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_crash2 %>%
-  select(sex, age, sbp, hr, gcs) %>%
-  gg_miss_case(order_cases = TRUE)
-
-```
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-
-a_crash2 %>%
-  select(sex, age, sbp, hr, gcs) %>%
-  gg_miss_fct(fct = sex)
-
-```
 
 
 ## Session info
