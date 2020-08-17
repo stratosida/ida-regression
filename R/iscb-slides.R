@@ -132,7 +132,7 @@ a_crash2 %>%
     )) %>%
   ggplot(aes(value)) +
   ylab("Number of subjects") +
-  geom_histogram(bins = 200, alpha = 0.6, fill = "red") +
+  geom_histogram(binwidth = 0.5, alpha = 0.6, boundary = TRUE, pad = TRUE, fill = "red") +
   facet_wrap(~ var_label, scales = "free", ncol = 1) +
   theme_minimal(base_size = 18) +
   theme(axis.title.x = element_blank(),
@@ -147,7 +147,6 @@ ggsave(file = paste0("iscb-figures/age-hr.png"),
        units = "mm", dpi = d_dpi)
 
 ################################
-
 
 
 ################################
