@@ -74,7 +74,7 @@ p2 <-
   filter(!is.na(injurytime)) %>%
   ggplot2::ggplot(aes(as.numeric(injurytime))) +
   geom_histogram(
-    bins = 200,
+    binwidth = 0.5,
     center = 0,
     alpha = 0.7,
     fill = "red"
