@@ -126,7 +126,7 @@ Hmisc::html(Hmisc::contents(a_crash2),
 save(a_crash2, file = here::here("data", "a_crash2.rda"))
 ```
 
-## Cahpter session info
+## Chapter session info
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 sessionInfo()

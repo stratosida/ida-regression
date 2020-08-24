@@ -1,11 +1,10 @@
 
-#  Multivariate summaries
+#  Multivariate distributions
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE }
 library(here)
 library(tidyverse)
 library(Hmisc)
-library(arsenal)
 
 ## Read data 
 load(here::here("data", "a_crash2.rda"))
@@ -39,6 +38,7 @@ html(
   msdsize = mu$smaller2
 )
 ```
+
 
 
 
@@ -115,7 +115,211 @@ a_crash2 %>%
 ```
 
 
-## Baseline characteristics by sex 
+
+
+## Baseline characteristics by Glasgow comma score
+
+
+```{r, results="asis", message=FALSE, warning =FALSE , echo=FALSE}
+s <-
+  Hmisc::summaryM(
+    age + hr + rr + sbp + cc  + sex + injurytime + injurytype ~ gcs,
+    data = a_crash2,
+    overall = FALSE,
+    test = FALSE
+  )
+
+html(
+  s,
+  caption = 'Baseline characteristics by sex',
+  exclude1 = TRUE,
+  npct = 'both',
+  digits = 3,
+  prmsd = TRUE,
+  brmsd = TRUE,
+  scroll = TRUE, 
+  msdsize = mu$smaller2
+)
+
+
+```
+
+
+
+
+### Distribution of age by sex
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of age by gcs"}
+# only plot observatons with a non-missing value for gcs
+a_crash2 %>%
+  filter(!(is.na(gcs))) %>%
+  with(., histboxp(
+    x = age,
+    group = gcs,
+    sd = TRUE,
+    bins = 200
+  ))
+
+
+```
+
+### Distribution of systolic blood pressure by gcs
+
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of systolic blood pressure by gcs"}
+a_crash2 %>%
+  filter(!(is.na(gcs))) %>%
+  with(., histboxp(
+    x = sbp,
+    group = gcs,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of heart rate by gcs
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of heart rate by gcs" }
+a_crash2 %>%
+  filter(!(is.na(gcs))) %>%
+  with(., histboxp(
+    x = hr,
+    group = gcs,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of respiratory rate by gcs
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of respiratory rate by gcs" }
+a_crash2 %>%
+  filter(!(is.na(gcs))) %>%
+  with(., histboxp(
+    x =  rr,
+    group = gcs,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of central capillary refille time by gcs
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of centrail capillary refille time by gcs" }
+a_crash2 %>%
+  filter(!(is.na(gcs))) %>%
+  with(., histboxp(
+    x =  cc,
+    group = gcs,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+
+
+
+## Baseline characteristics by age 
+
+Categorize age for the purposes of exploring the relationship between age and other baseline variables. This is purely for exploratory purposes only, and not to influence the analysis strategy to pursue the dichotomization of age.
+
+
+```{r}
+a_crash2 <- a_crash2 %>%
+  mutate(age_C = case_when(is.na(age) ~ "NA", 
+                           age < 30 ~ "<30",
+                            age < 45 ~ "30-44",
+                            age < 60 ~ "45-59",
+                            age >= 60 ~ "60+"))
+```
+
+
+```{r, results="asis", message=FALSE, warning =FALSE , echo=FALSE}
+s <-
+  Hmisc::summaryM(
+    age + hr + rr + sbp + cc  + sex + injurytime + injurytype ~ gcs,
+    data = a_crash2,
+    overall = FALSE,
+    test = FALSE
+  )
+
+html(
+  s,
+  caption = 'Baseline characteristics by sex',
+  exclude1 = TRUE,
+  npct = 'both',
+  digits = 3,
+  prmsd = TRUE,
+  brmsd = TRUE,
+  scroll = TRUE, 
+  msdsize = mu$smaller2
+)
+
+
+```
+
+
+
+### Distribution of systolic blood pressure by age categories
+
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of systolic blood pressure by gcs"}
+a_crash2 %>%
+  filter(!(is.na(age_C))) %>%
+  with(., histboxp(
+    x = sbp,
+    group = age_C,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of heart rate by age categories
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of heart rate by gcs" }
+a_crash2 %>%
+  filter(!(is.na(age_C))) %>%
+  with(., histboxp(
+    x = hr,
+    group = age_C,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of respiratory rate by age categories
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of respiratory rate by gcs" }
+a_crash2 %>%
+  filter(!(is.na(age_C))) %>%
+  with(., histboxp(
+    x =  rr,
+    group = age_C,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of central capillary refille time by age categories
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of centrail capillary refille time by gcs" }
+a_crash2 %>%
+  filter(!(is.na(age_C))) %>%
+  with(., histboxp(
+    x =  cc,
+    group = age_C,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
 
 ### Continuous 
 
