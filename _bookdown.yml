@@ -11,9 +11,9 @@ rmd_files: [
   "IDA_framework.Rmd",
   "scope.Rmd",
   "data_screen.Rmd",
-  "Intro_crash2.Rmd",
-  "SAP_crash2.Rmd",
-  "Univar_crash2.Rmd",
-  "Multivar_crash2.Rmd",
-  "Missing_crash2.Rmd"
+  "Crash2_intro.Rmd",
+  "Crash2_SAP.Rmd",
+  "Crash2_univar.Rmd",
+  "Crash2_multivar.Rmd",
+  "Crash2_missing.Rmd"
 ]

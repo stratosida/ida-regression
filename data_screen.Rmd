@@ -1,6 +1,5 @@
 # Data screening and possible actions
 
-**TODO: Check for copy and paste errors in table.**
 
 ## Univariate distributions
 
@@ -39,6 +38,6 @@
 
 Huebner M, le Cessie S, Schmidt CO, Vach W . A contemporary conceptual framework for initial data analysis. Observational Studies 2018; 4: 171-192. Link
 
-Harrell
+Harrell FE. Regression Modeling Strategies. Springer (2nd ed) 2015
 
 […]
