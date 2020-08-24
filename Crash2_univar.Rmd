@@ -78,6 +78,7 @@ a_crash2 %>%
     y = pct,
     label = pct
   )) +
+  geom_pointrange(aes(ymin = 0, ymax = pct), alpha = 1, size = 1, color = "grey") +
   geom_point(color = "firebrick2",
              alpha = 0.6,
              size = 3) +
@@ -119,6 +120,7 @@ a_crash2 %>%
     y = pct,
     label = pct
   )) +
+  geom_pointrange(aes(ymin = 0, ymax = pct), alpha = 1, size = 1, color = "grey") +
   geom_point(color = "firebrick2",
              alpha = 0.6,
              size = 3) +
@@ -158,7 +160,12 @@ a_crash2 %>%
     )) %>%
   ggplot(aes(value)) +
   ylab("Number of subjects") +
-  geom_histogram(bins = 200, alpha = 0.6, fill = "firebrick2") +
+  geom_histogram(
+    binwidth = 0.5,
+    center = 0,
+    alpha = 0.6,
+    fill = "firebrick2"
+  ) +
   facet_wrap(~ var_label, scales = "free", ncol = 2) +
   theme_minimal() +
   theme(axis.title.x = element_blank(),
@@ -178,11 +185,12 @@ More detailed univariate summaries for the variables of interest are also provid
 ida_plot_univar(a_crash2, "age")
 ```
 
+Five patients under the age of 17, the inclusion criteria for the study, with one patient aged 1. 
 
 ### Blood pressure
 
 ```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of SBP" , echo=FALSE}
-ida_plot_univar(a_crash2, "sbp")
+ida_plot_univar(a_crash2, "sbp", bin_width = 0.7)
 ```
 
 
@@ -206,7 +214,7 @@ ida_plot_univar(a_crash2, "hr")
 
 
 ```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of Central capillary refill time", echo=FALSE}
-ida_plot_univar(a_crash2, "cc")
+ida_plot_univar(a_crash2, "cc", bin_width = 0.5)
 ```
 
 
@@ -214,14 +222,14 @@ ida_plot_univar(a_crash2, "cc")
 
 
 ```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of hours since injury", echo=FALSE}
-ida_plot_univar(a_crash2, "injurytime", n_dodge = 3)
+ida_plot_univar(a_crash2, "injurytime", n_dodge = 3, bin_width = 0.25)
 ```
 
 
 
-## Session info
+## Chapter session info
 
-```{r}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 sessionInfo()
 ```
 

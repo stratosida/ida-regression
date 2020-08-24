@@ -1,5 +1,5 @@
 
-#  Multivariable/variate distributions
+#  Multivariate summaries
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE }
 library(here)
@@ -13,31 +13,20 @@ load(here::here("data", "a_crash2.rda"))
 
 
 
-## Summary by sex
+## Baseline characteristics by sex
 
-```{r, results="asis", message=FALSE, warning =FALSE , echo=FALSE}
-crs.char <-
-  tableby(
-    sex ~ age + hr + rr + sbp ,
-    data = a_crash2,
-    test = FALSE,
-    total = FALSE,
-    numeric.stats = c("median","mean", "sd", "q1q3", "range", "Nmiss2"), 
-    digits = 1, digits.p = 2, digits.pct = 1
-  )
 
-summary(crs.char, title = 'Patient characteristics') 
-```
+### Overall 
+
 
 ```{r, results="asis", message=FALSE, warning =FALSE , echo=FALSE}
 s <-
-  summaryM(
+  Hmisc::summaryM(
     age + hr + rr + sbp + cc + gcs + injurytime + injurytype ~ sex,
     data = a_crash2,
     overall = FALSE,
     test = FALSE
   )
-
 
 html(
   s,
@@ -53,15 +42,9 @@ html(
 
 
 
-
-
-
-
-## Continuous variables by sex
-
 ### Distribution of age by sex
 
-```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of age by sex"}
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of age by sex"}
 # only plot observatons with a non-missing value for Sex
 a_crash2 %>%
   filter(!(is.na(sex))) %>%
@@ -78,7 +61,7 @@ a_crash2 %>%
 ### Distribution of systolic blood pressure by sex
 
 
-```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of systolic blood pressure by sex"}
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of systolic blood pressure by sex"}
 a_crash2 %>%
   filter(!(is.na(sex))) %>%
   with(., histboxp(
@@ -92,7 +75,7 @@ a_crash2 %>%
 
 ### Distribution of heart rate by sex
 
-```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of heart rate by sex" }
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of heart rate by sex" }
 a_crash2 %>%
   filter(!(is.na(sex))) %>%
   with(., histboxp(
@@ -106,7 +89,7 @@ a_crash2 %>%
 
 ### Distribution of respiratory rate by sex
 
-```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of respiratory rate by sex" }
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of respiratory rate by sex" }
 a_crash2 %>%
   filter(!(is.na(sex))) %>%
   with(., histboxp(
@@ -120,7 +103,7 @@ a_crash2 %>%
 
 ### Distribution of central capillary refille time by sex
 
-```{r, echo = FALSE, message = FALSE, fig.cap= "Distribution of centrail capillary refille time by sex" }
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of centrail capillary refille time by sex" }
 a_crash2 %>%
   filter(!(is.na(sex))) %>%
   with(., histboxp(
@@ -132,7 +115,7 @@ a_crash2 %>%
 ```
 
 
-## Age 
+## Baseline characteristics by sex 
 
 ### Continuous 
 
@@ -234,7 +217,7 @@ p4 <- a_crash2 %>%
 ```
 
 
-### Continuous3 
+### Continuous
 
 ```{r}
 
@@ -249,7 +232,7 @@ Scatter plot of age and RR by sex and injury type.
 
 
 ```{r}
-ggplot(a_crash2, aes(
+ggplot(a_crash2 %>% filter(!(is.na(sex))), aes(
   y = age,
   x = rr
 )) +
@@ -265,7 +248,7 @@ ggplot(a_crash2, aes(
 Scatter plot of SBP and RR by sex and injury type.
 
 ```{r}
-ggplot(a_crash2, aes(
+ggplot(a_crash2 %>% filter(!(is.na(sex))), aes(
   y = sbp,
   x = rr
 )) +
@@ -280,8 +263,9 @@ ggplot(a_crash2, aes(
 
 
 
-## Session info
 
-```{r}
+## Chapter session info
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 sessionInfo()
 ```

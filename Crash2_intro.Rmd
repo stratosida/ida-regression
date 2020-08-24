@@ -119,7 +119,7 @@ save(a_crash2, file = here::here("data", "a_crash2.rda"))
 
 ## Session info
 
-```{r,  warning=FALSE, message=FALSE, echo=FALSE}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 sessionInfo()
 ```
 

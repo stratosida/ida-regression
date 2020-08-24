@@ -13,7 +13,6 @@ library(DT)
 load(here::here("data", "a_crash2.rda"))
 ```
 
-*TODO: organise. Structure as per table in section 4.3*
 
 ## Per variable missingness
 
@@ -78,7 +77,6 @@ a_crash2 %>%
 ## Complete cases
 
 
-
 List out patients with at least one missing value. 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
@@ -99,7 +97,7 @@ cc %>% gg_miss_upset()
 
 
 
-## Session info
+## Chapter session info
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 sessionInfo()
