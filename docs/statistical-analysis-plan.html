@@ -155,11 +155,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="crash-2.html"><a href="crash-2.html"><i class="fa fa-check"></i>CRASH-2</a></li>
 <li class="chapter" data-level="5" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html"><i class="fa fa-check"></i><b>5</b> Introduction to CRASH-2</a><ul>
-<li class="chapter" data-level="5.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash2-dataset-contents"><i class="fa fa-check"></i><b>5.1</b> Crash2 dataset contents</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#source-dataset"><i class="fa fa-check"></i><b>5.1.1</b> Source dataset</a></li>
-<li class="chapter" data-level="5.1.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#updated-analysis-dataset"><i class="fa fa-check"></i><b>5.1.2</b> Updated analysis dataset</a></li>
+<li class="chapter" data-level="5.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash-2-description"><i class="fa fa-check"></i><b>5.1</b> CRASH-2 Description</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash2-dataset-contents"><i class="fa fa-check"></i><b>5.2</b> Crash2 dataset contents</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#source-dataset"><i class="fa fa-check"></i><b>5.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="5.2.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#updated-analysis-dataset"><i class="fa fa-check"></i><b>5.2.2</b> Updated analysis dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#session-info"><i class="fa fa-check"></i><b>5.2</b> Session info</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#cahpter-session-info"><i class="fa fa-check"></i><b>5.3</b> Cahpter session info</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html"><i class="fa fa-check"></i><b>6</b> Statistical analysis plan</a><ul>
 <li class="chapter" data-level="6.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#outcome-variable"><i class="fa fa-check"></i><b>6.1</b> Outcome variable</a></li>
@@ -235,6 +236,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="statistical-analysis-plan" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Statistical analysis plan</h1>
+<p>Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place.
+IDA may lead to an update or refinement of the analysis plan. To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan.</p>
+<p><strong>Hypothetical research aim for IDA:</strong> Develop a multivariable model for early death (death within 28 days from injury) using nine independent variables of mixed type (continuous, categorical, semicontinuous) with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome.</p>
+<p>The assumed analysis aim is in line with the prediction model presented by <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>, <a href="https://www.bmj.com/highwire/filestream/634478/field_highwire_adjunct_files/0/perp003158.ww1_default.pdf">supplement available at</a>.</p>
 <div id="outcome-variable" class="section level2">
 <h2><span class="header-section-number">6.1</span> Outcome variable</h2>
 <p>Early death, i.e. in-hospital death within 28 days from injury (binary variable)</p>
@@ -265,7 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="remarks" class="section level2">
 <h2><span class="header-section-number">6.3</span> Remarks</h2>
 <ul>
-<li><p>Regarding type of injury, the original paper describes its treatment in the model as follows: ‘Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as ’penetrating’ or ‘blunt and penetrating.’ ’ It is not clear from that description what happened to the ‘blunt’ group. (I assume they were collapsed with ‘blunt and penetrating’.)</p></li>
+<li><p>Regarding type of injury, the original paper describes its treatment in the model as follows: ‘Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as ’penetrating’ or ‘blunt and penetrating.’ ’ It is not clear from that description what happened to the ‘blunt’ group. (I assume they were collapsed with ‘blunt and penetrating’.) ** we are going to consider the three categories, and then check aout recommendations for the final analysis-MH**</p></li>
 <li><p>The original paper describes the modeling approach as follows: ‘We used a backward step-wise approach. Firstly, we included all potential prognostic factors and interaction terms that users considered plausible. These interactions included all potential predictors with type of injury, time since injury, and age. We then removed, one at a time, terms for which we found no strong evidence of an association, judged according to the P values (&lt;0.05) from the Wald test.’ This would mean they tested at least 24 interaction terms, each possibly using several degrees of freedom! In the final model, only an interaction of Glasgow coma score and type of injury was included.</p></li>
 </ul>
 </div>
@@ -298,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#camvxhrjux .gt_table {
+#xajjeobhhj .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -321,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#camvxhrjux .gt_heading {
+#xajjeobhhj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -333,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#camvxhrjux .gt_title {
+#xajjeobhhj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -343,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#camvxhrjux .gt_subtitle {
+#xajjeobhhj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -353,13 +358,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-#camvxhrjux .gt_bottom_border {
+#xajjeobhhj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#camvxhrjux .gt_col_headings {
+#xajjeobhhj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -374,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#camvxhrjux .gt_col_heading {
+#xajjeobhhj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -394,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#camvxhrjux .gt_column_spanner_outer {
+#xajjeobhhj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -406,15 +411,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#camvxhrjux .gt_column_spanner_outer:first-child {
+#xajjeobhhj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#camvxhrjux .gt_column_spanner_outer:last-child {
+#xajjeobhhj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#camvxhrjux .gt_column_spanner {
+#xajjeobhhj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -426,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#camvxhrjux .gt_group_heading {
+#xajjeobhhj .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -448,7 +453,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#camvxhrjux .gt_empty_group_heading {
+#xajjeobhhj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -463,19 +468,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#camvxhrjux .gt_striped {
+#xajjeobhhj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#camvxhrjux .gt_from_md > :first-child {
+#xajjeobhhj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#camvxhrjux .gt_from_md > :last-child {
+#xajjeobhhj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#camvxhrjux .gt_row {
+#xajjeobhhj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -494,7 +499,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#camvxhrjux .gt_stub {
+#xajjeobhhj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -506,7 +511,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-left: 12px;
 }
 
-#camvxhrjux .gt_summary_row {
+#xajjeobhhj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -516,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#camvxhrjux .gt_first_summary_row {
+#xajjeobhhj .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -526,7 +531,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#camvxhrjux .gt_grand_summary_row {
+#xajjeobhhj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -536,7 +541,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#camvxhrjux .gt_first_grand_summary_row {
+#xajjeobhhj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -546,7 +551,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#camvxhrjux .gt_table_body {
+#xajjeobhhj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -555,7 +560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#camvxhrjux .gt_footnotes {
+#xajjeobhhj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -569,13 +574,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#camvxhrjux .gt_footnote {
+#xajjeobhhj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#camvxhrjux .gt_sourcenotes {
+#xajjeobhhj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -589,46 +594,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#camvxhrjux .gt_sourcenote {
+#xajjeobhhj .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#camvxhrjux .gt_left {
+#xajjeobhhj .gt_left {
   text-align: left;
 }
 
-#camvxhrjux .gt_center {
+#xajjeobhhj .gt_center {
   text-align: center;
 }
 
-#camvxhrjux .gt_right {
+#xajjeobhhj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#camvxhrjux .gt_font_normal {
+#xajjeobhhj .gt_font_normal {
   font-weight: normal;
 }
 
-#camvxhrjux .gt_font_bold {
+#xajjeobhhj .gt_font_bold {
   font-weight: bold;
 }
 
-#camvxhrjux .gt_font_italic {
+#xajjeobhhj .gt_font_italic {
   font-style: italic;
 }
 
-#camvxhrjux .gt_super {
+#xajjeobhhj .gt_super {
   font-size: 65%;
 }
 
-#camvxhrjux .gt_footnote_marks {
+#xajjeobhhj .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="camvxhrjux" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="xajjeobhhj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
