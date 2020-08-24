@@ -1,7 +1,7 @@
 --- 
 title: "Regression without regrets"
 subtitle: "Workflow of initial data analyses"
-author: "TODO: Complete author list"
+author: "M. Baillie, G. Heinze & M. Huebner"
 date: "`r Sys.Date()`"
 knit: "rmarkdown::render_site"
 site: bookdown::bookdown_site
@@ -24,9 +24,7 @@ description: "The focus of this document/website is to provide guidance on condu
 ---
 
 
-# Regression without regrets: Workflow of initial data analyses {-}
-
-# Overview
+# Overview 
 
 ```{r include = FALSE}
 ## For reproducibility 
@@ -36,12 +34,14 @@ library(checkpoint)
 ## This will install the same packages if they are not installed
 checkpoint("2020-07-01") 
 
-#source("common.R")
+## load packages
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 library(Hmisc)
 knitrSet(lang = 'markdown', fig.path = 'figure/')
 library(tidyverse)
 library(here)
+
+## Load source function
 source(here::here("R", "ida_plot_univar.R"))
 ```
 

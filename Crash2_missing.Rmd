@@ -1,0 +1,106 @@
+# Missing data
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
+## Load libraries
+library(here)
+library(tidyverse)
+library(Hmisc)
+library(naniar) ## for missing data 
+library(gt)
+library(kableExtra)
+library(DT)
+load(here::here("data", "a_crash2.rda"))
+```
+
+*TODO: organise. Structure as per table in section 4.3*
+
+## Per variable missingness
+
+Number and percentage of missing. 
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  miss_var_summary() %>%
+  gt::gt() %>%
+    gt::cols_label(
+    variable = md("**Variable**"),
+    n_miss = md("**Missing (count)**"),
+    pct_miss = md("**Missing (%)**")
+  ) %>%
+  gt::fmt_number(
+    columns = vars(pct_miss),
+    decimals = 2
+  )
+
+```
+
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  gg_miss_var(show_pct = TRUE)
+```
+
+
+
+## Missingness patterns over variables
+
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  naniar::vis_miss(sort_miss = TRUE, show_perc_col = TRUE) 
+```
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  gg_miss_case()
+```
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  visdat::vis_dat()
+```
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
+  gg_miss_upset()
+```
+
+
+
+
+## Complete cases
+
+
+
+List out patients with at least one missing value. 
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+cc <-
+  a_crash2 %>%  
+  select(-time2death,-ddeath) %>% 
+  filter(!complete.cases(.))
+
+DT::datatable(cc)
+```
+
+
+Look at the pattern of missing for this set of patients. 
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+cc %>% gg_miss_upset()
+```
+
+
+
+## Session info
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+sessionInfo()
+```

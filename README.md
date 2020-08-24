@@ -118,7 +118,6 @@ Mark Baillie </br>
 Novartis, </br>
 Email: mark.baillie@novartis.com
 
-
 Georg Heinze </br>
 Medical University, Vienna, Austria</br>
 Email: georg.heinze@meduniwien.ac.at

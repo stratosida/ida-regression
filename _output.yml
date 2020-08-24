@@ -9,7 +9,7 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./">IDA report - working title</a></li>
+        <li><a href="./">IDA report</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit:
