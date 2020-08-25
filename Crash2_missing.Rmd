@@ -59,11 +59,6 @@ a_crash2 %>%
   gg_miss_case()
 ```
 
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_crash2 %>%
-  select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
-  visdat::vis_dat()
-```
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
@@ -97,7 +92,7 @@ cc %>% gg_miss_upset()
 
 
 
-## Chapter session info
+## SEction session info
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 sessionInfo()

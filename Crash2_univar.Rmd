@@ -1,6 +1,6 @@
-# Univariate distributions
+# Univariate distribution checks
 
-Univariate summary CRASH-2 dataset 
+This section reports a series of univariate summary checks of the CRASH-2 dataset.
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 library(here)
@@ -19,7 +19,7 @@ load(here::here("data", "a_crash2.rda"))
 
 ## Data set overview
 
-Using Hmisc describe function, provide an overview of the data set is provided including histograms of continuous variables.  
+Using the [Hmisc](https://cran.r-project.org/web/packages/Hmisc/) describe function, we provide an overview of the data set. The descriptive report also provides histograms of continuous variables. For ease of scanning the information, we group the report by measurement type. 
 
 ### Demographic variables
 
@@ -49,9 +49,9 @@ a_crash2 %>%
   Hmisc::html(size = 80)
 ```
 
-## Categorical plots
+## Categorical variables
 
-A closer examination of the categorical predictors. 
+We now provide a closer visual examination of the categorical predictors. 
 
 ```{r catplot, message=FALSE, warning =FALSE , echo=FALSE}
 a_crash2 %>%
@@ -69,7 +69,7 @@ a_crash2 %>%
   dplyr::mutate(
     freq = N / sum(N),
     pct = round((freq * 100), 1),
-    axis_lab = paste0(value, ' ', '(', N, ', ', round(pct, digits = 1), '%)'),
+    axis_lab = paste0(value, ' ', '(N = ', N, ')'),
     var_label = case_when(var == "sex" ~ "Sex",
                           var == "injurytype" ~ "Injury type")
   ) %>%
@@ -78,13 +78,14 @@ a_crash2 %>%
     y = pct,
     label = pct
   )) +
+  geom_text(nudge_y = 7) +
   geom_pointrange(aes(ymin = 0, ymax = pct), alpha = 1, size = 1, color = "grey") +
   geom_point(color = "firebrick2",
              alpha = 0.6,
              size = 3) +
   ylab("Percentage (%)") +
   scale_y_continuous(limits = c(0, 100)) +
-  labs(caption = "Number and percentage of subjects reported in brackets.\nNA = missing") +
+  labs(caption = "Number of subjects with a non-missing value reported in brackets.\nNA = missing") +
   facet_wrap(~ var_label, ncol = 1, scales = "free_y") +
   coord_flip() +
   theme_minimal(base_size = 12) +
@@ -113,13 +114,14 @@ a_crash2 %>%
     freq = N / sum(N),
     pct = round((freq * 100), 1),
     value = as_factor(value),
-    axis_lab = as_factor(paste0(value, ' ', '(', N, ', ', round(pct, digits = 1), '%)'))
+    axis_lab = as_factor(paste0(value, ' ', '(N = ', N, ')'))
   ) %>%
   ggplot(aes(
     x = axis_lab,
     y = pct,
     label = pct
   )) +
+  geom_text(nudge_y = 7) +
   geom_pointrange(aes(ymin = 0, ymax = pct), alpha = 1, size = 1, color = "grey") +
   geom_point(color = "firebrick2",
              alpha = 0.6,
@@ -127,7 +129,7 @@ a_crash2 %>%
   ylab("Percentage (%)") +
   scale_y_continuous(limits = c(0, 100)) +
   labs(title = "Glasgow coma score (point scale)",
-    caption = "Number and percentage of subjects reported in brackets.\nNA = missing") +
+    caption = "Number of subjects with a non-missing value reported in brackets.\nNA = missing") +
   coord_flip() +
   theme_minimal(base_size = 12) +
   theme(axis.title.y = element_blank(),
@@ -136,9 +138,9 @@ a_crash2 %>%
 
 
 
-## Continuous plots 
+## Continuous variables 
 
-A closer examination of continuous predictors. 
+A closer visual examination of continuous predictors. 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE, fig.width=9}
 
@@ -174,9 +176,7 @@ a_crash2 %>%
 ```
 
 
-There is evidence of digit preference. Explore further with targeted summaries. 
-
-More detailed univariate summaries for the variables of interest are also provided below. 
+There is evidence of digit preference. Explore further with targeted summaries. A more detailed univariate summaries for the variables of interest are also provided below. 
 
 ### Age
 
@@ -227,7 +227,7 @@ ida_plot_univar(a_crash2, "injurytime", n_dodge = 3, bin_width = 0.25)
 
 
 
-## Chapter session info
+## Section session info
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 sessionInfo()
