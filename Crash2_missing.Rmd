@@ -90,7 +90,7 @@ cc %>% gg_miss_upset()
 
 
 
-## Ssction session info
+## Section session info
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 sessionInfo()
