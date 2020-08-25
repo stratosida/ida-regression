@@ -69,10 +69,9 @@ a_crash2 %>%
 
 
 
-## Complete cases
+## (In)complete cases
 
-
-List out patients with at least one missing value. 
+This section presents patients with a least one missing value. First we list out patients with at least one missing value in a filterable table. 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 cc <-
@@ -83,8 +82,7 @@ cc <-
 DT::datatable(cc)
 ```
 
-
-Look at the pattern of missing for this set of patients. 
+Then we report the pattern of missing for this set of patients. 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 cc %>% gg_miss_upset()
@@ -92,7 +90,7 @@ cc %>% gg_miss_upset()
 
 
 
-## SEction session info
+## Ssction session info
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 sessionInfo()
