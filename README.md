@@ -10,7 +10,7 @@ This bookdown book is a *work in progress*. We'll update this `README` and the r
 
 #### -- Project Updates: 
 
-* last updated: 2020-07-01 by Marianne Huebner. Update: Add Readme file
+* last updated: 2020-11-02 by Marianne Huebner. Update: Readme file with file names
 * Date: 2020-06-30 by Mark Baillie. Update: Create Bookdown
 
 #### Abbreviations
@@ -77,17 +77,18 @@ Note: the package list above is currently static, so consider that it may not be
     * Explanation of the IDA framework ("IDA_framework.Rmd")
     * Description of possible IDA actions ("data_screen.Rmd")
     * Scope of the regression models for this project ("scope.Rmd")
-    * Introduction of the three data sets  ("Intro_.Rmd") with extensions ("_bacteremia", "_crash2", "_nhanes")
-    * Statistical analysis plan ("SAP_.Rmd")  
-    * Univariate IDA Rmarkdown ("univar_.Rmd")
-    * Multivariate IDA Rmarkdown files ("multivar_.Rmd")
-    * Missingness IDA Rmarkdown files ("missing_.Rmd")
+    * Introduction of the three data sets  ("Intro_.Rmd") with extensions ("bact_", "CRASH2_", "nhanes_")
+    * Statistical analysis plan ("_SAP.Rmd")
+    * Initial data analysis plan ("_IDA.Rmd")
+    * Missingness IDA Rmarkdown files ("_missing_.Rmd")
+    * Univariate IDA Rmarkdown ("_univar.Rmd")
+    * Multivariate IDA Rmarkdown files ("_multivar.Rmd")
     * Global file that includes these files as chapters ("bookdown.yml", "index.Rmd")
     
 * data - Repository for example data sets and their data dictionaries *(add data sets to Open Science Framework?)*
-    * Bacteremia
+    * Bacteremia  (on this github repository)
     * Crash2  [Data sets from Vanderbilt University](http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets) 
-    * NHANES
+    * NHANES  (on this github repository)
     
 * docs - IDA reports
     * html outputs of IDA
@@ -104,14 +105,18 @@ Note: the package list above is currently static, so consider that it may not be
 
 ## References
 
+### Initial data analysis
 [1] Huebner M, le Cessie S, Schmidt CO, Vach W . A contemporary conceptual framework for initial data analysis. Observational Studies 2018; 4: 171-192. [Link](https://obsstudies.org/contemporary-conceptual-framework-initial-data-analysis/)
 
 [2] Huebner M, Vach W, le Cessie S, Schmidt C, Lusa L. Hidden Analyses: a review of reporting practice and recommendations for more transparent reporting of initial data analyses. BMC Med Res Meth 2020; 20:61 [Link](https://bmcmedresmethodol.biomedcentral.com/track/pdf/10.1186/s12874-020-00942-y)
 
+### CRASH-2 data set
 [3] Perel P, Prieto-Merino D, Shakur H, Clayton T, Lecky F, Bouamra O, Russell R, Faulkner M, Steyerberg EW, Roberts I. Predicting early death in patients with traumatic bleeding: development and validation of prognostic model. BMJ 2012; 345(aug15 1): e5166. http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda
 
+### Bacteremia data set
 [4] Ratzinger F, Dedeyan M, Rammerstorfer M, Perkmann T, Burgmann H, et al. (2014) A Risk Prediction Model for Screening Bacteremic Patients: A Cross Sectional Study. PLoS ONE 9(9): e106765. doi:10.1371/journal.pone.0106765
 
+### NHANES dataset
 [5] Centers for Disease Control and Prevention: National Health and Nutrition Examination Survey (NHANES). https://cdc.gov/nhanes/index.htm
 
 [6] Leroux A, Di J, Smirnova E, Mcguffey EJ, Cao Q, Bayatmokhtari E, Tabacu L, Zipunnikov V,  Urbanek JK, Crainiceanu C. Organizing and Analyzing the Activity Data in NHANES. Statistics in Biosciences 2019 (11), 262–287. (https://doi-org.proxy1.cl.msu.edu/10.1007/s12561-018-09229-9)
