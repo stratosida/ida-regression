@@ -1,0 +1,121 @@
+# Statistical analysis plan
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
+## Load libraries
+library(here)
+library(tidyverse)
+library(Hmisc)
+library(gtsummary)
+#load(here::here("data", "nhanesdat.rdata"))
+
+load(here::here("nhanesdat.rdata"))
+```
+
+Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place. 
+IDA may lead to an update or refinement of the analysis plan. To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan.
+
+ 
+**Hypothetical research aim for IDA:** 
+Develop a multivariable model for MVPA (minutes of moderate/vigorous physical activity) with primary aim of variable selection to predict MVPA and secondary aim to study the role of systolic blood pressure in addition to variables identified.
+
+
+The inclusion criteria are in line with the choices for the prediction model of 5 year mortality presented by [Smirnova et al, J Gerontol A Biol Sci Med Sci 2020](https://doi.org/10.1093/gerona/glz193).
+
+
+
+## Statistical methods 
+
+Linear regression models will be used to model MVPA. Explanatory variables are age, gender, education, smoking, alcohol consumption, BMI, comorbidities (cancer, CHF, stroke), cholesterol (total, HDL).  Partial R-squared will be used to identify an appropriate set of variables to predict MVPA.
+A secondary aim is to study the role of systolic blood pressure on MVPA in a linear regression model with variables identified in the previous step.
+
+
+## Variables
+
+
+### Outcome variable
+
+MVPA (total minutes of moderate/vigorous physical activity which is defined as more than 2020 counts per minute) (`mvpa`, minutes)
+
+### Sociodemographic variables 
+
+* age at examination  (i.e. when participants wore the device) (`age`, years)
+* gender  (`gender`, "Male" and "Female")
+* race/ethnicity (non-Hispanic "White", non-Hispanic "Black", "Mexican American", and "Other") 
+* education ("Less than high school", "High school" (high school graduate/general educational development [GED]), "More than high school" (some college, and college graduate)) (`educationadult`)
+* 5 year mortality,  NAs for individuals with follow up less than 5 years and alive (`yr5.mort`) 
+* Person Months of Follow-up from MEC/Exam Date (`permth.exm`) (follow-up time in this cohort in years = permth.exm/12) 
+* final mortality status (`mortstat`, 0, 1, NAs for individuals with follow up less than 5 years and alive)
+
+### Health and behavior variables 
+
+* smoking status (Current, Former [those reporting quitting within the previous 6 months], and Never) (`smokecigs`)
+* alcohol consumption (`drinkstatus`) (Non-Drinker, Moderate Drinker, Heavy Drinker, Missing alcohol)
+* bmi (`bmi`, kg/m2)
+* obesity (`bmi.cat`, No-Yes)
+* diabetes (`diabetes`)
+* congestive heart failure (`chf, No-Yes`)
+* cancer (`cancer`, No-Yes)
+* stroke (`stroke`, No-Yes)
+* average systolic blood pressure using the 4 measurements per participant (`sys`, mmHg) 
+* Total cholesterol  (`lbxtc`,  mg/dL)
+* HDL cholesterol  (`lbdhdd`, mg/dL) 
+* difficulties with mobility (`mobilityproblem`, "No Difficulty", "Any Difficulty" = a positive response to difficulty walking a quarter-mile, difficulty climbing 10 stairs, or use of any special equipment to walk)
+
+
+### Physical activity data
+Summary measures are calculated due to the large size of minute level accelerometer-derived physical activity data.
+
+* total activity counts per day (`TAC/d`)
+* total log activity count (`TLAC` log(1+TAC))
+* total minutes of moderate/vigorous physical activity (`MVPA`)
+* total accelerometer wear time (`WT`)
+* sedentary/sleep/non-wear to active transition probability (`SATP`)
+* active to sedentary/sleep/non-wear transition probability (`ASTP`): Bout length was defined as the number of consecutive minutes spent in either an active or sedentary state and a daily activity profile was created for each participant to detect alternating bouts of sedentary and active states. ASTP was defined as the probability of transitioning from an active to a sedentary state and calculated as the reciprocal of the average active bout duration. ASTP was calculated for each day and averaged across valid days to derive a single measure of ASTP for each participant. 
+
+In addition, there are total log activity count summary measures (`tlac.1, `tlac.2`, …, `tlac.12`) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc. 
+
+
+
+## Preparations
+
+
+High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (https://andrew-leroux.github.io/rnhanesdata/articles). The R code was modified to have fewer exclusions criteria as noted below.
+
+* Re-level comorbidities to assign refused/don't know as not having the condition
+* Re-level education to have 3 levels and categorize don't know/refused to be missing
+* Re-level alcohol consumption to include a level set to missing
+* Removed the "bad" days from Act_Analysis and Act_Flags
+* Systolic blood pressure is the mean of the non-missing of four blood pressure variables
+
+* Following Smirnova et al, participants were excluded who 
+(i) had fewer than 3 days of data with at least 10 hours of estimated wear time or were deemed by NHANES to have poor quality data; non-wear periods were identified as intervals with at least 60 consecutive minutes of zero activity counts and at most 2 minutes with counts between 0 and 100;
+(ii) missing mortality information or accidental death; 
+(iii) alive with follow up less than 1 year 
+
+The NHANES dataset used in this project contains `r nrow(nhanesdat)`  participants.
+
+* For the purposes of this IDA project, in contrast to Smirnova et al, we did **not** exclude participants who  
+(iv) had missing body mass index (BMI) or education predictor variables ;  
+(v) had missing systolic blood pressure, total or high-density lipoproteins (HDL) cholesterol measurements. 
+The final data set in Smirnova et al contained 2,978 participants.
+
+
+
+## Sources
+
+Leroux A. Vignettes for  ownloading and working with NHANES 2003-2004 and 2005-2006 accelerometry data https://andrew-leroux.github.io/rnhanesdata/articles/
+
+To download the analysis data set, click the [link to data set  ---GITHUB](...IDA Github....)
+
+### Data dictionary  
+
+The data dictionary can be found [LINK ---- GITHUB](.....IDA GITHUB....)
+
+## References
+
+Smirnova E, Leroux A, Cao Q, Tabacu L, Zipunnikov V, Crainiceanu C, Urbanek JK. The Predictive Performance of Objective Measures of Physical Activity Derived From Accelerometry Data for 5-Year All-Cause Mortality in Older Adults: National Health and Nutritional Examination Survey 2003-2006. J Gerontol A Biol Sci Med Sci. 2020 Sep 16;75(9):1779-1785. doi: 10.1093/gerona/glz193. 
+
+Leroux A, Di J, Smirnova E, Mcguffey EJ, Cao Q, Bayatmokhtari E, Tabacu L, Zipunnikov V,  Urbanek JK, Crainiceanu C. Organizing and Analyzing the Activity Data in NHANES. Statistics in Biosciences 2019 (11), 262–287. (https://doi-org.proxy1.cl.msu.edu/10.1007/s12561-018-09229-9)
+
+

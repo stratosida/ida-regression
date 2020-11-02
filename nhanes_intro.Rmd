@@ -1,0 +1,135 @@
+# NHANES {-}
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
+## Load libraries for this chapter
+library(here)
+library(tidyverse)
+library(Hmisc)
+```
+
+# Introduction to NHANES
+
+Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan need to be in place. 
+IDA may lead to an update or refinement of the analysis plan. To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section [nhanes_SAP.Rmd](nhanes_SAP.Rmd).
+
+**Hypothetical research aim for IDA** is to 
+develop a multivariable model for MVPA (minutes of moderate/vigorous physical activity) with primary aim of variable selection to predict MVPA and secondary aim to study the role of systolic blood pressure in addition to variables identified.
+
+The preparation of the data was based on "Organizing and Analyzing the Activity Data in NHANES"
+  [Leroux et al, Statistics in Biosciences 2019](https://doi.org/10.1007/s12561-018-09229-9). 
+  
+The inclusion criteria are in line with the choices for the prediction model of 5 year mortality presented by [Smirnova et al, J Gerontol A Biol Sci Med Sci 2020](https://doi.org/10.1093/gerona/glz193).
+
+
+## NHANES Description
+
+The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The survey examines a nationally representative sample of about 5,000 persons each year. [Link to CDC  NHANES website](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm)
+
+The NHANES study contains objectively measured physical activity data collected using hip-worn accelerometers from multiple cohorts. High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (https://andrew-leroux.github.io/rnhanesdata/articles).
+
+
+The NHANES 2003–2004 and 2005–2006 have a total of 14,631 participants with accelerometry data. Similarly to Smirnova et al 2020 we focus on participants for ages 50 to 85 at the time they wore the accelerometer. 
+
+
+
+
+## NHANES dataset contents
+
+### Source dataset 
+
+We refer to the source data set as the dataset available online [here](.... Github .....)
+
+Display the source dataset contents. This dataset is in the **data-raw** folder of the project directory. 
+
+```{r contents_nhanes,  warning=FALSE, message=FALSE, echo=FALSE, results='asis'} 
+## Load the dataset from the data-raw folder. 
+## Alternatively we could load directly from the url 
+
+#load(here::here("data-raw", "nhanesdat.rdata"))
+
+load(here::here( "nhanesdat.rdata"))
+Hmisc::html(Hmisc::contents(nhanesdat),
+            maxlevels = 10,
+            levelType = 'table')
+```
+
+
+### Updated analysis dataset
+
+Additional meta-data is added to the original *source* data set. We write this new modified data set back to the **data** folder after adding additional meta-data for the following variables:
+
+* **sys** - add label "Systolic Blood pressuer" and unit "mg/dl". 
+
+
+Set missing 'drinkstatus' to NA
+```{r}
+indx<-which(nhanesdat$drinkstatus=='Missing alcohol')
+nhanesdat$drinkstatus[indx]<-NA
+```
+
+At the stage we select the variables of interest to take in to the IDA phase by dropping variables we do not check in IDA.
+
+As a cross check we display the contents again to ensure the additional data is added, and then write back the changes to the data folder in the file "data/a_nhanes.rda". 
+
+```{r labels_nhanes, warning=FALSE, message=FALSE, echo=FALSE, results='asis'} 
+## Complete metadata by adding missing labels. 
+## Generate adervived dataset stored in data as we are adding to the oirginal source dataset obtained. 
+## select candidate predictor variables. -- See SAP
+nhanes_subset <-
+  nhanesdat %>%
+  dplyr::select(
+    seqn,           # respondent sequence number
+    age,            # age at examination, years
+    gender,          # gender, Male, Female
+    permth.exm,      # Person Months of Follow-up from MEC/Exam Date, follow-up time [years] =permth.exm/12
+    mortstat,        # Final mortality status, 0, 1, NAs for individuals with follow up less than 5 years and alive)
+    educationadult,  # education level ("Less than high school", "High school", "More than high school")
+    smokecigs,       # smoking status (Current, Former, Never) 
+    drinkstatus,     # alcohol consumption (Non-Drinker, Moderate Drinker, Heavy Drinker, Missing alcohol)
+    bmi ,            # body mass index , kg/m2
+    diabetes,        # diabetes (No-Yes)
+    chf ,            # congestive heart failure (No-Yes)
+    cancer,           # cancer (No-Yes)
+    stroke,           # stroke (No-Yes)
+    sys ,             #average systolic blood pressure using the 4 measurements, mmHg 
+    lbxtc,           #  Total cholesterol,   mg/dL
+    lbdhdd,           # HDL cholesterol, mg/dL 
+    mobilityproblem,  # difficulties with mobility ( "No Difficulty", "Any Difficulty")
+    tac,               #total activity counts per day
+    tlac,              # total log activity count (log(1+activity))
+    mvpa,             # total minutes of moderate/vigorous physical activity
+    wt,               # total accelerometer wear time
+    satp,             #sedentary/sleep/non-wear to active transition probability
+    astp              # active to sedentary/sleep/non-wear transition probability
+  )
+
+## Complete metadata by adding labels.
+a_nhanes <- Hmisc::upData(
+  nhanes_subset,
+  labels = c(
+    sys = 'Systolic blood pressure',
+    mvpa = "Moderate or vigorous physical activity "),
+  units = c(
+    age = "years",
+    sys = "mg/dl",
+    mvpa = "minutes"
+  )
+)
+
+
+## Display contents
+Hmisc::html(Hmisc::contents(a_nhanes),
+            maxlevels = 10,
+            levelType = 'table')
+## Write to data folder
+#save(a_nhanes, file = here::here("data", "a_nhanes.rda"))
+
+save(a_nhanes, file = here::here("a_nhanes.rda"))
+```
+
+## Section session info
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+sessionInfo()
+```
