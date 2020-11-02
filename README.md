@@ -114,6 +114,12 @@ Note: the package list above is currently static, so consider that it may not be
 
 [5] Centers for Disease Control and Prevention: National Health and Nutrition Examination Survey (NHANES). https://cdc.gov/nhanes/index.htm
 
+[6] Leroux A, Di J, Smirnova E, Mcguffey EJ, Cao Q, Bayatmokhtari E, Tabacu L, Zipunnikov V,  Urbanek JK, Crainiceanu C. Organizing and Analyzing the Activity Data in NHANES. Statistics in Biosciences 2019 (11), 262–287. (https://doi-org.proxy1.cl.msu.edu/10.1007/s12561-018-09229-9)
+
+[7] Smirnova E, Leroux A, Cao Q, Tabacu L, Zipunnikov V, Crainiceanu C, Urbanek JK. The Predictive Performance of Objective Measures of Physical Activity Derived From Accelerometry Data for 5-Year All-Cause Mortality in Older Adults: National Health and Nutritional Examination Survey 2003-2006. J Gerontol A Biol Sci Med Sci. 2020 Sep 16;75(9):1779-1785. doi: 10.1093/gerona/glz193. 
+
+
+
 
 
 ## Funding
