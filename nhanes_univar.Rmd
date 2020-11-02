@@ -1,0 +1,208 @@
+# Univariate distribution checks
+
+This section reports a series of univariate summary checks of the NHANES dataset.
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+library(here)
+library(tidyverse)
+library(Hmisc)
+source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
+# Define sets of predictors by type - helpful for selection
+demog_vars <- c("age", "gender", "educationadult","bmi", "smokecigs" , "drinkstatus")
+life_vars <- c("bmi", "smokecigs" , "drinkstatus")
+health_vars <- c("mortstat" ,"diabetes", "chf", "cancer" , "stroke")
+physio_vars <- c("sys","lbxtc",  "lbdhdd")
+pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt" , "satp" , "astp" )
+
+## Load the dataset.
+#load(here::here("data", "a_nhanes.rda"))
+
+load(here::here("a_nhanes.rda"))
+```
+
+## Data set overview
+
+Using the [Hmisc](https://cran.r-project.org/web/packages/Hmisc/) describe function, we provide an overview of the data set. The descriptive report also provides histograms of continuous variables. For ease of scanning the information, we group the report by measurement type. 
+
+### Demographic and lifestyle variables
+
+```{r desc_a_nhanesa, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+a_nhanes %>%
+  dplyr::select(all_of(demog_vars)) %>%
+  Hmisc::describe(descript = "Demographic and lifestyle variables") %>%
+  Hmisc::html(size = 80)
+```
+
+### Physical activity variables
+
+```{r desc_a_nhanesb, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+a_nhanes %>%
+  dplyr::select(all_of(pa_vars)) %>%
+  Hmisc::describe(descript = "Physiological measurements") %>%
+  Hmisc::html(size = 80)
+```
+
+
+### Physiological measurements
+
+```{r desc_a_nhanesc, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+a_nhanes %>%
+  dplyr::select(all_of(physio_vars)) %>%
+  Hmisc::describe(descript = "Physiological measurements") %>%
+  Hmisc::html(size = 80)
+```
+
+
+### Comorbidities
+
+```{r desc_a_nhanesd, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+a_nhanes %>%
+  dplyr::select(all_of(health_vars)) %>%
+  Hmisc::describe(descript = "Comorbidities") %>%
+  Hmisc::html(size = 80)
+```
+
+
+
+## Categorical variables
+
+We now provide a closer visual examination of the categorical predictors. 
+
+```{r catplot, message=FALSE, warning =FALSE , echo=FALSE}
+a_nhanes %>%
+  dplyr::select(gender, educationadult,  smokecigs , drinkstatus, mobilityproblem, health_vars) %>%
+  dplyr::mutate_all(forcats::as_factor) %>%   
+  dplyr::mutate_all(forcats::fct_explicit_na, "NA") %>%
+  tidyr::pivot_longer(
+    dplyr::everything(),
+    names_to = "var",
+    values_to = "value",
+    values_drop_na = FALSE
+  ) %>%
+  dplyr::group_by(var, value) %>%
+  dplyr::summarize(N = n()) %>%
+  dplyr::mutate(
+    freq = N / sum(N),
+    pct = round((freq * 100), 1),
+    axis_lab = paste0(value, ' ', '(N = ', N, ')'),
+    var_label = case_when(var == "gender" ~ "Gender",
+                          var == "educationadult" ~ "Education status",
+                          var == "smokecigs" ~ "Smoking status",
+                          var == "drinkstatus" ~ "Alcohol consumption",
+                          var == "mobilityproblem" ~ "Difficulty with mobility",
+                          var == "mortstat" ~ "Mortality status" ,
+                          var == "diabetes" ~ "Diabetes", 
+                          var == "chf" ~ "Congestive heart failure", 
+                          var == "cancer"~ "Cancer" , 
+                          var == "stroke" ~ "Stroke")
+  ) %>%
+  ggplot(aes(
+    x = reorder(axis_lab, pct),
+    y = pct,
+    label = pct
+  )) +
+  geom_text(nudge_y = 7) +
+  geom_pointrange(aes(ymin = 0, ymax = pct), alpha = 1, size = 1, color = "grey") +
+  geom_point(color = "firebrick2",
+             alpha = 0.6,
+             size = 3) +
+  ylab("Percentage (%)") +
+  scale_y_continuous(limits = c(0, 100)) +
+  labs(caption = "Number of subjects with a non-missing value reported in brackets.\nNA = missing") +
+  facet_wrap(~ var_label, ncol = 1, scales = "free_y") +
+  coord_flip() +
+  theme_minimal(base_size = 12) +
+  theme(axis.title.y = element_blank(),
+        panel.grid.minor = element_blank())
+```
+
+
+
+
+## Continuous variables 
+
+A closer visual examination of continuous predictors and the outcome variable. 
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE, fig.width=9}
+a_nhanes %>%
+  dplyr::select(mvpa, age, sys, bmi, tlac, lbxtc, lbdhdd) %>%
+  dplyr::mutate() %>%
+  dplyr::mutate_all(as.numeric) %>%
+  tidyr::pivot_longer(dplyr::everything(),
+                      names_to = "var",
+                      values_to = "value") %>%
+  dplyr::mutate(
+    var_label = case_when(
+      var == "mvpa" ~ "time of moderate of vigourous physical activity (minutes)",
+      var == "age" ~ "Age (years)",
+      var == "sys" ~ "Systolic blood pressure (mmHg)",
+      var == "bmi" ~  "Body mass index",
+      var ==  "tlac" ~ "total log activity count",
+      var == "lbxtc" ~ "total cholesterol",   
+      var == "lbdhdd" ~ "HDL"
+    )) %>%
+  ggplot(aes(value)) +
+  ylab("Number of subjects") +
+  geom_histogram(
+    binwidth = 0.5,
+    center = 0,
+    alpha = 0.6,
+    fill = "firebrick2"
+  ) +
+  facet_wrap(~ var_label, scales = "free", ncol = 2) +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(),
+        panel.grid.minor = element_blank())
+```
+
+
+There is evidence of influential points in some of the distributions. This is explored further with targeted summaries. A more detailed univariate summaries for the variables of interest are also provided below. 
+
+
+### Outcome= Time of moderate or vigrous physical activity
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of time of moderate/vigorous activity [minutes]" , echo=FALSE}
+## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
+ida_plot_univar(a_nhanes, "mvpa")
+```
+
+
+
+### Blood pressure
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of SBP" , echo=FALSE}
+ida_plot_univar(a_nhanes, "sys", bin_width = 0.7)
+```
+
+
+### Body mass index
+
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of respiratory rate" , echo=FALSE}
+ida_plot_univar(a_nhanes, "bmi", n_dodge = 2)
+```
+
+There is a participant with an unusal high value.
+
+
+### Total cholesterol
+
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of total cholesterol", echo=FALSE}
+ida_plot_univar(a_nhanes, "lbxtc")
+```
+
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of HDL", echo=FALSE}
+ida_plot_univar(a_nhanes, "lbdhdd")
+```
+
+
+
+
+
+## Section session info
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+sessionInfo()
+```
