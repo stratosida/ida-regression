@@ -11,9 +11,10 @@ library(gt)
 library(kableExtra)
 library(DT)
 library(arsenal)
-#load(here::here("data", "a_nhanes.rda"))
 
-load(here::here("a_nhanes.rda"))
+load(here::here("data", "a_nhanes.rda"))
+
+
 ```
 
 
