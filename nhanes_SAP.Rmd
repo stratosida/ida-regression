@@ -7,9 +7,8 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 library(gtsummary)
-#load(here::here("data", "nhanesdat.rdata"))
+load(here::here("data_raw", "nhanesdat.rdata"))
 
-load(here::here("nhanesdat.rdata"))
 ```
 
 Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place. 
