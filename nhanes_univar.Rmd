@@ -6,8 +6,9 @@ This section reports a series of univariate summary checks of the NHANES dataset
 library(here)
 library(tidyverse)
 library(Hmisc)
-#source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
-source(here( "ida_plot_univar.R"))
+source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
+
+
 # Define sets of predictors by type - helpful for selection
 demog_vars <- c("age", "gender", "educationadult","bmi", "smokecigs" , "drinkstatus")
 life_vars <- c("bmi", "smokecigs" , "drinkstatus")
@@ -16,9 +17,8 @@ physio_vars <- c("sys","lbxtc",  "lbdhdd")
 pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt" , "satp" , "astp" )
 
 ## Load the dataset.
-#load(here::here("data", "a_nhanes.rda"))
+load(here::here("data", "a_nhanes.rda"))
 
-load(here::here("a_nhanes.rda"))
 ```
 
 ## Data set overview
