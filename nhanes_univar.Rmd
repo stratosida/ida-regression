@@ -6,7 +6,8 @@ This section reports a series of univariate summary checks of the NHANES dataset
 library(here)
 library(tidyverse)
 library(Hmisc)
-source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
+#source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
+source(here( "ida_plot_univar.R"))
 # Define sets of predictors by type - helpful for selection
 demog_vars <- c("age", "gender", "educationadult","bmi", "smokecigs" , "drinkstatus")
 life_vars <- c("bmi", "smokecigs" , "drinkstatus")
@@ -166,6 +167,27 @@ There is evidence of influential points in some of the distributions. This is ex
 ida_plot_univar(a_nhanes, "mvpa")
 ```
 
+After transforming MVPA with $\log_{10}(x+1)$: 
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of log(1+MVPA) " , echo=FALSE}
+## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
+a_nhanes <- a_nhanes %>%
+            mutate(mvpa_log = log(1+mvpa))
+
+ida_plot_univar(a_nhanes, "mvpa_log", bin_width = 0.01)
+```
+
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of wear time [minutes]" , echo=FALSE}
+## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
+ida_plot_univar(a_nhanes, "wt")
+```
+
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of log total activity count" , echo=FALSE}
+## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
+ida_plot_univar(a_nhanes, "tlac")
+```
 
 
 ### Blood pressure
@@ -182,7 +204,7 @@ ida_plot_univar(a_nhanes, "sys", bin_width = 0.7)
 ida_plot_univar(a_nhanes, "bmi", n_dodge = 2)
 ```
 
-There is a participant with an unusal high value.
+There is a participant with an unusal high value (130.2). It is possible that this is an entry error (bmi=30.2).
 
 
 ### Total cholesterol

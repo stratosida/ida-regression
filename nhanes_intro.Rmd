@@ -59,13 +59,16 @@ Hmisc::html(Hmisc::contents(nhanesdat),
 
 Additional meta-data is added to the original *source* data set. We write this new modified data set back to the **data** folder after adding additional meta-data for the following variables:
 
-* **sys** - add label "Systolic Blood pressuer" and unit "mg/dl". 
+* **sys** - add label "Systolic Blood pressure" and unit "mg/dl". 
 
 
 Set missing 'drinkstatus' to NA
 ```{r}
 indx<-which(nhanesdat$drinkstatus=='Missing alcohol')
 nhanesdat$drinkstatus[indx]<-NA
+
+nhanesdat <- nhanesdat %>% 
+        mutate(mortstat = factor(mortstat, levels = 0:1, labels = c("alive", "dead")))
 ```
 
 At the stage we select the variables of interest to take in to the IDA phase by dropping variables we do not check in IDA.
