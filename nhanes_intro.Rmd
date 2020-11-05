@@ -46,9 +46,8 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 ## Load the dataset from the data-raw folder. 
 ## Alternatively we could load directly from the url 
 
-#load(here::here("data-raw", "nhanesdat.rdata"))
+load(here::here("data-raw", "nhanesdat.rdata"))
 
-load(here::here( "nhanesdat.rdata"))
 Hmisc::html(Hmisc::contents(nhanesdat),
             maxlevels = 10,
             levelType = 'table')
@@ -126,9 +125,8 @@ Hmisc::html(Hmisc::contents(a_nhanes),
             maxlevels = 10,
             levelType = 'table')
 ## Write to data folder
-#save(a_nhanes, file = here::here("data", "a_nhanes.rda"))
+save(a_nhanes, file = here::here("data", "a_nhanes.rda"))
 
-save(a_nhanes, file = here::here("a_nhanes.rda"))
 ```
 
 ## Section session info
