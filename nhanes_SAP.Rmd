@@ -7,9 +7,9 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 library(gtsummary)
-#load(here::here("data", "nhanesdat.rdata"))
 
-load(here::here("nhanesdat.rdata"))
+load(here::here("data", "nhanesdat.rdata"))
+
 ```
 
 Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place. 
@@ -196,11 +196,12 @@ High quality processed activity data combined with mortality and demographic inf
 (ii) missing mortality information or accidental death; 
 (iii) alive with follow up less than 1 year 
 
-The NHANES dataset used in this project contains `r nrow(nhanesdat)`  participants.
+The NHANES dataset used in this project contains `r nrow(a_nhanes)`  participants.
 
 * For the purposes of this IDA project, in contrast to Smirnova et al, we did **not** exclude participants who  
 (iv) had missing body mass index (BMI) or education predictor variables ;  
 (v) had missing systolic blood pressure, total or high-density lipoproteins (HDL) cholesterol measurements. 
+(vi) had missing physical activity data
 The final data set in Smirnova et al contained 2,978 participants.
 
 
