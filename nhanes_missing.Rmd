@@ -7,6 +7,7 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 library(naniar) ## for missing data 
+library(VIM)    ## for missing data 
 library(gt)
 library(kableExtra)
 library(DT)
@@ -73,7 +74,7 @@ It appears that participants with incomplete physical activity data are older.
 ## Missingness patterns over variables
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-library(VIM)
+# library(VIM)
 aggr(a_nhanes[,vars],numbers=TRUE)
 ```
 
