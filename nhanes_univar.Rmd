@@ -6,19 +6,19 @@ This section reports a series of univariate summary checks of the NHANES dataset
 library(here)
 library(tidyverse)
 library(Hmisc)
-source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
-
-
+#source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
+source(here( "ida_plot_univar.R"))
 # Define sets of predictors by type - helpful for selection
 demog_vars <- c("age", "gender", "educationadult","bmi", "smokecigs" , "drinkstatus")
 life_vars <- c("bmi", "smokecigs" , "drinkstatus")
 health_vars <- c("mortstat" ,"diabetes", "chf", "cancer" , "stroke")
 physio_vars <- c("sys","lbxtc",  "lbdhdd")
-pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt" , "satp" , "astp" )
+pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt"  )
 
 ## Load the dataset.
-load(here::here("data", "a_nhanes.rda"))
+#load(here::here("data", "a_nhanes.rda"))
 
+load(here::here("a_nhanes.rda"))
 ```
 
 ## Data set overview
@@ -69,7 +69,7 @@ a_nhanes %>%
 
 We now provide a closer visual examination of the categorical predictors. 
 
-```{r catplot, message=FALSE, warning =FALSE , echo=FALSE}
+```{r catplot, message=FALSE, warning =FALSE , echo=FALSE, fig.height=10}
 a_nhanes %>%
   dplyr::select(gender, educationadult,  smokecigs , drinkstatus, mobilityproblem, health_vars) %>%
   dplyr::mutate_all(forcats::as_factor) %>%   
@@ -126,7 +126,7 @@ A closer visual examination of continuous predictors and the outcome variable.
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE, fig.width=9}
 a_nhanes %>%
-  dplyr::select(mvpa, age, sys, bmi, tlac, lbxtc, lbdhdd) %>%
+  dplyr::select(mvpa, age, sys, bmi, wt, tlac, lbxtc, lbdhdd) %>%
   dplyr::mutate() %>%
   dplyr::mutate_all(as.numeric) %>%
   tidyr::pivot_longer(dplyr::everything(),
@@ -134,16 +134,17 @@ a_nhanes %>%
                       values_to = "value") %>%
   dplyr::mutate(
     var_label = case_when(
-      var == "mvpa" ~ "time of moderate of vigourous physical activity (minutes)",
-      var == "age" ~ "Age (years)",
-      var == "sys" ~ "Systolic blood pressure (mmHg)",
+      var == "mvpa" ~ "MVPA (minutes)",
+      var == "age" ~ "Age",
+      var == "sys" ~ "Systolic blood pressure",
       var == "bmi" ~  "Body mass index",
+      var ==  "wt" ~ "wear time (minutes)",
       var ==  "tlac" ~ "total log activity count",
-      var == "lbxtc" ~ "total cholesterol",   
-      var == "lbdhdd" ~ "HDL"
+      var == "lbxtc" ~ "cholesterol (total)",   
+      var == "lbdhdd" ~ "cholesterol (HDL)"
     )) %>%
   ggplot(aes(value)) +
-  ylab("Number of subjects") +
+  ylab("Number of participants") +
   geom_histogram(
     binwidth = 0.5,
     center = 0,
@@ -160,7 +161,7 @@ a_nhanes %>%
 There is evidence of influential points in some of the distributions. This is explored further with targeted summaries. A more detailed univariate summaries for the variables of interest are also provided below. 
 
 
-### Outcome= Time of moderate or vigrous physical activity
+### Outcome= Time of moderate or vigrous physical activity and related variables
 
 ```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of time of moderate/vigorous activity [minutes]" , echo=FALSE}
 ## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
@@ -187,6 +188,13 @@ ida_plot_univar(a_nhanes, "wt")
 ```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of log total activity count" , echo=FALSE}
 ## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
 ida_plot_univar(a_nhanes, "tlac")
+```
+
+
+### Age
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of age" , echo=FALSE}
+ida_plot_univar(a_nhanes, "age", bin_width = 0.7)
 ```
 
 

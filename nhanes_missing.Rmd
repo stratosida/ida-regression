@@ -7,15 +7,13 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 library(naniar) ## for missing data 
-library(VIM)    ## for missing data 
 library(gt)
 library(kableExtra)
 library(DT)
 library(arsenal)
+#load(here::here("data", "a_nhanes.rda"))
 
-load(here::here("data", "a_nhanes.rda"))
-
-
+load(here::here("a_nhanes.rda"))
 ```
 
 
@@ -24,6 +22,7 @@ load(here::here("data", "a_nhanes.rda"))
 Number and percentage of missing. 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
+# devtools::install_github("rstudio/gt")
 a_nhanes %>%
   select(-seqn) %>%
   miss_var_summary() %>%
@@ -74,7 +73,7 @@ It appears that participants with incomplete physical activity data are older.
 ## Missingness patterns over variables
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-# library(VIM)
+library(VIM)
 aggr(a_nhanes[,vars],numbers=TRUE)
 ```
 

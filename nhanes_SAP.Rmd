@@ -7,9 +7,9 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 library(gtsummary)
+#load(here::here("data", "nhanesdat.rdata"))
 
-load(here::here("data", "nhanesdat.rdata"))
-
+load(here::here("a_nhanes.rda"))
 ```
 
 Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place. 
@@ -18,6 +18,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
  
 **Hypothetical research aim for IDA:** 
 The primary aim is to develop a multivariable model for MVPA (minutes of moderate/vigorous physical activity) with primary aim of variable selection to predict MVPA. Specifcially, the role of gender and age will be investigated. A secondary aim to study the role of systolic blood pressure in addition to variables identified.
+*MVPA can be used to examine factors distinguishing very active participants with large amounts of time spent on MVPA from others (using untransformed data) or distinguishing participants according to percentage changes in MVPA (logarithmic scale) thus de-emphasizing extreme values.*
 
 
 The inclusion criteria are in line with the choices for the prediction model of 5 year mortality presented by [Smirnova et al, J Gerontol A Biol Sci Med Sci 2020](https://doi.org/10.1093/gerona/glz193).
@@ -70,8 +71,7 @@ Summary measures are calculated due to the large size of minute level accelerome
 * total log activity count (`TLAC` log(1+TAC))
 * total minutes of moderate/vigorous physical activity (`MVPA`)
 * total accelerometer wear time (`WT`)
-* sedentary/sleep/non-wear to active transition probability (`SATP`)
-* active to sedentary/sleep/non-wear transition probability (`ASTP`): Bout length was defined as the number of consecutive minutes spent in either an active or sedentary state and a daily activity profile was created for each participant to detect alternating bouts of sedentary and active states. ASTP was defined as the probability of transitioning from an active to a sedentary state and calculated as the reciprocal of the average active bout duration. ASTP was calculated for each day and averaged across valid days to derive a single measure of ASTP for each participant. 
+
 
 In addition, there are total log activity count summary measures (`tlac.1, `tlac.2`, …, `tlac.12`) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc. 
 
@@ -146,7 +146,7 @@ While the outcome variable MVPA is the only physical activity variable in the an
 The graphical summary for each variable will serve to suggest transformations for each variable:
 
 * no transformation (in case of approximate symmetry);
-* $\log_10(x+1)$ transformation (in case of skewness)
+* $\log_{10}(x+1)$ transformation (in case of skewness)
 
 The distributions of transformed variables will be evaluated as well as described above.
 
@@ -177,7 +177,7 @@ A redundancy analysis will be conducted for each variable. This analysis identif
 
 *7. If interactions between covariates were prespecified to be included in the regression model, special attention should be given to evaluate the bivariate distribution of the interacting covariates. Appropriate graphical displays (see 6) should be used to visualise these distributions.*
 
-No interactions will be considered.
+Interactions between age and gender will be considered.
 
 
 ## Preparations
@@ -201,7 +201,6 @@ The NHANES dataset used in this project contains `r nrow(a_nhanes)`  participant
 * For the purposes of this IDA project, in contrast to Smirnova et al, we did **not** exclude participants who  
 (iv) had missing body mass index (BMI) or education predictor variables ;  
 (v) had missing systolic blood pressure, total or high-density lipoproteins (HDL) cholesterol measurements. 
-(vi) had missing physical activity data
 The final data set in Smirnova et al contained 2,978 participants.
 
 
