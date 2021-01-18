@@ -73,24 +73,24 @@ Summary measures are calculated due to the large size of minute level accelerome
 * total accelerometer wear time (`WT`)
 
 
-In addition, there are total log activity count summary measures (`tlac.1, `tlac.2`, …, `tlac.12`) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc. 
+In addition, there are total log activity count summary measures (`tlac.1, `tlac.2`, …, `tlac.12`) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc.
 
 
 
 ## Initial data analysis strategy
 
-*1. Statistical analysis plan: as assumed above, the analysis strategy to answer the main research question has been prespecified. It comprises of the set of independent variables to be considered in a model, the outcome variable, and the analytical strategy to build the regression model.*
+<span style="color:blue">1. Statistical analysis plan: as assumed above, the analysis strategy to answer the main research question has been prespecified. It comprises of the set of independent variables to be considered in a model, the outcome variable, and the analytical strategy to build the regression model. </span>
 
 SAP is listed above
 
 
-*2. Data dictionary and metadata: a detailed data dictionary should be available which informs about the meaning of each variable in context of the research question, the units of measurement, the possible levels in case of categorical variables, or admissible values. More generally, metadata, also refer to information about the research study protocol and data collection processes.*
+<span style="color:blue">2. Data dictionary and metadata: a detailed data dictionary should be available which informs about the meaning of each variable in context of the research question, the units of measurement, the possible levels in case of categorical variables, or admissible values. More generally, metadata, also refer to information about the research study protocol and data collection processes.</span>
 
 
 A data dictionary is available.
 
 
-*3. Domain expertise and pivotal covariates ('very important predictors', VIPs)*
+<span style="color:blue">3. Domain expertise and pivotal covariates ('very important predictors', VIPs)</span>
 
 It has been shown that physcial activity declines with age and men report higher levels of activity than women. Age and gender, also defined in the research aim, are pivotal covariates.
 
@@ -98,24 +98,24 @@ Keadle S et al. Prevalence and trends in physical activity among older adults in
 
 Clarke TC,  Norris T, and Schiller JS. Early Release of Selected Estimates Based on Data From the 2018 National Health Interview Survey. https://www.cdc.gov/nchs/nhis/releases/released201905.htm#7a
 
-*3.2. Domain expertise may also be useful to specify in advance which variables are expected to correlate with each other. This background knowledge could be summarized in a directed or undirected acyclic graph connecting the covariates with each other as also suggested by Heinze et al, 2018.*
+<span style="color:blue"> 3.2. Domain expertise may also be useful to specify in advance which variables are expected to correlate with each other. This background knowledge could be summarized in a directed or undirected acyclic graph connecting the covariates with each other as also suggested by Heinze et al, 2018.</span>
   
-*3.3. Missing value mechanisms: if not already specified in meta data, domain experts should also be consulted to explain possible reasons for the occurrence of missing values for each variable, which may be categorized as systematic or unsystematic.*
+<span style="color:blue">3.3. Missing value mechanisms: if not already specified in meta data, domain experts should also be consulted to explain possible reasons for the occurrence of missing values for each variable, which may be categorized as systematic or unsystematic.</span>
   
 Missing values are expected due to the nature of survey research. Domain expertice would be helpful in identifying specific expectations. Missingness of some covariates may be associated with the outcome variable. This will be considered in the  IDA domain 'Missing values' to identify approaches or updates to the SAP.
 
 
 ### IDA domain: missing values  
 
-*1. Number and proportion of missing values for each independent variable, for the dependent variable and for the analysis as a whole.*
+<span style="color:blue">1. Number and proportion of missing values for each independent variable, for the dependent variable and for the analysis as a whole.</span>
 
 Number and proportion of missing values will be computed for all variables.
 
-*2. Patterns of missing values across all independent variables, either as tables or appropriately visualized.*
+<span style="color:blue">2. Patterns of missing values across all independent variables, either as tables or appropriately visualized.</span>
 
 We will create missing value indicators for each covariate and will then summarize patterns by means of a heat map and a dendogram. 
 
-*3. Patterns of missing values associated with the outcome variable*
+<span style="color:blue">3. Patterns of missing values associated with the outcome variable</span>
 
 
 From Lee at al (STRATOS)
@@ -131,11 +131,11 @@ i.e. associations with the incomplete variables.
 
 ### IDA domain: univariate distributions
 
-*3. For categorical variables (including the dependent variable): frequency and proportion for each category.*
+<span style="color:blue">3. For categorical variables (including the dependent variable): frequency and proportion for each category.</span>
 
 Demographic variables, smoking status, alcohol consumption, comorbidities, and mortality status  will be described by frequencies and proportions.
 
-*4. For continuous variables (including the dependent variable): high-resolution histogram, summary of main percentiles (1st, 10th, 25th, 50th, 75th, 90th, 99th) and interquartile range, 5 highest and 5 lowest values, first four moments (mean, variance, skewness, curtosis), standard deviation, number of distinct values.*
+<span style="color:blue">4. For continuous variables (including the dependent variable): high-resolution histogram, summary of main percentiles (1st, 10th, 25th, 50th, 75th, 90th, 99th) and interquartile range, 5 highest and 5 lowest values, first four moments (mean, variance, skewness, curtosis), standard deviation, number of distinct values. </span>
 
 
 
@@ -154,71 +154,29 @@ It is assumed that the data have been cleaned, but unusual values will be identi
 
 ### IDA domain: multivariate system of variables
 
-*5. Matrix/heatmap of Pearson correlation coefficients between all independent variables.*
+<span style="color:blue">5. Matrix/heatmap of Pearson correlation coefficients between all independent variables.</span>
 
 Pearson correlation coefficients will be computed between all independent variables. The correlation coefficients will be depicted by means of a (quadratic) heat map. Moreover, a network graph between all independent variables will be constructed, which will be thresholded at an absolute correlation coefficient of 0.3. 
 
 Spearman correlation coefficients will be computed as well, and the 10 pairs of covariates with the largest absolute difference between Pearson and Spearman correlation coefficients will be flagged. These pairs will be graphically investigated by constructing separate scatterplots.
 
-*6. Appropriate visual (and numerical) presentations of the association of each covariate with the two pivotal covariates.*
-
-The distribution of age will be depicted as histogram stratified for sex. 
-
-Categorical and continuous variables will be summarized with counts and proportions or medians and ranges, as appropraite, in a table stratified by sex and age groups.
-
-A scatterplot of systolic blood pressure by age will be constructed, using different colours for the two sexes.
-
-Age will be categorized into three groups: 50-64 years, 65-75 years, $\geq$ 75 years.  Each physiological variable  will then be depicted as a histogram  in each of the three age groups.
-
-A heat map of the raw data (or transformations) will be constructed. 
+<span style="color:blue">6. Appropriate visual (and numerical) presentations of the association of each covariate with the two pivotal covariates.</span>
 
 A redundancy analysis will be conducted for each variable. This analysis identifies predictors that can be almost perfectly predicted by flexible parametric additive models performed on the companion covariates. 
 
+Categorical and continuous variables will be summarized with counts and proportions or medians and quartiles, as appropriate, in a table stratified by sex and age groups.
 
-*7. If interactions between covariates were prespecified to be included in the regression model, special attention should be given to evaluate the bivariate distribution of the interacting covariates. Appropriate graphical displays (see 6) should be used to visualise these distributions.*
-
-Interactions between age and gender will be considered.
-
-
-## Preparations
+Scatterplots of continuous variables by age will be constructed stratified by gender.
 
 
-High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (https://andrew-leroux.github.io/rnhanesdata/articles). The R code was modified to have fewer exclusions criteria as noted below.
+<span style="color:blue">7. If interactions between covariates were prespecified to be included in the regression model, special attention should be given to evaluate the bivariate distribution of the interacting covariates. Appropriate graphical displays (see 6) should be used to visualise these distributions.</span>
 
-* Re-level comorbidities to assign refused/don't know as not having the condition
-* Re-level education to have 3 levels and categorize don't know/refused to be missing
-* Re-level alcohol consumption to include a level set to missing
-* Removed the "bad" days from Act_Analysis and Act_Flags
-* Systolic blood pressure is the mean of the non-missing of four blood pressure variables
-
-* Following Smirnova et al, participants were excluded who 
-(i) had fewer than 3 days of data with at least 10 hours of estimated wear time or were deemed by NHANES to have poor quality data; non-wear periods were identified as intervals with at least 60 consecutive minutes of zero activity counts and at most 2 minutes with counts between 0 and 100;
-(ii) missing mortality information or accidental death; 
-(iii) alive with follow up less than 1 year 
-
-The NHANES dataset used in this project contains `r nrow(a_nhanes)`  participants.
-
-* For the purposes of this IDA project, in contrast to Smirnova et al, we did **not** exclude participants who  
-(iv) had missing body mass index (BMI) or education predictor variables ;  
-(v) had missing systolic blood pressure, total or high-density lipoproteins (HDL) cholesterol measurements. 
-The final data set in Smirnova et al contained 2,978 participants.
+Interactions between age and gender will be considered. The distribution of age will be depicted as histogram stratified for gender. 
 
 
+<span style="color:blue">8. For a derived outcome variable, the bivariate distribution of these variables  with the outcome variable should be evaluated with appropriate visualizations.. </span>
 
-## Sources
+Scatter plots of the physical activity variables with MVPA will be constructed with trend lines.
 
-Leroux A. Vignettes for  ownloading and working with NHANES 2003-2004 and 2005-2006 accelerometry data https://andrew-leroux.github.io/rnhanesdata/articles/
-
-To download the analysis data set, click the [link to data set  ---GITHUB](...IDA Github....)
-
-### Data dictionary  
-
-The data dictionary can be found [LINK ---- GITHUB](.....IDA GITHUB....)
-
-## References
-
-Smirnova E, Leroux A, Cao Q, Tabacu L, Zipunnikov V, Crainiceanu C, Urbanek JK. The Predictive Performance of Objective Measures of Physical Activity Derived From Accelerometry Data for 5-Year All-Cause Mortality in Older Adults: National Health and Nutritional Examination Survey 2003-2006. J Gerontol A Biol Sci Med Sci. 2020 Sep 16;75(9):1779-1785. doi: 10.1093/gerona/glz193. 
-
-Leroux A, Di J, Smirnova E, Mcguffey EJ, Cao Q, Bayatmokhtari E, Tabacu L, Zipunnikov V,  Urbanek JK, Crainiceanu C. Organizing and Analyzing the Activity Data in NHANES. Statistics in Biosciences 2019 (11), 262–287. (https://doi-org.proxy1.cl.msu.edu/10.1007/s12561-018-09229-9)
 
 

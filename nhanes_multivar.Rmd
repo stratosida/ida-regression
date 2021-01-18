@@ -1,0 +1,411 @@
+# Multivariate distributions
+
+```{r setup, echo=FALSE}
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  echo = FALSE,
+  fig.align = 'center'
+)
+```
+
+
+This section reports a series of multivariate summaries of the NHANES dataset.
+
+```{r}
+library(here)
+library(tidyverse)
+library(plotly)
+library(Hmisc)
+library(gtsummary)
+library(corrplot)
+library(ggplot2)
+library(naniar)
+library(gridExtra)
+
+
+# Define sets of predictors by type - helpful for selection
+#mortstat  (one year mortality)
+demog_vars <- c("age", "gender", "educationadult","bmi", "smokecigs" , "drinkstatus")
+life_vars <- c("bmi", "smokecigs" , "drinkstatus")
+health_vars <- c("diabetes", "chf", "cancer" , "stroke")
+physio_vars <- c("sys", "lbxtc",  "lbdhdd")
+pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt"  )
+
+
+## Read data 
+#load(here::here("data", "a_nhanes.rda"))
+#load(here::here("data", "nhanesdat.rdata"))
+
+load(here::here("a_nhanes.rda"))
+load(here::here("~/Documents/TG3/IDA_Regression/github_nhanes/nhanesdat.rdata"))
+
+a_nhanes$agegrp<-cut(a_nhanes$age, breaks=c(0, 45, 60, 75, Inf), labels=c("30-44", "45-59", "60-74", "75+"), right=FALSE)
+
+
+```
+
+
+## Overview
+
+### Variable correlation
+
+```{r}
+
+corrs <- a_nhanes %>%
+  dplyr::select(age, gender, bmi, sys,lbxtc,  lbdhdd, smokecigs , drinkstatus, mortstat ,diabetes, chf, cancer , stroke ) %>%
+  filter(complete.cases(.)) %>%
+  dplyr::mutate_all(as.numeric)
+M <- cor(corrs)
+col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))
+corrplot(M, method = "color", col = col(200),
+         type = "upper", order = "hclust", number.cex = .7,
+         addCoef.col = "black", # Add coefficient of correlation
+         tl.col = "black", tl.srt = 90, # Text label color and rotation
+         # hide correlation coefficient on the principal diagonal
+         diag = FALSE)
+```
+
+
+Correlations of the physical activity variables (outcome)
+```{r}
+corrs <- a_nhanes %>%
+  dplyr::select(mobilityproblem, tac ,tlac ,mvpa ,  wt  ) %>%
+  filter(complete.cases(.)) %>%
+  dplyr::mutate_all(as.numeric)
+M <- cor(corrs)
+col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))
+corrplot(M, method = "color", col = col(200),
+         type = "upper", order = "hclust", number.cex = .7,
+         addCoef.col = "black", # Add coefficient of correlation
+         tl.col = "black", tl.srt = 90, # Text label color and rotation
+         # hide correlation coefficient on the principal diagonal
+         diag = FALSE)
+
+
+
+
+```
+ 
+### Variable clustering
+
+*Variable clustering is used for assessing collinearity, redundancy, and for separating variables into clusters that can be scored as a single variable, thus resulting in data reduction.*
+
+```{r}
+Hmisc::varclus( ~ age +gender+ bmi+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus+ mortstat + diabetes+ chf+ cancer + stroke, data = a_nhanes)
+```
+
+Plot associations. 
+
+```{r}
+plot(Hmisc::varclus( ~ age +gender+ bmi+ sys+ lbxtc+  lbdhdd+ smokecigs +  mortstat + diabetes+ chf+ cancer + stroke, data = a_nhanes))
+```
+
+
+### Variable redundancy 
+
+Redundancy analysis of predictor variables. 
+
+```{r}
+Hmisc::redun( ~ age +gender+ bmi+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus+ mortstat + diabetes+ chf+ cancer + stroke  , data = a_nhanes)
+```
+
+
+##  Summary reports by age and gender
+
+### Distribution of age by gender
+
+```{r,  fig.cap= "Distribution of age by gender"}
+# only plot observatons with a non-missing value for Sex
+a_nhanes %>%
+  filter(!(is.na(gender))) %>%
+  with(., histboxp(
+    x = age,
+    group = gender,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+## Summary report by age group and gender
+
+### Summary report by gender
+
+```{r, results="asis"}
+s <-
+  Hmisc::summaryM(
+     age+bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus+ mortstat + diabetes+ chf+ cancer + stroke ~ gender,
+    data = a_nhanes,
+    overall = FALSE,
+    test = FALSE
+  )
+Hmisc::html(
+  s,
+  caption = 'Baseline characteristics by gender',
+  exclude1 = TRUE,
+  npct = 'both',
+  digits = 3,
+  prmsd = TRUE,
+  brmsd = TRUE,
+  msdsize = mu$smaller2
+)
+
+```
+
+
+### Summary report by age group for men
+
+```{r}
+
+sub<-a_nhanes[a_nhanes$gender=="Male",]
+
+
+s <-
+  Hmisc::summaryM(
+     bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus + diabetes+ chf+ cancer + stroke ~ agegrp,
+    data = sub,
+    overall = FALSE,
+    test = FALSE
+  )
+Hmisc::html(
+  s,
+  caption = 'Baseline characteristics by gae group for men',
+  exclude1 = TRUE,
+  npct = 'both',
+  digits = 3,
+  prmsd = TRUE,
+  brmsd = TRUE,
+  msdsize = mu$smaller2
+)
+
+```
+
+
+
+```{r, eval=FALSE, include=FALSE}
+sub<-a_nhanes[a_nhanes$gender=="Male",]
+
+sub[,c("agegrp", "educationadult", life_vars, physio_vars, health_vars)] %>% 
+    tbl_summary(
+    by = agegrp,
+    statistic = list(all_continuous() ~ "{median} ({p25}, {p75})",
+                     all_categorical() ~ "{n} / {N} ({p}%)"),
+    digits = all_continuous() ~ 2,
+    label = list( smokecigs ~ "Smoking status",
+                  drinkstatus ~ "Alcohol consumption",
+                  educationadult ~ "Education level",
+                  lbxtc ~ "Total cholesterol",
+                  lbdhdd ~ "HDL"),
+    missing_text = "Missing"
+  ) 
+
+```
+
+
+
+### Summary report by age group  for women
+
+
+```{r}
+
+sub<-a_nhanes[a_nhanes$gender=="Female",]
+
+s <-
+  Hmisc::summaryM(
+     bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus + diabetes+ chf+ cancer + stroke ~ agegrp,
+    data = sub,
+    overall = FALSE,
+    test = FALSE
+  )
+Hmisc::html(
+  s,
+  caption = 'Baseline characteristics by gae group for men',
+  exclude1 = TRUE,
+  npct = 'both',
+  digits = 3,
+  prmsd = TRUE,
+  brmsd = TRUE,
+  msdsize = mu$smaller2
+)
+
+```
+
+
+
+
+## Continuous variables by age and gender
+
+### Distribution of systolic blood pressure
+
+```{r}
+
+g<-ggplot(a_nhanes, 
+       aes(x = age, 
+           y = sys)) + 
+  geom_point(alpha=1/10)+
+  #geom_miss_point() + 
+  facet_wrap(~gender)+ 
+  theme_bw() + theme(legend.title = element_blank()) + ylab("systolic blood pressure")
+
+g
+
+```
+
+
+### Distribution of cholesterol
+
+```{r}
+
+g<-ggplot(a_nhanes, 
+       aes(x = age, 
+           y = lbxtc)) + 
+  geom_point(aes(color = gender))+
+  #geom_miss_point() + 
+  #facet_wrap(~gender)+ 
+  theme_bw() + theme(legend.title = element_blank()) 
+
+g + ylab("total cholesterol")
+
+```
+
+
+```{r, results='asis', message =FALSE, warning =FALSE , echo=FALSE}
+
+g<-ggplot(a_nhanes, 
+       aes(x = age, 
+           y = lbdhdd)) + 
+  geom_point(aes(color = gender))+
+  #geom_miss_point() + 
+  #facet_wrap(~gender)+ 
+  theme_bw() + theme(legend.title = element_blank()) 
+g + ylab("HDL")
+
+```
+
+### Distribution of BMI
+
+```{r}
+
+g<-ggplot(a_nhanes, 
+       aes(x = age, 
+           y = bmi)) + 
+  geom_point(aes(color = gender))+
+  #geom_miss_point() + 
+  #facet_wrap(~gender)+ 
+  theme_bw() + theme(legend.title = element_blank()) + ylab("systolic blood pressure")
+g
+
+```
+
+### Distribution of wear time
+
+```{r}
+
+g<-ggplot(a_nhanes, 
+       aes(x = age, 
+           y = wt)) + 
+  geom_point(alpha=1/10)+
+  #geom_miss_point() + 
+  facet_wrap(~gender)+ 
+  theme_bw() + theme(legend.title = element_blank()) + ylab("wear time")
+
+g
+
+```
+
+
+## Physical activity data
+
+### Distribution of MVPA 
+
+```{r}
+g1<-ggplot(a_nhanes, aes(wt, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth()
+
+g2<-ggplot(a_nhanes, aes(wt, log(1+mvpa))) +
+  geom_point(alpha=1/10) +
+  geom_smooth()
+
+g3<-ggplot(a_nhanes, aes(tlac, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth()
+
+g4<-ggplot(a_nhanes, aes(tlac, log(1+mvpa))) +
+  geom_point(alpha=1/10) +
+  geom_smooth()
+
+grid.arrange(g1, g2,g3, g4,  nrow = 2) 
+```
+
+
+### Distribution of MVPA and Total log activity count by time of day
+
+```{r}
+
+
+#12AM-2AM, 2AM-4AM, 4AM-6AM
+
+g1<-ggplot(nhanesdat, aes(tlac.1, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800) +xlab("tlac 12AM-2AM")
+
+g2<-ggplot(nhanesdat, aes(tlac.2, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800) +xlab("tlac 2AM-4AM")
+
+g3<-ggplot(nhanesdat, aes(tlac.3, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth()+xlim(0,800) +xlab("tlac 4AM-6AM")
+
+g4<-ggplot(nhanesdat, aes(tlac.4, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800)+xlab("tlac 6AM-8AM")
+
+g5<-ggplot(nhanesdat, aes(tlac.5, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800)+xlab("tlac 8AM-10AM")
+
+g6<-ggplot(nhanesdat, aes(tlac.6, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800)+xlab("tlac 10AM-12PM")
+
+g7<-ggplot(nhanesdat, aes(tlac.7, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800)+xlab("tlac 12PM-2PM")
+
+g8<-ggplot(nhanesdat, aes(tlac.8, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800)+xlab("tlac 2PM-4PM")
+
+
+g9<-ggplot(nhanesdat, aes(tlac.9, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800)+xlab("tlac 4PM-6PM")
+
+g10<-ggplot(nhanesdat, aes(tlac.10, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800)+xlab("tlac 6PM-8PM")
+
+g11<-ggplot(nhanesdat, aes(tlac.11, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800)+xlab("tlac 8PM-10PM")
+
+g12<-ggplot(nhanesdat, aes(tlac.12, mvpa)) +
+  geom_point(alpha=1/10) +
+  geom_smooth() +xlim(0,800)+xlab("tlac 10PM-12AM")
+
+
+grid.arrange(g1, g2,g3, g4,g5,g6,g7,g8,g9,g10,g11,g12,  nrow = 4) 
+
+
+```
+
+
+## Section session info
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+sessionInfo()
+```

@@ -6,6 +6,10 @@
 library(here)
 library(tidyverse)
 library(Hmisc)
+
+#load(here::here("data", "nhanesdat.rdata"))
+
+load(here::here("a_nhanes.rda"))
 ```
 
 # Introduction to NHANES
@@ -30,6 +34,43 @@ Moderate or vigorous intensity was based on count thresholds. Time spent in such
 
 The NHANES 2003–2004 and 2005–2006 have a total of 14,631 participants with accelerometry data. Participants aged 30 to 85 at the time they wore the accelerometer are included. Other inclusion criteria are in line with the choices for the prediction model of 5 year mortality presented by [Smirnova et al, J Gerontol A Biol Sci Med Sci 2020](https://doi.org/10.1093/gerona/glz193). The preparation of the data was based on "Organizing and Analyzing the Activity Data in NHANES"
   [Leroux et al, Statistics in Biosciences 2019](https://doi.org/10.1007/s12561-018-09229-9).  High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (https://andrew-leroux.github.io/rnhanesdata/articles).
+
+
+
+## Preparations
+
+High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (https://andrew-leroux.github.io/rnhanesdata/articles). The R code was modified to have fewer exclusions criteria as noted below.
+
+* Re-level comorbidities to assign refused/don't know as not having the condition
+* Re-level education to have 3 levels and categorize don't know/refused to be missing
+* Re-level alcohol consumption to include a level set to missing
+* Removed the "bad" days from Act_Analysis and Act_Flags
+* Systolic blood pressure is the mean of the non-missing of four blood pressure variables
+
+* Following Smirnova et al, participants were excluded who 
+(i) had fewer than 3 days of data with at least 10 hours of estimated wear time or were deemed by NHANES to have poor quality data; non-wear periods were identified as intervals with at least 60 consecutive minutes of zero activity counts and at most 2 minutes with counts between 0 and 100;
+(ii) missing mortality information or accidental death; 
+(iii) alive with follow up less than 1 year 
+
+The NHANES dataset used in this project contains `r nrow(a_nhanes)`  participants.
+
+* For the purposes of this IDA project, in contrast to Smirnova et al, we did **not** exclude participants who  
+(iv) had missing body mass index (BMI) or education predictor variables ;  
+(v) had missing systolic blood pressure, total or high-density lipoproteins (HDL) cholesterol measurements. 
+The final data set in Smirnova et al contained 2,978 participants.
+
+
+
+## Sources
+
+Leroux A. Vignettes for  downloading and working with NHANES 2003-2004 and 2005-2006 accelerometry data https://andrew-leroux.github.io/rnhanesdata/articles/
+
+To download the analysis data set, click the [link to data set  ---GITHUB](...IDA Github....)
+
+
+### Data dictionary  
+
+The data dictionary can be found [LINK ---- GITHUB](.....IDA GITHUB....)
 
 
 
