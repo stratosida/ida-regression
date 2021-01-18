@@ -10,7 +10,7 @@ This bookdown book is a *work in progress*. We'll update this `README` and the r
 
 #### -- Project Updates: 
 
-* last updated: 2020-11-02 by Marianne Huebner. Update: Readme file with file names
+* last updated: 2021-01-18 by Marianne Huebner. Update: Added NHANES files
 * Date: 2020-06-30 by Mark Baillie. Update: Create Bookdown
 
 #### Abbreviations
