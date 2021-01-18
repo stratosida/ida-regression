@@ -13,7 +13,12 @@ rmd_files: [
   "data_screen.Rmd",
   "Crash2_intro.Rmd",
   "Crash2_SAP.Rmd",
+  "Crash2_missing.Rmd",
   "Crash2_univar.Rmd",
   "Crash2_multivar.Rmd",
-  "Crash2_missing.Rmd"
+  "nhanes_intro.Rmd",
+  "nhanes_SAP.Rmd",
+  "nhanes_missing.Rmd",
+  "nhanes_univar.Rmd",
+  "nhanes_multivar.Rmd"
 ]
