@@ -173,6 +173,18 @@ nhanes_subset <-
     wt,               # total accelerometer wear time
 #    satp,             #sedentary/sleep/non-wear to active transition probability
 #    astp              # active to sedentary/sleep/non-wear transition probability
+tlac.1,
+tlac.2,
+tlac.3,
+tlac.4,
+tlac.5,
+tlac.6,
+tlac.7,
+tlac.8,
+tlac.9,
+tlac.10,
+tlac.11,
+tlac.12
   )
 
 ## Complete metadata by adding labels.
@@ -199,7 +211,19 @@ a_nhanes <- Hmisc::upData(
     mobilityproblem = 'difficulties with mobility' ,
     tac = 'total activity counts per day', 
     tlac =  'total log activity count (log(1+activity))', 
-    wt = 'total accelerometer wear time'
+    wt = 'total accelerometer wear time',
+    tlac.1 = 'total log actvity count 12:00AM-2:00AM',
+    tlac.2 = 'total log actvity count 2:00AM-4:00AM',
+    tlac.3 = 'total log actvity count 4:00AM-6:00AM',
+    tlac.4 = 'total log actvity count 6:00AM-8:00AM',
+    tlac.5 = 'total log actvity count 8:00AM-10:00AM',
+    tlac.6 = 'total log actvity count 10:00AM-12:00PM',
+    tlac.7 = 'total log actvity count 12:00PM-2:00PM',
+    tlac.8 = 'total log actvity count 2:00PM-4:00PM',
+    tlac.9 = 'total log actvity count 4:00PM-6:00PM',
+    tlac.10 = 'total log actvity count 6:00PM-8:00PM',
+    tlac.11 = 'total log actvity count 8:00PM-10:00PM',
+    tlac.12 = 'total log actvity count 10:00PM-12:00AM'
     ),
   units = c(
     age = "years",

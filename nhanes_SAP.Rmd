@@ -8,8 +8,7 @@ library(tidyverse)
 library(Hmisc)
 library(gtsummary)
 #load(here::here("data", "nhanesdat.rdata"))
-
-load(here::here("a_nhanes.rda"))
+# load(here::here("a_nhanes.rda"))
 ```
 
 Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place. 
@@ -71,9 +70,7 @@ Summary measures are calculated due to the large size of minute level accelerome
 * total log activity count (`TLAC` log(1+TAC))
 * total minutes of moderate/vigorous physical activity (`MVPA`)
 * total accelerometer wear time (`WT`)
-
-
-In addition, there are total log activity count summary measures (`tlac.1, `tlac.2`, …, `tlac.12`) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc.
+* total log activity count summary measures (`tlac.1, `tlac.2`, …, `tlac.12`) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc.
 
 
 
@@ -117,6 +114,7 @@ We will create missing value indicators for each covariate and will then summari
 
 <span style="color:blue">3. Patterns of missing values associated with the outcome variable</span>
 
+<span style="color:red"> This may need to change. </span>
 
 From Lee at al (STRATOS)
 

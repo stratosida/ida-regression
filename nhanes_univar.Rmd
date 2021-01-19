@@ -9,11 +9,11 @@ library(Hmisc)
 #source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
 source(here( "ida_plot_univar.R"))
 # Define sets of predictors by type - helpful for selection
-demog_vars <- c("age", "gender", "educationadult","bmi", "smokecigs" , "drinkstatus")
+demog_vars <- c("age", "gender", "educationadult")
 life_vars <- c("bmi", "smokecigs" , "drinkstatus")
 health_vars <- c("mortstat" ,"diabetes", "chf", "cancer" , "stroke")
 physio_vars <- c("sys","lbxtc",  "lbdhdd")
-pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt"  )
+pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt" , "tlac.1", "tlac.2","tlac.3","tlac.4","tlac.5","tlac.6","tlac.7","tlac.8","tlac.9","tlac.10","tlac.11","tlac.12" )
 
 ## Load the dataset.
 #load(here::here("data", "a_nhanes.rda"))
@@ -29,19 +29,11 @@ Using the [Hmisc](https://cran.r-project.org/web/packages/Hmisc/) describe funct
 
 ```{r desc_a_nhanesa, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
 a_nhanes %>%
-  dplyr::select(all_of(demog_vars)) %>%
+  dplyr::select(all_of(c(demog_vars, life_vars))) %>%
   Hmisc::describe(descript = "Demographic and lifestyle variables") %>%
   Hmisc::html(size = 80)
 ```
 
-### Physical activity variables
-
-```{r desc_a_nhanesb, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
-a_nhanes %>%
-  dplyr::select(all_of(pa_vars)) %>%
-  Hmisc::describe(descript = "Physiological measurements") %>%
-  Hmisc::html(size = 80)
-```
 
 
 ### Physiological measurements
@@ -63,6 +55,14 @@ a_nhanes %>%
   Hmisc::html(size = 80)
 ```
 
+### Physical activity variables
+
+```{r desc_a_nhanesb, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+a_nhanes %>%
+  dplyr::select(all_of(pa_vars)) %>%
+  Hmisc::describe(descript = "Physical activity") %>%
+  Hmisc::html(size = 80)
+```
 
 
 ## Categorical variables
@@ -126,7 +126,7 @@ A closer visual examination of continuous predictors and the outcome variable.
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE, fig.width=9}
 a_nhanes %>%
-  dplyr::select(mvpa, age, sys, bmi, wt, tlac, lbxtc, lbdhdd) %>%
+  dplyr::select(mvpa, tlac, age, sys, bmi, wt,  lbxtc, lbdhdd) %>%
   dplyr::mutate() %>%
   dplyr::mutate_all(as.numeric) %>%
   tidyr::pivot_longer(dplyr::everything(),

@@ -39,7 +39,7 @@ pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt"  )
 #load(here::here("data", "nhanesdat.rdata"))
 
 load(here::here("a_nhanes.rda"))
-load(here::here("~/Documents/TG3/IDA_Regression/github_nhanes/nhanesdat.rdata"))
+# load(here::here("~/Documents/TG3/IDA_Regression/github_nhanes/nhanesdat.rdata"))
 
 a_nhanes$agegrp<-cut(a_nhanes$age, breaks=c(0, 45, 60, 75, Inf), labels=c("30-44", "45-59", "60-74", "75+"), right=FALSE)
 
@@ -348,54 +348,54 @@ grid.arrange(g1, g2,g3, g4,  nrow = 2)
 
 #12AM-2AM, 2AM-4AM, 4AM-6AM
 
-g1<-ggplot(nhanesdat, aes(tlac.1, mvpa)) +
+g1<-ggplot(a_nhanes, aes(tlac.1, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800) +xlab("tlac 12AM-2AM")
+  geom_smooth() +xlim(0,800) +xlab("TLAC 12AM-2AM")
 
-g2<-ggplot(nhanesdat, aes(tlac.2, mvpa)) +
+g2<-ggplot(a_nhanes, aes(tlac.2, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800) +xlab("tlac 2AM-4AM")
+  geom_smooth() +xlim(0,800) +xlab("TLAC 2AM-4AM")
 
-g3<-ggplot(nhanesdat, aes(tlac.3, mvpa)) +
+g3<-ggplot(a_nhanes, aes(tlac.3, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth()+xlim(0,800) +xlab("tlac 4AM-6AM")
+  geom_smooth()+xlim(0,800) +xlab("TLAC 4AM-6AM")
 
-g4<-ggplot(nhanesdat, aes(tlac.4, mvpa)) +
+g4<-ggplot(a_nhanes, aes(tlac.4, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800)+xlab("tlac 6AM-8AM")
+  geom_smooth() +xlim(0,800)+xlab("TLAC 6AM-8AM")
 
-g5<-ggplot(nhanesdat, aes(tlac.5, mvpa)) +
+g5<-ggplot(a_nhanes, aes(tlac.5, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800)+xlab("tlac 8AM-10AM")
+  geom_smooth() +xlim(0,800)+xlab("TLAC 8AM-10AM")
 
-g6<-ggplot(nhanesdat, aes(tlac.6, mvpa)) +
+g6<-ggplot(a_nhanes, aes(tlac.6, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800)+xlab("tlac 10AM-12PM")
+  geom_smooth() +xlim(0,800)+xlab("TLAC 10AM-12PM")
 
-g7<-ggplot(nhanesdat, aes(tlac.7, mvpa)) +
+g7<-ggplot(a_nhanes, aes(tlac.7, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800)+xlab("tlac 12PM-2PM")
+  geom_smooth() +xlim(0,800)+xlab("TLAC 12PM-2PM")
 
-g8<-ggplot(nhanesdat, aes(tlac.8, mvpa)) +
+g8<-ggplot(a_nhanes, aes(tlac.8, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800)+xlab("tlac 2PM-4PM")
+  geom_smooth() +xlim(0,800)+xlab("TLAC 2PM-4PM")
 
 
-g9<-ggplot(nhanesdat, aes(tlac.9, mvpa)) +
+g9<-ggplot(a_nhanes, aes(tlac.9, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800)+xlab("tlac 4PM-6PM")
+  geom_smooth() +xlim(0,800)+xlab("TLAC 4PM-6PM")
 
-g10<-ggplot(nhanesdat, aes(tlac.10, mvpa)) +
+g10<-ggplot(a_nhanes, aes(tlac.10, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800)+xlab("tlac 6PM-8PM")
+  geom_smooth() +xlim(0,800)+xlab("TLAC 6PM-8PM")
 
-g11<-ggplot(nhanesdat, aes(tlac.11, mvpa)) +
+g11<-ggplot(a_nhanes, aes(tlac.11, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800)+xlab("tlac 8PM-10PM")
+  geom_smooth() +xlim(0,800)+xlab("TLAC 8PM-10PM")
 
-g12<-ggplot(nhanesdat, aes(tlac.12, mvpa)) +
+g12<-ggplot(a_nhanes, aes(tlac.12, mvpa)) +
   geom_point(alpha=1/10) +
-  geom_smooth() +xlim(0,800)+xlab("tlac 10PM-12AM")
+  geom_smooth() +xlim(0,800)+xlab("TLAC 10PM-12AM")
 
 
 grid.arrange(g1, g2,g3, g4,g5,g6,g7,g8,g9,g10,g11,g12,  nrow = 4) 
