@@ -9,7 +9,7 @@ library(Hmisc)
 
 #load(here::here("data", "nhanesdat.rdata"))
 
-load(here::here("a_nhanes.rda"))
+load(here::here("data", "a_nhanes.rda"))
 ```
 
 # Introduction to NHANES

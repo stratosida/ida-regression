@@ -18,7 +18,7 @@ pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt" , "tlac.1", "tlac.
 ## Load the dataset.
 #load(here::here("data", "a_nhanes.rda"))
 
-load(here::here("a_nhanes.rda"))
+load(here::here("data", "a_nhanes.rda"))
 ```
 
 ## Data set overview

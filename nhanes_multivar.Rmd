@@ -38,7 +38,8 @@ pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt"  )
 #load(here::here("data", "a_nhanes.rda"))
 #load(here::here("data", "nhanesdat.rdata"))
 
-load(here::here("a_nhanes.rda"))
+#load(here::here("a_nhanes.rda"))
+load(here::here("data", "a_nhanes.rda"))
 # load(here::here("~/Documents/TG3/IDA_Regression/github_nhanes/nhanesdat.rdata"))
 
 a_nhanes$agegrp<-cut(a_nhanes$age, breaks=c(0, 45, 60, 75, Inf), labels=c("30-44", "45-59", "60-74", "75+"), right=FALSE)
