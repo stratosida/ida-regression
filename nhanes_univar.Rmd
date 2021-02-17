@@ -7,7 +7,7 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 #source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
-source(here( "ida_plot_univar.R"))
+source(here("R", "ida_plot_univar.R"))
 # Define sets of predictors by type - helpful for selection
 demog_vars <- c("age", "gender", "educationadult")
 life_vars <- c("bmi", "smokecigs" , "drinkstatus")
@@ -19,6 +19,14 @@ pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt" , "tlac.1", "tlac.
 #load(here::here("data", "a_nhanes.rda"))
 
 load(here::here("data", "a_nhanes.rda"))
+
+## check for missing
+a_nhanes %>% glimpse()
+
+## remove missing
+a_nhanes <- a_nhanes %>% drop_na(tlac.1)
+
+
 ```
 
 ## Data set overview

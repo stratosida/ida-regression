@@ -10,7 +10,9 @@ Using the [Hmisc](https://cran.r-project.org/web/packages/Hmisc/) describe funct
 
 ### Demographic variables
 
-<!--html_preserve--><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+```{=html}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <script type="text/javascript">
 <!--
     function expand_collapse(id) {
@@ -55,42 +57,42 @@ bottom: -1ex;
 </style>
  <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Demographic variables <br><br> 2  Variables   20207  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">age</span>: Age <span style='font-family:Verdana;font-size:75%;'>years</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAhUlEQVQ4jc3TSw6AIAwE0Kn3P7TyUaAtCpFqJ8YmbnxKBzQSoJ32wTYSoJ32eXhRhnh0BQtzMe3XroRCTDF6cLF0XBa+u4IJ15FYyVxLy5Z2P1VDoVq38vdMjnXWxYjn4nlyoXaJ5fvVJZmrTnepizNf8EKVlDpBLeNs6BrsUh8RcrPDbQcg0QqG35KihwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable680588 {
+ .hmisctable893236 {
  border: none;
  font-size: 80%;
  }
- .hmisctable680588 td {
+ .hmisctable893236 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable680588 th {
+ .hmisctable893236 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable680588">
+ <table class="hmisctable893236">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20203</td><td>4</td><td>84</td><td>0.999</td><td>34.56</td><td>15.55</td><td>18</td><td>19</td><td>24</td><td>30</td><td>43</td><td>55</td><td>64</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1 14 15 16 17 ,  <font color="MidnightBlue">highest</font>: 92 94 95 96 99</span> <hr class="thinhr"> <span style="font-weight:bold">sex</span>: Sex <style>
- .hmisctable792151 {
+ .hmisctable882166 {
  border: none;
  font-size: 80%;
  }
- .hmisctable792151 td {
+ .hmisctable882166 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable792151 th {
+ .hmisctable882166 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable792151">
+ <table class="hmisctable882166">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>20206</td><td>1</td><td>2</td></tr>
  </table>
@@ -99,12 +101,15 @@ iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAhUlE
  Frequency   16935   3271
  Proportion  0.838  0.162
  </pre>
- <hr class="thinhr"><!--/html_preserve-->
+ <hr class="thinhr">
+```
 
 
 ### Physiological measurements
 
-<!--html_preserve--><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+```{=html}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <script type="text/javascript">
 <!--
     function expand_collapse(id) {
@@ -149,85 +154,85 @@ bottom: -1ex;
 </style>
  <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Physiological measurements <br><br> 5  Variables   20207  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">sbp</span>: Systolic Blood Pressure <span style='font-family:Verdana;font-size:75%;'>mmHg</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAeUlEQVQ4jeWTUQ6AMAhDO+9/aC2LQZ2a0bEf5aOQZdAXElCEAJSumMUiBKSumIXUBNdJ8RUug/kzV/ROsMtJ02N4X5O21j/1gNFypdOlciXS9UxqrN+5UujiXFtmacUz1yicnZcfF2sKXU2uCXePsS/u4Y41l3rb1BUP7gxgD5zU4QAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable338978 {
+ .hmisctable566770 {
  border: none;
  font-size: 80%;
  }
- .hmisctable338978 td {
+ .hmisctable566770 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable338978 th {
+ .hmisctable566770 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable338978">
+ <table class="hmisctable566770">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>19887</td><td>320</td><td>173</td><td>0.989</td><td>98.45</td><td>27.86</td><td> 60</td><td> 70</td><td> 80</td><td> 95</td><td>110</td><td>130</td><td>143</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   4  10  12  20  25 ,  <font color="MidnightBlue">highest</font>: 225 230 234 240 250</span> <hr class="thinhr"> <span style="font-weight:bold">hr</span>: Heart Rate <span style='font-family:Verdana;font-size:75%;'>/min</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAc0lEQVQ4je2T6wqAIBSDZ+//0HkhbVB4aoOCGng5PxyfR4ekCxizS1h0AWPeFtnT4fFzXfP4EpcjO/s8mmIp3Y5a9Ip3PEBhLhXPxQVQ8SRXRUFTX5nrPl34YG9HVCJX+fs1RMUrnQwuwprbtfjmPWUxjxVbmQwFkspBGQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable181190 {
+ .hmisctable705654 {
  border: none;
  font-size: 80%;
  }
- .hmisctable181190 td {
+ .hmisctable705654 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable181190 th {
+ .hmisctable705654 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable181190">
+ <table class="hmisctable705654">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20070</td><td>137</td><td>173</td><td>0.996</td><td>104.5</td><td>23.38</td><td> 70</td><td> 80</td><td> 90</td><td>105</td><td>120</td><td>130</td><td>140</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   3   4   5   6  10 ,  <font color="MidnightBlue">highest</font>: 190 192 198 200 220</span> <hr class="thinhr"> <span style="font-weight:bold">rr</span>: Respiratory Rate <span style='font-family:Verdana;font-size:75%;'>/min</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAdklEQVQ4je2T2wrAMAhD4/7/o9eumyCt1j6Yp4VAL0h7UAKJBWwKioQrFnYFRfq5zpTj4tMluIbJCuPWwqgmK2yENos/zTQXeZr+VzMUEy3LBTKa84nFgcdVx9iDBhO8xyvNVQsL3vdEPfIl5qh3uvtC359pyw0sKAx5Ml+DtwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable876871 {
+ .hmisctable322084 {
  border: none;
  font-size: 80%;
  }
- .hmisctable876871 td {
+ .hmisctable322084 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable876871 th {
+ .hmisctable322084 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable876871">
+ <table class="hmisctable322084">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20016</td><td>191</td><td>68</td><td>0.99</td><td>23.06</td><td>7.052</td><td>14</td><td>16</td><td>20</td><td>22</td><td>26</td><td>30</td><td>35</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1  2  3  4  5 ,  <font color="MidnightBlue">highest</font>: 90 91 94 95 96</span> <hr class="thinhr"> <span style="font-weight:bold">gcs</span>: Glasgow Coma Score Total <span style='font-family:Verdana;font-size:75%;'>points</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAACgAAAANCAMAAADsQdzaAAAACVBMVEUAAADMzMz////1iUV5AAAAK0lEQVQokWNgJAYwMDAyMBEDGBiYhoTC4eFrkCoCCqFKoAjkKQwEoRiQEACOggNMVmIG8gAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable188277 {
+ .hmisctable361044 {
  border: none;
  font-size: 80%;
  }
- .hmisctable188277 td {
+ .hmisctable361044 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable188277 th {
+ .hmisctable361044 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable188277">
+ <table class="hmisctable361044">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20184</td><td>23</td><td>13</td><td>0.863</td><td>12.47</td><td>3.594</td><td> 4</td><td> 6</td><td>11</td><td>15</td><td>15</td><td>15</td><td>15</td></tr>
  </table>
@@ -242,22 +247,22 @@ iVBORw0KGgoAAAANSUhEUgAAACgAAAANCAMAAADsQdzaAAAACVBMVEUAAADMzMz////1iUV5AAAAK0lE
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">cc</span>: Central Capillary Refille Time <span style='font-family:Verdana;font-size:75%;'>s</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAD0AAAANCAMAAAAtxpZ2AAAACVBMVEUAAADMzMz////1iUV5AAAAOklEQVQokdXRMQoAMAgEwT3//+ggFsEmxVlIth8EDwnkRgDh9rm2OUo9+rl/e6arTW1yerXA3eC5BjoXeQULuh8a6gAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable764235 {
+ .hmisctable543017 {
  border: none;
  font-size: 80%;
  }
- .hmisctable764235 td {
+ .hmisctable543017 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable764235 th {
+ .hmisctable543017 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable764235">
+ <table class="hmisctable543017">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>19596</td><td>611</td><td>20</td><td>0.945</td><td>3.267</td><td>1.67</td><td>1</td><td>2</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
  </table>
@@ -270,11 +275,14 @@ iVBORw0KGgoAAAANSUhEUgAAAD0AAAANCAMAAAAtxpZ2AAAACVBMVEUAAADMzMz////1iUV5AAAAOklE
  Frequency      3    19     3     1     1     2     1     1
  Proportion 0.000 0.001 0.000 0.000 0.000 0.000 0.000 0.000
  </pre>
- <hr class="thinhr"><!--/html_preserve-->
+ <hr class="thinhr">
+```
 
 ### Characteristics of injury
 
-<!--html_preserve--><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+```{=html}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <script type="text/javascript">
 <!--
     function expand_collapse(id) {
@@ -319,43 +327,43 @@ bottom: -1ex;
 </style>
  <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Characteristics of injury <br><br> 2  Variables   20207  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">injurytime</span>: Hours Since Injury <span style='font-family:Verdana;font-size:75%;'>hours</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAWklEQVQ4je3VOwoAIAxEwY33P7Qm+G/U7hVuIQophsCirEQyWpRKFCcq3/UWuAsHiyaKV8i2L9rGhosFc42qi0SbXKil7S4KzIu4uOKzrC31S38e+mNXY9czGQXhDQPyr+JzAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable548314 {
+ .hmisctable726325 {
  border: none;
  font-size: 80%;
  }
- .hmisctable548314 td {
+ .hmisctable726325 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable548314 th {
+ .hmisctable726325 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable548314">
+ <table class="hmisctable726325">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20196</td><td>11</td><td>93</td><td>0.972</td><td>2.844</td><td>2.35</td><td>0.5</td><td>1.0</td><td>1.0</td><td>2.0</td><td>4.0</td><td>6.0</td><td>7.0</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0.10  0.15  0.20  0.25  0.30 ,  <font color="MidnightBlue">highest</font>: 22.00 45.00 48.00 72.00 96.00</span> <hr class="thinhr"> <span style="font-weight:bold">injurytype</span>: Injury type<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQImWNgYIQBBgYmGCCKCeUyMIC0wk2Ai+JlMjCgMKEmMDAAADRjAKoEq8d0AAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable977444 {
+ .hmisctable941583 {
  border: none;
  font-size: 80%;
  }
- .hmisctable977444 td {
+ .hmisctable941583 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable977444 th {
+ .hmisctable941583 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable977444">
+ <table class="hmisctable941583">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>20207</td><td>0</td><td>3</td></tr>
  </table>
@@ -364,7 +372,8 @@ iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lE
  Frequency                  11189                  6552                  2466
  Proportion                 0.554                 0.324                 0.122
  </pre>
- <hr class="thinhr"><!--/html_preserve-->
+ <hr class="thinhr">
+```
 
 ## Categorical variables
 
@@ -447,9 +456,9 @@ Five patients under the age of 17, the inclusion criteria for the study, with on
 
 
 ```
-## R version 3.6.1 (2019-07-05)
+## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 17763)
+## Running under: Windows 10 x64 (build 18363)
 ## 
 ## Matrix products: default
 ## 
@@ -464,37 +473,36 @@ Five patients under the age of 17, the inclusion criteria for the study, with on
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] Hmisc_4.4-0     Formula_1.2-3   survival_3.2-3  lattice_0.20-40
-##  [5] forcats_0.5.0   stringr_1.4.0   dplyr_0.8.5     purrr_0.3.4    
-##  [9] readr_1.3.1     tidyr_1.0.2     tibble_3.0.1    ggplot2_3.3.0  
-## [13] tidyverse_1.3.0 here_0.1       
+##  [1] Hmisc_4.4-2     Formula_1.2-4   survival_3.1-12 lattice_0.20-41
+##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.4     purrr_0.3.4    
+##  [9] readr_1.4.0     tidyr_1.1.2     tibble_3.0.6    ggplot2_3.3.3  
+## [13] tidyverse_1.3.0 here_1.0.1     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] httr_1.4.1          jsonlite_1.6.1      splines_3.6.1      
-##  [4] modelr_0.1.6        assertthat_0.2.1    highr_0.8          
-##  [7] latticeExtra_0.6-29 cellranger_1.1.0    yaml_2.2.1         
-## [10] pillar_1.4.4        backports_1.1.7     glue_1.4.1         
-## [13] digest_0.6.25       RColorBrewer_1.1-2  checkmate_2.0.0    
-## [16] rvest_0.3.5         colorspace_1.4-1    htmltools_0.4.0    
-## [19] Matrix_1.2-18       pkgconfig_2.0.3     broom_0.5.5        
-## [22] haven_2.2.0         bookdown_0.18       patchwork_1.0.0    
-## [25] scales_1.1.1        jpeg_0.1-8.1        htmlTable_1.13.3   
-## [28] farver_2.0.3        generics_0.0.2      ellipsis_0.3.0     
-## [31] withr_2.2.0         nnet_7.3-13         cli_2.0.2          
-## [34] magrittr_1.5        crayon_1.3.4        readxl_1.3.1       
-## [37] evaluate_0.14       fs_1.3.2            fansi_0.4.1        
-## [40] nlme_3.1-145        xml2_1.2.5          foreign_0.8-76     
-## [43] tools_3.6.1         data.table_1.12.8   hms_0.5.3          
-## [46] lifecycle_0.2.0     munsell_0.5.0       reprex_0.3.0       
-## [49] cluster_2.1.0       compiler_3.6.1      rlang_0.4.6        
-## [52] grid_3.6.1          rstudioapi_0.11     htmlwidgets_1.5.1  
-## [55] base64enc_0.1-3     labeling_0.3        rmarkdown_2.1      
-## [58] gtable_0.3.0        DBI_1.1.0           R6_2.4.1           
-## [61] gridExtra_2.3       lubridate_1.7.4     knitr_1.28         
-## [64] rprojroot_1.3-2     stringi_1.4.6       rmdformats_0.3.7   
-## [67] Rcpp_1.0.4.6        vctrs_0.3.0         rpart_4.1-15       
-## [70] acepack_1.4.1       png_0.1-7           dbplyr_1.4.2       
-## [73] tidyselect_1.1.0    xfun_0.12
+##  [1] Rcpp_1.0.6          lubridate_1.7.9.2   png_0.1-7          
+##  [4] assertthat_0.2.1    rprojroot_2.0.2     digest_0.6.27      
+##  [7] R6_2.5.0            cellranger_1.1.0    backports_1.2.1    
+## [10] reprex_1.0.0        evaluate_0.14       highr_0.8          
+## [13] httr_1.4.2          pillar_1.4.7        rlang_0.4.10       
+## [16] readxl_1.3.1        data.table_1.13.6   rstudioapi_0.13    
+## [19] rpart_4.1-15        Matrix_1.2-18       checkmate_2.0.0    
+## [22] rmarkdown_2.6       labeling_0.4.2      splines_4.0.2      
+## [25] foreign_0.8-80      htmlwidgets_1.5.3   munsell_0.5.0      
+## [28] broom_0.7.4         compiler_4.0.2      modelr_0.1.8       
+## [31] xfun_0.20           pkgconfig_2.0.3     base64enc_0.1-3    
+## [34] htmltools_0.5.1.1   nnet_7.3-14         tidyselect_1.1.0   
+## [37] htmlTable_2.1.0     gridExtra_2.3       bookdown_0.21      
+## [40] crayon_1.4.1        dbplyr_2.1.0        withr_2.4.1        
+## [43] grid_4.0.2          jsonlite_1.7.2      gtable_0.3.0       
+## [46] lifecycle_0.2.0     DBI_1.1.1           magrittr_2.0.1     
+## [49] scales_1.1.1        rmdformats_1.0.1    cli_2.3.0          
+## [52] stringi_1.5.3       farver_2.0.3        fs_1.5.0           
+## [55] latticeExtra_0.6-29 xml2_1.3.2          ellipsis_0.3.1     
+## [58] generics_0.1.0      vctrs_0.3.6         RColorBrewer_1.1-2 
+## [61] tools_4.0.2         glue_1.4.2          hms_1.0.0          
+## [64] jpeg_0.1-8.1        yaml_2.2.1          colorspace_2.0-0   
+## [67] cluster_2.1.0       rvest_0.3.6         knitr_1.31         
+## [70] haven_2.3.1         patchwork_1.1.1
 ```
 
 

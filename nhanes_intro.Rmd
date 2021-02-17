@@ -97,7 +97,7 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 
 #load(here::here("data-raw", "nhanesdat.rdata"))
 
-load(here::here( "nhanesdat.rdata"))
+load(here::here("data-raw", "nhanesdat.rdata"))
 
 indx<-which(is.na(nhanesdat$tac))
 

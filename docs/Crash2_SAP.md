@@ -80,17 +80,20 @@ a_crash2 %>%
   gtsummary::tbl_summary()
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#fysgfjawmm .gt_table {
+#nusbqllttl .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -107,7 +110,7 @@ a_crash2 %>%
   border-left-color: #D3D3D3;
 }
 
-#fysgfjawmm .gt_heading {
+#nusbqllttl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -119,7 +122,7 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#fysgfjawmm .gt_title {
+#nusbqllttl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -129,7 +132,7 @@ a_crash2 %>%
   border-bottom-width: 0;
 }
 
-#fysgfjawmm .gt_subtitle {
+#nusbqllttl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -139,13 +142,13 @@ a_crash2 %>%
   border-top-width: 0;
 }
 
-#fysgfjawmm .gt_bottom_border {
+#nusbqllttl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fysgfjawmm .gt_col_headings {
+#nusbqllttl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -160,7 +163,7 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#fysgfjawmm .gt_col_heading {
+#nusbqllttl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -180,7 +183,7 @@ a_crash2 %>%
   overflow-x: hidden;
 }
 
-#fysgfjawmm .gt_column_spanner_outer {
+#nusbqllttl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -192,15 +195,15 @@ a_crash2 %>%
   padding-right: 4px;
 }
 
-#fysgfjawmm .gt_column_spanner_outer:first-child {
+#nusbqllttl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fysgfjawmm .gt_column_spanner_outer:last-child {
+#nusbqllttl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fysgfjawmm .gt_column_spanner {
+#nusbqllttl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -212,7 +215,7 @@ a_crash2 %>%
   width: 100%;
 }
 
-#fysgfjawmm .gt_group_heading {
+#nusbqllttl .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -234,7 +237,7 @@ a_crash2 %>%
   vertical-align: middle;
 }
 
-#fysgfjawmm .gt_empty_group_heading {
+#nusbqllttl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -249,19 +252,15 @@ a_crash2 %>%
   vertical-align: middle;
 }
 
-#fysgfjawmm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#fysgfjawmm .gt_from_md > :first-child {
+#nusbqllttl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fysgfjawmm .gt_from_md > :last-child {
+#nusbqllttl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fysgfjawmm .gt_row {
+#nusbqllttl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -280,7 +279,7 @@ a_crash2 %>%
   overflow-x: hidden;
 }
 
-#fysgfjawmm .gt_stub {
+#nusbqllttl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -292,7 +291,7 @@ a_crash2 %>%
   padding-left: 12px;
 }
 
-#fysgfjawmm .gt_summary_row {
+#nusbqllttl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -302,7 +301,7 @@ a_crash2 %>%
   padding-right: 5px;
 }
 
-#fysgfjawmm .gt_first_summary_row {
+#nusbqllttl .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -312,7 +311,7 @@ a_crash2 %>%
   border-top-color: #D3D3D3;
 }
 
-#fysgfjawmm .gt_grand_summary_row {
+#nusbqllttl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -322,7 +321,7 @@ a_crash2 %>%
   padding-right: 5px;
 }
 
-#fysgfjawmm .gt_first_grand_summary_row {
+#nusbqllttl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -332,7 +331,11 @@ a_crash2 %>%
   border-top-color: #D3D3D3;
 }
 
-#fysgfjawmm .gt_table_body {
+#nusbqllttl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#nusbqllttl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -341,7 +344,7 @@ a_crash2 %>%
   border-bottom-color: #D3D3D3;
 }
 
-#fysgfjawmm .gt_footnotes {
+#nusbqllttl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -355,13 +358,13 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#fysgfjawmm .gt_footnote {
+#nusbqllttl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#fysgfjawmm .gt_sourcenotes {
+#nusbqllttl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -375,57 +378,57 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#fysgfjawmm .gt_sourcenote {
+#nusbqllttl .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#fysgfjawmm .gt_left {
+#nusbqllttl .gt_left {
   text-align: left;
 }
 
-#fysgfjawmm .gt_center {
+#nusbqllttl .gt_center {
   text-align: center;
 }
 
-#fysgfjawmm .gt_right {
+#nusbqllttl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fysgfjawmm .gt_font_normal {
+#nusbqllttl .gt_font_normal {
   font-weight: normal;
 }
 
-#fysgfjawmm .gt_font_bold {
+#nusbqllttl .gt_font_bold {
   font-weight: bold;
 }
 
-#fysgfjawmm .gt_font_italic {
+#nusbqllttl .gt_font_italic {
   font-style: italic;
 }
 
-#fysgfjawmm .gt_super {
+#nusbqllttl .gt_super {
   font-size: 65%;
 }
 
-#fysgfjawmm .gt_footnote_marks {
+#nusbqllttl .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="fysgfjawmm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="nusbqllttl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 20207</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 20,207</strong><sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">Death within 28 days from injury</td>
-      <td class="gt_row gt_center">3076 (15%)</td>
+      <td class="gt_row gt_center">3,076 (15%)</td>
     </tr>
   </tbody>
   
@@ -437,13 +440,14 @@ a_crash2 %>%
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 The number of deaths computed in the data set coincides with the number reported in [Perel et al, BMJ 2012](https://doi.org/10.1136/bmj.e5166).

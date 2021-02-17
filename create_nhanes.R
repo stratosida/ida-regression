@@ -13,6 +13,8 @@ sapply(pckgs, function(x) if(!require(x,character.only=TRUE,quietly=TRUE)) {
 })
 rm(list=c("pckgs"))
 
+library(devtools)
+
 #rnhanes data package from github
 if(!require("rnhanesdata")){
   install_github("andrew-leroux/rnhanesdata")

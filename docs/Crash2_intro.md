@@ -30,26 +30,28 @@ We refer to the source data set as the dataset available online [here](http://bi
 
 Display the source dataset contents. This dataset is in the **data-raw** folder of the project directory. 
 
-<!--html_preserve--><hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
+
+```{=html}
+<hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable312610 {
+ .hmisctable902600 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable312610 td {
+ .hmisctable902600 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable312610 th {
+ .hmisctable902600 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable312610" border="1">
+ <table class="hmisctable902600" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
@@ -99,23 +101,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 
  <hr>
  <style>
- .hmisctable523258 {
+ .hmisctable479360 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable523258 td {
+ .hmisctable479360 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable523258 th {
+ .hmisctable479360 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable523258" border="1">
+ <table class="hmisctable479360" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.source">source</a></td><td>telephone</td></tr>
  <tr><td></td><td>telephone entered manually</td></tr>
@@ -156,7 +158,8 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
  </table>
 
  <hr>
-<!--/html_preserve-->
+
+```
 
 
 ### Updated analysis dataset
@@ -176,26 +179,28 @@ Input object size:	 1221480 bytes;	 12 variables	 20207 observations
 New object size:	1223272 bytes;	12 variables	20207 observations
 Input object size:	 1546808 bytes;	 14 variables	 20207 observations
 New object size:	1385720 bytes;	14 variables	20207 observations
-<!--html_preserve--><hr><h4>Data frame:a_crash2</h4>20207 observations and 14 variables, maximum # NAs:17121  
+
+```{=html}
+<hr><h4>Data frame:a_crash2</h4>20207 observations and 14 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable680433 {
+ .hmisctable761788 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable680433 td {
+ .hmisctable761788 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable680433 th {
+ .hmisctable761788 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable680433" border="1">
+ <table class="hmisctable761788" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>trandomised</td><td>Date of Randomization</td><td></td><td></td><td>Date</td><td>double</td><td>    0</td></tr>
@@ -215,23 +220,23 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 
  <hr>
  <style>
- .hmisctable470085 {
+ .hmisctable501859 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable470085 td {
+ .hmisctable501859 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable470085 th {
+ .hmisctable501859 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable470085" border="1">
+ <table class="hmisctable501859" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.sex">sex</a></td><td>male</td></tr>
  <tr><td></td><td>female</td></tr>
@@ -241,15 +246,16 @@ New object size:	1385720 bytes;	14 variables	20207 observations
  </table>
 
  <hr>
-<!--/html_preserve-->
+
+```
 
 ## Section session info
 
 
 ```
-## R version 3.6.1 (2019-07-05)
+## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 17763)
+## Running under: Windows 10 x64 (build 18363)
 ## 
 ## Matrix products: default
 ## 
@@ -264,36 +270,35 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] Hmisc_4.4-0     Formula_1.2-3   survival_3.2-3  lattice_0.20-40
-##  [5] forcats_0.5.0   stringr_1.4.0   dplyr_0.8.5     purrr_0.3.4    
-##  [9] readr_1.3.1     tidyr_1.0.2     tibble_3.0.1    ggplot2_3.3.0  
-## [13] tidyverse_1.3.0 here_0.1       
+##  [1] Hmisc_4.4-2     Formula_1.2-4   survival_3.1-12 lattice_0.20-41
+##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.4     purrr_0.3.4    
+##  [9] readr_1.4.0     tidyr_1.1.2     tibble_3.0.6    ggplot2_3.3.3  
+## [13] tidyverse_1.3.0 here_1.0.1     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.4.6        lubridate_1.7.4     png_0.1-7          
-##  [4] assertthat_0.2.1    rprojroot_1.3-2     digest_0.6.25      
-##  [7] R6_2.4.1            cellranger_1.1.0    backports_1.1.7    
-## [10] acepack_1.4.1       reprex_0.3.0        evaluate_0.14      
-## [13] httr_1.4.1          pillar_1.4.4        rlang_0.4.6        
-## [16] readxl_1.3.1        data.table_1.12.8   rstudioapi_0.11    
-## [19] rpart_4.1-15        Matrix_1.2-18       checkmate_2.0.0    
-## [22] rmarkdown_2.1       splines_3.6.1       foreign_0.8-76     
-## [25] htmlwidgets_1.5.1   munsell_0.5.0       broom_0.5.5        
-## [28] compiler_3.6.1      modelr_0.1.6        xfun_0.12          
-## [31] pkgconfig_2.0.3     base64enc_0.1-3     htmltools_0.4.0    
-## [34] nnet_7.3-13         tidyselect_1.1.0    htmlTable_1.13.3   
-## [37] gridExtra_2.3       bookdown_0.18       fansi_0.4.1        
-## [40] crayon_1.3.4        dbplyr_1.4.2        withr_2.2.0        
-## [43] grid_3.6.1          nlme_3.1-145        jsonlite_1.6.1     
-## [46] gtable_0.3.0        lifecycle_0.2.0     DBI_1.1.0          
-## [49] magrittr_1.5        scales_1.1.1        rmdformats_0.3.7   
-## [52] cli_2.0.2           stringi_1.4.6       fs_1.3.2           
-## [55] latticeExtra_0.6-29 xml2_1.2.5          ellipsis_0.3.0     
-## [58] generics_0.0.2      vctrs_0.3.0         RColorBrewer_1.1-2 
-## [61] tools_3.6.1         glue_1.4.1          hms_0.5.3          
-## [64] jpeg_0.1-8.1        yaml_2.2.1          colorspace_1.4-1   
-## [67] cluster_2.1.0       rvest_0.3.5         knitr_1.28         
-## [70] haven_2.2.0
+##  [1] Rcpp_1.0.6          lubridate_1.7.9.2   png_0.1-7          
+##  [4] assertthat_0.2.1    rprojroot_2.0.2     digest_0.6.27      
+##  [7] R6_2.5.0            cellranger_1.1.0    backports_1.2.1    
+## [10] reprex_1.0.0        evaluate_0.14       httr_1.4.2         
+## [13] pillar_1.4.7        rlang_0.4.10        readxl_1.3.1       
+## [16] data.table_1.13.6   rstudioapi_0.13     rpart_4.1-15       
+## [19] Matrix_1.2-18       checkmate_2.0.0     rmarkdown_2.6      
+## [22] splines_4.0.2       foreign_0.8-80      htmlwidgets_1.5.3  
+## [25] munsell_0.5.0       broom_0.7.4         compiler_4.0.2     
+## [28] modelr_0.1.8        xfun_0.20           pkgconfig_2.0.3    
+## [31] base64enc_0.1-3     htmltools_0.5.1.1   nnet_7.3-14        
+## [34] tidyselect_1.1.0    htmlTable_2.1.0     gridExtra_2.3      
+## [37] bookdown_0.21       crayon_1.4.1        dbplyr_2.1.0       
+## [40] withr_2.4.1         grid_4.0.2          jsonlite_1.7.2     
+## [43] gtable_0.3.0        lifecycle_0.2.0     DBI_1.1.1          
+## [46] magrittr_2.0.1      scales_1.1.1        rmdformats_1.0.1   
+## [49] cli_2.3.0           stringi_1.5.3       fs_1.5.0           
+## [52] latticeExtra_0.6-29 xml2_1.3.2          ellipsis_0.3.1     
+## [55] generics_0.1.0      vctrs_0.3.6         RColorBrewer_1.1-2 
+## [58] tools_4.0.2         glue_1.4.2          hms_1.0.0          
+## [61] jpeg_0.1-8.1        yaml_2.2.1          colorspace_2.0-0   
+## [64] cluster_2.1.0       rvest_0.3.6         knitr_1.31         
+## [67] haven_2.3.1
 ```
 
 
