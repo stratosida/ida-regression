@@ -1,0 +1,701 @@
+
+#  Multivariate distributions
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE }
+library(here)
+library(tidyverse)
+library(plotly)
+library(Hmisc)
+library(gtsummary)
+library(corrplot)
+## Read data 
+load(here::here("data", "a_crash2.rda"))
+```
+
+
+
+## Overview
+
+### Variable correlation
+
+```{r}
+
+corrs <- a_crash2 %>%
+  dplyr::select(age, sex, sbp, hr, rr ,cc, injurytime, injurytype ) %>%
+  filter(complete.cases(.)) %>%
+  dplyr::mutate_all(as.numeric)
+
+M <- cor(corrs)
+col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))
+corrplot(M, method = "color", col = col(200),
+         type = "upper", order = "hclust", number.cex = .7,
+         addCoef.col = "black", # Add coefficient of correlation
+         tl.col = "black", tl.srt = 90, # Text label color and rotation
+         # hide correlation coefficient on the principal diagonal
+         diag = FALSE)
+
+```
+
+
+### Variable clustering
+
+*Variable clustering is used for assessing collinearity, redundancy, and for separating variables into clusters that can be scored as a single variable, thus resulting in data reduction.*
+
+```{r}
+Hmisc::varclus( ~ age +  sbp +  hr + rr + cc + gcs + injurytime + injurytype + sex, data = a_crash2)
+```
+
+Plot associations. 
+
+```{r}
+plot(Hmisc::varclus( ~ age +  sbp +  hr + rr + cc + gcs + injurytime + injurytype + sex, data = a_crash2))
+```
+
+
+### Variable redundancy 
+
+Redundancy analysis of predictor variables. 
+
+```{r}
+Hmisc::redun( ~ hr + rr + age + sbp + injurytype + sex  , data = a_crash2)
+```
+
+
+
+
+## Summary reports by sex
+
+### Overall 
+
+```{r, results="asis", message=FALSE, warning =FALSE , echo=FALSE}
+s <-
+  Hmisc::summaryM(
+    age +  sbp +  hr + rr + cc + gcs + injurytime + injurytype ~ sex,
+    data = a_crash2,
+    overall = FALSE,
+    test = FALSE
+  )
+
+Hmisc::html(
+  s,
+  caption = 'Baseline characteristics by sex',
+  exclude1 = TRUE,
+  npct = 'both',
+  digits = 3,
+  prmsd = TRUE,
+  brmsd = TRUE,
+  msdsize = mu$smaller2
+)
+```
+
+
+### Distribution of age by sex
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of age by sex"}
+# only plot observatons with a non-missing value for Sex
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x = age,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+
+
+```
+
+### Distribution of systolic blood pressure by sex
+
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of systolic blood pressure by sex"}
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x = sbp,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of heart rate by sex
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of heart rate by sex" }
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x = hr,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of respiratory rate by sex
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of respiratory rate by sex" }
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x =  rr,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of central capillary refille time by sex
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of central capillary refill time by sex" }
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x =  cc,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of hours since injury by sex
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of hours since injury by sex" }
+a_crash2 %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x =  injurytime,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+
+### Distribution of Glasgow coma score by sex
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of Glasgow coma score (point scale) by sex", fig.height=6}
+## TODO: This code should be turned in to a function and simplified
+## Check how factors are coerced 
+a_crash2 %>%
+  dplyr::filter(!(is.na(sex))) %>%
+  dplyr::select(sex, gcs) %>%
+  dplyr::mutate_all(forcats::as_factor) %>%   
+  dplyr::mutate_all(forcats::fct_explicit_na, "NA") %>%
+  tidyr::pivot_longer(
+    -sex,
+    names_to = "var",
+    values_to = "value",
+    values_drop_na = FALSE
+  ) %>%
+  dplyr::group_by(sex, var, value) %>%
+  dplyr::summarize(N = n()) %>%
+  dplyr::mutate(
+    freq = N / sum(N),
+    pct = round((freq * 100), 1),
+    value = as_factor(value),
+    axis_lab = as_factor(paste0(pct, '%, (N = ', N, ')'))
+  ) %>%
+  ggplot(aes(x = value,
+             y = pct,
+             label = axis_lab)) +
+  geom_text(nudge_y = 7, size = 2.5) +
+  geom_pointrange(
+    aes(ymin = 0, ymax = pct),
+    alpha = 1,
+    size = 1,
+    color = "grey"
+  ) +
+  geom_point(color = "firebrick2",
+             alpha = 0.6,
+             size = 3) +
+  ylab("Percentage (%)") +
+  scale_y_continuous(limits = c(0, 100)) +
+  labs(caption = "Number of subjects with a non-missing value reported in brackets.\nNA = missing") +
+  coord_flip() +
+  theme_minimal(base_size = 12) +
+  theme(axis.title.y = element_blank(),
+        panel.grid.minor = element_blank()) +
+  facet_wrap( ~ sex, scales = "free_y", ncol = 1)
+```
+
+
+
+### Distribution of injury type by sex
+
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of injury type by sex" }
+a_crash2 %>%
+  dplyr::filter(!(is.na(sex))) %>%
+  dplyr::select(sex, injurytype) %>%
+  dplyr::mutate_all(forcats::as_factor) %>%   
+  dplyr::mutate_all(forcats::fct_explicit_na, "NA") %>%
+  tidyr::pivot_longer(
+    -sex,
+    names_to = "var",
+    values_to = "value",
+    values_drop_na = FALSE
+  ) %>%
+  dplyr::group_by(sex, var, value) %>%
+  dplyr::summarize(N = n()) %>%
+  dplyr::mutate(
+    freq = N / sum(N),
+    pct = round((freq * 100), 1),
+    axis_lab = paste0(value, ' ', '(N = ', N, ')'),
+    var_label = case_when(
+                          var == "injurytype" ~ "Injury type")
+  ) %>%
+  ggplot(aes(
+    x = reorder(axis_lab, pct),
+    y = pct,
+    label = pct
+  )) +
+  geom_text(nudge_y = 8) +
+  geom_pointrange(aes(ymin = 0, ymax = pct), alpha = 1, size = 1, color = "grey") +
+  geom_point(color = "firebrick2",
+             alpha = 0.6,
+             size = 3) +
+  ylab("Percentage (%)") +
+  scale_y_continuous(limits = c(0, 100)) +
+  labs(caption = "Number of subjects with a non-missing value reported in brackets.\nNA = missing") +
+  facet_wrap(~ var_label, ncol = 1, scales = "free_y") +
+  coord_flip() +
+  theme_minimal(base_size = 12) +
+  theme(axis.title.y = element_blank(),
+        panel.grid.minor = element_blank()) +
+  facet_wrap( ~ sex, scales = "free_y", ncol = 1)
+```
+
+
+
+
+## Summary reports by age 
+
+Categorize age for the purposes of exploring the relationship between age and other baseline variables. This is purely for exploratory purposes only, and not to influence the analysis strategy by pursuing the dichotomization of age.
+
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE}
+a_crash2 <- a_crash2 %>%
+  mutate(age_C = case_when(is.na(age) ~ "NA", 
+                           age < 30 ~ "<30",
+                            age < 45 ~ "30-44",
+                            age < 60 ~ "45-59",
+                            age >= 60 ~ "60+"))
+
+a_crash2 %>%   
+  dplyr::select(age_C) %>%
+  gtsummary::tbl_summary()
+
+```
+
+Report all variables by age category. 
+
+```{r, results="asis", message=FALSE, warning =FALSE , echo=FALSE}
+s <-
+  Hmisc::summaryM(
+    sex + sbp +  hr + rr + cc + gcs + injurytime + injurytype  ~ age_C,
+    data = a_crash2 %>% dplyr::filter(age_C != "NA"),
+    overall = FALSE,
+    test = FALSE
+  )
+
+html(
+  s,
+  caption = 'Baseline characteristics by age categories',
+  exclude1 = TRUE,
+  npct = 'both',
+  digits = 3,
+  prmsd = TRUE,
+  brmsd = TRUE,
+  scroll = TRUE, 
+  msdsize = mu$smaller2
+)
+
+
+```
+
+
+
+### Distribution of systolic blood pressure by age categories
+
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of systolic blood pressure by gcs"}
+a_crash2 %>%
+  filter(!(is.na(age_C))) %>%
+  with(., histboxp(
+    x = sbp,
+    group = age_C,
+    sd = TRUE,
+    bins = 200
+  ))
+
+```
+
+
+```{r,  message=FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  dplyr::filter(!is.na(sbp) & !is.na(age)) %>%
+  mutate(sbp = as.numeric(sbp), 
+         age = as.numeric(age)) %>%
+  ggplot(aes(x = sbp, y = age)) +
+  geom_point(shape = 16,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+```
+
+
+
+### Distribution of heart rate by age categories
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of heart rate by gcs" }
+a_crash2 %>%
+  filter(!(is.na(age_C))) %>%
+  with(., histboxp(
+    x = hr,
+    group = age_C,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+```{r,  message=FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  dplyr::filter(!is.na(hr) & !is.na(age)) %>%
+  mutate(sbp = as.numeric(hr), 
+         age = as.numeric(age)) %>%
+  ggplot(aes(x = hr, y = age)) +
+  geom_point(shape = 16,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+```
+
+
+
+### Distribution of respiratory rate by age categories
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of respiratory rate by gcs" }
+a_crash2 %>%
+  filter(!(is.na(age_C))) %>%
+  with(., histboxp(
+    x =  rr,
+    group = age_C,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+
+```{r,  message=FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  dplyr::filter(!is.na(rr) & !is.na(age)) %>%
+  mutate(sbp = as.numeric(rr), 
+         age = as.numeric(age)) %>%
+  ggplot(aes(x = rr, y = age)) +
+  geom_point(shape = 16,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+```
+
+
+
+### Distribution of central capillary refille time by age categories
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of central capillary refill time by gcs" }
+a_crash2 %>%
+  filter(!(is.na(age_C))) %>%
+  with(., histboxp(
+    x =  cc,
+    group = age_C,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+```{r,  message=FALSE, warning =FALSE , echo=FALSE}
+a_crash2 %>%
+  dplyr::filter(!is.na(cc) & !is.na(age)) %>%
+  mutate(sbp = as.numeric(cc), 
+         age = as.numeric(age)) %>%
+  ggplot(aes(x = cc, y = age)) +
+  geom_point(shape = 16,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+```
+
+
+
+### WIP: multivariate scatter plots
+
+
+```{r}
+
+a_crash2 %>% dplyr::filter(!is.na(sbp)) %>% tally()
+a_crash2 %>% dplyr::filter(is.na(sbp)) %>% tally()
+
+bigN <- a_crash2 %>% dplyr::filter(!is.na(sbp) & !is.na(age)) %>% tally()
+n_miss <- a_crash2 %>% dplyr::filter(is.na(sbp) | is.na(age)) %>% tally()
+
+title <-
+  paste0("Plot of ", Hmisc::label(a_crash2$age), " and ", Hmisc::label(a_crash2$sbp))
+
+caption <-
+  paste0(
+    "n = ",
+    bigN,
+    " subjects displayed.\n",
+    n_miss,
+    " subjects with a missing value in at least one of the variables."
+  )
+
+
+x_axis <- paste0(Hmisc::label(a_crash2$age), " [", Hmisc::units(a_crash2$age), "]")
+y_axis <- paste0(Hmisc::label(a_crash2$sbp), " [", Hmisc::units(a_crash2$sbp), "]")
+
+
+p1 <- a_crash2 %>%
+  dplyr::filter(!is.na(sbp) & !is.na(age)) %>%
+  mutate(sbp = as.numeric(sbp), 
+         age = as.numeric(age)) %>%
+  ggplot(aes(x = sbp, y = age)) +
+  ylab(x_axis) +
+  xlab(y_axis) +
+  labs(
+    title = title,
+    caption = caption
+  ) +
+  geom_point(shape = 16, #size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+p1
+
+```
+
+
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE,}
+p1 <- a_crash2 %>%
+  filter(!is.na(sbp) & !is.na(age)) %>%
+  mutate(sbp = as.numeric(sbp), 
+         age = as.numeric(age)) %>%
+  ggplot(aes(x = sbp, y = age)) +
+  geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+p2 <- a_crash2 %>%
+  filter(!is.na(sbp) & !is.na(hr)) %>%
+  mutate(sbp = as.numeric(sbp), 
+         age = as.numeric(hr)) %>%
+  ggplot(aes(x = sbp, y = hr)) +
+  geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+
+p3 <- a_crash2 %>%
+  filter(!is.na(sbp) & !is.na(rr)) %>%
+  mutate(sbp = as.numeric(sbp), 
+         age = as.numeric(rr)) %>%
+  ggplot(aes(x = sbp, y = rr)) +
+  geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+
+p4 <- a_crash2 %>%
+  filter(!is.na(hr) & !is.na(age)) %>%
+  mutate(sbp = as.numeric(hr), 
+         age = as.numeric(age)) %>%
+  ggplot(aes(x = hr, y = age)) +
+  geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  theme_minimal()
+
+```
+
+
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE}
+
+library(patchwork)
+(p1 + p2 ) / (p3 + p4)
+```
+
+
+### WIP: Scatter plots with a third or fourth variable
+
+Scatter plot of age and RR by sex and injury type.
+
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE}
+ggplot(a_crash2 %>% filter(!(is.na(sex))), aes(
+  y = age,
+  x = rr
+)) +
+    geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  facet_grid(sex ~ injurytype) +
+  theme_minimal()
+```
+
+
+Scatter plot of SBP and RR by sex and injury type.
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE}
+ggplot(a_crash2 %>% filter(!(is.na(sex))), aes(
+  y = sbp,
+  x = rr
+)) +
+    geom_point(shape = 16, size = 0.5,
+             alpha = 0.5,
+             color = "firebrick2") +
+  geom_rug() +
+  facet_grid(sex ~ injurytype) +
+  theme_minimal()
+```
+
+
+
+
+
+
+## Summary reports by Glasgow coma score
+
+
+```{r, results="asis", message=FALSE, warning =FALSE , echo=FALSE}
+s <-
+  Hmisc::summaryM(
+    age + hr + rr + sbp + cc  + sex + injurytime + injurytype ~ gcs,
+    data = a_crash2,
+    overall = FALSE,
+    test = FALSE
+  )
+
+html(
+  s,
+  caption = 'Baseline characteristics by Glasgow coma score',
+  exclude1 = TRUE,
+  npct = 'both',
+  digits = 3,
+  prmsd = TRUE,
+  brmsd = TRUE,
+  scroll = TRUE, 
+  msdsize = mu$smaller2
+)
+
+
+```
+
+
+### Distribution of age by Glasgow coma score
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of age by gcs"}
+# only plot observatons with a non-missing value for gcs
+a_crash2 %>%
+  filter(!(is.na(gcs))) %>%
+  with(., histboxp(
+    x = age,
+    group = gcs,
+    sd = TRUE,
+    bins = 200
+  ))
+
+
+```
+
+### Distribution of systolic blood pressure by Glasgow coma score
+
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of systolic blood pressure by gcs"}
+a_crash2 %>%
+  filter(!(is.na(gcs))) %>%
+  with(., histboxp(
+    x = sbp,
+    group = gcs,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of heart rate by Glasgow coma score
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of heart rate by gcs" }
+a_crash2 %>%
+  filter(!(is.na(gcs))) %>%
+  with(., histboxp(
+    x = hr,
+    group = gcs,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of respiratory rate by Glasgow coma score
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of respiratory rate by GCS" }
+a_crash2 %>%
+  filter(!(is.na(gcs))) %>%
+  with(., histboxp(
+    x =  rr,
+    group = gcs,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+### Distribution of central capillary refille time by Glasgow coma score
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of central capillary refill time by GCS" }
+a_crash2 %>%
+  filter(!(is.na(gcs))) %>%
+  with(., histboxp(
+    x =  cc,
+    group = gcs,
+    sd = TRUE,
+    bins = 200
+  ))
+```
+
+
+
+
+## Section session info
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+sessionInfo()
+```

@@ -20,5 +20,8 @@ rmd_files: [
   "nhanes_SAP.Rmd",
   "nhanes_missing.Rmd",
   "nhanes_univar.Rmd",
-  "nhanes_multivar.Rmd"
+  "nhanes_multivar.Rmd",
+  "Bact_intro.Rmd",
+  "Bact_SAP.Rmd",
+  "Bact_missing.Rmd"
 ]
