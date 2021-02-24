@@ -94,6 +94,17 @@ Based on this review, we consider age and leukocytes (WBC) as pivotal covariates
 
   *3.2. Domain expertise may also be useful to specify in advance which variables are expected to correlate with each other. This background knowledge could be summarized in a directed or undirected acyclic graph connecting the covariates with each other as also suggested by Heinze et al, 2018.*
   
+  The following systematic dependencies between variables exist:
+  
+  * WBC $\approx$ BASO + EOS + NEU + LYM + MONO
+  * BASOR = BASO / WBC * 100
+  * EOSR = EOS / WBC * 100
+  * NEUR = NEU / WBC * 100  
+  * MONOR = MONO / WBC * 100
+  * LYMR = LYM / WBC * 100
+  * BASOR + EOSR + NEU + MONOR + LYMR = 100
+  
+  
   Correlations depend largely on the underlying condition, and are therefore difficult to anticipate. Domain expertise does not give rise to specific expectations.
 
   *3.3. Missing value mechanisms: if not already specified in meta data, domain experts should also be consulted to explain possible reasons for the occurrence of missing values for each variable, which may be categorized as systematic or unsystematic.*
