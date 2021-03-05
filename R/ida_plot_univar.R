@@ -15,7 +15,17 @@
 #' @export
 #'
 #' @examples
-ida_plot_univar <- function(data, var, n_dodge = 1, bin_width = 0.5) {
+ida_plot_univar <- function(data, var, n_dodge = 1, 
+                            bin_width = diff(range(data[[var]],na.rm=T))/min(length(unique(data[[var]])),100), n_bars)                             {
+  
+  ## if n_bars is given, use this to define bin_width
+  
+  if(!missing(n_bars)) bin_width = diff(range(data[[var]],na.rm=T))/min(length(unique(data[[var]])),n_bars)
+  
+  ## to avoid 'spiked' histogram, bin_width should be a multiple of the minimum non-zero distance between two values, so check here
+  
+  mindist <- min(dist(sort(unique(data[[var]]))))
+  if(bin_width/mindist != floor(bin_width/mindist)) bin_width<- mindist *floor(bin_width/mindist) 
   
   ## number of missing observations
   nmiss <-

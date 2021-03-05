@@ -7,14 +7,26 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
-
-# Define sets of predictors by type - helpful for selection
-demog_vars <- c("age", "sex")
-pyhiso_vars <- c("sbp", "hr", "rr", "gcs", "cc")
-injury_vars <- c("injurytime", "injurytype")
+source(here("R", "ida_trans.R"))  ## function to determine transformation (log(x+c) or identity). 
 
 ## Load the dataset.
-load(here::here("data", "a_crash2.rda"))
+load(here::here("data", "a_bact.rda"))
+
+# Define sets of predictors by type - helpful for selection
+demog_vars <-c("Alter", "sex")
+pivotal_vars <- c("WBC")
+vip_vars <- c("BUN","KREA","NEU","PLT")
+leuko_related_vars <-c("NEU", "EOS", "BASO", "LYM", "MONO")
+leuko_ratio_vars <- c("NEUR", "EOSR", "BASOR", "LYMR", "MONOR")
+kidney_related_vars <- c("BUN", "K", "KREA", "eGFR", "BUN_KREA")
+acute_related_vars <- c("FIB", "CRP", "ASAT", "ALAT", "GGT")
+outcome_vars <-c("BloodCulture", "BC")
+
+remaining_vars <- names(a_bact)[is.na(match(names(a_bact),c("ID", demog_vars, pivotal_vars, vip_vars,leuko_related_vars,leuko_ratio_vars, kidney_related_vars,acute_related_vars, outcome_vars)))]
+
+bact_variables <- list(demog_vars=demog_vars, pivotal_vars=pivotal_vars, vip_vars=vip_vars, leuko_related_vars=leuko_related_vars, leuko_ratio_vars=leuko_ratio_vars, kidney_related_vars=kidney_related_vars, acute_related_vars=acute_related_vars,
+                       remaining_vars=remaining_vars, outcome_vars=outcome_vars)
+
 ```
 
 ## Data set overview
@@ -23,29 +35,56 @@ Using the [Hmisc](https://cran.r-project.org/web/packages/Hmisc/) describe funct
 
 ### Demographic variables
 
-```{r desc_a_crash2a, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
-a_crash2 %>%
+```{r desc_a_bact_1, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+a_bact %>%
   dplyr::select(all_of(demog_vars)) %>%
   Hmisc::describe(descript = "Demographic variables") %>%
   Hmisc::html(size = 80)
 ```
 
 
-### Physiological measurements
+### Pivotal variables and very important predictors
 
-```{r desc_a_crash2b, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
-a_crash2 %>%
-  dplyr::select(all_of(pyhiso_vars)) %>%
-  Hmisc::describe(descript = "Physiological measurements") %>%
+```{r desc_a_bact_2, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+a_bact %>%
+  dplyr::select(all_of(c(pivotal_vars, vip_vars))) %>%
+  Hmisc::describe(descript = "Pivotal variables and VIPs") %>%
   Hmisc::html(size = 80)
 ```
 
-### Characteristics of injury
+### Further variables related to leukocyte types and leukocyte ratios
 
-```{r desc_a_crash2c, message = FALSE, results='asis', warning=FALSE, echo=FALSE}
-a_crash2 %>%
-  dplyr::select(all_of(injury_vars)) %>%
-  Hmisc::describe(descript = "Characteristics of injury") %>%
+```{r desc_a_bact_3, message = FALSE, results='asis', warning=FALSE, echo=FALSE}
+a_bact %>%
+  dplyr::select(all_of(c(leuko_related_vars,leuko_ratio_vars))) %>%
+  Hmisc::describe(descript = "Leukocyte related variables and leukocyte ratios") %>%
+  Hmisc::html(size = 80)
+```
+
+### Kidney function related variables
+
+```{r desc_a_bact_4, message = FALSE, results='asis', warning=FALSE, echo=FALSE}
+a_bact %>%
+  dplyr::select(all_of(c(kidney_related_vars))) %>%
+  Hmisc::describe(descript = "Kidney function related variables") %>%
+  Hmisc::html(size = 80)
+```
+
+### Acute phase reaction related variables
+
+```{r desc_a_bact_5, message = FALSE, results='asis', warning=FALSE, echo=FALSE}
+a_bact %>%
+  dplyr::select(all_of(c(acute_related_vars))) %>%
+  Hmisc::describe(descript = "Acute phase related variables") %>%
+  Hmisc::html(size = 80)
+```
+
+### Remaining variables
+
+```{r desc_a_bact_6, message = FALSE, results='asis', warning=FALSE, echo=FALSE}
+a_bact %>%
+  dplyr::select(all_of(c(remaining_vars))) %>%
+  Hmisc::describe(descript = "Remaining variables") %>%
   Hmisc::html(size = 80)
 ```
 
@@ -54,8 +93,8 @@ a_crash2 %>%
 We now provide a closer visual examination of the categorical predictors. 
 
 ```{r catplot, message=FALSE, warning =FALSE , echo=FALSE}
-a_crash2 %>%
-  dplyr::select(sex, injurytype) %>%
+a_bact %>%
+  dplyr::select(sex, BC) %>%
   dplyr::mutate_all(forcats::as_factor) %>%   
   dplyr::mutate_all(forcats::fct_explicit_na, "NA") %>%
   tidyr::pivot_longer(
@@ -71,7 +110,7 @@ a_crash2 %>%
     pct = round((freq * 100), 1),
     axis_lab = paste0(value, ' ', '(N = ', N, ')'),
     var_label = case_when(var == "sex" ~ "Sex",
-                          var == "injurytype" ~ "Injury type")
+                          var == "BC" ~ "Bacteremia")
   ) %>%
   ggplot(aes(
     x = reorder(axis_lab, pct),
@@ -94,137 +133,70 @@ a_crash2 %>%
 
 ```
 
-### Categorical ordinal plots
-
-The Glasgow coma score, an ordinal categorical variable, is also displayed separately. 
-
-```{r, message=FALSE, warning =FALSE , echo=FALSE}
-a_crash2 %>%
-  dplyr::select(gcs) %>%
-  dplyr::mutate(gcs = as_factor(gcs)) %>%
-  tidyr::pivot_longer(
-    dplyr::everything(),
-    names_to = "var",
-    values_to = "value",
-    values_drop_na = FALSE
-  ) %>%
-  dplyr::group_by(var, value) %>%
-  dplyr::summarize(N = n()) %>%
-  dplyr::mutate(
-    freq = N / sum(N),
-    pct = round((freq * 100), 1),
-    value = as_factor(value),
-    axis_lab = as_factor(paste0(value, ' ', '(N = ', N, ')'))
-  ) %>%
-  ggplot(aes(
-    x = axis_lab,
-    y = pct,
-    label = pct
-  )) +
-  geom_text(nudge_y = 7) +
-  geom_pointrange(aes(ymin = 0, ymax = pct), alpha = 1, size = 1, color = "grey") +
-  geom_point(color = "firebrick2",
-             alpha = 0.6,
-             size = 3) +
-  ylab("Percentage (%)") +
-  scale_y_continuous(limits = c(0, 100)) +
-  labs(title = "Glasgow coma score (point scale)",
-    caption = "Number of subjects with a non-missing value reported in brackets.\nNA = missing") +
-  coord_flip() +
-  theme_minimal(base_size = 12) +
-  theme(axis.title.y = element_blank(),
-        panel.grid.minor = element_blank())
-```
-
-
 
 ## Continuous variables 
 
-A closer visual examination of continuous predictors. 
 
-```{r, message =FALSE, warning =FALSE , echo=FALSE, fig.width=9}
 
-a_crash2 %>%
-  dplyr::select(age, sbp, rr, cc, hr, injurytime) %>%
-  dplyr::mutate() %>%
-  dplyr::mutate_all(as.numeric) %>%
-  tidyr::pivot_longer(dplyr::everything(),
-                      names_to = "var",
-                      values_to = "value") %>%
-  dplyr::mutate(
-    var_label = case_when(
-      var == "age" ~ "Age (years)",
-      var == "sbp" ~ "Systolic blood pressure (mmHg)",
-      var == "hr" ~  "Heart rate (1/min)",
-      var ==  "rr" ~ "Respiratory rate (1/min)",
-      var ==  "cc" ~ "Central capillary refill time (seconds)", 
-      var == "injurytime" ~ "Injury time (days)"
-    )) %>%
-  ggplot(aes(value)) +
-  ylab("Number of subjects") +
-  geom_histogram(
-    binwidth = 0.5,
-    center = 0,
-    alpha = 0.6,
-    fill = "firebrick2"
-  ) +
-  facet_wrap(~ var_label, scales = "free", ncol = 2) +
-  theme_minimal() +
-  theme(axis.title.x = element_blank(),
-        panel.grid.minor = element_blank())
+### Suggested transformations
 
+Next we investigate whether a transformation of continuous variables may improve any further analyses to reduce disproportional impact of highly influential points, also in multivariate summaries. We employ a function `ida_trans` for this purpose, which optimises the parameter `sigma` of the pseudo-logarithm for that purpose. The optimization targets the best possible linear correlation of the transformed values with normal deviates. If no better transformation can be found, no transformation is suggested.
+
+```{r}
+variables<- c("Alter", pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars, remaining_vars)
+#variables<- c("Alter", pivotal_vars, vip_vars)
+
+res<-sapply(variables, function(X) ida_trans(a_bact[,X])$const)
+
+res
+```
+
+Register transformed variables in the data set:
+
+```{r}
+for(j in 1:length(variables)){
+  if(!is.na(res[j])){
+    newname <- paste("t_",variables[j],sep="")
+    newlabel <- paste("pseudo-log of",label(a_bact)[variables[j]])
+    names(newlabel)<-newname
+    x<-pseudo_log(a_bact[[variables[j]]], sigma=res[j], base=10)
+    label(x)<-newlabel
+    a_bact[[newname]] <- x
+    upData(a_bact, labels=newlabel)
+  }
+}
+
+sigma_values <- res
+
+
+b_bact <- a_bact
+save(b_bact, file=here::here("data", "b_bact.rda"))
+
+# update variable lists - generate a second list with transformed variables replacing the originals
+
+bact_transformed <- bact_variables
+
+for(j in 1:length(bact_variables)){
+  for(jj in 1:length(bact_variables[[j]])){
+      if(!is.na(res[bact_variables[[j]][jj]])) bact_transformed[[j]][jj] <- paste("t_", bact_variables[[j]][jj], sep="")
+  }
+}
+
+
+save(bact_variables, sigma_values, bact_transformed, file=here::here("data", "bact_transformations.rda"))
 ```
 
 
-There is evidence of digit preference. Explore further with targeted summaries. A more detailed univariate summaries for the variables of interest are also provided below. 
+### Univariate distribution with variables using the original variable and the suggested transformations
 
-### Age
-
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of subject age [years]" , echo=FALSE}
-## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
-ida_plot_univar(a_crash2, "age")
+```{r}
+for(j in 1:length(variables)){
+  print(ida_plot_univar(a_bact, variables[j], n_bars=50))
+  if(!is.na(res[j])){
+    print(ida_plot_univar(a_bact, paste("t_",variables[j],sep="")))
+  }
+}
 ```
-
-Five patients under the age of 17, the inclusion criteria for the study, with one patient aged 1. 
-
-### Blood pressure
-
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of SBP" , echo=FALSE}
-ida_plot_univar(a_crash2, "sbp", bin_width = 0.7)
-```
-
-
-### Respiratory rate
-
-
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of respiratory rate" , echo=FALSE}
-ida_plot_univar(a_crash2, "rr", n_dodge = 2)
-```
-
-
-### Heart rate
-
-
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of heart rate", echo=FALSE}
-ida_plot_univar(a_crash2, "hr")
-```
-
-
-### Central capillary refill time
-
-
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of Central capillary refill time", echo=FALSE}
-ida_plot_univar(a_crash2, "cc", bin_width = 0.5)
-```
-
-
-### Hours since injury
-
-
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of hours since injury", echo=FALSE}
-ida_plot_univar(a_crash2, "injurytime", n_dodge = 3, bin_width = 0.25)
-```
-
 
 
 ## Section session info

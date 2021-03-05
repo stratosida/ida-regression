@@ -1,5 +1,10 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 
-# Statistical analysis plan
+# IDA plan
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
 ## Load libraries
@@ -7,7 +12,7 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 library(gtsummary)
-load(here::here("data", "a_crash2.rda"))
+bact <- read.csv(here("data", "Bacteremia_public.csv"))
 ```
 
 Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place. 
@@ -94,24 +99,85 @@ Based on this review, we consider age and leukocytes (WBC) as pivotal covariates
 
   *3.2. Domain expertise may also be useful to specify in advance which variables are expected to correlate with each other. This background knowledge could be summarized in a directed or undirected acyclic graph connecting the covariates with each other as also suggested by Heinze et al, 2018.*
   
+  Important variable groups for modeling may be from the group of leukocytes, kidney function related parameters and parameters indicating a reaction to an acute phase.
+  
+ *Leukocytes*
+  
   The following systematic dependencies between variables exist:
   
-  * WBC $\approx$ BASO + EOS + NEU + LYM + MONO
-  * BASOR = BASO / WBC * 100
-  * EOSR = EOS / WBC * 100
-  * NEUR = NEU / WBC * 100  
-  * MONOR = MONO / WBC * 100
-  * LYMR = LYM / WBC * 100
-  * BASOR + EOSR + NEU + MONOR + LYMR = 100
+  * WBC $\approx$ BASO + EOS + NEU + LYM + MONO 
+  
+  In some patients, this relation may only approximately apply because they are in an acute infection phase.
+  
+  Moreover, the following variables are percentages and hence sum up to 100:
+
+  * `BASOR = BASO / (BASO + EOS + NEU + LYM + MONO) * 100`
+  * `EOSR = EOS / (BASO + EOS + NEU + LYM + MONO) * 100`
+  * `NEUR = NEU / (BASO + EOS + NEU + LYM + MONO) * 100`  
+  * `MONOR = MONO / (BASO + EOS + NEU + LYM + MONO) * 100`
+  * `LYMR = LYM / (BASO + EOS + NEU + LYM + MONO) * 100`
+  * `BASOR + EOSR + NEU + MONOR + LYMR = 100`
+  
+Therefore, at least one of these five variables is redundant.
+
+
+ *Acute phase reaction*
+
+An acute phase reaction may be indicated by FIB, CRP, and the liver parameters ASAT, ALAT and GGT; hence some correlation between these variables is expected.  
   
   
-  Correlations depend largely on the underlying condition, and are therefore difficult to anticipate. Domain expertise does not give rise to specific expectations.
+ *Kidney function indicators*
+
+Potassium level (`K`), blood urea nitrogen (`BUN`) and serum creatinine (Scr, `KREA`) are variables that are related to kidney function. Kidney function is usually expressed as estimated glomerular filtration rate (eGFR). Using the CKD-EPI-formula, eGFR can be computed as follows, with sex-specific constants $\kappa$ (`kappa`) and $\alpha$ (`alpha`):
+
+$eGFR = 141 \times min(Scr/\kappa, 1)^\alpha \times max(Scr/\kappa, 1)^{-1.209} \times 0.993^{age}$
+
+where for males $\kappa = 0.9, \alpha = -0.411$, and for females $\kappa = 0.7, \alpha = -0.329$.
+
+```{r}
+library(here)
+load(here::here("data", "a_bact.rda"))
+
+
+kappa <- rep(0.7, nrow(a_bact))
+kappa[a_bact$sex==1] <- 0.9
+alpha <- rep(-0.329, nrow(a_bact))
+alpha[a_bact$sex==1] <- -0.411
+
+a_bact$eGFR <- 141 * apply(cbind(a_bact$KREA/kappa, 1),1,min)**alpha * apply(cbind(a_bact$KREA/kappa, 1),1,max)**(-1.209) * 0.993**a_bact$Alter * 1.018**(a_bact$sex==2)
+
+a_bact$BUN_KREA <- a_bact$BUN / a_bact$KREA
+
+a_bact <- Hmisc::upData(a_bact ,
+               labels = c(eGFR = 'estimated glomerular filtration rate', 
+                          BUN_KREA = 'BUN/Scr ratio'),
+               units = c(eGFR = 'mL/min/1.73 m^2',
+                         BUN_KREA = 'unitless'))
+
+save(a_bact, file = here::here("data", "a_bact.rda"))
+```
+  Some correlation between these kidney function indicators (eGFR, potassium, BUN) can be expected. eGFR is a widely accepted and interpretable summary of kidney function. BUN should be in the range 6-20 (8-23 for adults older than 60 years). An ideal ratio of BUN to Scr is between 10 and 20. Ratios higher than 20 may be  associated with high protein diet but also with impaired eGFR (lower than 60).
+  
+We define groups of variables: demographical, pivotal, leukocyte-related, leukocyte-ratio-related, kidney-related, acute-phase related:
+
+```{r}
+demog_vars <-c("Alter", "sex")
+pivotal_vars <- c("WBC")
+vip_vars <- c("BUN","KREA","NEU","PLT")
+leuko_related_vars <-c("NEU", "EOS", "BASO", "LYM", "MONO")
+leuko_ratio_vars <- c("NEUR", "EOSR", "BASOR", "LYMR", "MONOR")
+kidney_related_vars <- c("BUN", "K", "KREA", "eGFR", "BUN_KREA")
+acute_related_vars <- c("FIB", "CRP", "ASAT", "ALAT", "GGT")
+remaining_vars <- names(a_bact)[is.na(match(names(a_bact),c(demog_vars, pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars, c("ID","BloodCulture","BC"))))]
+```
+
+  
 
   *3.3. Missing value mechanisms: if not already specified in meta data, domain experts should also be consulted to explain possible reasons for the occurrence of missing values for each variable, which may be categorized as systematic or unsystematic.*
   
   A certain proportion of missing values is expected because of the lab test request which is often specific to the underlying condition. No specific expectations can be made.
 
-## IDA plan
+## IDA domains
 
 ### IDA domain: missing values
 
@@ -137,9 +203,9 @@ Summaries for all 50 continuous variables (age and 49 laboratory variables) will
 The graphical summary for each variable will serve to suggest transformations for each variable:
 
 * no transformation (in case of approximate symmetry);
-* $\log_10(x+1)$ transformation (in case of skewness)
+* $\log_{10}(x+c)$ or $\log_2(x+c)$ transformation (in case of skewness), determination of the 'safety' constant $c$ as the value that optimizes correlation with standard normal scores.
 
-The distributions of transformed variables will be evaluated as well as described above.
+The distributions of transformed variables will be evaluated in the same way as the original variables as described above.
 
 ### IDA domain: multivariate system of variables
 
@@ -181,7 +247,7 @@ To download the data set, click the [link to data set](https://github.com/bailli
 
 ### Data dictionary  
 
-The data dictionary can also be found [in this repository]  https://github.com/bailliem/ida-regression-private/tree/master/misc/bacteremia-DataDictionary.csv)
+The data dictionary can also be found [in this repository]  (https://github.com/bailliem/ida-regression-private/tree/master/misc/bacteremia-DataDictionary.csv)
 
 ## References
 
