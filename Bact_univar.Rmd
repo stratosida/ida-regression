@@ -10,22 +10,7 @@ source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries
 source(here("R", "ida_trans.R"))  ## function to determine transformation (log(x+c) or identity). 
 
 ## Load the dataset.
-load(here::here("data", "a_bact.rda"))
-
-# Define sets of predictors by type - helpful for selection
-demog_vars <-c("Alter", "sex")
-pivotal_vars <- c("WBC")
-vip_vars <- c("BUN","KREA","NEU","PLT")
-leuko_related_vars <-c("NEU", "EOS", "BASO", "LYM", "MONO")
-leuko_ratio_vars <- c("NEUR", "EOSR", "BASOR", "LYMR", "MONOR")
-kidney_related_vars <- c("BUN", "K", "KREA", "eGFR", "BUN_KREA")
-acute_related_vars <- c("FIB", "CRP", "ASAT", "ALAT", "GGT")
-outcome_vars <-c("BloodCulture", "BC")
-
-remaining_vars <- names(a_bact)[is.na(match(names(a_bact),c("ID", demog_vars, pivotal_vars, vip_vars,leuko_related_vars,leuko_ratio_vars, kidney_related_vars,acute_related_vars, outcome_vars)))]
-
-bact_variables <- list(demog_vars=demog_vars, pivotal_vars=pivotal_vars, vip_vars=vip_vars, leuko_related_vars=leuko_related_vars, leuko_ratio_vars=leuko_ratio_vars, kidney_related_vars=kidney_related_vars, acute_related_vars=acute_related_vars,
-                       remaining_vars=remaining_vars, outcome_vars=outcome_vars)
+load(here::here("data", "bact_env_b.rda"))
 
 ```
 
@@ -36,7 +21,7 @@ Using the [Hmisc](https://cran.r-project.org/web/packages/Hmisc/) describe funct
 ### Demographic variables
 
 ```{r desc_a_bact_1, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
-a_bact %>%
+b_bact %>%
   dplyr::select(all_of(demog_vars)) %>%
   Hmisc::describe(descript = "Demographic variables") %>%
   Hmisc::html(size = 80)
@@ -46,7 +31,7 @@ a_bact %>%
 ### Pivotal variables and very important predictors
 
 ```{r desc_a_bact_2, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
-a_bact %>%
+b_bact %>%
   dplyr::select(all_of(c(pivotal_vars, vip_vars))) %>%
   Hmisc::describe(descript = "Pivotal variables and VIPs") %>%
   Hmisc::html(size = 80)
@@ -55,7 +40,7 @@ a_bact %>%
 ### Further variables related to leukocyte types and leukocyte ratios
 
 ```{r desc_a_bact_3, message = FALSE, results='asis', warning=FALSE, echo=FALSE}
-a_bact %>%
+b_bact %>%
   dplyr::select(all_of(c(leuko_related_vars,leuko_ratio_vars))) %>%
   Hmisc::describe(descript = "Leukocyte related variables and leukocyte ratios") %>%
   Hmisc::html(size = 80)
@@ -64,7 +49,7 @@ a_bact %>%
 ### Kidney function related variables
 
 ```{r desc_a_bact_4, message = FALSE, results='asis', warning=FALSE, echo=FALSE}
-a_bact %>%
+b_bact %>%
   dplyr::select(all_of(c(kidney_related_vars))) %>%
   Hmisc::describe(descript = "Kidney function related variables") %>%
   Hmisc::html(size = 80)
@@ -73,7 +58,7 @@ a_bact %>%
 ### Acute phase reaction related variables
 
 ```{r desc_a_bact_5, message = FALSE, results='asis', warning=FALSE, echo=FALSE}
-a_bact %>%
+b_bact %>%
   dplyr::select(all_of(c(acute_related_vars))) %>%
   Hmisc::describe(descript = "Acute phase related variables") %>%
   Hmisc::html(size = 80)
@@ -82,7 +67,7 @@ a_bact %>%
 ### Remaining variables
 
 ```{r desc_a_bact_6, message = FALSE, results='asis', warning=FALSE, echo=FALSE}
-a_bact %>%
+b_bact %>%
   dplyr::select(all_of(c(remaining_vars))) %>%
   Hmisc::describe(descript = "Remaining variables") %>%
   Hmisc::html(size = 80)
@@ -93,7 +78,7 @@ a_bact %>%
 We now provide a closer visual examination of the categorical predictors. 
 
 ```{r catplot, message=FALSE, warning =FALSE , echo=FALSE}
-a_bact %>%
+b_bact %>%
   dplyr::select(sex, BC) %>%
   dplyr::mutate_all(forcats::as_factor) %>%   
   dplyr::mutate_all(forcats::fct_explicit_na, "NA") %>%
@@ -146,7 +131,7 @@ Next we investigate whether a transformation of continuous variables may improve
 variables<- c("Alter", pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars, remaining_vars)
 #variables<- c("Alter", pivotal_vars, vip_vars)
 
-res<-sapply(variables, function(X) ida_trans(a_bact[,X])$const)
+res<-sapply(variables, function(X) ida_trans(b_bact[,X])$const)
 
 res
 ```
@@ -157,20 +142,19 @@ Register transformed variables in the data set:
 for(j in 1:length(variables)){
   if(!is.na(res[j])){
     newname <- paste("t_",variables[j],sep="")
-    newlabel <- paste("pseudo-log of",label(a_bact)[variables[j]])
+    newlabel <- paste("pseudo-log of",label(b_bact)[variables[j]])
     names(newlabel)<-newname
-    x<-pseudo_log(a_bact[[variables[j]]], sigma=res[j], base=10)
+    x<-pseudo_log(b_bact[[variables[j]]], sigma=res[j], base=10)
     label(x)<-newlabel
-    a_bact[[newname]] <- x
-    upData(a_bact, labels=newlabel)
+    b_bact[[newname]] <- x
+    upData(b_bact, labels=newlabel)
   }
 }
 
 sigma_values <- res
 
 
-b_bact <- a_bact
-save(b_bact, file=here::here("data", "b_bact.rda"))
+c_bact <- b_bact
 
 # update variable lists - generate a second list with transformed variables replacing the originals
 
@@ -183,7 +167,6 @@ for(j in 1:length(bact_variables)){
 }
 
 
-save(bact_variables, sigma_values, bact_transformed, file=here::here("data", "bact_transformations.rda"))
 ```
 
 
@@ -193,9 +176,14 @@ save(bact_variables, sigma_values, bact_transformed, file=here::here("data", "ba
 for(j in 1:length(variables)){
   print(ida_plot_univar(a_bact, variables[j], n_bars=50))
   if(!is.na(res[j])){
-    print(ida_plot_univar(a_bact, paste("t_",variables[j],sep="")))
+    print(ida_plot_univar(b_bact, paste("t_",variables[j],sep="")))
   }
 }
+```
+
+
+```{r}
+save(list(c_bact, bact_variables, sigma_values, bact_transformed), file=here::here("data", "bact_env_c.rda"))
 ```
 
 

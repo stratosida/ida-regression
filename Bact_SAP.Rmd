@@ -12,7 +12,8 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 library(gtsummary)
-bact <- read.csv(here("data", "Bacteremia_public.csv"))
+
+load(here::here("data", "a_bact.rda"))
 ```
 
 Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place. 
@@ -135,8 +136,6 @@ $eGFR = 141 \times min(Scr/\kappa, 1)^\alpha \times max(Scr/\kappa, 1)^{-1.209} 
 where for males $\kappa = 0.9, \alpha = -0.411$, and for females $\kappa = 0.7, \alpha = -0.329$.
 
 ```{r}
-library(here)
-load(here::here("data", "a_bact.rda"))
 
 
 kappa <- rep(0.7, nrow(a_bact))
@@ -148,13 +147,13 @@ a_bact$eGFR <- 141 * apply(cbind(a_bact$KREA/kappa, 1),1,min)**alpha * apply(cbi
 
 a_bact$BUN_KREA <- a_bact$BUN / a_bact$KREA
 
-a_bact <- Hmisc::upData(a_bact ,
+b_bact <- Hmisc::upData(a_bact ,
                labels = c(eGFR = 'estimated glomerular filtration rate', 
                           BUN_KREA = 'BUN/Scr ratio'),
                units = c(eGFR = 'mL/min/1.73 m^2',
                          BUN_KREA = 'unitless'))
 
-save(a_bact, file = here::here("data", "a_bact.rda"))
+
 ```
   Some correlation between these kidney function indicators (eGFR, potassium, BUN) can be expected. eGFR is a widely accepted and interpretable summary of kidney function. BUN should be in the range 6-20 (8-23 for adults older than 60 years). An ideal ratio of BUN to Scr is between 10 and 20. Ratios higher than 20 may be  associated with high protein diet but also with impaired eGFR (lower than 60).
   
@@ -162,13 +161,18 @@ We define groups of variables: demographical, pivotal, leukocyte-related, leukoc
 
 ```{r}
 demog_vars <-c("Alter", "sex")
-pivotal_vars <- c("WBC")
-vip_vars <- c("BUN","KREA","NEU","PLT")
-leuko_related_vars <-c("NEU", "EOS", "BASO", "LYM", "MONO")
+pivotal_vars <- c("WBC", "Alter")
+vip_vars <- c("WBC", "Alter", "BUN","KREA","NEU","PLT")
+leuko_related_vars <-c("WBC", "NEU", "EOS", "BASO", "LYM", "MONO")
 leuko_ratio_vars <- c("NEUR", "EOSR", "BASOR", "LYMR", "MONOR")
 kidney_related_vars <- c("BUN", "K", "KREA", "eGFR", "BUN_KREA")
 acute_related_vars <- c("FIB", "CRP", "ASAT", "ALAT", "GGT")
-remaining_vars <- names(a_bact)[is.na(match(names(a_bact),c(demog_vars, pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars, c("ID","BloodCulture","BC"))))]
+outcome_vars <-c("BloodCulture", "BC")
+remaining_vars <- names(a_bact)[is.na(match(names(a_bact),c("ID", demog_vars, pivotal_vars, vip_vars,leuko_related_vars,leuko_ratio_vars, kidney_related_vars,acute_related_vars, outcome_vars)))]
+
+bact_variables <- list(demog_vars=demog_vars, pivotal_vars=pivotal_vars, vip_vars=vip_vars, leuko_related_vars=leuko_related_vars, leuko_ratio_vars=leuko_ratio_vars, kidney_related_vars=kidney_related_vars, acute_related_vars=acute_related_vars,
+                       remaining_vars=remaining_vars, outcome_vars=outcome_vars)
+
 ```
 
   
@@ -252,3 +256,9 @@ The data dictionary can also be found [in this repository]  (https://github.com/
 ## References
 
 Ratzinger, F., Dedeyan, M., Rammerstorfer, M., Perkmann, T., Burgmann, H., Makristathis, A., Dorffner, G., Lötsch, F., Blacky, A., Ramharter, M., 2014. A Risk Prediction Model for Screening Bacteremic Patients: A Cross Sectional Study. PLOS ONE 9, e106765. doi:[10.1371/journal.pone.0106765](https://dx.doi.org/10.1371/journal.pone.0106765)
+
+```{r}
+
+save(list=c("b_bact", "bact_variables", "demog_vars", "pivotal_vars","vip_vars","leuko_related_vars","leuko_ratio_vars","kidney_related_vars", "acute_related_vars","remaining_vars"), file = here::here("data", "bact_env_b.rda"))
+```
+

@@ -10,18 +10,7 @@ library(naniar) ## for missing data
 library(gt)
 library(kableExtra)
 library(DT)
-load(here::here("data", "a_bact.rda"))
-
-
-demog_vars <-c("Alter", "sex")
-pivotal_vars <- c("WBC")
-vip_vars <- c("BUN","KREA","NEU","PLT")
-leuko_related_vars <-c("NEU", "EOS", "BASO", "LYM", "MONO")
-leuko_ratio_vars <- c("NEUR", "EOSR", "BASOR", "LYMR", "MONOR")
-kidney_related_vars <- c("BUN", "K", "KREA", "eGFR", "BUN_KREA")
-acute_related_vars <- c("FIB", "CRP", "ASAT", "ALAT", "GGT")
-outcome_vars <- c("BloodCulture", "BC")
-remaining_vars <- names(a_bact)[is.na(match(names(a_bact),c(demog_vars, pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars, outcome_vars, c("ID"))))]
+load(here::here("data", "bact_env_b.rda"))
 
 ```
 
@@ -51,7 +40,7 @@ a_bact %>%
 Investigate for groups of variables:
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_bact %>%
+b_bact %>%
   select() %>%
   mutate(Any_Variable_missing = ifelse(apply(a_bact,1,any_miss),NA,1)) %>%
   mutate(Any_Demographics_missing = ifelse(apply(a_bact[,demog_vars],1,any_miss),NA,1)) %>%
@@ -82,6 +71,8 @@ From this table we learn that as long as we model with only VIPs or with leukocy
 
 Qu: Is this for 'missing' or 'univar/multivar' domains?
 
+(follow-up section later on after distributions have been shown)
+
 
 ## Missingness patterns over variables
 
@@ -89,8 +80,8 @@ Qu: Is this for 'missing' or 'univar/multivar' domains?
 First we create a dendogram that shows which variables tend to be missing together:
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-s_bact <- a_bact[sample(1:nrow(a_bact), size=10000, repl=FALSE),]
-is_bact <- is.na(a_bact)*1
+s_bact <- b_bact[sample(1:nrow(b_bact), size=10000, repl=FALSE),]
+is_bact <- is.na(b_bact)*1
 perc_miss <- round(apply(is_bact, 2, mean)*100,0)
 colnames(is_bact)<-paste(colnames(is_bact),"(",perc_miss,")",sep="")
 hobj <- hclust(dist(t(is_bact)))
@@ -107,6 +98,9 @@ heatmap(is_bact[,perc_miss>10])
 ```
 
 In this heatmap, we see that CHOL and TRIG are always missing together (lowest hierarchy in dendogram), but there are no further such pairs among any other variables. There is also some evidence that when CHOL and TRIG are missing, also PAMY is missing, although this is not the case for a small proportion of patients. The big white space in the middle of the heatmap represents the approx. 30% of patients with no missing values in those variables.
+
+
+
 
 
 ## Section session info
