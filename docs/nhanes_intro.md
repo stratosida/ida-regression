@@ -87,23 +87,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 <hr><h4>Data frame:nhanesdat</h4>6680 observations and 58 variables, maximum # NAs:5529  
  <hr>
  <style>
- .hmisctable611238 {
+ .hmisctable617435 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable611238 td {
+ .hmisctable617435 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable611238 th {
+ .hmisctable617435 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable611238" border="1">
+ <table class="hmisctable617435" border="1">
  <tr><th>Name</th><th>Levels</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>seqn</td><td></td><td>integer</td><td>   0</td></tr>
  <tr><td>paxcal</td><td></td><td>integer</td><td>   0</td></tr>
@@ -167,23 +167,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 
  <hr>
  <style>
- .hmisctable900516 {
+ .hmisctable233119 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable900516 td {
+ .hmisctable233119 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable900516 th {
+ .hmisctable233119 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable900516" border="1">
+ <table class="hmisctable233119" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.bmi.cat">bmi.cat</a></td><td>Normal</td></tr>
  <tr><td></td><td>Underweight</td></tr>
@@ -257,23 +257,23 @@ New object size:	1416624 bytes;	33 variables	6680 observations
 <hr><h4>Data frame:a_nhanes</h4>6680 observations and 33 variables, maximum # NAs:708  
  <hr>
  <style>
- .hmisctable242921 {
+ .hmisctable981714 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable242921 td {
+ .hmisctable981714 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable242921 th {
+ .hmisctable981714 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable242921" border="1">
+ <table class="hmisctable981714" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>seqn</td><td>respondent sequence number</td><td></td><td></td><td>integer</td><td>integer</td><td>  0</td></tr>
  <tr><td>age</td><td>age</td><td>years</td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
@@ -312,23 +312,23 @@ New object size:	1416624 bytes;	33 variables	6680 observations
 
  <hr>
  <style>
- .hmisctable380688 {
+ .hmisctable396384 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable380688 td {
+ .hmisctable396384 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable380688 th {
+ .hmisctable396384 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable380688" border="1">
+ <table class="hmisctable396384" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.gender">gender</a></td><td>Male</td></tr>
  <tr><td></td><td>Female</td></tr>
@@ -373,7 +373,7 @@ New object size:	1416624 bytes;	33 variables	6680 observations
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] Hmisc_4.4-2     Formula_1.2-4   survival_3.1-12 lattice_0.20-41
+##  [1] Hmisc_4.5-0     Formula_1.2-4   survival_3.1-12 lattice_0.20-41
 ##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.4     purrr_0.3.4    
 ##  [9] readr_1.4.0     tidyr_1.1.2     tibble_3.0.6    ggplot2_3.3.3  
 ## [13] tidyverse_1.3.0 here_1.0.1     
