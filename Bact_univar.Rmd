@@ -174,10 +174,10 @@ for(j in 1:length(bact_variables)){
 
 ```{r}
 for(j in 1:length(variables)){
-  print(ida_plot_univar(a_bact, variables[j], n_bars=50))
-  if(!is.na(res[j])){
-    print(ida_plot_univar(b_bact, paste("t_",variables[j],sep="")))
-  }
+  print(ida_plot_univar(b_bact, variables[j], sigma=res[j], n_bars=100))
+#  if(!is.na(res[j])){
+#    print(ida_plot_univar(b_bact, paste("t_",variables[j],sep="")))
+#  }
 }
 ```
 
