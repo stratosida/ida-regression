@@ -17,7 +17,7 @@ rmd_files: [
   "Crash2_univar.Rmd",
   "Crash2_multivar.Rmd",
   "nhanes_intro.Rmd",
-  "nhanes_SAP.Rmd",
+  "nhanes_IDAP.Rmd",
   "nhanes_missing.Rmd",
   "nhanes_univar.Rmd",
   "nhanes_multivar.Rmd"
