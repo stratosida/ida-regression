@@ -1,4 +1,4 @@
-# NHANES {-}
+# National Health and Nutrition Examination Survey (NHANES) {-}
 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
@@ -9,152 +9,104 @@ library(Hmisc)
 
 #load(here::here("data", "nhanesdat.rdata"))
 
-load(here::here("data", "a_nhanes.rda"))
+load(here::here("a_nhanes.rda"))
+
+## remove missing
+#a_nhanes <- a_nhanes %>% drop_na(tlac.1)
+
 ```
 
 # Introduction to NHANES
 
-Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan need to be in place. 
-IDA may lead to an update or refinement of the analysis plan. To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section [nhanes_SAP.Rmd](nhanes_SAP.Rmd).
+To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section  [nhanes_IDAP.Rmd](nhanes_IDAP.Rmd).
 
 **Hypothetical research aim for IDA** is to 
-develop a multivariable model for MVPA (minutes of moderate/vigorous physical activity) with primary aim of variable selection to predict MVPA and secondary aim to study the role of systolic blood pressure in addition to variables identified.
+develop a multivariable model for MVPA (minutes of moderate/vigorous physical activity).
+
 *MVPA can be used to examine factors distinguishing very active participants with large amounts of time spent on MVPA from others (using untransformed data) or distinguishing participants according to percentage changes in MVPA (logarithmic scale) thus de-emphasizing extreme values.*
 
 
 
+## Dataset Description
 
-## NHANES Description
+The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The survey examines a nationally representative sample of non-institutionalized US civilians using a multistage probability sampling design that considers geographical area and minority representation. Sample weights are generated to create nationally representative estimates for the US population and subgroups defined by age, sex, and race/ethnicity. [Link to CDC NHANES website](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm). NHANES collects data on various health and behavior indicators, including physical activity and self‐reported diagnosis of prevalent health conditions such as diabetes mellitus, coronary artery disease, stroke, and cancer.
 
-The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The survey examines a nationally representative sample of non-institutionalized US civilians using a multistage probability sampling design that considers geographical area and minority representation. Sample weights are generated to create nationally representative estimates for the US population and subgroups defined by age, sex, and race/ethnicity. [Link to CDC  NHANES website](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm). NHANES collects data on various health and behavior indicators, including physical activity and self‐reported diagnosis of prevalent health conditions such as diabetes mellitus, coronary artery disease, stroke, and cancer.
+Physical activity was measured with a waist‐worn uniaxial accelerometer (AM‐7164; ActiGraph) for up to 7 days. Participants were asked to wear the devie while awake except when simming or bathing. Data were cleaned according to calibration specification and nonwear time defined by an interval of at least 60 consecutive minutes of zero activity intensity counts. Days with fewer than 10 hours of wear time were excluded and participants with at least 1 valid day of accelerometer data were included in the analysis. Mean counts per minute were calculated by dividing the sum of activity counts for a valid day by the number of minutes of wear time in that day across all valid days (Troiano 2008).
 
-Physical activity was measured with a waist‐worn uniaxial accelerometer (AM‐7164; ActiGraph) for up to 7 days. Participants were asked to wear the devie while awake except when simming or bathing. Data were cleaned according to calibration specification and nonwear time defined by an interval of at least 60 consecutive minutes of zero activity intensity counts. Days with fewer than 10 hours of wear time were excluded and participants with at least 1 valid day of accelerometer data were included in the analysis. Mean counts per minute were calculated by dividing the sum of activity counts for a valid day by the number of minutes of wear time in that day across all valid days. (Troiano 2008) 
-
-Moderate or vigorous intensity was based on count thresholds. Time spent in such activities was determined by summing minutes in a day where the count met the criterion for that intensity.(Troiano 2008) 
+Moderate or vigorous intensity was based on count thresholds. Time spent in such activities was determined by summing minutes in a day where the count met the criterion for that intensity (Troiano 2008). 
 
 The NHANES 2003–2004 and 2005–2006 have a total of 14,631 participants with accelerometry data. Participants aged 30 to 85 at the time they wore the accelerometer are included. Other inclusion criteria are in line with the choices for the prediction model of 5 year mortality presented by [Smirnova et al, J Gerontol A Biol Sci Med Sci 2020](https://doi.org/10.1093/gerona/glz193). The preparation of the data was based on "Organizing and Analyzing the Activity Data in NHANES"
   [Leroux et al, Statistics in Biosciences 2019](https://doi.org/10.1007/s12561-018-09229-9).  High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (https://andrew-leroux.github.io/rnhanesdata/articles).
 
 
+### Variables
 
-## Preparations
+#### Outcome variable
 
-High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (https://andrew-leroux.github.io/rnhanesdata/articles). The R code was modified to have fewer exclusions criteria as noted below.
+MVPA (total minutes of moderate/vigorous physical activity which is defined as more than 2020 counts per minute) (`mvpa`, minutes)
 
-* Re-level comorbidities to assign refused/don't know as not having the condition
-* Re-level education to have 3 levels and categorize don't know/refused to be missing
-* Re-level alcohol consumption to include a level set to missing
-* Removed the "bad" days from Act_Analysis and Act_Flags
-* Systolic blood pressure is the mean of the non-missing of four blood pressure variables
+#### Sociodemographic variables 
 
-* Following Smirnova et al, participants were excluded who 
-(i) had fewer than 3 days of data with at least 10 hours of estimated wear time or were deemed by NHANES to have poor quality data; non-wear periods were identified as intervals with at least 60 consecutive minutes of zero activity counts and at most 2 minutes with counts between 0 and 100;
-(ii) missing mortality information or accidental death; 
-(iii) alive with follow up less than 1 year 
-
-The NHANES dataset used in this project contains `r nrow(a_nhanes)`  participants.
-
-* For the purposes of this IDA project, in contrast to Smirnova et al, we did **not** exclude participants who  
-(iv) had missing body mass index (BMI) or education predictor variables ;  
-(v) had missing systolic blood pressure, total or high-density lipoproteins (HDL) cholesterol measurements. 
-The final data set in Smirnova et al contained 2,978 participants.
+* age at examination  (i.e. when participants wore the device) (`age`, years)
+* gender  (`gender`, "Male" and "Female")
+* race/ethnicity (non-Hispanic "White", non-Hispanic "Black", "Mexican American", and "Other") 
+* education ("Less than high school", "High school" (high school graduate/general educational development [GED]), "More than high school" (some college, and college graduate)) (`educationadult`)
+* Person Months of Follow-up from MEC/Exam Date (`permth.exm`) (follow-up time in this cohort in years = permth.exm/12) 
 
 
+#### Health and behavior variables 
 
-## Sources
+* smoking status (Current, Former [those reporting quitting within the previous 6 months], and Never) (`smokecigs`)
+* alcohol consumption (`drinkstatus`) (Non-Drinker, Moderate Drinker, Heavy Drinker, Missing alcohol)
+* bmi (`bmi`, kg/m2)
+* obesity (`bmi.cat`, No-Yes)
+* diabetes (`diabetes`)
+* congestive heart failure (`chf, No-Yes`)
+* cancer (`cancer`, No-Yes)
+* stroke (`stroke`, No-Yes)
+* average systolic blood pressure using the 4 measurements per participant (`sys`, mmHg) 
+* Total cholesterol  (`lbxtc`,  mg/dL)
+* HDL cholesterol  (`lbdhdd`, mg/dL) 
+* difficulties with mobility (`mobilityproblem`, "No Difficulty", "Any Difficulty" = a positive response to difficulty walking a quarter-mile, difficulty climbing 10 stairs, or use of any special equipment to walk)
 
-Leroux A. Vignettes for  downloading and working with NHANES 2003-2004 and 2005-2006 accelerometry data https://andrew-leroux.github.io/rnhanesdata/articles/
 
-To download the analysis data set, click the [link to data set  ---GITHUB](...IDA Github....)
+#### Physical activity data
+Summary measures are calculated due to the large size of minute level accelerometer-derived physical activity data. 
 
-
-### Data dictionary  
-
-The data dictionary can be found [LINK ---- GITHUB](.....IDA GITHUB....)
-
-
-
-## References
-
-Troiano RP, Berrigan D, Dodd KW, Mâsse LC, Tilert T, McDowell M. Physical activity in the United States measured by accelerometer. Med Sci Sports Exerc. 2008 Jan;40(1):181-8. doi: 10.1249/mss.0b013e31815a51b3. PMID: 18091006.
-
-Leroux A, Di J, Smirnova E,  Mcguffey E, Cao Q, Bayatmokhtari E, Tabacu L, Zipunnikov V, Urbanek JK,  Crainiceanu C. Organizing and Analyzing the Activity Data in NHANES. Stat Biosci 11, 262–287 (2019). https://doi-org.proxy1.cl.msu.edu/10.1007/s12561-018-09229-9
-
-Smirnova E,  Leroux A,   Tabacu L, Zipunnikov V, Crainiceanu C,  Urbanek JK. The Predictive Performance of Objective Measures of Physical Activity Derived From Accelerometry Data for 5-Year All-Cause Mortality in Older Adults: National Health and Nutritional Examination Survey 2003–2006, The Journals of Gerontology: Series A, Volume 75, Issue 9, September 2020, Pages 1779–1785, https://doi.org/10.1093/gerona/glz193
+* total activity counts per day (`TAC/d`)
+* total log activity count (`TLAC` log(1+TAC))
+* total minutes of moderate/vigorous physical activity (`MVPA`)
+* total accelerometer wear time (`WT`)
+* total log activity count summary measures (`tlac.1, `tlac.2`, …, `tlac.12`) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc.
 
 
 ## NHANES dataset contents
 
 ### Source dataset 
 
-We refer to the source data set as the dataset available online [here](.... Github .....)
-
-Display the source dataset contents. This dataset is in the **data-raw** folder of the project directory. 
-
-```{r contents_nhanes,  warning=FALSE, message=FALSE, echo=FALSE, results='asis'} 
-## Load the dataset from the data-raw folder. 
-## Alternatively we could load directly from the url 
-
-#load(here::here("data-raw", "nhanesdat.rdata"))
-
-load(here::here("data-raw", "nhanesdat.rdata"))
-
-indx<-which(is.na(nhanesdat$tac))
+We refer to the source data set as the dataset available online [here](https://github.com/bailliem/ida-regression-private/tree/master/data)
 
 
-Hmisc::html(Hmisc::contents(nhanesdat),
-            maxlevels = 10,
-            levelType = 'table')
+### Data dictionary
 
+Additional meta-data is added to the original *source* data set. We write this new modified data set back to the **data** folder after adding additional meta-data for the following variables
 
-```
+We select the variables of interest for the modeling by dropping variables we do not check in IDA.
 
-
-### Updated analysis dataset
-
-Additional meta-data is added to the original *source* data set. We write this new modified data set back to the **data** folder after adding additional meta-data for the following variables:
-
-
-* **seqn** - add label "respondent sequence number"
-* **gender** - add label "gender',
-* **age** - add label "age" and unit "years"
-* **educationadult** - add label "education level"
-* **permth.exm** - add label "Person Months of Follow-up from MEC/Exam Date"
-* **mortstat** - add label "Final mortality status"
-* **sys** - add label "Systolic Blood pressure" and unit "mg/dl" 
-* **lbxtc** - add label "Total cholesterol" and unit "mg/dL"
-* **lbdhdd** - add label "HDL cholesterol" and unit "mg/dL"
-* **smokecigs** - add label "smoking status"
-* **drinkstatus** - add label "alcohol consumption" 
-* **bmi** - add label "body mass index" and unit "kg/m2"
-* **diabetes** - add label "diabetes"
-* **chf** - add label "congestive heart failure" 
-* **cancer** - add label "cancer"  
-* **stroke** - add label "stroke" 
-* **mobilityproblem** - add label "'difficulties with mobility"
-* **tac** - add label "total activity counts per day" 
-* **tlac** - add label "total log activity count (log(1+activity))" 
-* **wt** - add label "total accelerometer wear time" and unit "minutes"
-* **mvpa** - add label "Moderate or vigorous physical activity" and unit "minutes" 
-
-
-
-At this stage we select the variables of interest to take in to the IDA phase by dropping variables we do not check in IDA.
-
-As a cross check we display the contents again to ensure the additional data is added, and then write back the changes to the data folder in the file "data/a_nhanes.rda". 
+We display the contents (data dictionary)  to ensure the additional data is added, and then write back the changes to the data folder in the file "data/a_nhanes.rda". 
 
 ```{r labels_nhanes, warning=FALSE, message=FALSE, echo=FALSE, results='asis'} 
 ## Complete metadata by adding missing labels. 
-## Generate adervived dataset stored in data as we are adding to the oirginal source dataset obtained. 
+## Generate a dervived dataset stored in data as we are adding to the oirginal source dataset obtained. 
 ## select candidate predictor variables. -- See SAP
 nhanes_subset <-
-  nhanesdat %>%
+  a_nhanes %>%
   dplyr::select(
     seqn,           # respondent sequence number
     age,            # age at examination, years
     gender,          # gender, Male, Female
     permth.exm,      # Person Months of Follow-up from MEC/Exam Date, follow-up time [years] =permth.exm/12
-    mortstat,        # Final mortality status, 0, 1, NAs for individuals with follow up less than 5 years and alive)
+#    mortstat,        # Final mortality status, 0, 1, NAs for individuals with follow up less than 5 years and alive)
     educationadult,  # education level ("Less than high school", "High school", "More than high school")
     smokecigs,       # smoking status (Current, Former, Never) 
     drinkstatus,     # alcohol consumption (Non-Drinker, Moderate Drinker, Heavy Drinker, Missing alcohol)
@@ -166,7 +118,7 @@ nhanes_subset <-
     sys ,             #average systolic blood pressure using the 4 measurements, mmHg 
     lbxtc,           #  Total cholesterol,   mg/dL
     lbdhdd,           # HDL cholesterol, mg/dL 
-    mobilityproblem,  # difficulties with mobility ( "No Difficulty", "Any Difficulty")
+  #  mobilityproblem,  # difficulties with mobility ( "No Difficulty", "Any Difficulty")
     tac,               #total activity counts per day
     tlac,              # total log activity count (log(1+activity))
     mvpa,             # total minutes of moderate/vigorous physical activity
@@ -196,8 +148,9 @@ a_nhanes <- Hmisc::upData(
     age = 'age',
     permth.exm = 'Person Months of Follow-up from MEC/Exam Date',
     sys = 'Systolic blood pressure',
+    lbxtc = 'Total cholesterol',
+    lbdhdd = 'HDL cholesterol',
     mvpa = "Moderate or vigorous physical activity",
-    mortstat = 'Final mortality status',
     educationadult = 'education level',
     smokecigs = 'smoking status',
     drinkstatus = 'alcohol consumption', 
@@ -206,9 +159,6 @@ a_nhanes <- Hmisc::upData(
     chf = 'congestive heart failure', 
     cancer = 'cancer',  
     stroke = 'stroke', 
-    lbxtc = 'Total cholesterol',   
-    lbdhdd = 'HDL cholesterol', 
-    mobilityproblem = 'difficulties with mobility' ,
     tac = 'total activity counts per day', 
     tlac =  'total log activity count (log(1+activity))', 
     wt = 'total accelerometer wear time',
@@ -230,8 +180,8 @@ a_nhanes <- Hmisc::upData(
     sys = "mg/dl",
     mvpa = "minutes",
     bmi = 'kg/m2',
-    lbxtc ='mg/dL',
-    lbdhdd ='mg/dL',
+    lbxtc ='mg/dl',
+    lbdhdd ='mg/dl',
     wt ='minutes'
   )
 )
@@ -244,8 +194,17 @@ Hmisc::html(Hmisc::contents(a_nhanes),
 ## Write to data folder
 #save(a_nhanes, file = here::here("data", "a_nhanes.rda"))
 
-save(a_nhanes, file = here::here("a_nhanes.rda"))
 ```
+
+
+
+## References
+Troiano RP, Berrigan D, Dodd KW, Mâsse LC, Tilert T, McDowell M. Physical activity in the United States measured by accelerometer. Med Sci Sports Exerc. 2008 Jan;40(1):181-8. doi: 10.1249/mss.0b013e31815a51b3. PMID: 18091006.
+
+Leroux A, Di J, Smirnova E,  Mcguffey E, Cao Q, Bayatmokhtari E, Tabacu L, Zipunnikov V, Urbanek JK,  Crainiceanu C. Organizing and Analyzing the Activity Data in NHANES. Stat Biosci 11, 262–287 (2019). https://doi-org.proxy1.cl.msu.edu/10.1007/s12561-018-09229-9
+
+Smirnova E,  Leroux A,   Tabacu L, Zipunnikov V, Crainiceanu C,  Urbanek JK. The Predictive Performance of Objective Measures of Physical Activity Derived From Accelerometry Data for 5-Year All-Cause Mortality in Older Adults: National Health and Nutritional Examination Survey 2003–2006, The Journals of Gerontology: Series A, Volume 75, Issue 9, September 2020, Pages 1779–1785, https://doi.org/10.1093/gerona/glz193
+
 
 ## Section session info
 
