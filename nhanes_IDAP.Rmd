@@ -68,24 +68,12 @@ Missing values are expected due to the nature of survey research. Domain experti
 
 <span style="color:blue">1. Number and proportion of missing values for each independent variable, for the dependent variable and for the analysis as a whole.</span>
 
-Number and proportion of missing values will be computed for all variables.
+Number and proportion of missing values will be computed for all variables and groups of variables (demographics, lifestyle, health).
 
 <span style="color:blue">2. Patterns of missing values across all independent variables, either as tables or appropriately visualized.</span>
 
 We will create missing value indicators for each covariate and will then summarize patterns by means of a heat map and a dendogram. 
 
-<span style="color:blue">3. Patterns of missing values associated with the outcome variable</span>
-
-<span style="color:red"> This may need to change. </span>
-
-From Lee at al (STRATOS)
-
-* A table of the observed characteristics for the “complete” versus “incomplete” (or
-all) participants, or by whether variables with substantial missingness are observed.
-
-* An assessment of the predictors of missingness, e.g. using a logistic regression model
-fitted to an indicator for being a complete record, and predictors of missing values
-i.e. associations with the incomplete variables.
 
 
 
