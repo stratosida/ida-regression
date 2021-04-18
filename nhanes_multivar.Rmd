@@ -20,27 +20,17 @@ library(plotly)
 library(Hmisc)
 library(gtsummary)
 library(corrplot)
+library(ggcorrplot)
 library(ggplot2)
 library(naniar)
 library(gridExtra)
 
 
-# Define sets of predictors by type - helpful for selection
-#mortstat  (one year mortality)
-demog_vars <- c("age", "gender", "educationadult","bmi", "smokecigs" , "drinkstatus")
-life_vars <- c("bmi", "smokecigs" , "drinkstatus")
-health_vars <- c("diabetes", "chf", "cancer" , "stroke")
-physio_vars <- c("sys", "lbxtc",  "lbdhdd")
-pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt"  )
-
 
 ## Read data 
-#load(here::here("data", "a_nhanes.rda"))
-#load(here::here("data", "nhanesdat.rdata"))
-
-#load(here::here("a_nhanes.rda"))
 load(here::here("data", "a_nhanes.rda"))
-# load(here::here("~/Documents/TG3/IDA_Regression/github_nhanes/nhanesdat.rdata"))
+
+#load("a_nhanes.rda")
 
 a_nhanes$agegrp<-cut(a_nhanes$age, breaks=c(0, 45, 60, 75, Inf), labels=c("30-44", "45-59", "60-74", "75+"), right=FALSE)
 
@@ -53,9 +43,12 @@ a_nhanes$agegrp<-cut(a_nhanes$age, breaks=c(0, 45, 60, 75, Inf), labels=c("30-44
 ### Variable correlation
 
 ```{r}
+vars<-c(demog_vars, life_vars ,health_vars, physio_vars)
+b_nhanes<-a_nhanes[,vars]
+
 
 corrs <- a_nhanes %>%
-  dplyr::select(age, gender, bmi, sys,lbxtc,  lbdhdd, smokecigs , drinkstatus, mortstat ,diabetes, chf, cancer , stroke ) %>%
+  dplyr::select(all_of(vars) ) %>%
   filter(complete.cases(.)) %>%
   dplyr::mutate_all(as.numeric)
 M <- cor(corrs)
@@ -66,13 +59,42 @@ corrplot(M, method = "color", col = col(200),
          tl.col = "black", tl.srt = 90, # Text label color and rotation
          # hide correlation coefficient on the principal diagonal
          diag = FALSE)
+
+
+```
+
+Below we further examine the association between age and systolic blood pressure stratified by pivotal variables.
+
+
+Next, we depict differences in the  correlation coefficients (Spearman vs Pearson) in a heat map:
+
+```{r}
+
+
+
+corrp <- a_nhanes %>%
+    dplyr::select(all_of(vars)) %>%
+    filter(complete.cases(.)) %>%
+    dplyr::mutate_all(as.numeric) %>%
+      cor(use="pairwise.complete.obs", method="pearson")
+
+corrs <- a_nhanes %>%
+    dplyr::select(all_of(vars)) %>%
+    filter(complete.cases(.)) %>%
+    dplyr::mutate_all(as.numeric) %>%
+    cor(use="pairwise.complete.obs", method="spearman")
+
+# differences of pearson and spearman correlations to check for outliers
+corrd <- corrp-corrs
+
+ggcorrplot(corrd, tl.cex=5, tl.srt=90)
 ```
 
 
 Correlations of the physical activity variables (outcome)
 ```{r}
 corrs <- a_nhanes %>%
-  dplyr::select(mobilityproblem, tac ,tlac ,mvpa ,  wt  ) %>%
+  dplyr::select( tac ,tlac ,mvpa ,  wt  ) %>%
   filter(complete.cases(.)) %>%
   dplyr::mutate_all(as.numeric)
 M <- cor(corrs)
@@ -84,24 +106,25 @@ corrplot(M, method = "color", col = col(200),
          # hide correlation coefficient on the principal diagonal
          diag = FALSE)
 
-
-
-
 ```
  
 ### Variable clustering
 
-*Variable clustering is used for assessing collinearity, redundancy, and for separating variables into clusters that can be scored as a single variable, thus resulting in data reduction.*
+Variable clustering is used for assessing collinearity, redundancy, and for separating variables into clusters that can be scored as a single variable, thus resulting in data reduction.
+
 
 ```{r}
-Hmisc::varclus( ~ age +gender+ bmi+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus+ mortstat + diabetes+ chf+ cancer + stroke, data = a_nhanes)
+b_nhanes<- a_nhanes %>%
+      dplyr::select(all_of(vars)) %>%
+      filter(complete.cases(.)) %>%
+      dplyr::mutate_all(as.numeric) 
+  
+vc_nhanes<-Hmisc::varclus(as.matrix(b_nhanes))
+plot(vc_nhanes, cex=0.7)
 ```
 
-Plot associations. 
 
-```{r}
-plot(Hmisc::varclus( ~ age +gender+ bmi+ sys+ lbxtc+  lbdhdd+ smokecigs +  mortstat + diabetes+ chf+ cancer + stroke, data = a_nhanes))
-```
+
 
 
 ### Variable redundancy 
@@ -113,7 +136,8 @@ Hmisc::redun( ~ age +gender+ bmi+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus+ 
 ```
 
 
-##  Summary reports by age and gender
+
+##  Summary reports by pivotal covariates age and gender
 
 ### Distribution of age by gender
 
@@ -172,7 +196,7 @@ s <-
   )
 Hmisc::html(
   s,
-  caption = 'Baseline characteristics by gae group for men',
+  caption = 'Baseline characteristics by age group for men',
   exclude1 = TRUE,
   npct = 'both',
   digits = 3,
@@ -222,7 +246,7 @@ s <-
   )
 Hmisc::html(
   s,
-  caption = 'Baseline characteristics by gae group for men',
+  caption = 'Baseline characteristics by age group for women',
   exclude1 = TRUE,
   npct = 'both',
   digits = 3,
@@ -246,6 +270,7 @@ g<-ggplot(a_nhanes,
        aes(x = age, 
            y = sys)) + 
   geom_point(alpha=1/10)+
+  geom_smooth()+
   #geom_miss_point() + 
   facet_wrap(~gender)+ 
   theme_bw() + theme(legend.title = element_blank()) + ylab("systolic blood pressure")
@@ -255,35 +280,6 @@ g
 ```
 
 
-### Distribution of cholesterol
-
-```{r}
-
-g<-ggplot(a_nhanes, 
-       aes(x = age, 
-           y = lbxtc)) + 
-  geom_point(aes(color = gender))+
-  #geom_miss_point() + 
-  #facet_wrap(~gender)+ 
-  theme_bw() + theme(legend.title = element_blank()) 
-
-g + ylab("total cholesterol")
-
-```
-
-
-```{r, results='asis', message =FALSE, warning =FALSE , echo=FALSE}
-
-g<-ggplot(a_nhanes, 
-       aes(x = age, 
-           y = lbdhdd)) + 
-  geom_point(aes(color = gender))+
-  #geom_miss_point() + 
-  #facet_wrap(~gender)+ 
-  theme_bw() + theme(legend.title = element_blank()) 
-g + ylab("HDL")
-
-```
 
 ### Distribution of BMI
 
@@ -326,7 +322,7 @@ g1<-ggplot(a_nhanes, aes(wt, mvpa)) +
   geom_point(alpha=1/10) +
   geom_smooth()
 
-g2<-ggplot(a_nhanes, aes(wt, log(1+mvpa))) +
+g2<-ggplot(a_nhanes, aes(wt, log10(1+mvpa))) +
   geom_point(alpha=1/10) +
   geom_smooth()
 
@@ -334,7 +330,7 @@ g3<-ggplot(a_nhanes, aes(tlac, mvpa)) +
   geom_point(alpha=1/10) +
   geom_smooth()
 
-g4<-ggplot(a_nhanes, aes(tlac, log(1+mvpa))) +
+g4<-ggplot(a_nhanes, aes(tlac, log10(1+mvpa))) +
   geom_point(alpha=1/10) +
   geom_smooth()
 

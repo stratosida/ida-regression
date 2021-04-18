@@ -1,33 +1,38 @@
 # Univariate distribution checks
 
+```{r setup, echo=FALSE}
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  echo = FALSE,
+  fig.align = 'center'
+)
+```
+
+
 This section reports a series of univariate summary checks of the NHANES dataset.
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 library(here)
 library(tidyverse)
 library(Hmisc)
-#source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
-source(here("R", "ida_plot_univar.R"))
-# Define sets of predictors by type - helpful for selection
-demog_vars <- c("age", "gender", "educationadult")
-life_vars <- c("bmi", "smokecigs" , "drinkstatus")
-health_vars <- c("mortstat" ,"diabetes", "chf", "cancer" , "stroke")
-physio_vars <- c("sys","lbxtc",  "lbdhdd")
-pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt" , "tlac.1", "tlac.2","tlac.3","tlac.4","tlac.5","tlac.6","tlac.7","tlac.8","tlac.9","tlac.10","tlac.11","tlac.12" )
+
+
+source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
+source(here("R", "ida_trans.R"))  ## function to determine transformation (log(x+c) or identity). 
+
 
 ## Load the dataset.
-#load(here::here("data", "a_nhanes.rda"))
-
 load(here::here("data", "a_nhanes.rda"))
 
-## check for missing
-a_nhanes %>% glimpse()
-
-## remove missing
-a_nhanes <- a_nhanes %>% drop_na(tlac.1)
+# load(here::here("a_nhanes.rda"))
 
 
 ```
+
+
+
 
 ## Data set overview
 
@@ -35,7 +40,7 @@ Using the [Hmisc](https://cran.r-project.org/web/packages/Hmisc/) describe funct
 
 ### Demographic and lifestyle variables
 
-```{r desc_a_nhanesa, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+```{r desc_a_nhanesa,  results='asis'}
 a_nhanes %>%
   dplyr::select(all_of(c(demog_vars, life_vars))) %>%
   Hmisc::describe(descript = "Demographic and lifestyle variables") %>%
@@ -46,7 +51,7 @@ a_nhanes %>%
 
 ### Physiological measurements
 
-```{r desc_a_nhanesc, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+```{r desc_a_nhanesc,  results='asis', }
 a_nhanes %>%
   dplyr::select(all_of(physio_vars)) %>%
   Hmisc::describe(descript = "Physiological measurements") %>%
@@ -56,7 +61,7 @@ a_nhanes %>%
 
 ### Comorbidities
 
-```{r desc_a_nhanesd, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+```{r desc_a_nhanesd,  results='asis'}
 a_nhanes %>%
   dplyr::select(all_of(health_vars)) %>%
   Hmisc::describe(descript = "Comorbidities") %>%
@@ -65,7 +70,7 @@ a_nhanes %>%
 
 ### Physical activity variables
 
-```{r desc_a_nhanesb, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
+```{r desc_a_nhanesb,  results='asis'}
 a_nhanes %>%
   dplyr::select(all_of(pa_vars)) %>%
   Hmisc::describe(descript = "Physical activity") %>%
@@ -77,7 +82,7 @@ a_nhanes %>%
 
 We now provide a closer visual examination of the categorical predictors. 
 
-```{r catplot, message=FALSE, warning =FALSE , echo=FALSE, fig.height=10}
+```{r catplot,  fig.height=10}
 a_nhanes %>%
   dplyr::select(gender, educationadult,  smokecigs , drinkstatus, mobilityproblem, health_vars) %>%
   dplyr::mutate_all(forcats::as_factor) %>%   
@@ -98,8 +103,6 @@ a_nhanes %>%
                           var == "educationadult" ~ "Education status",
                           var == "smokecigs" ~ "Smoking status",
                           var == "drinkstatus" ~ "Alcohol consumption",
-                          var == "mobilityproblem" ~ "Difficulty with mobility",
-                          var == "mortstat" ~ "Mortality status" ,
                           var == "diabetes" ~ "Diabetes", 
                           var == "chf" ~ "Congestive heart failure", 
                           var == "cancer"~ "Cancer" , 
@@ -132,7 +135,7 @@ a_nhanes %>%
 
 A closer visual examination of continuous predictors and the outcome variable. 
 
-```{r, message =FALSE, warning =FALSE , echo=FALSE, fig.width=9}
+```{r,  fig.width=9}
 a_nhanes %>%
   dplyr::select(mvpa, tlac, age, sys, bmi, wt,  lbxtc, lbdhdd) %>%
   dplyr::mutate() %>%
@@ -153,7 +156,7 @@ a_nhanes %>%
     )) %>%
   ggplot(aes(value)) +
   ylab("Number of participants") +
-  geom_histogram(
+  geom_histogram( #aes(y=..density..),
     binwidth = 0.5,
     center = 0,
     alpha = 0.6,
@@ -168,37 +171,6 @@ a_nhanes %>%
 
 There is evidence of influential points in some of the distributions. This is explored further with targeted summaries. A more detailed univariate summaries for the variables of interest are also provided below. 
 
-
-### Outcome= Time of moderate or vigrous physical activity and related variables
-
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of time of moderate/vigorous activity [minutes]" , echo=FALSE}
-## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
-ida_plot_univar(a_nhanes, "mvpa")
-```
-
-After transforming MVPA with $\log_{10}(x+1)$: 
-
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of log(1+MVPA) " , echo=FALSE}
-## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
-a_nhanes <- a_nhanes %>%
-            mutate(mvpa_log = log(1+mvpa))
-
-ida_plot_univar(a_nhanes, "mvpa_log", bin_width = 0.01)
-```
-
-
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of wear time [minutes]" , echo=FALSE}
-## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
-ida_plot_univar(a_nhanes, "wt")
-```
-
-
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of log total activity count" , echo=FALSE}
-## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
-ida_plot_univar(a_nhanes, "tlac")
-```
-
-
 ### Age
 
 ```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of age" , echo=FALSE}
@@ -208,7 +180,7 @@ ida_plot_univar(a_nhanes, "age", bin_width = 0.7)
 
 ### Blood pressure
 
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of SBP" , echo=FALSE}
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of SBP" }
 ida_plot_univar(a_nhanes, "sys", bin_width = 0.7)
 ```
 
@@ -216,25 +188,44 @@ ida_plot_univar(a_nhanes, "sys", bin_width = 0.7)
 ### Body mass index
 
 
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of respiratory rate" , echo=FALSE}
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of respiratory rate" }
 ida_plot_univar(a_nhanes, "bmi", n_dodge = 2)
 ```
 
 There is a participant with an unusal high value (130.2). It is possible that this is an entry error (bmi=30.2).
 
 
-### Total cholesterol
 
 
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of total cholesterol", echo=FALSE}
-ida_plot_univar(a_nhanes, "lbxtc")
+
+### Outcome= Time of moderate or vigrous physical activity and related variables
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of time of moderate/vigorous activity [minutes]" }
+## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
+ida_plot_univar(a_nhanes, "mvpa")
+```
+
+After transforming MVPA with $\log_{10}(x+1)$: 
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of log10 (1+MVPA)" }
+## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
+a_nhanes <- a_nhanes %>%
+            mutate(mvpa_log = log10(1+mvpa))
+
+ida_plot_univar(a_nhanes, "mvpa_log", bin_width = 0.01)
 ```
 
 
-```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of HDL", echo=FALSE}
-ida_plot_univar(a_nhanes, "lbdhdd")
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of wear time [minutes]" }
+## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
+ida_plot_univar(a_nhanes, "wt")
 ```
 
+
+```{r, fig.width=8, fig.height=3.5, fig.cap= "Distribution of log total activity count" }
+## This is a function the plots a strip plot, histogram and boxplot, including five number summary. 
+ida_plot_univar(a_nhanes, "tlac")
+```
 
 
 

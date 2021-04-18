@@ -11,10 +11,24 @@ library(gt)
 library(kableExtra)
 library(DT)
 library(arsenal)
-#load(here::here("data", "a_nhanes.rda"))
+library(VIM)
+
+
+load(here::here("data", "a_nhanes.rda"))
 
 #load(here::here("a_nhanes.rda"))
-load(here::here("data", "a_nhanes.rda"))
+
+
+
+# Define sets of predictors 
+vip_vars <-c("age", "gender")
+demog_vars <- c("age", "gender", "educationadult")
+life_vars <- c("bmi", "smokecigs" , "drinkstatus")
+health_vars <- c("diabetes", "chf", "cancer" , "stroke")
+physio_vars <- c("sys","lbxtc",  "lbdhdd")
+pa_vars <- c( "tac" ,"tlac" ,"mvpa", "wt" , "tlac.1", "tlac.2","tlac.3","tlac.4","tlac.5","tlac.6","tlac.7","tlac.8","tlac.9","tlac.10","tlac.11","tlac.12" )
+
+vars<-c(demog_vars,life_vars,health_vars, physio_vars, "tac" ,"tlac" ,"mvpa", "wt" )
 ```
 
 
@@ -40,26 +54,53 @@ a_nhanes %>%
 ```
 
 
+Investigate for groups of variables:
+
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 a_nhanes %>%
-  select(-seqn) %>%
+  select() %>%
+  mutate(any_variable_missing = ifelse(apply(a_nhanes,1,any_miss),NA,1)) %>%
+  mutate(any_demographics_missing = ifelse(apply(a_nhanes[,demog_vars],1,any_miss),NA,1)) %>%
+  mutate(any_vip_missing = ifelse(apply(a_nhanes[, vip_vars],1,any_miss),NA,1)) %>%
+  mutate(any_lifestyle_missing = ifelse(apply(a_nhanes[,life_vars],1,any_miss),NA,1)) %>%
+  mutate(any_health_missing = ifelse(apply(a_nhanes[,health_vars],1,any_miss),NA,1)) %>%
+  mutate(any_physact_missing = ifelse(apply(a_nhanes[,pa_vars],1,any_miss),NA,1)) %>%
+   mutate(any_lab_missing = ifelse(apply(a_nhanes[,physio_vars],1,any_miss),NA,1)) %>%
+  miss_var_summary() %>%
+  gt::gt() %>%
+    gt::cols_label(
+    variable = md("**Variable**"),
+    n_miss = md("**Missing (count)**"),
+    pct_miss = md("**Missing (%)**")
+  ) %>%
+  gt::fmt_number(
+    columns = vars(pct_miss),
+    decimals = 2
+  )
+
+```
+
+Overall, 18% are missing when all variables are included in a model. There is no missingness in the VIPs and less than 1% in life style variables such as smoking and alcohol consumption.
+
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+a_nhanes %>%
+  select(vars) %>%
   gg_miss_var(show_pct = TRUE)
 ```
 
+
+```{r, results='asis', message =FALSE, warning =FALSE , echo=FALSE, eval=FALSE}
+
 ## Variable summaries for complete vs incomplete cases
 
-```{r, results='asis', message =FALSE, warning =FALSE , echo=FALSE}
+
 a_nhanes$mvpamiss<-"incomplete"
 idx<-which(is.na(a_nhanes$mvpa))
 a_nhanes$mvpamiss[idx]<-"complete"
 
-demog_vars <- c("age", "gender", "educationadult","bmi", "smokecigs" , "drinkstatus")
-life_vars <- c("bmi", "smokecigs" , "drinkstatus")
-health_vars <- c("mortstat" ,"diabetes", "chf", "cancer" , "stroke")
-physio_vars <- c("sys","lbxtc",  "lbdhdd")
-pa_vars <- c("mobilityproblem", "tac" ,"tlac" ,"mvpa" ,  "wt" , "satp" , "astp" )
 
-vars<-c(demog_vars, health_vars,physio_vars, "mobilityproblem", "tlac", "wt", "mvpamiss" )
+vars<-c(demog_vars, health_vars,  "tlac", "wt", "mvpamiss" )
 
 nhanes_complete<-tableby(mvpamiss ~ ., data=a_nhanes[,vars], test=TRUE, numeric.stats=c("median","q1q3", "range"))
 
@@ -68,36 +109,38 @@ summary(nhanes_complete, title = "Participant characteristics by missing status 
 
 ```
 
-It appears that participants with incomplete physical activity data are older.
+
 
 
 ## Missingness patterns over variables
 
+
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE, eval=FALSE}
+
+# This is a dendogram that shows which variables tend to be missing together:
+  
+s_nhanes <- a_nhanes[sample(1:nrow(a_nhanes), size=10000, repl=TRUE), ]
+is_nhanes <- is.na(a_nhanes)*1
+
+perc_miss <- round(apply(is_nhanes, 2, mean)*100,0)
+colnames(is_nhanes)<-paste(colnames(is_nhanes),"(",perc_miss,")",sep="")
+hobj <- hclust(dist(t(is_nhanes)))
+plot(hobj, cex=0.5)
+```
+
+
+
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-library(VIM)
-aggr(a_nhanes[,vars],numbers=TRUE)
+aggr(a_nhanes[,c(demog_vars, life_vars, health_vars)],numbers=TRUE)
 ```
 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 a_nhanes %>%
-  select(-seqn) %>%
+  select(demog_vars, life_vars, health_vars) %>%
   naniar::vis_miss(sort_miss = TRUE, show_perc_col = TRUE) 
 ```
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_nhanes %>%
-  select(-seqn) %>%
-  gg_miss_case()
-```
-
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_nhanes %>%
-  select(mvpa, tlac, drinkstatus, smokecigs, sys, lbxtc,lbdhdd, bmi, educationadult, ) %>%
-  gg_miss_upset()
-```
-
 
 
 
@@ -113,11 +156,14 @@ cc <-
 DT::datatable(cc)
 ```
 
-Then we report the pattern of missing for this set of patients. 
+Then we report the pattern of missing for this set of patients.
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-cc %>% gg_miss_upset()
+cc %>%
+  select(demog_vars, life_vars, health_vars) %>%
+  naniar::vis_miss(sort_miss = TRUE, show_perc_col = TRUE) 
 ```
+
 
 
 
