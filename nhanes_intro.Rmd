@@ -20,8 +20,8 @@ load(here::here("a_nhanes.rda"))
 
 To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section  [nhanes_IDAP.Rmd](nhanes_IDAP.Rmd).
 
-**Hypothetical research aim for IDA** is to 
-develop a multivariable model for MVPA (minutes of moderate/vigorous physical activity).
+**Hypothetical research aim for IDA**  
+*is to develop a multivariable model for MVPA (minutes of moderate/vigorous physical activity).*
 
 *MVPA can be used to examine factors distinguishing very active participants with large amounts of time spent on MVPA from others (using untransformed data) or distinguishing participants according to percentage changes in MVPA (logarithmic scale) thus de-emphasizing extreme values.*
 
@@ -67,7 +67,7 @@ MVPA (total minutes of moderate/vigorous physical activity which is defined as m
 * average systolic blood pressure using the 4 measurements per participant (`sys`, mmHg) 
 * Total cholesterol  (`lbxtc`,  mg/dL)
 * HDL cholesterol  (`lbdhdd`, mg/dL) 
-* difficulties with mobility (`mobilityproblem`, "No Difficulty", "Any Difficulty" = a positive response to difficulty walking a quarter-mile, difficulty climbing 10 stairs, or use of any special equipment to walk)
+
 
 
 #### Physical activity data
@@ -77,7 +77,7 @@ Summary measures are calculated due to the large size of minute level accelerome
 * total log activity count (`TLAC` log(1+TAC))
 * total minutes of moderate/vigorous physical activity (`MVPA`)
 * total accelerometer wear time (`WT`)
-* total log activity count summary measures (`tlac.1, `tlac.2`, …, `tlac.12`) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc.
+* total log activity count summary measures (`tlac.1`, `tlac.2`, …, `tlac.12`) in each 2-hr window, i.e. 12AM-2AM, 2AM-4AM, 4AM-6AM, etc.
 
 
 ## NHANES dataset contents
@@ -191,7 +191,12 @@ a_nhanes <- Hmisc::upData(
 Hmisc::html(Hmisc::contents(a_nhanes),
             maxlevels = 10,
             levelType = 'table')
+
+
 ## Write to data folder
+# vars<-c("seqn", demog_vars,life_vars,health_vars, physio_vars, pa_vars )
+# a_nhanes <- a_nhanes %>%  select(all_of(vars))
+# save(a_nhanes, file =  "a_nhanes.rda")
 #save(a_nhanes, file = here::here("data", "a_nhanes.rda"))
 
 ```

@@ -306,6 +306,9 @@ g
 
 ```
 
+As already noted in the univariate distributions there is a participant with an unusual high value (130.2). It is possible that this is an entry error (bmi=30.2).
+
+
 ### Distribution of wear time
 
 ```{r}
@@ -323,7 +326,7 @@ g
 ```
 
 
-## Physical activity data
+## Physical activity data (outcome)
 
 ### Distribution of MVPA 
 
