@@ -93,7 +93,7 @@ We now provide a closer visual examination of the categorical predictors.
 
 ```{r catplot,  fig.height=10}
 a_nhanes %>%
-  dplyr::select(gender, educationadult,  smokecigs , drinkstatus, mobilityproblem, health_vars) %>%
+  dplyr::select(gender, educationadult,  smokecigs , drinkstatus, health_vars) %>%
   dplyr::mutate_all(forcats::as_factor) %>%   
   dplyr::mutate_all(forcats::fct_explicit_na, "NA") %>%
   tidyr::pivot_longer(
