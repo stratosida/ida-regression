@@ -142,7 +142,7 @@ plot(vc_nhanes, cex=0.7)
 Redundancy analysis of predictor variables. 
 
 ```{r}
-Hmisc::redun( ~ age +gender+ bmi+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus+ mortstat + diabetes+ chf+ cancer + stroke  , data = a_nhanes)
+Hmisc::redun( ~ age +gender+ bmi+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus + diabetes+ chf+ cancer + stroke  , data = a_nhanes)
 ```
 
 
@@ -171,7 +171,7 @@ a_nhanes %>%
 ```{r, results="asis"}
 s <-
   Hmisc::summaryM(
-     age+bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus+ mortstat + diabetes+ chf+ cancer + stroke ~ gender,
+     age+bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus+  diabetes+ chf+ cancer + stroke ~ gender,
     data = a_nhanes,
     overall = FALSE,
     test = FALSE
