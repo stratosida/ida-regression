@@ -35,23 +35,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 <hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable942100 {
+ .hmisctable320676 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable942100 td {
+ .hmisctable320676 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable942100 th {
+ .hmisctable320676 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable942100" border="1">
+ <table class="hmisctable320676" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
@@ -101,23 +101,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 
  <hr>
  <style>
- .hmisctable627290 {
+ .hmisctable524027 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable627290 td {
+ .hmisctable524027 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable627290 th {
+ .hmisctable524027 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable627290" border="1">
+ <table class="hmisctable524027" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.source">source</a></td><td>telephone</td></tr>
  <tr><td></td><td>telephone entered manually</td></tr>
@@ -184,23 +184,23 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 <hr><h4>Data frame:a_crash2</h4>20207 observations and 14 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable135387 {
+ .hmisctable481592 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable135387 td {
+ .hmisctable481592 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable135387 th {
+ .hmisctable481592 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable135387" border="1">
+ <table class="hmisctable481592" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>trandomised</td><td>Date of Randomization</td><td></td><td></td><td>Date</td><td>double</td><td>    0</td></tr>
@@ -220,23 +220,23 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 
  <hr>
  <style>
- .hmisctable259011 {
+ .hmisctable923897 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable259011 td {
+ .hmisctable923897 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable259011 th {
+ .hmisctable923897 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable259011" border="1">
+ <table class="hmisctable923897" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.sex">sex</a></td><td>male</td></tr>
  <tr><td></td><td>female</td></tr>
@@ -271,34 +271,35 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 ## 
 ## other attached packages:
 ##  [1] Hmisc_4.5-0     Formula_1.2-4   survival_3.1-12 lattice_0.20-41
-##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.4     purrr_0.3.4    
-##  [9] readr_1.4.0     tidyr_1.1.2     tibble_3.0.6    ggplot2_3.3.3  
+##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.5     purrr_0.3.4    
+##  [9] readr_1.4.0     tidyr_1.1.3     tibble_3.1.0    ggplot2_3.3.3  
 ## [13] tidyverse_1.3.0 here_1.0.1     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.6          lubridate_1.7.9.2   png_0.1-7          
-##  [4] assertthat_0.2.1    rprojroot_2.0.2     digest_0.6.27      
-##  [7] R6_2.5.0            cellranger_1.1.0    backports_1.2.1    
-## [10] reprex_1.0.0        evaluate_0.14       httr_1.4.2         
-## [13] pillar_1.4.7        rlang_0.4.10        readxl_1.3.1       
-## [16] data.table_1.13.6   rstudioapi_0.13     rpart_4.1-15       
-## [19] Matrix_1.2-18       checkmate_2.0.0     rmarkdown_2.6      
-## [22] splines_4.0.2       foreign_0.8-80      htmlwidgets_1.5.3  
-## [25] munsell_0.5.0       broom_0.7.4         compiler_4.0.2     
-## [28] modelr_0.1.8        xfun_0.20           pkgconfig_2.0.3    
-## [31] base64enc_0.1-3     htmltools_0.5.1.1   nnet_7.3-14        
-## [34] tidyselect_1.1.0    htmlTable_2.1.0     gridExtra_2.3      
-## [37] bookdown_0.21       crayon_1.4.1        dbplyr_2.1.0       
-## [40] withr_2.4.1         grid_4.0.2          jsonlite_1.7.2     
-## [43] gtable_0.3.0        lifecycle_0.2.0     DBI_1.1.1          
-## [46] magrittr_2.0.1      scales_1.1.1        rmdformats_1.0.1   
-## [49] cli_2.3.0           stringi_1.5.3       fs_1.5.0           
-## [52] latticeExtra_0.6-29 xml2_1.3.2          ellipsis_0.3.1     
-## [55] generics_0.1.0      vctrs_0.3.6         RColorBrewer_1.1-2 
-## [58] tools_4.0.2         glue_1.4.2          hms_1.0.0          
-## [61] jpeg_0.1-8.1        yaml_2.2.1          colorspace_2.0-0   
-## [64] cluster_2.1.0       rvest_0.3.6         knitr_1.31         
-## [67] haven_2.3.1
+##  [1] httr_1.4.2          sass_0.3.1          jsonlite_1.7.2     
+##  [4] splines_4.0.2       modelr_0.1.8        bslib_0.2.4        
+##  [7] assertthat_0.2.1    latticeExtra_0.6-29 cellranger_1.1.0   
+## [10] yaml_2.2.1          pillar_1.5.1        backports_1.2.1    
+## [13] glue_1.4.2          digest_0.6.27       checkmate_2.0.0    
+## [16] RColorBrewer_1.1-2  rvest_0.3.6         colorspace_2.0-0   
+## [19] htmltools_0.5.1.1   Matrix_1.3-2        pkgconfig_2.0.3    
+## [22] broom_0.7.4         haven_2.3.1         bookdown_0.21      
+## [25] scales_1.1.1        jpeg_0.1-8.1        htmlTable_2.1.0    
+## [28] generics_0.1.0      ellipsis_0.3.1      withr_2.4.1        
+## [31] nnet_7.3-14         cli_2.3.1           magrittr_2.0.1     
+## [34] crayon_1.4.1        readxl_1.3.1        evaluate_0.14      
+## [37] fs_1.5.0            fansi_0.4.2         xml2_1.3.2         
+## [40] foreign_0.8-80      data.table_1.14.0   tools_4.0.2        
+## [43] hms_1.0.0           lifecycle_1.0.0     munsell_0.5.0      
+## [46] reprex_1.0.0        cluster_2.1.0       compiler_4.0.2     
+## [49] jquerylib_0.1.3     rlang_0.4.10        grid_4.0.2         
+## [52] rstudioapi_0.13     htmlwidgets_1.5.3   base64enc_0.1-3    
+## [55] rmarkdown_2.7       gtable_0.3.0        DBI_1.1.1          
+## [58] R6_2.5.0            gridExtra_2.3       lubridate_1.7.9.2  
+## [61] knitr_1.31          utf8_1.1.4          rprojroot_2.0.2    
+## [64] stringi_1.5.3       rmdformats_1.0.1    Rcpp_1.0.6         
+## [67] vctrs_0.3.6         rpart_4.1-15        png_0.1-7          
+## [70] dbplyr_2.1.0        tidyselect_1.1.0    xfun_0.21
 ```
 
 
