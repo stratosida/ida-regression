@@ -89,23 +89,23 @@ New object size:	1361512 bytes;	31 variables	6680 observations
 <hr><h4>Data frame:a_nhanes</h4>6680 observations and 31 variables, maximum # NAs:708  
  <hr>
  <style>
- .hmisctable785042 {
+ .hmisctable245898 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable785042 td {
+ .hmisctable245898 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable785042 th {
+ .hmisctable245898 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable785042" border="1">
+ <table class="hmisctable245898" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>seqn</td><td>respondent sequence number</td><td></td><td></td><td>integer</td><td>integer</td><td>  0</td></tr>
  <tr><td>age</td><td>age</td><td>years</td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
@@ -142,23 +142,23 @@ New object size:	1361512 bytes;	31 variables	6680 observations
 
  <hr>
  <style>
- .hmisctable500100 {
+ .hmisctable810070 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable500100 td {
+ .hmisctable810070 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable500100 th {
+ .hmisctable810070 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable500100" border="1">
+ <table class="hmisctable810070" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.gender">gender</a></td><td>Male</td></tr>
  <tr><td></td><td>Female</td></tr>
@@ -238,7 +238,7 @@ Smirnova E,  Leroux A,   Tabacu L, Zipunnikov V, Crainiceanu C,  Urbanek JK. The
 ## [55] rmarkdown_2.7       gtable_0.3.0        DBI_1.1.1          
 ## [58] R6_2.5.0            gridExtra_2.3       lubridate_1.7.9.2  
 ## [61] knitr_1.31          utf8_1.1.4          rprojroot_2.0.2    
-## [64] stringi_1.5.3       rmdformats_1.0.1    Rcpp_1.0.6         
-## [67] vctrs_0.3.6         rpart_4.1-15        png_0.1-7          
-## [70] dbplyr_2.1.0        tidyselect_1.1.0    xfun_0.21
+## [64] stringi_1.5.3       Rcpp_1.0.6          vctrs_0.3.6        
+## [67] rpart_4.1-15        png_0.1-7           dbplyr_2.1.0       
+## [70] tidyselect_1.1.0    xfun_0.21
 ```
