@@ -137,9 +137,15 @@ rm(list=c("AllAct_C","AllAct_D","AllFlags_C","AllFlags_D","CVMarkers"))
 
 ## Code year 5 mortality, NAs for individuals with follow up less than 5 years and alive
 AllAct$yr5_mort <- AllFlags$yr5_mort <- 
-  as.integer(ifelse(AllAct$permth_exm/12 <= 5 & AllAct$mortstat == 1, 1,
-                    ifelse(AllAct$permth_exm/12 < 5 & AllAct$mortstat == 0, NA, 0))
+  as.integer(ifelse(AllAct$permth_exm/12 <= 5 & AllAct$mortstat5 == 1, 1,
+                    ifelse(AllAct$permth_exm/12 < 5 & AllAct$mortstat5 == 0, NA, 0))
   )
+
+AllAct$yr1_mort <- AllFlags$yr51_mort <- 
+  as.integer(ifelse(AllAct$permth_exm/12 <= 1 & AllAct$mortstat == 1, 1,
+                    ifelse(AllAct$permth_exm/12 < 1 & AllAct$mortstat == 0, NA, 0))
+  )
+
 ## Create Age in years using the age at examination (i.e. when participants wore the device)
 AllAct$Age <- AllFlags$Age <- AllAct$RIDAGEEX/12
 
@@ -170,7 +176,7 @@ AllAct$SYS <- AllFlags$SYS <-  round(apply(AllAct[,c("BPXSY1","BPXSY2","BPXSY3",
                                            1,mean, na.rm= T))
 
 ## Re-order columns so that activity and wear/non-wear flags are the last 1440 columns of our two
-## data matrices. This is a personal preference and is absolutely not necessary.
+## data matrices. This is a personal preference and is not necessary.
 act_cols <- which(colnames(AllAct) %in% paste0("MIN",1:1440))
 oth_cols <- which(!colnames(AllAct) %in% paste0("MIN",1:1440))
 AllAct   <- AllAct[,c(oth_cols,act_cols)]
@@ -204,8 +210,8 @@ AllAct$MVPA  <- AllFlags$MVPA  <- rowSums(act_mat >= 2020)
 ## calculate fragmentation measures
 bout_mat <- apply(act_mat >= 100, 1, function(x){
   mat <- rle(x)
-  sed <- mat$lengths[which(mat$values == FALSE)]
-  act <- mat$length[mat$values == TRUE]
+  sed <- mat$lengths[which(mat$values == FALSE)]  # sed stands for sedentary
+  act <- mat$length[mat$values == TRUE]          # act stands for active
   
   sed <- ifelse(length(sed) == 0, NA, mean(sed))
   act <- ifelse(length(act) == 0, NA, mean(act))
@@ -261,7 +267,7 @@ nms_rm         <- unique(c(Act_Analysis$SEQN[-which(Act_Analysis$SEQN %in% names
 rm(list=c("keep_inx"))
 
 
-## Additional inclusion/exclusion criteria.
+## Additional inclusion/exclusion criteria by Leroux
 ## Aside from mortality or accelerometer weartime, the only missingness is in
 ## BMI (35), Education (6), SYS (165), total cholesterol, LBXTC (152) and HDL cholesterol, LBDHDD (152).
 #criteria_vec <- c("(is.na(table_dat$BMI_cat))",         # missing BMI
@@ -299,7 +305,7 @@ names_spaced <- c("Bad Accel Data","Mortality","Follow-up")
 rownames(tab_miss) <- colnames(tab_miss) <- names_spaced
 
 ## Create our dataset for analysis with one row per subject
-## containing only those subjects who meet our inclusion criteria.
+## containing only those subjects who meet inclusion criteria.
 data_analysis  <- subset(table_dat, Exclude == 0)
 data_analysis  <- table_dat
 ## get adjusted survey weights using the reweight_accel function
@@ -338,13 +344,36 @@ vars<-c(
  "bmi", "bmi.cat" ,"race" ,"gender", "diabetes", "chf" ,"chd" , "cancer" , "stroke",             
  "educationadult" ,"mobilityproblem" , "drinkstatus", "drinksperweek",      
  "smokecigs" , "bpxsy1" , "bpxsy2" , "bpxsy3" , "bpxsy4" ,"lbxtc" , "lbdhdd",          
-  "age" , "sys",  "tac" , "tlac", "wt", "st" , "mvpa", "about", "sbout" ,  "satp",  "astp" ,"tlac.1" ,            
+  "age" , "sys",  "tac" , "tlac", "wt", "st" , "mvpa", "about", "sbout" , "tlac.1" ,            
    "tlac.2" ,"tlac.3" ,"tlac.4" , "tlac.5",  "tlac.6" ,"tlac.7" ,"tlac.8" ,"tlac.9",             
   "tlac.10" ,"tlac.11" ,"tlac.12")
 
 nhanesdat<-data_analysis[,vars]
 
+indx<-which(nhanesdat$drinkstatus=='Missing alcohol')
+nhanesdat$drinkstatus[indx]<-NA
+
+nhanesdat <- nhanesdat %>% 
+  mutate(mortstat = factor(mortstat, levels = 0:1, labels = c("alive", "dead")) )
+
+indx<-which(is.na(nhanesdat$mvpa))
+nhanesdat<-nhanesdat[-indx,]
+
+
+
+
+## remove missing
+a_nhanes <- nhanesdat %>% drop_na(tlac.1)
+
+a_nhanes<-a_nhanes %>% 
+  mutate(alcohol = ifelse(drinkstatus=="Missing alcohol", NA, drinkstatus))
+
 cat(Hmisc::html(Hmisc::contents(nhanesdat)), file= "nhanesdat.html" )
+
+
+setwd("~/Documents/TG3/IDA_Regression/github_nhanes")
+save(a_nhanes, file="a_nhanes.rda")
+
 
 setwd("~/Documents/TG3/IDA_Regression/Data")
 save(nhanesdat, file="nhanesdat.rdata")
