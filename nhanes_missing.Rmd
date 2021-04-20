@@ -14,9 +14,9 @@ library(arsenal)
 library(VIM)
 
 
-#load(here::here("data", "a_nhanes.rda"))
+load(here::here("data", "a_nhanes.rda"))
 
-load(here::here("a_nhanes.rda"))
+#load(here::here("a_nhanes.rda"))
 a_nhanes <- a_nhanes  %>% drop_na(tlac.1)
 
 a_nhanes<-a_nhanes %>% 
