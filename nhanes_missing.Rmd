@@ -14,16 +14,18 @@ library(arsenal)
 library(VIM)
 
 
-load(here::here("data", "a_nhanes.rda"))
+#load(here::here("data", "a_nhanes.rda"))
 
-#load(here::here("a_nhanes.rda"))
+load(here::here("a_nhanes.rda"))
+a_nhanes <- a_nhanes  %>% drop_na(tlac.1)
 
-
+a_nhanes<-a_nhanes %>% 
+  mutate(alcohol = ifelse(drinkstatus=="Missing alcohol", NA, drinkstatus))
 
 # Define sets of predictors 
 vip_vars <-c("age", "gender")
 demog_vars <- c("age", "gender", "educationadult")
-life_vars <- c("bmi", "smokecigs" , "drinkstatus")
+life_vars <- c("bmi", "smokecigs" , "alcohol")
 health_vars <- c("diabetes", "chf", "cancer" , "stroke")
 physio_vars <- c("sys","lbxtc",  "lbdhdd")
 pa_vars <- c( "tac" ,"tlac" ,"mvpa", "wt" , "tlac.1", "tlac.2","tlac.3","tlac.4","tlac.5","tlac.6","tlac.7","tlac.8","tlac.9","tlac.10","tlac.11","tlac.12" )
@@ -39,7 +41,7 @@ Number and percentage of missing.
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 # devtools::install_github("rstudio/gt")
 a_nhanes %>%
-  select(-seqn) %>%
+  select(all_of(vars)) %>%
   miss_var_summary() %>%
   gt::gt() %>%
   gt::cols_label(
@@ -80,7 +82,7 @@ a_nhanes %>%
 
 ```
 
-Overall, 18% are missing when all variables are included in a model. There is no missingness in the VIPs and less than 1% in life style variables such as smoking and alcohol consumption.
+Overall, 13% are missing when all variables are included in a model. There is no missingness in the VIPs and 7% in life style variables such as smoking and alcohol consumption.
 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
@@ -90,22 +92,24 @@ a_nhanes %>%
 ```
 
 
-```{r, results='asis', message =FALSE, warning =FALSE , echo=FALSE, eval=FALSE}
-
 ## Variable summaries for complete vs incomplete cases
 
 
-a_nhanes$mvpamiss<-"incomplete"
-idx<-which(is.na(a_nhanes$mvpa))
-a_nhanes$mvpamiss[idx]<-"complete"
+
+```{r, results='asis',message =FALSE, warning =FALSE , echo=FALSE}
 
 
-vars<-c(demog_vars, health_vars,  "tlac", "wt", "mvpamiss" )
+#ifelse(apply(a_bact[,c(acute_related_vars)],1,any_miss),NA,1)
+a_nhanes$miss<-ifelse(apply(a_nhanes,1,any_miss),"incomplete","complete")
 
-nhanes_complete<-tableby(mvpamiss ~ ., data=a_nhanes[,vars], test=TRUE, numeric.stats=c("median","q1q3", "range"))
+
+
+vars<-c(demog_vars, health_vars, life_vars, "tlac", "wt", "miss" )
+
+nhanes_complete<-tableby(miss ~ ., data=a_nhanes[,vars], test=TRUE, numeric.stats=c("median","q1q3", "range"))
 
 # need results='asis' above for this to look good in the output
-summary(nhanes_complete, title = "Participant characteristics by missing status of MVPA")
+summary(nhanes_complete, title = "Participant characteristics by missing status")
 
 ```
 
@@ -131,17 +135,43 @@ plot(hobj, cex=0.5)
 
 
 
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
+```{r, message =FALSE, warning =FALSE , echo=FALSE, fig.width==10}
 aggr(a_nhanes[,c(demog_vars, life_vars, health_vars)],numbers=TRUE)
 ```
 
+Missing values for each participant in the NHANES dataset is shown in the following figure, where the black lines correspond to observations with missing values.
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 a_nhanes %>%
-  select(demog_vars, life_vars, health_vars) %>%
+  select(demog_vars, life_vars, health_vars, physio_vars) %>%
   naniar::vis_miss(sort_miss = TRUE, show_perc_col = TRUE) 
 ```
 
+
+There are **`r n_var_miss(a_nhanes[,c(demog_vars, life_vars, physio_vars, health_vars)])`** independent variables with missing values in the dataset.
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+gg_miss_upset(a_nhanes[,c(demog_vars, life_vars, physio_vars, health_vars)], 
+              nsets = 10,
+              nintersects = NA)
+```
+
+Physiological variables (blood pressure, cholesterol) have the highest proportion of missingness. There does not seem to be a pattern of missingness across variables, other than the cholesterol (toal, HDL) variables.
+
+
+
+In addition, we can explore missing data mechanisms and relationships between BMI and systolic blood pressure, included in the same scatterplot:
+
+
+```{r, message =FALSE, warning =FALSE , echo=FALSE}
+ggplot(a_nhanes,
+       aes(x = bmi,
+           y = sys)) +
+ geom_miss_point() +
+facet_wrap(~gender)
+```
+
+Missing values are seen across the same range of values for the other variable. There is an extreme value in BMI for males that is likely an entry error.
 
 
 ## (In)complete cases
@@ -160,8 +190,10 @@ Then we report the pattern of missing for this set of patients.
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 cc %>%
-  select(demog_vars, life_vars, health_vars) %>%
+  select(demog_vars, life_vars, health_vars, physio_vars) %>%
   naniar::vis_miss(sort_miss = TRUE, show_perc_col = TRUE) 
+
+
 ```
 
 
