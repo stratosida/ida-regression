@@ -37,7 +37,7 @@ a_nhanes$agegrp<-cut(a_nhanes$age, breaks=c(0, 45, 60, 75, Inf), labels=c("30-44
 # Define sets of predictors 
 vip_vars <-c("age", "gender")
 demog_vars <- c("age", "gender", "educationadult")
-life_vars <- c("bmi", "smokecigs" , "drinkstatus")
+life_vars <- c("bmi", "smokecigs" , "alcohol")
 health_vars <- c("diabetes", "chf", "cancer" , "stroke")
 physio_vars <- c("sys","lbxtc",  "lbdhdd")
 pa_vars <- c( "tac" ,"tlac" ,"mvpa", "wt" , "tlac.1", "tlac.2","tlac.3","tlac.4","tlac.5","tlac.6","tlac.7","tlac.8","tlac.9","tlac.10","tlac.11","tlac.12" )
@@ -142,7 +142,7 @@ plot(vc_nhanes, cex=0.7)
 Redundancy analysis of predictor variables. 
 
 ```{r}
-Hmisc::redun( ~ age +gender+ bmi+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus + diabetes+ chf+ cancer + stroke  , data = a_nhanes)
+Hmisc::redun( ~ age +gender+ bmi+ sys+ lbxtc+  lbdhdd+ smokecigs +  diabetes+ chf+ cancer + stroke  , data = a_nhanes)
 ```
 
 
@@ -171,7 +171,7 @@ a_nhanes %>%
 ```{r, results="asis"}
 s <-
   Hmisc::summaryM(
-     age+bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus+  diabetes+ chf+ cancer + stroke ~ gender,
+     age+bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + alcohol+  diabetes+ chf+ cancer + stroke ~ gender,
     data = a_nhanes,
     overall = FALSE,
     test = FALSE
@@ -199,7 +199,7 @@ sub<-a_nhanes[a_nhanes$gender=="Male",]
 
 s <-
   Hmisc::summaryM(
-     bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus + diabetes+ chf+ cancer + stroke ~ agegrp,
+     bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + alcohol + diabetes+ chf+ cancer + stroke ~ agegrp,
     data = sub,
     overall = FALSE,
     test = FALSE
@@ -229,7 +229,7 @@ sub[,c("agegrp", "educationadult", life_vars, physio_vars, health_vars)] %>%
                      all_categorical() ~ "{n} / {N} ({p}%)"),
     digits = all_continuous() ~ 2,
     label = list( smokecigs ~ "Smoking status",
-                  drinkstatus ~ "Alcohol consumption",
+                  alcohol ~ "Alcohol consumption",
                   educationadult ~ "Education level",
                   lbxtc ~ "Total cholesterol",
                   lbdhdd ~ "HDL"),
@@ -249,7 +249,7 @@ sub<-a_nhanes[a_nhanes$gender=="Female",]
 
 s <-
   Hmisc::summaryM(
-     bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + drinkstatus + diabetes+ chf+ cancer + stroke ~ agegrp,
+     bmi+ educationadult+ sys+ lbxtc+  lbdhdd+ smokecigs + alcohol + diabetes+ chf+ cancer + stroke ~ agegrp,
     data = sub,
     overall = FALSE,
     test = FALSE

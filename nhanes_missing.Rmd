@@ -17,10 +17,7 @@ library(VIM)
 load(here::here("data", "a_nhanes.rda"))
 
 #load(here::here("a_nhanes.rda"))
-a_nhanes <- a_nhanes  %>% drop_na(tlac.1)
-
-a_nhanes<-a_nhanes %>% 
-  mutate(alcohol = ifelse(drinkstatus=="Missing alcohol", NA, drinkstatus))
+#save(a_nhanes, file = here::here("data", "a_nhanes.rda"))
 
 # Define sets of predictors 
 vip_vars <-c("age", "gender")
@@ -118,26 +115,6 @@ summary(nhanes_complete, title = "Participant characteristics by missing status"
 
 ## Missingness patterns over variables
 
-
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE, eval=FALSE}
-
-# This is a dendogram that shows which variables tend to be missing together:
-  
-s_nhanes <- a_nhanes[sample(1:nrow(a_nhanes), size=10000, repl=TRUE), ]
-is_nhanes <- is.na(a_nhanes)*1
-
-perc_miss <- round(apply(is_nhanes, 2, mean)*100,0)
-colnames(is_nhanes)<-paste(colnames(is_nhanes),"(",perc_miss,")",sep="")
-hobj <- hclust(dist(t(is_nhanes)))
-plot(hobj, cex=0.5)
-```
-
-
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE, fig.width==10}
-aggr(a_nhanes[,c(demog_vars, life_vars, health_vars)],numbers=TRUE)
-```
 
 Missing values for each participant in the NHANES dataset is shown in the following figure, where the black lines correspond to observations with missing values.
 

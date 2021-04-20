@@ -63,7 +63,7 @@ a_nhanes %>%
 ```{r desc_a_nhanesc,  results='asis', }
 a_nhanes %>%
   dplyr::select(all_of(physio_vars)) %>%
-  Hmisc::describe(descript = "Physiological measurements") %>%
+  Hmisc::describe(descript = "Lab measurements") %>%
   Hmisc::html(size = 80)
 ```
 
@@ -93,7 +93,7 @@ We now provide a closer visual examination of the categorical predictors.
 
 ```{r catplot,  fig.height=10}
 a_nhanes %>%
-  dplyr::select(gender, educationadult,  smokecigs , drinkstatus, health_vars) %>%
+  dplyr::select(gender, educationadult,  smokecigs , alcohol, health_vars) %>%
   dplyr::mutate_all(forcats::as_factor) %>%   
   dplyr::mutate_all(forcats::fct_explicit_na, "NA") %>%
   tidyr::pivot_longer(
@@ -111,7 +111,7 @@ a_nhanes %>%
     var_label = case_when(var == "gender" ~ "Gender",
                           var == "educationadult" ~ "Education status",
                           var == "smokecigs" ~ "Smoking status",
-                          var == "drinkstatus" ~ "Alcohol consumption",
+                          var == "alcohol" ~ "Alcohol consumption",
                           var == "diabetes" ~ "Diabetes", 
                           var == "chf" ~ "Congestive heart failure", 
                           var == "cancer"~ "Cancer" , 

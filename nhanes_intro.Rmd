@@ -105,11 +105,12 @@ nhanes_subset <-
     seqn,           # respondent sequence number
     age,            # age at examination, years
     gender,          # gender, Male, Female
-    permth.exm,      # Person Months of Follow-up from MEC/Exam Date, follow-up time [years] =permth.exm/12
+ #   permth.exm,      # Person Months of Follow-up from MEC/Exam Date, follow-up time [years] =permth.exm/12
 #    mortstat,        # Final mortality status, 0, 1, NAs for individuals with follow up less than 5 years and alive)
     educationadult,  # education level ("Less than high school", "High school", "More than high school")
     smokecigs,       # smoking status (Current, Former, Never) 
-    drinkstatus,     # alcohol consumption (Non-Drinker, Moderate Drinker, Heavy Drinker, Missing alcohol)
+    drinkstatus,     # alcohol consumption (Non-Drinker, Moderate Drinker, Heavy Drinker,   Missing alcohol)
+    alcohol,           #alcohol consumption (Non-Drinker, Moderate Drinker, Heavy Drinker,NA)
     bmi ,            # body mass index , kg/m2
     diabetes,        # diabetes (No-Yes)
     chf ,            # congestive heart failure (No-Yes)
@@ -146,14 +147,14 @@ a_nhanes <- Hmisc::upData(
     seqn= 'respondent sequence number',
     gender= 'gender',
     age = 'age',
-    permth.exm = 'Person Months of Follow-up from MEC/Exam Date',
+    #permth.exm = 'Person Months of Follow-up from MEC/Exam Date',
     sys = 'Systolic blood pressure',
     lbxtc = 'Total cholesterol',
     lbdhdd = 'HDL cholesterol',
     mvpa = "Moderate or vigorous physical activity",
     educationadult = 'education level',
     smokecigs = 'smoking status',
-    drinkstatus = 'alcohol consumption', 
+    alcohol = 'alcohol consumption', 
     bmi = 'body mass index', 
     diabetes ='diabetes' ,
     chf = 'congestive heart failure', 
