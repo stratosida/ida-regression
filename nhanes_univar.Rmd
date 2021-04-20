@@ -30,7 +30,7 @@ load(here::here("data", "a_nhanes.rda"))
 # Define sets of predictors 
 vip_vars <-c("age", "gender")
 demog_vars <- c("age", "gender", "educationadult")
-life_vars <- c("bmi", "smokecigs" , "drinkstatus")
+life_vars <- c("bmi", "smokecigs" , "alcohol")
 health_vars <- c("diabetes", "chf", "cancer" , "stroke")
 physio_vars <- c("sys","lbxtc",  "lbdhdd")
 pa_vars <- c( "tac" ,"tlac" ,"mvpa", "wt" , "tlac.1", "tlac.2","tlac.3","tlac.4","tlac.5","tlac.6","tlac.7","tlac.8","tlac.9","tlac.10","tlac.11","tlac.12" )
