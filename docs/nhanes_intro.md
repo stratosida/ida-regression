@@ -82,38 +82,38 @@ We select the variables of interest for the modeling by dropping variables we do
 
 We display the contents (data dictionary)  to ensure the additional data is added, and then write back the changes to the data folder in the file "data/a_nhanes.rda". 
 
-Input object size:	 1361536 bytes;	 31 variables	 6680 observations
-New object size:	1361536 bytes;	31 variables	6680 observations
+Input object size:	 1360968 bytes;	 31 variables	 6680 observations
+New object size:	1361512 bytes;	31 variables	6680 observations
 
 ```{=html}
 <hr><h4>Data frame:a_nhanes</h4>6680 observations and 31 variables, maximum # NAs:708  
  <hr>
  <style>
- .hmisctable749432 {
+ .hmisctable785042 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable749432 td {
+ .hmisctable785042 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable749432 th {
+ .hmisctable785042 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable749432" border="1">
+ <table class="hmisctable785042" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>seqn</td><td>respondent sequence number</td><td></td><td></td><td>integer</td><td>integer</td><td>  0</td></tr>
  <tr><td>age</td><td>age</td><td>years</td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
  <tr><td>gender</td><td>gender</td><td></td><td><a href="#levels.gender">2</a></td><td></td><td>integer</td><td>  0</td></tr>
- <tr><td>permth.exm</td><td>Person Months of Follow-up from MEC/Exam Date</td><td></td><td></td><td>integer</td><td>integer</td><td>  9</td></tr>
  <tr><td>educationadult</td><td>education level</td><td></td><td><a href="#levels.educationadult">3</a></td><td></td><td>integer</td><td>  7</td></tr>
  <tr><td>smokecigs</td><td>smoking status</td><td></td><td><a href="#levels.smokecigs">3</a></td><td></td><td>integer</td><td>  4</td></tr>
  <tr><td>drinkstatus</td><td>alcohol consumption</td><td></td><td><a href="#levels.drinkstatus">4</a></td><td></td><td>integer</td><td>  0</td></tr>
+ <tr><td>alcohol</td><td>alcohol consumption</td><td></td><td></td><td>integer</td><td>integer</td><td>466</td></tr>
  <tr><td>bmi</td><td>body mass index</td><td>kg/m2</td><td></td><td>numeric</td><td>double</td><td> 56</td></tr>
  <tr><td>diabetes</td><td>diabetes</td><td></td><td><a href="#levels.diabetes">2</a></td><td></td><td>integer</td><td>  0</td></tr>
  <tr><td>chf</td><td>congestive heart failure</td><td></td><td><a href="#levels.diabetes">2</a></td><td></td><td>integer</td><td>  0</td></tr>
@@ -142,23 +142,23 @@ New object size:	1361536 bytes;	31 variables	6680 observations
 
  <hr>
  <style>
- .hmisctable523528 {
+ .hmisctable500100 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable523528 td {
+ .hmisctable500100 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable523528 th {
+ .hmisctable500100 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable523528" border="1">
+ <table class="hmisctable500100" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.gender">gender</a></td><td>Male</td></tr>
  <tr><td></td><td>Female</td></tr>

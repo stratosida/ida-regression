@@ -9,11 +9,10 @@ library(Hmisc)
 
 #load(here::here("data", "nhanesdat.rdata"))
 
-load(here::here("a_nhanes.rda"))
+load(here::here("data","a_nhanes.rda"))
 
 ## remove missing
 #a_nhanes <- a_nhanes %>% drop_na(tlac.1)
-
 ```
 
 # Introduction to NHANES

@@ -35,23 +35,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 <hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable320676 {
+ .hmisctable925631 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable320676 td {
+ .hmisctable925631 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable320676 th {
+ .hmisctable925631 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable320676" border="1">
+ <table class="hmisctable925631" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
@@ -101,23 +101,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 
  <hr>
  <style>
- .hmisctable524027 {
+ .hmisctable282253 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable524027 td {
+ .hmisctable282253 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable524027 th {
+ .hmisctable282253 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable524027" border="1">
+ <table class="hmisctable282253" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.source">source</a></td><td>telephone</td></tr>
  <tr><td></td><td>telephone entered manually</td></tr>
@@ -184,23 +184,23 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 <hr><h4>Data frame:a_crash2</h4>20207 observations and 14 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable481592 {
+ .hmisctable829501 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable481592 td {
+ .hmisctable829501 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable481592 th {
+ .hmisctable829501 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable481592" border="1">
+ <table class="hmisctable829501" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>trandomised</td><td>Date of Randomization</td><td></td><td></td><td>Date</td><td>double</td><td>    0</td></tr>
@@ -220,23 +220,23 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 
  <hr>
  <style>
- .hmisctable923897 {
+ .hmisctable951721 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable923897 td {
+ .hmisctable951721 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable923897 th {
+ .hmisctable951721 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable923897" border="1">
+ <table class="hmisctable951721" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.sex">sex</a></td><td>male</td></tr>
  <tr><td></td><td>female</td></tr>
