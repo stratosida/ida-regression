@@ -35,23 +35,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 <hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable785200 {
+ .hmisctable930183 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable785200 td {
+ .hmisctable930183 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable785200 th {
+ .hmisctable930183 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable785200" border="1">
+ <table class="hmisctable930183" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
@@ -101,23 +101,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 
  <hr>
  <style>
- .hmisctable156303 {
+ .hmisctable508381 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable156303 td {
+ .hmisctable508381 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable156303 th {
+ .hmisctable508381 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable156303" border="1">
+ <table class="hmisctable508381" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.source">source</a></td><td>telephone</td></tr>
  <tr><td></td><td>telephone entered manually</td></tr>
@@ -184,23 +184,23 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 <hr><h4>Data frame:a_crash2</h4>20207 observations and 14 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable445125 {
+ .hmisctable525819 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable445125 td {
+ .hmisctable525819 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable445125 th {
+ .hmisctable525819 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable445125" border="1">
+ <table class="hmisctable525819" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>trandomised</td><td>Date of Randomization</td><td></td><td></td><td>Date</td><td>double</td><td>    0</td></tr>
@@ -220,23 +220,23 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 
  <hr>
  <style>
- .hmisctable981117 {
+ .hmisctable975283 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable981117 td {
+ .hmisctable975283 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable981117 th {
+ .hmisctable975283 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable981117" border="1">
+ <table class="hmisctable975283" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.sex">sex</a></td><td>male</td></tr>
  <tr><td></td><td>female</td></tr>
@@ -297,9 +297,9 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 ## [55] rmarkdown_2.7       gtable_0.3.0        DBI_1.1.1          
 ## [58] R6_2.5.0            gridExtra_2.3       lubridate_1.7.9.2  
 ## [61] knitr_1.31          utf8_1.1.4          rprojroot_2.0.2    
-## [64] stringi_1.5.3       Rcpp_1.0.6          vctrs_0.3.6        
-## [67] rpart_4.1-15        png_0.1-7           dbplyr_2.1.0       
-## [70] tidyselect_1.1.0    xfun_0.21
+## [64] stringi_1.5.3       rmdformats_1.0.1    Rcpp_1.0.6         
+## [67] vctrs_0.3.6         rpart_4.1-15        png_0.1-7          
+## [70] dbplyr_2.1.0        tidyselect_1.1.0    xfun_0.21
 ```
 
 

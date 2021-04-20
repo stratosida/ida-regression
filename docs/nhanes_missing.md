@@ -14,7 +14,7 @@ Number and percentage of missing.
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#kmwtioxsfs .gt_table {
+#ggqcjtzybs .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -39,7 +39,7 @@ Number and percentage of missing.
   border-left-color: #D3D3D3;
 }
 
-#kmwtioxsfs .gt_heading {
+#ggqcjtzybs .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -51,7 +51,7 @@ Number and percentage of missing.
   border-right-color: #D3D3D3;
 }
 
-#kmwtioxsfs .gt_title {
+#ggqcjtzybs .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -61,7 +61,7 @@ Number and percentage of missing.
   border-bottom-width: 0;
 }
 
-#kmwtioxsfs .gt_subtitle {
+#ggqcjtzybs .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -71,13 +71,13 @@ Number and percentage of missing.
   border-top-width: 0;
 }
 
-#kmwtioxsfs .gt_bottom_border {
+#ggqcjtzybs .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kmwtioxsfs .gt_col_headings {
+#ggqcjtzybs .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -92,7 +92,7 @@ Number and percentage of missing.
   border-right-color: #D3D3D3;
 }
 
-#kmwtioxsfs .gt_col_heading {
+#ggqcjtzybs .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -112,7 +112,7 @@ Number and percentage of missing.
   overflow-x: hidden;
 }
 
-#kmwtioxsfs .gt_column_spanner_outer {
+#ggqcjtzybs .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -124,15 +124,15 @@ Number and percentage of missing.
   padding-right: 4px;
 }
 
-#kmwtioxsfs .gt_column_spanner_outer:first-child {
+#ggqcjtzybs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kmwtioxsfs .gt_column_spanner_outer:last-child {
+#ggqcjtzybs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kmwtioxsfs .gt_column_spanner {
+#ggqcjtzybs .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -144,7 +144,7 @@ Number and percentage of missing.
   width: 100%;
 }
 
-#kmwtioxsfs .gt_group_heading {
+#ggqcjtzybs .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -166,7 +166,7 @@ Number and percentage of missing.
   vertical-align: middle;
 }
 
-#kmwtioxsfs .gt_empty_group_heading {
+#ggqcjtzybs .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -181,15 +181,15 @@ Number and percentage of missing.
   vertical-align: middle;
 }
 
-#kmwtioxsfs .gt_from_md > :first-child {
+#ggqcjtzybs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kmwtioxsfs .gt_from_md > :last-child {
+#ggqcjtzybs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kmwtioxsfs .gt_row {
+#ggqcjtzybs .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -208,7 +208,7 @@ Number and percentage of missing.
   overflow-x: hidden;
 }
 
-#kmwtioxsfs .gt_stub {
+#ggqcjtzybs .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -220,7 +220,7 @@ Number and percentage of missing.
   padding-left: 12px;
 }
 
-#kmwtioxsfs .gt_summary_row {
+#ggqcjtzybs .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -230,7 +230,7 @@ Number and percentage of missing.
   padding-right: 5px;
 }
 
-#kmwtioxsfs .gt_first_summary_row {
+#ggqcjtzybs .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -240,7 +240,7 @@ Number and percentage of missing.
   border-top-color: #D3D3D3;
 }
 
-#kmwtioxsfs .gt_grand_summary_row {
+#ggqcjtzybs .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -250,7 +250,7 @@ Number and percentage of missing.
   padding-right: 5px;
 }
 
-#kmwtioxsfs .gt_first_grand_summary_row {
+#ggqcjtzybs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -260,11 +260,11 @@ Number and percentage of missing.
   border-top-color: #D3D3D3;
 }
 
-#kmwtioxsfs .gt_striped {
+#ggqcjtzybs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kmwtioxsfs .gt_table_body {
+#ggqcjtzybs .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -273,7 +273,7 @@ Number and percentage of missing.
   border-bottom-color: #D3D3D3;
 }
 
-#kmwtioxsfs .gt_footnotes {
+#ggqcjtzybs .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -287,13 +287,13 @@ Number and percentage of missing.
   border-right-color: #D3D3D3;
 }
 
-#kmwtioxsfs .gt_footnote {
+#ggqcjtzybs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#kmwtioxsfs .gt_sourcenotes {
+#ggqcjtzybs .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -307,46 +307,46 @@ Number and percentage of missing.
   border-right-color: #D3D3D3;
 }
 
-#kmwtioxsfs .gt_sourcenote {
+#ggqcjtzybs .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#kmwtioxsfs .gt_left {
+#ggqcjtzybs .gt_left {
   text-align: left;
 }
 
-#kmwtioxsfs .gt_center {
+#ggqcjtzybs .gt_center {
   text-align: center;
 }
 
-#kmwtioxsfs .gt_right {
+#ggqcjtzybs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kmwtioxsfs .gt_font_normal {
+#ggqcjtzybs .gt_font_normal {
   font-weight: normal;
 }
 
-#kmwtioxsfs .gt_font_bold {
+#ggqcjtzybs .gt_font_bold {
   font-weight: bold;
 }
 
-#kmwtioxsfs .gt_font_italic {
+#ggqcjtzybs .gt_font_italic {
   font-style: italic;
 }
 
-#kmwtioxsfs .gt_super {
+#ggqcjtzybs .gt_super {
   font-size: 65%;
 }
 
-#kmwtioxsfs .gt_footnote_marks {
+#ggqcjtzybs .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="kmwtioxsfs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ggqcjtzybs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -456,7 +456,7 @@ Investigate for groups of variables:
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#irngtyjgyp .gt_table {
+#dqynkywdxq .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -481,7 +481,7 @@ Investigate for groups of variables:
   border-left-color: #D3D3D3;
 }
 
-#irngtyjgyp .gt_heading {
+#dqynkywdxq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -493,7 +493,7 @@ Investigate for groups of variables:
   border-right-color: #D3D3D3;
 }
 
-#irngtyjgyp .gt_title {
+#dqynkywdxq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -503,7 +503,7 @@ Investigate for groups of variables:
   border-bottom-width: 0;
 }
 
-#irngtyjgyp .gt_subtitle {
+#dqynkywdxq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -513,13 +513,13 @@ Investigate for groups of variables:
   border-top-width: 0;
 }
 
-#irngtyjgyp .gt_bottom_border {
+#dqynkywdxq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#irngtyjgyp .gt_col_headings {
+#dqynkywdxq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -534,7 +534,7 @@ Investigate for groups of variables:
   border-right-color: #D3D3D3;
 }
 
-#irngtyjgyp .gt_col_heading {
+#dqynkywdxq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -554,7 +554,7 @@ Investigate for groups of variables:
   overflow-x: hidden;
 }
 
-#irngtyjgyp .gt_column_spanner_outer {
+#dqynkywdxq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -566,15 +566,15 @@ Investigate for groups of variables:
   padding-right: 4px;
 }
 
-#irngtyjgyp .gt_column_spanner_outer:first-child {
+#dqynkywdxq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#irngtyjgyp .gt_column_spanner_outer:last-child {
+#dqynkywdxq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#irngtyjgyp .gt_column_spanner {
+#dqynkywdxq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -586,7 +586,7 @@ Investigate for groups of variables:
   width: 100%;
 }
 
-#irngtyjgyp .gt_group_heading {
+#dqynkywdxq .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -608,7 +608,7 @@ Investigate for groups of variables:
   vertical-align: middle;
 }
 
-#irngtyjgyp .gt_empty_group_heading {
+#dqynkywdxq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -623,15 +623,15 @@ Investigate for groups of variables:
   vertical-align: middle;
 }
 
-#irngtyjgyp .gt_from_md > :first-child {
+#dqynkywdxq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#irngtyjgyp .gt_from_md > :last-child {
+#dqynkywdxq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#irngtyjgyp .gt_row {
+#dqynkywdxq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -650,7 +650,7 @@ Investigate for groups of variables:
   overflow-x: hidden;
 }
 
-#irngtyjgyp .gt_stub {
+#dqynkywdxq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -662,7 +662,7 @@ Investigate for groups of variables:
   padding-left: 12px;
 }
 
-#irngtyjgyp .gt_summary_row {
+#dqynkywdxq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -672,7 +672,7 @@ Investigate for groups of variables:
   padding-right: 5px;
 }
 
-#irngtyjgyp .gt_first_summary_row {
+#dqynkywdxq .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -682,7 +682,7 @@ Investigate for groups of variables:
   border-top-color: #D3D3D3;
 }
 
-#irngtyjgyp .gt_grand_summary_row {
+#dqynkywdxq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -692,7 +692,7 @@ Investigate for groups of variables:
   padding-right: 5px;
 }
 
-#irngtyjgyp .gt_first_grand_summary_row {
+#dqynkywdxq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -702,11 +702,11 @@ Investigate for groups of variables:
   border-top-color: #D3D3D3;
 }
 
-#irngtyjgyp .gt_striped {
+#dqynkywdxq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#irngtyjgyp .gt_table_body {
+#dqynkywdxq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -715,7 +715,7 @@ Investigate for groups of variables:
   border-bottom-color: #D3D3D3;
 }
 
-#irngtyjgyp .gt_footnotes {
+#dqynkywdxq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -729,13 +729,13 @@ Investigate for groups of variables:
   border-right-color: #D3D3D3;
 }
 
-#irngtyjgyp .gt_footnote {
+#dqynkywdxq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#irngtyjgyp .gt_sourcenotes {
+#dqynkywdxq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -749,46 +749,46 @@ Investigate for groups of variables:
   border-right-color: #D3D3D3;
 }
 
-#irngtyjgyp .gt_sourcenote {
+#dqynkywdxq .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#irngtyjgyp .gt_left {
+#dqynkywdxq .gt_left {
   text-align: left;
 }
 
-#irngtyjgyp .gt_center {
+#dqynkywdxq .gt_center {
   text-align: center;
 }
 
-#irngtyjgyp .gt_right {
+#dqynkywdxq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#irngtyjgyp .gt_font_normal {
+#dqynkywdxq .gt_font_normal {
   font-weight: normal;
 }
 
-#irngtyjgyp .gt_font_bold {
+#dqynkywdxq .gt_font_bold {
   font-weight: bold;
 }
 
-#irngtyjgyp .gt_font_italic {
+#dqynkywdxq .gt_font_italic {
   font-style: italic;
 }
 
-#irngtyjgyp .gt_super {
+#dqynkywdxq .gt_super {
   font-size: 65%;
 }
 
-#irngtyjgyp .gt_footnote_marks {
+#dqynkywdxq .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="irngtyjgyp" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="dqynkywdxq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -842,7 +842,7 @@ Investigate for groups of variables:
 Overall, 13% are missing when all variables are included in a model. There is no missingness in the VIPs and 7% in life style variables such as smoking and alcohol consumption.
 
 
-<img src="nhanes_missing_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="nhanes_missing_files/figure-html/unnamed-chunk-4-1.png" width="768" />
 
 
 ## Variable summaries for complete vs incomplete cases
@@ -850,7 +850,7 @@ Overall, 13% are missing when all variables are included in a model. There is no
 
 
 
-Table: (\#tab:unnamed-chunk-5)Participant characteristics by missing status
+Table: Participant characteristics by missing status
 
 |                                               | complete (N=5204)  | incomplete (N=1476) |   Total (N=6680)   | p value|
 |:----------------------------------------------|:------------------:|:-------------------:|:------------------:|-------:|
@@ -908,12 +908,12 @@ Table: (\#tab:unnamed-chunk-5)Participant characteristics by missing status
 
 Missing values for each participant in the NHANES dataset is shown in the following figure, where the black lines correspond to observations with missing values.
 
-<img src="nhanes_missing_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="nhanes_missing_files/figure-html/unnamed-chunk-6-1.png" width="768" />
 
 
 There are **7** independent variables with missing values in the dataset.
 
-<img src="nhanes_missing_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="nhanes_missing_files/figure-html/unnamed-chunk-7-1.png" width="768" />
 
 Physiological variables (blood pressure, cholesterol) have the highest proportion of missingness. There does not seem to be a pattern of missingness across variables, other than the cholesterol (toal, HDL) variables.
 
@@ -922,7 +922,7 @@ Physiological variables (blood pressure, cholesterol) have the highest proportio
 In addition, we can explore missing data mechanisms and relationships between BMI and systolic blood pressure, included in the same scatterplot:
 
 
-<img src="nhanes_missing_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="nhanes_missing_files/figure-html/unnamed-chunk-8-1.png" width="768" />
 
 Missing values are seen across the same range of values for the other variable. There is an extreme value in BMI for males that is likely an entry error.
 
@@ -939,7 +939,7 @@ This section presents patients with a least one missing value. First we list out
 
 Then we report the pattern of missing for this set of patients.
 
-<img src="nhanes_missing_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="nhanes_missing_files/figure-html/unnamed-chunk-10-1.png" width="768" />
 
 
 
@@ -1004,7 +1004,7 @@ Then we report the pattern of missing for this set of patients.
 ## [82] sp_1.4-5            nnet_7.3-14         modelr_0.1.8       
 ## [85] crayon_1.4.1        car_3.0-10          utf8_1.1.4         
 ## [88] rmarkdown_2.7       jpeg_0.1-8.1        readxl_1.3.1       
-## [91] data.table_1.14.0   vcd_1.4-8           reprex_1.0.0       
-## [94] digest_0.6.27       webshot_0.5.2       munsell_0.5.0      
-## [97] viridisLite_0.3.0   bslib_0.2.4
+## [91] data.table_1.14.0   rmdformats_1.0.1    vcd_1.4-8          
+## [94] reprex_1.0.0        digest_0.6.27       webshot_0.5.2      
+## [97] munsell_0.5.0       viridisLite_0.3.0   bslib_0.2.4
 ```

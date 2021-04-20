@@ -7,6 +7,7 @@ knit: "rmarkdown::render_site"
 site: bookdown::bookdown_site
 output:
   rmdformats::readthedown:
+    code_folding: hide
     thumbnails: false
     lightbox: false
     gallery: TRUE
@@ -14,7 +15,6 @@ output:
     use_bookdown: TRUE
     toc_depth: 2
     fig_caption: false
-    code_folding: hide
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
