@@ -2,7 +2,7 @@
 title: "Regression without regrets"
 subtitle: "Workflow of initial data analyses"
 author: "M. Baillie, G. Heinze & M. Huebner"
-date: "`r Sys.Date()`"
+date: "2021-04-21"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
@@ -17,11 +17,7 @@ description: "The focus of this document/website is to provide guidance on condu
 ---
 
 
-```{r include = FALSE}
-## Load source function
-library(here)
-source(here::here("R", "ida_plot_univar.R"))
-```
+
 
 
 # Overview {-}

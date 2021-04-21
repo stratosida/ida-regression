@@ -4,25 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Statistical analysis plan | index.utf8</title>
-  <meta name="description" content="" />
+  <title>Chapter 5 Statistical analysis plan | Regression without regrets</title>
+  <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Statistical analysis plan | index.utf8" />
+  <meta property="og:title" content="Chapter 5 Statistical analysis plan | Regression without regrets" />
   <meta property="og:type" content="book" />
   
   
-  
-  
+  <meta property="og:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
+  <meta name="github-repo" content="bailliem/ida-regression-private" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Statistical analysis plan | index.utf8" />
+  <meta name="twitter:title" content="Chapter 5 Statistical analysis plan | Regression without regrets" />
   
-  
+  <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
 
+<meta name="author" content="M. Baillie, G. Heinze &amp; M. Huebner" />
 
 
+<meta name="date" content="2021-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,6 +63,354 @@
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
 
 
 <style type="text/css">
@@ -143,6 +493,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">IDA report</a></li>
 
 <li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="1" data-path="ida-framework.html"><a href="ida-framework.html"><i class="fa fa-check"></i><b>1</b> IDA Framework</a></li>
 <li class="chapter" data-level="2" data-path="scope-of-the-regression-analyses-for-the-examples.html"><a href="scope-of-the-regression-analyses-for-the-examples.html"><i class="fa fa-check"></i><b>2</b> Scope of the regression analyses for the examples</a></li>
 <li class="chapter" data-level="3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html"><i class="fa fa-check"></i><b>3</b> Data screening and possible actions</a>
@@ -206,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html"><i class="fa fa-check"></i><b>8</b> Multivariate distributions</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overview"><i class="fa fa-check"></i><b>8.1</b> Overview</a>
+<li class="chapter" data-level="8.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overview-1"><i class="fa fa-check"></i><b>8.1</b> Overview</a>
 <ul>
 <li class="chapter" data-level="8.1.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-correlation"><i class="fa fa-check"></i><b>8.1.1</b> Variable correlation</a></li>
 <li class="chapter" data-level="8.1.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-clustering"><i class="fa fa-check"></i><b>8.1.2</b> Variable clustering</a></li>
@@ -297,7 +648,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html"><i class="fa fa-check"></i><b>13</b> Multivariate distributions</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#overview-1"><i class="fa fa-check"></i><b>13.1</b> Overview</a>
+<li class="chapter" data-level="13.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#overview-2"><i class="fa fa-check"></i><b>13.1</b> Overview</a>
 <ul>
 <li class="chapter" data-level="13.1.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-correlation-1"><i class="fa fa-check"></i><b>13.1.1</b> Variable correlation</a></li>
 <li class="chapter" data-level="13.1.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-clustering-1"><i class="fa fa-check"></i><b>13.1.2</b> Variable clustering</a></li>
@@ -338,7 +689,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Regression without regrets</a>
           </h1>
         </div>
 
@@ -375,14 +726,14 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
 <p>Characteristics of injury measurements:</p>
 <ul>
 <li>Time since injury (<code>injurytime</code>, hours)</li>
-<li>Type of injury (<code>injurytype</code>, ‘blunt’, ‘penetrating’ or ‘blunt and penetrating’)</li>
+<li>Type of injury (<code>injurytype</code>, ‘blunt,’ ‘penetrating’ or ‘blunt and penetrating’)</li>
 </ul>
 <p>Restricted cubic splines with 3 degrees of freedom with knots set to default values will be used for continuous variables. As the final prediction model should be parsimonious enough to simplify its application, a backward elimination algorithm with a significance level set at <span class="math inline">\(\alpha=0.05\)</span> will be applied to remove statistically insignificant effects. Finally, nonlinear representation of each continuous variable will be tested against linear representation at <span class="math inline">\(\alpha=0.05\)</span>. In case of lacking added value of a nonlinear effect, the model will be refitted with a linear effect for that variable.</p>
 </div>
 <div id="remarks" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Remarks</h2>
 <ul>
-<li><p>Regarding type of injury, the original paper describes its treatment in the model as follows: ‘Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as ’penetrating’ or ‘blunt and penetrating.’ ’ It is not clear from that description what happened to the ‘blunt’ group. (I assume they were collapsed with ‘blunt and penetrating’.) ** we are going to consider the three categories, and then check aout recommendations for the final analysis-MH**</p></li>
+<li><p>Regarding type of injury, the original paper describes its treatment in the model as follows: ‘Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as ’penetrating’ or ‘blunt and penetrating.’ ’ It is not clear from that description what happened to the ‘blunt’ group. (I assume they were collapsed with ‘blunt and penetrating.’) ** we are going to consider the three categories, and then check aout recommendations for the final analysis-MH**</p></li>
 <li><p>The original paper describes the modeling approach as follows: ‘We used a backward step-wise approach. Firstly, we included all potential prognostic factors and interaction terms that users considered plausible. These interactions included all potential predictors with type of injury, time since injury, and age. We then removed, one at a time, terms for which we found no strong evidence of an association, judged according to the P values (&lt;0.05) from the Wald test.’ This would mean they tested at least 24 interaction terms, each possibly using several degrees of freedom! In the final model, only an interaction of Glasgow coma score and type of injury was included.</p></li>
 </ul>
 </div>
@@ -415,7 +766,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#adnbwmwxqp .gt_table {
+#sjokkvevtx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -440,7 +791,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-left-color: #D3D3D3;
 }
 
-#adnbwmwxqp .gt_heading {
+#sjokkvevtx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -452,7 +803,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-right-color: #D3D3D3;
 }
 
-#adnbwmwxqp .gt_title {
+#sjokkvevtx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -462,7 +813,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-bottom-width: 0;
 }
 
-#adnbwmwxqp .gt_subtitle {
+#sjokkvevtx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -472,13 +823,13 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-top-width: 0;
 }
 
-#adnbwmwxqp .gt_bottom_border {
+#sjokkvevtx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#adnbwmwxqp .gt_col_headings {
+#sjokkvevtx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -493,7 +844,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-right-color: #D3D3D3;
 }
 
-#adnbwmwxqp .gt_col_heading {
+#sjokkvevtx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -513,7 +864,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   overflow-x: hidden;
 }
 
-#adnbwmwxqp .gt_column_spanner_outer {
+#sjokkvevtx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -525,15 +876,15 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   padding-right: 4px;
 }
 
-#adnbwmwxqp .gt_column_spanner_outer:first-child {
+#sjokkvevtx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#adnbwmwxqp .gt_column_spanner_outer:last-child {
+#sjokkvevtx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#adnbwmwxqp .gt_column_spanner {
+#sjokkvevtx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -545,7 +896,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   width: 100%;
 }
 
-#adnbwmwxqp .gt_group_heading {
+#sjokkvevtx .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -567,7 +918,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   vertical-align: middle;
 }
 
-#adnbwmwxqp .gt_empty_group_heading {
+#sjokkvevtx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -582,15 +933,15 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   vertical-align: middle;
 }
 
-#adnbwmwxqp .gt_from_md > :first-child {
+#sjokkvevtx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#adnbwmwxqp .gt_from_md > :last-child {
+#sjokkvevtx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#adnbwmwxqp .gt_row {
+#sjokkvevtx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -609,7 +960,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   overflow-x: hidden;
 }
 
-#adnbwmwxqp .gt_stub {
+#sjokkvevtx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -621,7 +972,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   padding-left: 12px;
 }
 
-#adnbwmwxqp .gt_summary_row {
+#sjokkvevtx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -631,7 +982,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   padding-right: 5px;
 }
 
-#adnbwmwxqp .gt_first_summary_row {
+#sjokkvevtx .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -641,7 +992,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-top-color: #D3D3D3;
 }
 
-#adnbwmwxqp .gt_grand_summary_row {
+#sjokkvevtx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -651,7 +1002,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   padding-right: 5px;
 }
 
-#adnbwmwxqp .gt_first_grand_summary_row {
+#sjokkvevtx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -661,11 +1012,11 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-top-color: #D3D3D3;
 }
 
-#adnbwmwxqp .gt_striped {
+#sjokkvevtx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#adnbwmwxqp .gt_table_body {
+#sjokkvevtx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -674,7 +1025,7 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-bottom-color: #D3D3D3;
 }
 
-#adnbwmwxqp .gt_footnotes {
+#sjokkvevtx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -688,13 +1039,13 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-right-color: #D3D3D3;
 }
 
-#adnbwmwxqp .gt_footnote {
+#sjokkvevtx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#adnbwmwxqp .gt_sourcenotes {
+#sjokkvevtx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -708,46 +1059,46 @@ IDA may lead to an update or refinement of the analysis plan. To demonstrate the
   border-right-color: #D3D3D3;
 }
 
-#adnbwmwxqp .gt_sourcenote {
+#sjokkvevtx .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#adnbwmwxqp .gt_left {
+#sjokkvevtx .gt_left {
   text-align: left;
 }
 
-#adnbwmwxqp .gt_center {
+#sjokkvevtx .gt_center {
   text-align: center;
 }
 
-#adnbwmwxqp .gt_right {
+#sjokkvevtx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#adnbwmwxqp .gt_font_normal {
+#sjokkvevtx .gt_font_normal {
   font-weight: normal;
 }
 
-#adnbwmwxqp .gt_font_bold {
+#sjokkvevtx .gt_font_bold {
   font-weight: bold;
 }
 
-#adnbwmwxqp .gt_font_italic {
+#sjokkvevtx .gt_font_italic {
   font-style: italic;
 }
 
-#adnbwmwxqp .gt_super {
+#sjokkvevtx .gt_super {
   font-size: 65%;
 }
 
-#adnbwmwxqp .gt_footnote_marks {
+#sjokkvevtx .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="adnbwmwxqp" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="sjokkvevtx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
