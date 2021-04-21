@@ -3,18 +3,8 @@ title: "Regression without regrets"
 subtitle: "Workflow of initial data analyses"
 author: "M. Baillie, G. Heinze & M. Huebner"
 date: "`r Sys.Date()`"
-knit: "rmarkdown::render_site"
 site: bookdown::bookdown_site
-output:
-  rmdformats::readthedown:
-    code_folding: hide
-    thumbnails: false
-    lightbox: false
-    gallery: TRUE
-    highlight: tango
-    use_bookdown: TRUE
-    toc_depth: 2
-    fig_caption: false
+output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike

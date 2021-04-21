@@ -4,7 +4,7 @@ The IDA framework consists of six steps [Huebner et al 2018, Figure 1], here we 
 
 <div class="figure" style="text-align: center">
 <img src="C:/R/Projects/ida-regression-private-apr2/assets/ida.jpg" alt="IDA framework" width="100%" />
-<p class="caption">IDA framework</p>
+<p class="caption">(\#fig:ida)IDA framework</p>
 </div>
 
 
