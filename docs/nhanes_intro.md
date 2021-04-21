@@ -89,23 +89,23 @@ New object size:	1361512 bytes;	31 variables	6680 observations
 <hr><h4>Data frame:a_nhanes</h4>6680 observations and 31 variables, maximum # NAs:708  
  <hr>
  <style>
- .hmisctable588506 {
+ .hmisctable867032 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable588506 td {
+ .hmisctable867032 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable588506 th {
+ .hmisctable867032 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable588506" border="1">
+ <table class="hmisctable867032" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>seqn</td><td>respondent sequence number</td><td></td><td></td><td>integer</td><td>integer</td><td>  0</td></tr>
  <tr><td>age</td><td>age</td><td>years</td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
@@ -142,23 +142,23 @@ New object size:	1361512 bytes;	31 variables	6680 observations
 
  <hr>
  <style>
- .hmisctable236089 {
+ .hmisctable509007 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable236089 td {
+ .hmisctable509007 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable236089 th {
+ .hmisctable509007 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable236089" border="1">
+ <table class="hmisctable509007" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.gender">gender</a></td><td>Male</td></tr>
  <tr><td></td><td>Female</td></tr>

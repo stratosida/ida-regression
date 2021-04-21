@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Univariate distribution checks | index.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 Univariate distribution checks | index.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Univariate distribution checks | index.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="initial-data-analysis-plan-idap.html"/>
+<link rel="next" href="multivariate-distributions-1.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.17/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">IDA report</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="ida-framework.html"><a href="ida-framework.html"><i class="fa fa-check"></i><b>1</b> IDA Framework</a></li>
+<li class="chapter" data-level="2" data-path="scope-of-the-regression-analyses-for-the-examples.html"><a href="scope-of-the-regression-analyses-for-the-examples.html"><i class="fa fa-check"></i><b>2</b> Scope of the regression analyses for the examples</a></li>
+<li class="chapter" data-level="3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html"><i class="fa fa-check"></i><b>3</b> Data screening and possible actions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#univariate-distributions"><i class="fa fa-check"></i><b>3.1</b> Univariate distributions</a></li>
+<li class="chapter" data-level="3.2" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#bivariate-distributions"><i class="fa fa-check"></i><b>3.2</b> Bivariate distributions</a></li>
+<li class="chapter" data-level="3.3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#missing-values"><i class="fa fa-check"></i><b>3.3</b> Missing values</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="crash-2.html"><a href="crash-2.html"><i class="fa fa-check"></i>CRASH-2</a></li>
+<li class="chapter" data-level="4" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html"><i class="fa fa-check"></i><b>4</b> Introduction to CRASH-2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash-2-description"><i class="fa fa-check"></i><b>4.1</b> CRASH-2 Description</a></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash2-dataset-contents"><i class="fa fa-check"></i><b>4.2</b> Crash2 dataset contents</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#source-dataset"><i class="fa fa-check"></i><b>4.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="4.2.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#updated-analysis-dataset"><i class="fa fa-check"></i><b>4.2.2</b> Updated analysis dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#section-session-info"><i class="fa fa-check"></i><b>4.3</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html"><i class="fa fa-check"></i><b>5</b> Statistical analysis plan</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#outcome-variable"><i class="fa fa-check"></i><b>5.1</b> Outcome variable</a></li>
+<li class="chapter" data-level="5.2" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#statistical-methods"><i class="fa fa-check"></i><b>5.2</b> Statistical methods</a></li>
+<li class="chapter" data-level="5.3" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#remarks"><i class="fa fa-check"></i><b>5.3</b> Remarks</a></li>
+<li class="chapter" data-level="5.4" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#preparations"><i class="fa fa-check"></i><b>5.4</b> Preparations</a></li>
+<li class="chapter" data-level="5.5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#sources"><i class="fa fa-check"></i><b>5.5</b> Sources</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#data-dictionary"><i class="fa fa-check"></i><b>5.5.1</b> Data dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#references"><i class="fa fa-check"></i><b>5.6</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>6</b> Missing data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="missing-data.html"><a href="missing-data.html#per-variable-missingness"><i class="fa fa-check"></i><b>6.1</b> Per variable missingness</a></li>
+<li class="chapter" data-level="6.2" data-path="missing-data.html"><a href="missing-data.html#missingness-patterns-over-variables"><i class="fa fa-check"></i><b>6.2</b> Missingness patterns over variables</a></li>
+<li class="chapter" data-level="6.3" data-path="missing-data.html"><a href="missing-data.html#incomplete-cases"><i class="fa fa-check"></i><b>6.3</b> (In)complete cases</a></li>
+<li class="chapter" data-level="6.4" data-path="missing-data.html"><a href="missing-data.html#section-session-info-1"><i class="fa fa-check"></i><b>6.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html"><i class="fa fa-check"></i><b>7</b> Univariate distribution checks</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#data-set-overview"><i class="fa fa-check"></i><b>7.1</b> Data set overview</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#demographic-variables"><i class="fa fa-check"></i><b>7.1.1</b> Demographic variables</a></li>
+<li class="chapter" data-level="7.1.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#physiological-measurements"><i class="fa fa-check"></i><b>7.1.2</b> Physiological measurements</a></li>
+<li class="chapter" data-level="7.1.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#characteristics-of-injury"><i class="fa fa-check"></i><b>7.1.3</b> Characteristics of injury</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#categorical-variables"><i class="fa fa-check"></i><b>7.2</b> Categorical variables</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#categorical-ordinal-plots"><i class="fa fa-check"></i><b>7.2.1</b> Categorical ordinal plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#continuous-variables"><i class="fa fa-check"></i><b>7.3</b> Continuous variables</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#age"><i class="fa fa-check"></i><b>7.3.1</b> Age</a></li>
+<li class="chapter" data-level="7.3.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#blood-pressure"><i class="fa fa-check"></i><b>7.3.2</b> Blood pressure</a></li>
+<li class="chapter" data-level="7.3.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#respiratory-rate"><i class="fa fa-check"></i><b>7.3.3</b> Respiratory rate</a></li>
+<li class="chapter" data-level="7.3.4" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#heart-rate"><i class="fa fa-check"></i><b>7.3.4</b> Heart rate</a></li>
+<li class="chapter" data-level="7.3.5" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#central-capillary-refill-time"><i class="fa fa-check"></i><b>7.3.5</b> Central capillary refill time</a></li>
+<li class="chapter" data-level="7.3.6" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#hours-since-injury"><i class="fa fa-check"></i><b>7.3.6</b> Hours since injury</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#section-session-info-2"><i class="fa fa-check"></i><b>7.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html"><i class="fa fa-check"></i><b>8</b> Multivariate distributions</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overview"><i class="fa fa-check"></i><b>8.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-correlation"><i class="fa fa-check"></i><b>8.1.1</b> Variable correlation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-clustering"><i class="fa fa-check"></i><b>8.1.2</b> Variable clustering</a></li>
+<li class="chapter" data-level="8.1.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-redundancy"><i class="fa fa-check"></i><b>8.1.3</b> Variable redundancy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-sex"><i class="fa fa-check"></i><b>8.2</b> Summary reports by sex</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overall"><i class="fa fa-check"></i><b>8.2.1</b> Overall</a></li>
+<li class="chapter" data-level="8.2.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-age-by-sex"><i class="fa fa-check"></i><b>8.2.2</b> Distribution of age by sex</a></li>
+<li class="chapter" data-level="8.2.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-sex"><i class="fa fa-check"></i><b>8.2.3</b> Distribution of systolic blood pressure by sex</a></li>
+<li class="chapter" data-level="8.2.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-sex"><i class="fa fa-check"></i><b>8.2.4</b> Distribution of heart rate by sex</a></li>
+<li class="chapter" data-level="8.2.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-sex"><i class="fa fa-check"></i><b>8.2.5</b> Distribution of respiratory rate by sex</a></li>
+<li class="chapter" data-level="8.2.6" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-sex"><i class="fa fa-check"></i><b>8.2.6</b> Distribution of central capillary refille time by sex</a></li>
+<li class="chapter" data-level="8.2.7" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-hours-since-injury-by-sex"><i class="fa fa-check"></i><b>8.2.7</b> Distribution of hours since injury by sex</a></li>
+<li class="chapter" data-level="8.2.8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-glasgow-coma-score-by-sex"><i class="fa fa-check"></i><b>8.2.8</b> Distribution of Glasgow coma score by sex</a></li>
+<li class="chapter" data-level="8.2.9" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-injury-type-by-sex"><i class="fa fa-check"></i><b>8.2.9</b> Distribution of injury type by sex</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-age"><i class="fa fa-check"></i><b>8.3</b> Summary reports by age</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-age-categories"><i class="fa fa-check"></i><b>8.3.1</b> Distribution of systolic blood pressure by age categories</a></li>
+<li class="chapter" data-level="8.3.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-age-categories"><i class="fa fa-check"></i><b>8.3.2</b> Distribution of heart rate by age categories</a></li>
+<li class="chapter" data-level="8.3.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-age-categories"><i class="fa fa-check"></i><b>8.3.3</b> Distribution of respiratory rate by age categories</a></li>
+<li class="chapter" data-level="8.3.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-age-categories"><i class="fa fa-check"></i><b>8.3.4</b> Distribution of central capillary refille time by age categories</a></li>
+<li class="chapter" data-level="8.3.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#wip-multivariate-scatter-plots"><i class="fa fa-check"></i><b>8.3.5</b> WIP: multivariate scatter plots</a></li>
+<li class="chapter" data-level="8.3.6" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#wip-scatter-plots-with-a-third-or-fourth-variable"><i class="fa fa-check"></i><b>8.3.6</b> WIP: Scatter plots with a third or fourth variable</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4</b> Summary reports by Glasgow coma score</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-age-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.1</b> Distribution of age by Glasgow coma score</a></li>
+<li class="chapter" data-level="8.4.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.2</b> Distribution of systolic blood pressure by Glasgow coma score</a></li>
+<li class="chapter" data-level="8.4.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.3</b> Distribution of heart rate by Glasgow coma score</a></li>
+<li class="chapter" data-level="8.4.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.4</b> Distribution of respiratory rate by Glasgow coma score</a></li>
+<li class="chapter" data-level="8.4.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.5</b> Distribution of central capillary refille time by Glasgow coma score</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#section-session-info-3"><i class="fa fa-check"></i><b>8.5</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="national-health-and-nutrition-examination-survey-nhanes.html"><a href="national-health-and-nutrition-examination-survey-nhanes.html"><i class="fa fa-check"></i>National Health and Nutrition Examination Survey (NHANES)</a></li>
+<li class="chapter" data-level="9" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html"><i class="fa fa-check"></i><b>9</b> Introduction to NHANES</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#dataset-description"><i class="fa fa-check"></i><b>9.1</b> Dataset Description</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#variables"><i class="fa fa-check"></i><b>9.1.1</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-contents"><i class="fa fa-check"></i><b>9.2</b> NHANES dataset contents</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#source-dataset-1"><i class="fa fa-check"></i><b>9.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="9.2.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#data-dictionary-1"><i class="fa fa-check"></i><b>9.2.2</b> Data dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#references-1"><i class="fa fa-check"></i><b>9.3</b> References</a></li>
+<li class="chapter" data-level="9.4" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#section-session-info-4"><i class="fa fa-check"></i><b>9.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html"><i class="fa fa-check"></i><b>10</b> Initial data analysis plan (IDAP)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#statistical-methods-1"><i class="fa fa-check"></i><b>10.1</b> Statistical methods</a></li>
+<li class="chapter" data-level="10.2" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#initial-data-analysis-strategy"><i class="fa fa-check"></i><b>10.2</b> Initial data analysis strategy</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-missing-values"><i class="fa fa-check"></i><b>10.2.1</b> IDA domain: missing values</a></li>
+<li class="chapter" data-level="10.2.2" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-univariate-distributions"><i class="fa fa-check"></i><b>10.2.2</b> IDA domain: univariate distributions</a></li>
+<li class="chapter" data-level="10.2.3" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-multivariate-system-of-variables"><i class="fa fa-check"></i><b>10.2.3</b> IDA domain: multivariate system of variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html"><i class="fa fa-check"></i><b>11</b> Univariate distribution checks</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#data-set-overview-1"><i class="fa fa-check"></i><b>11.1</b> Data set overview</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#demographic-and-lifestyle-variables"><i class="fa fa-check"></i><b>11.1.1</b> Demographic and lifestyle variables</a></li>
+<li class="chapter" data-level="11.1.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#physiological-measurements-1"><i class="fa fa-check"></i><b>11.1.2</b> Physiological measurements</a></li>
+<li class="chapter" data-level="11.1.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#comorbidities"><i class="fa fa-check"></i><b>11.1.3</b> Comorbidities</a></li>
+<li class="chapter" data-level="11.1.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#physical-activity-variables"><i class="fa fa-check"></i><b>11.1.4</b> Physical activity variables</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#categorical-variables-1"><i class="fa fa-check"></i><b>11.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="11.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#continuous-variables-1"><i class="fa fa-check"></i><b>11.3</b> Continuous variables</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#age-1"><i class="fa fa-check"></i><b>11.3.1</b> Age</a></li>
+<li class="chapter" data-level="11.3.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#blood-pressure-1"><i class="fa fa-check"></i><b>11.3.2</b> Blood pressure</a></li>
+<li class="chapter" data-level="11.3.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#body-mass-index"><i class="fa fa-check"></i><b>11.3.3</b> Body mass index</a></li>
+<li class="chapter" data-level="11.3.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#outcome-time-of-moderate-or-vigrous-physical-activity-and-related-variables"><i class="fa fa-check"></i><b>11.3.4</b> Outcome= Time of moderate or vigrous physical activity and related variables</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#section-session-info-5"><i class="fa fa-check"></i><b>11.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html"><i class="fa fa-check"></i><b>12</b> Multivariate distributions</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#overview-1"><i class="fa fa-check"></i><b>12.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-correlation-1"><i class="fa fa-check"></i><b>12.1.1</b> Variable correlation</a></li>
+<li class="chapter" data-level="12.1.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-clustering-1"><i class="fa fa-check"></i><b>12.1.2</b> Variable clustering</a></li>
+<li class="chapter" data-level="12.1.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-redundancy-1"><i class="fa fa-check"></i><b>12.1.3</b> Variable redundancy</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-reports-by-pivotal-covariates-age-and-gender"><i class="fa fa-check"></i><b>12.2</b> Summary reports by pivotal covariates age and gender</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-age-by-gender"><i class="fa fa-check"></i><b>12.2.1</b> Distribution of age by gender</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-and-gender"><i class="fa fa-check"></i><b>12.3</b> Summary report by age group and gender</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-gender"><i class="fa fa-check"></i><b>12.3.1</b> Summary report by gender</a></li>
+<li class="chapter" data-level="12.3.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-for-men"><i class="fa fa-check"></i><b>12.3.2</b> Summary report by age group for men</a></li>
+<li class="chapter" data-level="12.3.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-for-women"><i class="fa fa-check"></i><b>12.3.3</b> Summary report by age group for women</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#continuous-variables-by-age-and-gender"><i class="fa fa-check"></i><b>12.4</b> Continuous variables by age and gender</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-systolic-blood-pressure"><i class="fa fa-check"></i><b>12.4.1</b> Distribution of systolic blood pressure</a></li>
+<li class="chapter" data-level="12.4.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-bmi"><i class="fa fa-check"></i><b>12.4.2</b> Distribution of BMI</a></li>
+<li class="chapter" data-level="12.4.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-wear-time"><i class="fa fa-check"></i><b>12.4.3</b> Distribution of wear time</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#physical-activity-data-outcome"><i class="fa fa-check"></i><b>12.5</b> Physical activity data (outcome)</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-mvpa"><i class="fa fa-check"></i><b>12.5.1</b> Distribution of MVPA</a></li>
+<li class="chapter" data-level="12.5.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-mvpa-and-total-log-activity-count-by-time-of-day"><i class="fa fa-check"></i><b>12.5.2</b> Distribution of MVPA and Total log activity count by time of day</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#section-session-info-6"><i class="fa fa-check"></i><b>12.6</b> Section session info</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="univariate-distribution-checks-1" class="section level1" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Univariate distribution checks</h1>
+<p>This section reports a series of univariate summary checks of the NHANES dataset.</p>
+<div id="data-set-overview-1" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> Data set overview</h2>
+<p>Using the <a href="https://cran.r-project.org/web/packages/Hmisc/">Hmisc</a> describe function, we provide an overview of the data set. The descriptive report also provides histograms of continuous variables. For ease of scanning the information, we group the report by measurement type.</p>
+<div id="demographic-and-lifestyle-variables" class="section level3" number="11.1.1">
+<h3><span class="header-section-number">11.1.1</span> Demographic and lifestyle variables</h3>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<script type="text/javascript">
+<!--
+    function expand_collapse(id) {
+       var e = document.getElementById(id);
+       var f = document.getElementById(id+"_earrows");
+       if(e.style.display == 'none'){
+          e.style.display = 'block';
+          f.innerHTML = '&#9650';
+       }
+       else {
+          e.style.display = 'none';
+          f.innerHTML = '&#9660';
+       }
+    }
+//-->
+</script>
+<style>
+.earrows {color:silver;font-size:11px;}
+
+fcap {
+ font-family: Verdana;
+ font-size: 12px;
+ color: MidnightBlue
+ }
+
+smg {
+ font-family: Verdana;
+ font-size: 10px;
+ color: &#808080;
+}
+
+hr.thinhr { margin-top: 0.15em; margin-bottom: 0.15em; }
+
+span.xscript {
+position: relative;
+}
+span.xscript sub {
+position: absolute;
+left: 0.1em;
+bottom: -1ex;
+}
+</style>
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Demographic and lifestyle variables <br><br> 6  Variables   6680  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">age</span> <span style='font-family:Verdana;font-size:75%;'>years</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAoElEQVQ4je2T3Q6AIAiFj77/Q1cSgsiaP7R10VlLUZRP50EiASlMEXshk4DacteNR2Q3WBHuxS4XBSUuGW6NfjCYq3yqFS47I8Ejl2y0yIVazVZ3lU16W7o/hsCOQwqXqjrC1UIaLnsCdXmDfLjss6NUfyArdpNNj9PZtuxdHlR+3OMqsm9gZqG6Y225EK5NOW/1E1ytfq5ZRfjxDZ1+PABl6gUDIyPyZgAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable330740 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable330740 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable330740 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable330740">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>6680</td><td>0</td><td>660</td><td>1</td><td>54.55</td><td>17.7</td><td>32.08</td><td>34.33</td><td>41.33</td><td>53.17</td><td>67.00</td><td>76.42</td><td>80.83</td></tr>
+ </table>
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> : 30.00000 30.08333 30.16667 30.25000 30.33333 ,  <font color="MidnightBlue">highest</font>: 84.58333 84.66667 84.75000 84.83333 84.91667</span> <hr class="thinhr"> <span style="font-weight:bold">gender</span> <style>
+ .hmisctable686875 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable686875 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable686875 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable686875">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>6680</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value        Male Female
+ Frequency    3294   3386
+ Proportion  0.493  0.507
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">educationadult</span>: education level<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAI0lEQVQImWNghAIGBgYmKCCGyYDEBGmGmMAAEoArIJ4JNwEALkUAk/sWKkoAAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable259573 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable259573 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable259573 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable259573">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>6673</td><td>7</td><td>3</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value      Less than high school           High school More than high school
+ Frequency                   1899                  1634                  3140
+ Proportion                 0.285                 0.245                 0.471
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">bmi</span>: body mass index <span style='font-family:Verdana;font-size:75%;'>kg/m2</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAaklEQVQ4jdWTQQrAIBADs/3/o61I1SaKl2LsgCILkmEhCAEZHe8FF4OCzPci+cARYhwPnCH2Qy+r2rt4IExlDOojaxkXtvCymfW5Iy2XWZc60fKY1cy5lUUuVw5axBHR7udZvrYSfdTF+ySd5QvsGo/bgwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable896933 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable896933 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable896933 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable896933">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>6624</td><td>56</td><td>2252</td><td>1</td><td>29.07</td><td>6.841</td><td>20.69</td><td>22.06</td><td>24.72</td><td>28.10</td><td>32.25</td><td>37.11</td><td>40.80</td></tr>
+ </table>
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  13.36  14.65  14.70  15.91  15.92 ,  <font color="MidnightBlue">highest</font>:  62.77  63.42  63.87  72.28 130.21</span> <hr class="thinhr"> <span style="font-weight:bold">smokecigs</span>: smoking status<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJUlEQVQImWNgYIQBBgYmGCCKCeUyMIC0wk0AizIwkMaEmsDAAAAyQQCeSueGWwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable200463 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable200463 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable200463 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable200463">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>6676</td><td>4</td><td>3</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value        Never  Former Current
+ Frequency     3253    1944    1479
+ Proportion   0.487   0.291   0.222
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">alcohol</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJUlEQVQImWNgYIQBBgYmGMDNhHJRmCCtcBOwKcDLZGCAm8DAAAAzRwCq0o/BnwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable907426 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable907426 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable907426 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable907426">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
+ <tr><td>6214</td><td>466</td><td>3</td><td>0.776</td><td>1.514</td><td>0.6226</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value          1     2     3
+ Frequency   3449  2336   429
+ Proportion 0.555 0.376 0.069
+ </pre>
+ <hr class="thinhr">
+</div>
+<div id="physiological-measurements-1" class="section level3" number="11.1.2">
+<h3><span class="header-section-number">11.1.2</span> Physiological measurements</h3>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<script type="text/javascript">
+<!--
+    function expand_collapse(id) {
+       var e = document.getElementById(id);
+       var f = document.getElementById(id+"_earrows");
+       if(e.style.display == 'none'){
+          e.style.display = 'block';
+          f.innerHTML = '&#9650';
+       }
+       else {
+          e.style.display = 'none';
+          f.innerHTML = '&#9660';
+       }
+    }
+//-->
+</script>
+<style>
+.earrows {color:silver;font-size:11px;}
+
+fcap {
+ font-family: Verdana;
+ font-size: 12px;
+ color: MidnightBlue
+ }
+
+smg {
+ font-family: Verdana;
+ font-size: 10px;
+ color: &#808080;
+}
+
+hr.thinhr { margin-top: 0.15em; margin-bottom: 0.15em; }
+
+span.xscript {
+position: relative;
+}
+span.xscript sub {
+position: absolute;
+left: 0.1em;
+bottom: -1ex;
+}
+</style>
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Lab measurements <br><br> 3  Variables   6680  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">sys</span>: Systolic blood pressure <span style='font-family:Verdana;font-size:75%;'>mg/dl</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAe0lEQVQ4jc2T0Q6AIAhFr/3/Rzsgo1Io1yDvcNMH4YztoDwGoEoONj+AVmZmuDLp3Dk91MJcOWjLctlGwKv/fLSWxRW+NKs/j3a5YtE+cQWiDTvraDvBIvQ9dSUvEmYqmSV2kWZ8ZlJuX/b3WV1Qf4jfMktux+Bm4OVWAV3eC0T5y57WAAAAAElFTkSuQmCC" alt="image" /></div> <style>
+ .hmisctable422392 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable422392 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable422392 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable422392">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>6360</td><td>320</td><td>139</td><td>1</td><td>127.3</td><td>22.17</td><td>100</td><td>105</td><td>113</td><td>124</td><td>138</td><td>154</td><td>166</td></tr>
+ </table>
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  73  80  81  82  83 ,  <font color="MidnightBlue">highest</font>: 228 230 238 256 270</span> <hr class="thinhr"> <span style="font-weight:bold">lbxtc</span>: Total cholesterol <span style='font-family:Verdana;font-size:75%;'>mg/dL</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAcUlEQVQ4jc2VUQrAIAxDU+9/aMGt6Goz+rO4JyiKkIcQhFEAnw6ARsEFv/AlNBYLSiGPJ8cBrVQre8nF8sBNS++VdSHleB9zLfGb7WFU67deSrcQ9C4lNHvGFLREcvcfWBZasbl6kcc8hlnSYFpqxE0HMBYLaQg/GCIAAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable864996 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable864996 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable864996 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable864996">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>6410</td><td>270</td><td>268</td><td>1</td><td>203.9</td><td>46.64</td><td>142</td><td>154</td><td>175</td><td>201</td><td>229</td><td>258</td><td>277</td></tr>
+ </table>
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  82  83  85  92  94 ,  <font color="MidnightBlue">highest</font>: 441 458 539 650 704</span> <hr class="thinhr"> <span style="font-weight:bold">lbdhdd</span>: HDL cholesterol <span style='font-family:Verdana;font-size:75%;'>mg/dL</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAeUlEQVQ4jdWU2Q6AIAwEd/3/j/bgEtkqL7RxkgqBh06AFZQAqcLAJgGugrG9nk+vPPPm717eaqpdZxPlpbKAksdhFppH47xcX9rQpzg0Qm5UexncDT29aucXnE7u4TXL8jd3Zgw5g5z3Yh2YRhqfLmMsa21D/g+O2gEPHQt1j9X7igAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable680031 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable680031 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable680031 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable680031">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>6410</td><td>270</td><td>113</td><td>1</td><td>54.56</td><td>17.99</td><td>33</td><td>37</td><td>42</td><td>52</td><td>63</td><td>76</td><td>85</td></tr>
+ </table>
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  17  19  21  22  23 ,  <font color="MidnightBlue">highest</font>: 151 152 154 164 188</span> <hr class="thinhr">
+</div>
+<div id="comorbidities" class="section level3" number="11.1.3">
+<h3><span class="header-section-number">11.1.3</span> Comorbidities</h3>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<script type="text/javascript">
+<!--
+    function expand_collapse(id) {
+       var e = document.getElementById(id);
+       var f = document.getElementById(id+"_earrows");
+       if(e.style.display == 'none'){
+          e.style.display = 'block';
+          f.innerHTML = '&#9650';
+       }
+       else {
+          e.style.display = 'none';
+          f.innerHTML = '&#9660';
+       }
+    }
+//-->
+</script>
+<style>
+.earrows {color:silver;font-size:11px;}
+
+fcap {
+ font-family: Verdana;
+ font-size: 12px;
+ color: MidnightBlue
+ }
+
+smg {
+ font-family: Verdana;
+ font-size: 10px;
+ color: &#808080;
+}
+
+hr.thinhr { margin-top: 0.15em; margin-bottom: 0.15em; }
+
+span.xscript {
+position: relative;
+}
+span.xscript sub {
+position: absolute;
+left: 0.1em;
+bottom: -1ex;
+}
+</style>
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Comorbidities <br><br> 4  Variables   6680  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">diabetes</span> <style>
+ .hmisctable865287 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable865287 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable865287 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable865287">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>6680</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value         No   Yes
+ Frequency   5828   852
+ Proportion 0.872 0.128
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">chf</span>: congestive heart failure <style>
+ .hmisctable690108 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable690108 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable690108 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable690108">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>6680</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value        No  Yes
+ Frequency  6416  264
+ Proportion 0.96 0.04
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">cancer</span> <style>
+ .hmisctable934198 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable934198 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable934198 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable934198">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>6680</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value         No   Yes
+ Frequency   6008   672
+ Proportion 0.899 0.101
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">stroke</span> <style>
+ .hmisctable277283 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable277283 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable277283 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable277283">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>6680</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value         No   Yes
+ Frequency   6406   274
+ Proportion 0.959 0.041
+ </pre>
+ <hr class="thinhr">
+</div>
+<div id="physical-activity-variables" class="section level3" number="11.1.4">
+<h3><span class="header-section-number">11.1.4</span> Physical activity variables</h3>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<script type="text/javascript">
+<!--
+    function expand_collapse(id) {
+       var e = document.getElementById(id);
+       var f = document.getElementById(id+"_earrows");
+       if(e.style.display == 'none'){
+          e.style.display = 'block';
+          f.innerHTML = '&#9650';
+       }
+       else {
+          e.style.display = 'none';
+          f.innerHTML = '&#9660';
+       }
+    }
+//-->
+</script>
+<style>
+.earrows {color:silver;font-size:11px;}
+
+fcap {
+ font-family: Verdana;
+ font-size: 12px;
+ color: MidnightBlue
+ }
+
+smg {
+ font-family: Verdana;
+ font-size: 10px;
+ color: &#808080;
+}
+
+hr.thinhr { margin-top: 0.15em; margin-bottom: 0.15em; }
+
+span.xscript {
+position: relative;
+}
+span.xscript sub {
+position: absolute;
+left: 0.1em;
+bottom: -1ex;
+}
+</style>
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Physical activity <br><br> 16  Variables   6680  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">tac</span>: total activity counts per day<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAeElEQVQ4jc2TUQrAMAhDk97/0EXcKBOxa4d2waLgh4+UgIEAROtMoTmCSJu3rpB3GEblUM3lslhH4Mw9Afghl490guwZuJALlfEcLkyZ1LQi31a5qj71PrBGle8cdrGSbcMnrDzzJGGY5/CVeL1goBS1dKQJuW7ZAf50CiyOwi4/AAAAAElFTkSuQmCC" alt="image" /></div> <style>
+ .hmisctable347137 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable347137 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable347137 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable347137">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>5965</td><td>1</td><td>244811</td><td>143738</td><td> 69233</td><td> 94872</td><td>150571</td><td>223572</td><td>314224</td><td>417410</td><td>486450</td></tr>
+ </table>
+ <style>
+ .hmisctable401358 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable401358 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable401358 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable401358">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>   8263.000</td><td>   8931.833</td><td>  12123.000</td><td>  14642.000</td><td>  15656.000</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td> 981517.167</td><td> 986261.000</td><td> 986593.800</td><td>1097823.500</td><td>1122542.600</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac</span>: total log activity count (log(1+activity))<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAfElEQVQ4jcXVSw6AMAgE0Kn3P7TB+gETUspgnQVxIfhiQkCjAvQCCTfqNXijAhNulh1cAnpkVbrcFEf1t8tl3bjlrgGpzDa1RFHUlTX7OKsC88uirQkURQv1pVF53KiFJiVx3tuFHiWL4477dp43Wz6L+oTUfl+bWl553AEbgQkhPLsNjQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable839020 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable839020 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable839020 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable839020">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>5969</td><td>1</td><td>2900</td><td>873.5</td><td>1613</td><td>1900</td><td>2385</td><td>2911</td><td>3431</td><td>3877</td><td>4164</td></tr>
+ </table>
+ <style>
+ .hmisctable629293 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable629293 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable629293 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable629293">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td> 313.0835</td><td> 364.4561</td><td> 400.8157</td><td> 429.9288</td><td> 466.0362</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>5436.1548</td><td>5492.5395</td><td>5588.3401</td><td>5655.4680</td><td>6122.6779</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">mvpa</span>: Moderate or vigorous physical activity <span style='font-family:Verdana;font-size:75%;'>minutes</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAZUlEQVQ4je2TMQ7AIAwD7fz/0Q0JKg2CgQkPtYgCZjlZMkgClBPMDC4T0891JiSWHJksV6tj6HYDq0ZeWokVLiG4L5dSbAuuCE6SSyC/0cetWHd9cnbdaCecuOfuH+9k6TZd9HkAi+sMS39wEIcAAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable539178 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable539178 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable539178 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable539178">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>1163</td><td>1</td><td>19.19</td><td>20.9</td><td> 0.800</td><td> 1.429</td><td> 4.000</td><td>12.000</td><td>26.762</td><td>46.000</td><td>59.921</td></tr>
+ </table>
+ <style>
+ .hmisctable739765 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable739765 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable739765 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable739765">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.1428571</td><td>  0.1666667</td><td>  0.2000000</td><td>  0.2500000</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>180.8333333</td><td>186.2000000</td><td>194.8000000</td><td>208.5000000</td><td>249.0000000</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">wt</span>: total accelerometer wear time <span style='font-family:Verdana;font-size:75%;'>minutes</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAb0lEQVQ4jc2TAQrAIAwD4/7/6Fl0YzBXs9KIJ7RFMBxCUWgA9LIAHBRo9MEa9y7MPL8qYMAGXl/s6qU0c6I9Ib2Xs30ka/eR95L82ij0h5LM7RUYkZJ6BYVEcldWglWqnm0T7CRS0BLvwszPi+p0AluKCaq/eVlsAAAAAElFTkSuQmCC" alt="image" /></div> <style>
+ .hmisctable359099 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable359099 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable359099 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable359099">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>3613</td><td>1</td><td>866.1</td><td>139.8</td><td> 684.3</td><td> 721.0</td><td> 782.9</td><td> 852.1</td><td> 922.0</td><td>1000.6</td><td>1111.5</td></tr>
+ </table>
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  600.000  601.500  602.000  603.000  604.000 ,  <font color="MidnightBlue">highest</font>: 1425.286 1426.250 1426.286 1426.857 1440.000</span> <hr class="thinhr"> <span style="font-weight:bold">tlac.1</span>: total log actvity count 12:00AM-2:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAQUlEQVQ4jWNgZGRgYBx8gIGJiQGIBx0YdRdpYNRdpAGG0fxIEhh1F2lgULtrELoMnB+BOZIekBGFhcDQHAinQSwAjl0NIj1QrBkAAAAASUVORK5CYII=" alt="image" /></div> <pre style="font-size:80%;">
+        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
+     5972      708     2656    0.829    30.92    51.83     0.00     0.00     0.00 
+      .50      .75      .90      .95 
+     0.00    24.38    94.43   169.25 
+ </pre>
+ <style>
+ .hmisctable520504 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable520504 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable520504 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable520504">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.1569446</td><td>  0.1831020</td><td>  0.2299197</td><td>  0.2559656</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>597.3808309</td><td>620.0469233</td><td>674.1677375</td><td>709.3300116</td><td>719.0239316</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.2</span>: total log actvity count 2:00AM-4:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAR0lEQVQ4je2TMQoAMAgDo/9/dEsjRUqXbA45ESM6ZAkigJgHMrF7HPalYV8acB4l7EvDvjSYx6ornkWRjDe7ZHs5F4pPBttckvsNKbH3bIIAAAAASUVORK5CYII=" alt="image" /></div> <pre style="font-size:80%;">
+        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
+     5972      708     1770    0.653    19.09    34.47     0.00     0.00     0.00 
+      .50      .75      .90      .95 
+     0.00     2.91    51.83   110.64 
+ </pre>
+ <style>
+ .hmisctable325141 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable325141 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable325141 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable325141">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.00000000</td><td>  0.09902103</td><td>  0.11552453</td><td>  0.15694461</td><td>  0.23104906</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>586.34967162</td><td>611.00545824</td><td>617.44773130</td><td>737.25383394</td><td>775.42871350</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.3</span>: total log actvity count 4:00AM-6:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAASklEQVQ4jWNgZGRgYBx8gIGJiQGIBx0YdRdpYNRdpAGG0fxIEhh1F2lgULtrELoMnB+BORIK4QwMDj45ohUyQghULkSAEVEqgFgAjKANGzSYGugAAAAASUVORK5CYII=" alt="image" /></div> <pre style="font-size:80%;">
+        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
+     5972      708     2834    0.855    43.29    70.78     0.00     0.00     0.00 
+      .50      .75      .90      .95 
+     0.00    38.74   147.59   248.43 
+ </pre>
+ <style>
+ .hmisctable633251 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable633251 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable633251 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable633251">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.1155245</td><td>  0.1386294</td><td>  0.2299197</td><td>  0.2682397</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>679.1484297</td><td>697.1093552</td><td>704.5766819</td><td>719.3198459</td><td>769.6014301</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.4</span>: total log actvity count 6:00AM-8:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAVElEQVQ4je2TSwrAIAwF33j/Q7fWVoK4aAQxiwzktwgMgQgk4qFSdEc40stHevlQ/qOL0F6V0yID3cvwnfCk7MzrB31rm1f9Rz+YjoWEGWnjU98CF7dPDF6FBo4mAAAAAElFTkSuQmCC" alt="image" /></div> <style>
+ .hmisctable811760 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable811760 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable811760 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable811760">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>5285</td><td>0.998</td><td>177</td><td>178.6</td><td>  0.00</td><td>  0.00</td><td> 36.94</td><td>137.34</td><td>282.09</td><td>416.35</td><td>496.25</td></tr>
+ </table>
+ <style>
+ .hmisctable198609 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable198609 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable198609 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable198609">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.2299197</td><td>  0.3465736</td><td>  0.6148132</td><td>  0.6839274</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>774.8811640</td><td>792.6938042</td><td>822.1482092</td><td>832.9933042</td><td>857.9018816</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.5</span>: total log actvity count 8:00AM-10:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAf0lEQVQ4jc3TgQqAMAgE0NP//+jGklywDXUaHcwGlXsUggig/wXMaMsdfUl2oS6b/gcuSOkNkAtzutqzmITFl0czuRaaVb5x3Ud5XBk07Oax33GKhhTNYxyU8NkmrgTPmxbxyaRrqUvYVRz24JD93yxAi+tk4IIh0FP0OsxiWxd1kAfrJobkCgAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable974304 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable974304 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable974304 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable974304">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>5834</td><td>1</td><td>339.3</td><td>191.7</td><td> 39.52</td><td>102.56</td><td>221.28</td><td>346.74</td><td>460.18</td><td>552.17</td><td>610.19</td></tr>
+ </table>
+ <style>
+ .hmisctable953682 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable953682 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable953682 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable953682">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.2310491</td><td>  0.7250248</td><td>  0.8652549</td><td>  1.0357837</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>812.0225306</td><td>812.8675420</td><td>813.2942210</td><td>824.5800445</td><td>888.1759271</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.6</span>: total log actvity count 10:00AM-12:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAf0lEQVQ4jcWT2w6AMAhDi///0Wawywsqt0gfls0EetJYUJGAqk2y7koJIrnxmdt3FifHFcn3Jq6Vka42rkeiLq5hyL5GhblclQOZgZZ+6KObKZHa98j7H27kcqNZuKrk5FIHdkqFXB4yTPf6dHKEIKkYjapRoG9RTcNtfJrIjxugDgi3M3APhgAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable899806 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable899806 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable899806 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable899806">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>5931</td><td>1</td><td>407.7</td><td>163.6</td><td>150.4</td><td>218.6</td><td>316.2</td><td>415.0</td><td>506.7</td><td>589.9</td><td>634.9</td></tr>
+ </table>
+ <style>
+ .hmisctable180587 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable180587 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable180587 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable180587">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.6986213</td><td>  2.6001909</td><td>  4.5903937</td><td>  5.7234361</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>807.7712473</td><td>808.7247458</td><td>811.5701740</td><td>884.1169241</td><td>892.0314653</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.7</span>: total log actvity count 12:00PM-2:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAfUlEQVQ4jc3VgQqAMAgE0Gv//9EhwmbIyDytjthGrPUQZDjIAProXBYMMiKCjrKQFwP0qYM6AS4T+jOX8X3i2oumjMO1ucjCZVoojJK80Y+m8eIFy1Ut/sljkcW1uDJlYnU3m0s8yxW37TaXgpwv4Jo33Bp07ov/1/VqlfUJz8QI+LPBphkAAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable852646 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable852646 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable852646 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable852646">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>5947</td><td>1</td><td>418</td><td>146.9</td><td>192.1</td><td>250.4</td><td>337.6</td><td>423.5</td><td>507.2</td><td>581.3</td><td>623.7</td></tr>
+ </table>
+ <style>
+ .hmisctable234538 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable234538 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable234538 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable234538">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.000000</td><td>  1.734669</td><td>  2.704424</td><td>  5.605670</td><td>  6.387910</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>788.370472</td><td>796.082067</td><td>813.380498</td><td>821.733575</td><td>885.445891</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.8</span>: total log actvity count 2:00PM-4:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAf0lEQVQ4jc2UiwqAIAxF7/r/jy63BRMp3aPHAZtC6lG4gpIArcEOK8CWAGhN4ZF8Cggtc24uNsZLOl96WaOBgluLe8142WsuVCLmiM8RtXUpJpFOx6mcUrmbW5vTPQj/8UooReVufy/xiYnh4omuVfLrQXNG6OuDDLtpAglSuO6jGgjxbwA97AAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable149395 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable149395 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable149395 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable149395">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>5954</td><td>1</td><td>411.7</td><td>147.8</td><td>192.1</td><td>243.1</td><td>323.6</td><td>414.3</td><td>501.7</td><td>577.5</td><td>619.9</td></tr>
+ </table>
+ <style>
+ .hmisctable522823 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable522823 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable522823 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable522823">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.000000</td><td>  1.974752</td><td>  3.096473</td><td>  4.094345</td><td>  5.772020</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>792.683985</td><td>837.042353</td><td>846.553847</td><td>877.212734</td><td>904.872351</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.9</span>: total log actvity count 4:00PM-6:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAf0lEQVQ4jcWV4QqAMAiEz97/oYvMRTXavDO6H1OY3j4EGUwXcCYtVz0XVdjkp0s2dFcFKLCeitu/uPpUBYNju9+AgktBY1pHg6oYG7E+80ih7/cxz0QOLdPBQjFkc/USEYU3LKxDynL1ig+PYqgEHPxXM1zDLmLz5nR/rQWLYCt6iwjaJPnjlQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable185233 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable185233 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable185233 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable185233">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>5955</td><td>1</td><td>397</td><td>140.3</td><td>185.4</td><td>234.8</td><td>316.4</td><td>401.8</td><td>483.5</td><td>553.6</td><td>591.4</td></tr>
+ </table>
+ <style>
+ .hmisctable447214 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable447214 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable447214 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable447214">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.000000</td><td>  2.957040</td><td>  3.401197</td><td>  4.148165</td><td>  5.084134</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>771.497952</td><td>783.128869</td><td>801.039991</td><td>809.429425</td><td>822.294800</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.10</span>: total log actvity count 6:00PM-8:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAgElEQVQ4jc2UgQqAIAxEb/3/R1fb0FFZzs3qYZcExkM8QV4Aif3N8ylg8YGNGox+15GE60fW5opPvG6NrNyLXr1Of/ZitbDeY6GcSoWpfRyVkk0L7dccqbBb8ywkWCFw0g4ryy2Zi98ORiJd5+zXLQjTuOHudUMSVIM05OEm8mwF8CEIR0/MQD0AAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable646377 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable646377 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable646377 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable646377">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>5932</td><td>1</td><td>337.6</td><td>151.3</td><td>114.1</td><td>165.5</td><td>246.6</td><td>339.5</td><td>433.1</td><td>504.4</td><td>548.9</td></tr>
+ </table>
+ <style>
+ .hmisctable917783 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable917783 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable917783 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable917783">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.000000</td><td>  1.311822</td><td>  1.353699</td><td>  1.753975</td><td>  3.459493</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>778.168243</td><td>778.774433</td><td>802.020060</td><td>851.421446</td><td>860.123328</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.11</span>: total log actvity count 8:00PM-10:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAe0lEQVQ4jc3TUQ6AIAwD0Hb3P7QKQTdBwxCQEgETPl6WFCTA9QIR7N9yqXH9Afe4ZvqeXEgRvc3jlVzQsX/GOBII08e74S3h9dg+hglINpmKyKipoYmT83rr+rgUcE0X4uy++/q7jLFZCF8JnTm6Hta1nXemg7rV8Q25AU/VCWPjrzjNAAAAAElFTkSuQmCC" alt="image" /></div> <style>
+ .hmisctable275140 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable275140 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable275140 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable275140">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>708</td><td>5786</td><td>1</td><td>223.2</td><td>158.2</td><td> 10.22</td><td> 42.32</td><td>116.77</td><td>212.72</td><td>315.90</td><td>411.75</td><td>471.84</td></tr>
+ </table>
+ <style>
+ .hmisctable120569 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable120569 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable120569 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable120569">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.6229449</td><td>  0.6708919</td><td>  1.0233141</td><td>  1.0525597</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>724.9040071</td><td>753.8848070</td><td>821.4989318</td><td>826.3463412</td><td>839.8942777</td></tr>
+ </table>
+ <hr class="thinhr"> <span style="font-weight:bold">tlac.12</span>: total log actvity count 10:00PM-12:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAT0lEQVQ4je3TvQoAIAiF0Xt7/4fuB5WgQFzKwU8Eh4azBBJgvtAaxqarXLHKFQv1H0MtV0KZuNLJzKX9BkmH69571/yPfrTZzsh4DyirVwf2WgylYdrF0gAAAABJRU5ErkJggg==" alt="image" /></div> <pre style="font-size:80%;">
+        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
+     5972      708     4943    0.995    95.37    114.3    0.000    0.000    6.693 
+      .50      .75      .90      .95 
+   55.438  141.863  251.308  328.945 
+ </pre>
+ <style>
+ .hmisctable679098 {
+ border: none;
+ font-size: 85%;
+ }
+ .hmisctable679098 td {
+ text-align: right;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable679098 th {
+ color: Black;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: bold;
+ }
+ </style>
+ <table class="hmisctable679098">
+ <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.00000000</td><td>  0.09902103</td><td>  0.17328680</td><td>  0.27798716</td><td>  0.41291025</td></tr>
+ <tr><td><font color="MidnightBlue">highest</font>:</td><td>683.58618305</td><td>698.46723961</td><td>702.66304648</td><td>707.15487443</td><td>733.61717206</td></tr>
+ </table>
+ <hr class="thinhr">
+</div>
+</div>
+<div id="categorical-variables-1" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> Categorical variables</h2>
+<p>We now provide a closer visual examination of the categorical predictors.</p>
+<p><img src="nhanes_univar_files/figure-html/catplot-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="continuous-variables-1" class="section level2" number="11.3">
+<h2><span class="header-section-number">11.3</span> Continuous variables</h2>
+<p>A closer visual examination of continuous predictors and the outcome variable.</p>
+<p><img src="nhanes_univar_files/figure-html/unnamed-chunk-2-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>There is evidence of influential points in some of the distributions. This is explored further with targeted summaries. A more detailed univariate summaries for the variables of interest are also provided below.</p>
+<div id="age-1" class="section level3" number="11.3.1">
+<h3><span class="header-section-number">11.3.1</span> Age</h3>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="nhanes_univar_files/figure-html/unnamed-chunk-3-1.png" alt="Distribution of age" width="768" />
+<p class="caption">
+Figure 11.1: Distribution of age
+</p>
+</div>
+</div>
+<div id="blood-pressure-1" class="section level3" number="11.3.2">
+<h3><span class="header-section-number">11.3.2</span> Blood pressure</h3>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="nhanes_univar_files/figure-html/unnamed-chunk-4-1.png" alt="Distribution of SBP" width="768" />
+<p class="caption">
+Figure 7.1: Distribution of SBP
+</p>
+</div>
+</div>
+<div id="body-mass-index" class="section level3" number="11.3.3">
+<h3><span class="header-section-number">11.3.3</span> Body mass index</h3>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="nhanes_univar_files/figure-html/unnamed-chunk-5-1.png" alt="Distribution of respiratory rate" width="768" />
+<p class="caption">
+Figure 7.2: Distribution of respiratory rate
+</p>
+</div>
+<p>There is a participant with an unusual high value (130.2). It is possible that this is an entry error (bmi=30.2).</p>
+</div>
+<div id="outcome-time-of-moderate-or-vigrous-physical-activity-and-related-variables" class="section level3" number="11.3.4">
+<h3><span class="header-section-number">11.3.4</span> Outcome= Time of moderate or vigrous physical activity and related variables</h3>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="nhanes_univar_files/figure-html/unnamed-chunk-6-1.png" alt="Distribution of time of moderate/vigorous activity [minutes]" width="768" />
+<p class="caption">
+Figure 7.3: Distribution of time of moderate/vigorous activity [minutes]
+</p>
+</div>
+<p>After transforming MVPA with <span class="math inline">\(\log_{10}(x+1)\)</span>:</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="nhanes_univar_files/figure-html/unnamed-chunk-7-1.png" alt="Distribution of log10 (1+MVPA)" width="768" />
+<p class="caption">
+Figure 7.4: Distribution of log10 (1+MVPA)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="nhanes_univar_files/figure-html/unnamed-chunk-8-1.png" alt="Distribution of wear time [minutes]" width="768" />
+<p class="caption">
+Figure 7.5: Distribution of wear time [minutes]
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="nhanes_univar_files/figure-html/unnamed-chunk-9-1.png" alt="Distribution of log total activity count" width="768" />
+<p class="caption">
+Figure 7.6: Distribution of log total activity count
+</p>
+</div>
+</div>
+</div>
+<div id="section-session-info-5" class="section level2" number="11.4">
+<h2><span class="header-section-number">11.4</span> Section session info</h2>
+<pre><code>## R version 4.0.2 (2020-06-22)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18363)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] Hmisc_4.5-0     Formula_1.2-4   survival_3.1-12 lattice_0.20-41
+##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.5     purrr_0.3.4    
+##  [9] readr_1.4.0     tidyr_1.1.3     tibble_3.1.0    ggplot2_3.3.3  
+## [13] tidyverse_1.3.0 here_1.0.1     
+## 
+## loaded via a namespace (and not attached):
+##  [1] httr_1.4.2          sass_0.3.1          jsonlite_1.7.2     
+##  [4] splines_4.0.2       modelr_0.1.8        bslib_0.2.4        
+##  [7] assertthat_0.2.1    highr_0.8           latticeExtra_0.6-29
+## [10] cellranger_1.1.0    yaml_2.2.1          pillar_1.5.1       
+## [13] backports_1.2.1     glue_1.4.2          digest_0.6.27      
+## [16] checkmate_2.0.0     RColorBrewer_1.1-2  rvest_0.3.6        
+## [19] colorspace_2.0-0    htmltools_0.5.1.1   Matrix_1.3-2       
+## [22] pkgconfig_2.0.3     broom_0.7.4         haven_2.3.1        
+## [25] bookdown_0.21       patchwork_1.1.1     scales_1.1.1       
+## [28] jpeg_0.1-8.1        htmlTable_2.1.0     farver_2.1.0       
+## [31] generics_0.1.0      ellipsis_0.3.1      withr_2.4.1        
+## [34] nnet_7.3-14         cli_2.3.1           magrittr_2.0.1     
+## [37] crayon_1.4.1        readxl_1.3.1        evaluate_0.14      
+## [40] fs_1.5.0            fansi_0.4.2         xml2_1.3.2         
+## [43] foreign_0.8-80      data.table_1.14.0   tools_4.0.2        
+## [46] hms_1.0.0           lifecycle_1.0.0     munsell_0.5.0      
+## [49] reprex_1.0.0        cluster_2.1.0       compiler_4.0.2     
+## [52] jquerylib_0.1.3     rlang_0.4.10        grid_4.0.2         
+## [55] rstudioapi_0.13     htmlwidgets_1.5.3   labeling_0.4.2     
+## [58] base64enc_0.1-3     rmarkdown_2.7       gtable_0.3.0       
+## [61] DBI_1.1.1           R6_2.5.0            gridExtra_2.3      
+## [64] lubridate_1.7.9.2   knitr_1.31          utf8_1.1.4         
+## [67] rprojroot_2.0.2     stringi_1.5.3       Rcpp_1.0.6         
+## [70] vctrs_0.3.6         rpart_4.1-15        png_0.1-7          
+## [73] dbplyr_2.1.0        tidyselect_1.1.0    xfun_0.21</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="initial-data-analysis-plan-idap.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multivariate-distributions-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/nhanes_univar.Rmd",
+"text": "Edit this chapter"
+},
+"history": {
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/nhanes_univar.Rmd",
+"text": "Chapter edit history"
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/bailliem/ida-regression-private/raw/master/nhanes_univar.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
