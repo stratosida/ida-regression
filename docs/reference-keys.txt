@@ -62,7 +62,7 @@ central-capillary-refill-time
 hours-since-injury
 section-session-info-2
 multivariate-distributions
-overview-1
+overview
 variable-correlation
 variable-clustering
 variable-redundancy
@@ -128,7 +128,7 @@ body-mass-index
 outcome-time-of-moderate-or-vigrous-physical-activity-and-related-variables
 section-session-info-6
 multivariate-distributions-1
-overview-2
+overview-1
 variable-correlation-1
 variable-clustering-1
 variable-redundancy-1
