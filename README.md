@@ -104,6 +104,8 @@ Beware: the package list above is currently static, so consider that it may not 
 
 * assets - style files and images
 
+* js - functions needed to build book
+
 * Misc
   * Data dictionaries for the data sets
   * References for research studies using the data sets
