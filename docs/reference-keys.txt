@@ -91,7 +91,7 @@ distribution-of-respiratory-rate-by-glasgow-coma-score
 distribution-of-central-capillary-refille-time-by-glasgow-coma-score
 section-session-info-3
 introduction-to-nhanes
-dataset-description
+nhanes-dataset-description
 variables
 outcome-variable-1
 sociodemographic-variables
@@ -103,7 +103,6 @@ data-dictionary-1
 references-1
 section-session-info-4
 initial-data-analysis-plan-idap
-statistical-methods-1
 initial-data-analysis-strategy
 ida-domain-missing-values
 ida-domain-univariate-distributions

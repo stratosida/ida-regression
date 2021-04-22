@@ -10,14 +10,9 @@ IDA follows the generic IDA plan developed in this project and is adapted to the
  
 
 
-## Statistical methods 
 
 
-
-
-
-
-## Initial data analysis strategy
+##  Initial data analysis strategy
 
 <span style="color:blue">1. Statistical analysis plan: as assumed above, the analysis strategy to answer the main research question has been prespecified. It comprises of the set of independent variables to be considered in a model, the outcome variable, and the analytical strategy to build the regression model. </span>
 
@@ -63,7 +58,7 @@ Number and proportion of missing values will be computed for all variables and g
 
 <span style="color:blue">2. Patterns of missing values across all independent variables, either as tables or appropriately visualized.</span>
 
-We will create missing value indicators for each covariate and will then summarize patterns by means of a heat map and a dendogram. 
+We will create missing value indicators for each covariate and will then visualize patterns.
 
 
 
@@ -95,9 +90,9 @@ It is assumed that the data have been cleaned, but unusual values will be identi
 
 <span style="color:blue">5. Matrix/heatmap of Pearson correlation coefficients between all independent variables.</span>
 
-Pearson correlation coefficients will be computed between all independent variables. The correlation coefficients will be depicted by means of a (quadratic) heat map. Moreover, a network graph between all independent variables will be constructed, which will be thresholded at an absolute correlation coefficient of 0.3. 
+Pearson correlation coefficients will be computed between all independent variables. The correlation coefficients will be depicted by means of a heat map. 
 
-Spearman correlation coefficients will be computed as well, and the 10 pairs of covariates with the largest absolute difference between Pearson and Spearman correlation coefficients will be flagged. These pairs will be graphically investigated by constructing separate scatterplots.
+Differences between Pearson and Spearman correlation coefficients will be graphically investigated.
 
 <span style="color:blue">6. Appropriate visual (and numerical) presentations of the association of each covariate with the two pivotal covariates.</span>
 

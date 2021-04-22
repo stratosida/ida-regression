@@ -61,150 +61,150 @@ left: 0.1em;
 bottom: -1ex;
 }
 </style>
- <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Demographic and lifestyle variables <br><br> 6  Variables   6680  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">age</span> <span style='font-family:Verdana;font-size:75%;'>years</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAoElEQVQ4je2T3Q6AIAiFj77/Q1cSgsiaP7R10VlLUZRP50EiASlMEXshk4DacteNR2Q3WBHuxS4XBSUuGW6NfjCYq3yqFS47I8Ejl2y0yIVazVZ3lU16W7o/hsCOQwqXqjrC1UIaLnsCdXmDfLjss6NUfyArdpNNj9PZtuxdHlR+3OMqsm9gZqG6Y225EK5NOW/1E1ytfq5ZRfjxDZ1+PABl6gUDIyPyZgAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable456287 {
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Demographic and lifestyle variables <br><br> 6  Variables   5972  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">age</span> <span style='font-family:Verdana;font-size:75%;'>years</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAApUlEQVQ4je2T2w6AIAxDC///0RrHZd3mBdT4YmOU4gZHYpFEQEp+GPpTUcNwd2nLIqA965A8TZL8G7vAjFCaQy4xnSskfJ1ruyxH91RhywmEvlGZEciYq+2OXcOQhgt2wTku6K0tildA2qFyVKkO7yIfJDPzSu0GSd9BmSqvOa1x7TMtj3eoitThjS2XqUdH7hGuO8rhP/E9l9PPNSrJ49cUXmseF+wTBPDyDr/TAAAAAElFTkSuQmCC" alt="image" /></div> <style>
+ .hmisctable330171 {
  border: none;
  font-size: 80%;
  }
- .hmisctable456287 td {
+ .hmisctable330171 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable456287 th {
+ .hmisctable330171 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable456287">
+ <table class="hmisctable330171">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>6680</td><td>0</td><td>660</td><td>1</td><td>54.55</td><td>17.7</td><td>32.08</td><td>34.33</td><td>41.33</td><td>53.17</td><td>67.00</td><td>76.42</td><td>80.83</td></tr>
+ <tr><td>5972</td><td>0</td><td>660</td><td>1</td><td>54.87</td><td>17.64</td><td>32.17</td><td>34.58</td><td>41.65</td><td>53.75</td><td>67.25</td><td>76.50</td><td>80.83</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> : 30.00000 30.08333 30.16667 30.25000 30.33333 ,  <font color="MidnightBlue">highest</font>: 84.58333 84.66667 84.75000 84.83333 84.91667</span> <hr class="thinhr"> <span style="font-weight:bold">gender</span> <style>
- .hmisctable309324 {
+ .hmisctable575353 {
  border: none;
  font-size: 80%;
  }
- .hmisctable309324 td {
+ .hmisctable575353 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable309324 th {
+ .hmisctable575353 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable309324">
+ <table class="hmisctable575353">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>6680</td><td>0</td><td>2</td></tr>
+ <tr><td>5972</td><td>0</td><td>2</td></tr>
  </table>
  <pre style="font-size:85%;">
  Value        Male Female
- Frequency    3294   3386
- Proportion  0.493  0.507
+ Frequency    2935   3037
+ Proportion  0.491  0.509
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">educationadult</span>: education level<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAI0lEQVQImWNghAIGBgYmKCCGyYDEBGmGmMAAEoArIJ4JNwEALkUAk/sWKkoAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable903581 {
+ .hmisctable183223 {
  border: none;
  font-size: 80%;
  }
- .hmisctable903581 td {
+ .hmisctable183223 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable903581 th {
+ .hmisctable183223 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable903581">
+ <table class="hmisctable183223">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>6673</td><td>7</td><td>3</td></tr>
+ <tr><td>5968</td><td>4</td><td>3</td></tr>
  </table>
  <pre style="font-size:85%;">
  Value      Less than high school           High school More than high school
- Frequency                   1899                  1634                  3140
- Proportion                 0.285                 0.245                 0.471
+ Frequency                   1683                  1448                  2837
+ Proportion                 0.282                 0.243                 0.475
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">bmi</span>: body mass index <span style='font-family:Verdana;font-size:75%;'>kg/m2</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAaklEQVQ4jdWTQQrAIBADs/3/o61I1SaKl2LsgCILkmEhCAEZHe8FF4OCzPci+cARYhwPnCH2Qy+r2rt4IExlDOojaxkXtvCymfW5Iy2XWZc60fKY1cy5lUUuVw5axBHR7udZvrYSfdTF+ySd5QvsGo/bgwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable888298 {
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAaklEQVQ4jdWT7QqAIBAE53r/h+5DKttT+hOuDShyIDscLKFwkMaDYVGKV56PJeXDFGIaD3OI/dDLqvYsHoKpjCF9VC3jwl68bGJ1cEPLplaldrQ8Zldm38oit1eOXMQWcd/ns3z9vIvbWQGcOgvu/t7fQwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable561475 {
  border: none;
  font-size: 80%;
  }
- .hmisctable888298 td {
+ .hmisctable561475 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable888298 th {
+ .hmisctable561475 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable888298">
+ <table class="hmisctable561475">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>6624</td><td>56</td><td>2252</td><td>1</td><td>29.07</td><td>6.841</td><td>20.69</td><td>22.06</td><td>24.72</td><td>28.10</td><td>32.25</td><td>37.11</td><td>40.80</td></tr>
+ <tr><td>5928</td><td>44</td><td>2161</td><td>1</td><td>29.07</td><td>6.804</td><td>20.78</td><td>22.12</td><td>24.73</td><td>28.08</td><td>32.23</td><td>37.07</td><td>40.80</td></tr>
  </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  13.36  14.65  14.70  15.91  15.92 ,  <font color="MidnightBlue">highest</font>:  62.77  63.42  63.87  72.28 130.21</span> <hr class="thinhr"> <span style="font-weight:bold">smokecigs</span>: smoking status<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  13.36  14.65  14.70  15.91  15.92 ,  <font color="MidnightBlue">highest</font>:  62.50  62.77  63.42  63.87 130.21</span> <hr class="thinhr"> <span style="font-weight:bold">smokecigs</span>: smoking status<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJUlEQVQImWNgYIQBBgYmGCCKCeUyMIC0wk0AizIwkMaEmsDAAAAyQQCeSueGWwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable796934 {
+ .hmisctable516166 {
  border: none;
  font-size: 80%;
  }
- .hmisctable796934 td {
+ .hmisctable516166 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable796934 th {
+ .hmisctable516166 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable796934">
+ <table class="hmisctable516166">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>6676</td><td>4</td><td>3</td></tr>
+ <tr><td>5970</td><td>2</td><td>3</td></tr>
  </table>
  <pre style="font-size:85%;">
  Value        Never  Former Current
- Frequency     3253    1944    1479
- Proportion   0.487   0.291   0.222
+ Frequency     2911    1759    1300
+ Proportion   0.488   0.295   0.218
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">alcohol</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJUlEQVQImWNgYIQBBgYmGMDNhHJRmCCtcBOwKcDLZGCAm8DAAAAzRwCq0o/BnwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable750318 {
+ .hmisctable990991 {
  border: none;
  font-size: 80%;
  }
- .hmisctable750318 td {
+ .hmisctable990991 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable750318 th {
+ .hmisctable990991 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable750318">
+ <table class="hmisctable990991">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th></tr>
- <tr><td>6214</td><td>466</td><td>3</td><td>0.776</td><td>1.514</td><td>0.6226</td></tr>
+ <tr><td>5577</td><td>395</td><td>3</td><td>0.776</td><td>1.516</td><td>0.624</td></tr>
  </table>
  <pre style="font-size:85%;">
  Value          1     2     3
- Frequency   3449  2336   429
- Proportion 0.555 0.376 0.069
+ Frequency   3090  2098   389
+ Proportion 0.554 0.376 0.070
  </pre>
  <hr class="thinhr">
 ```
@@ -258,70 +258,70 @@ left: 0.1em;
 bottom: -1ex;
 }
 </style>
- <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Lab measurements <br><br> 3  Variables   6680  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">sys</span>: Systolic blood pressure <span style='font-family:Verdana;font-size:75%;'>mg/dl</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAe0lEQVQ4jc2T0Q6AIAhFr/3/Rzsgo1Io1yDvcNMH4YztoDwGoEoONj+AVmZmuDLp3Dk91MJcOWjLctlGwKv/fLSWxRW+NKs/j3a5YtE+cQWiDTvraDvBIvQ9dSUvEmYqmSV2kWZ8ZlJuX/b3WV1Qf4jfMktux+Bm4OVWAV3eC0T5y57WAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable255840 {
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Lab measurements <br><br> 3  Variables   5972  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">sys</span>: Systolic blood pressure <span style='font-family:Verdana;font-size:75%;'>mg/dl</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAeElEQVQ4jdWTQQ6AIAwER///aAM0oYoteGjVTQ9wYHfTMGxTQZlksfsCmWQt90ou6OaMpT7cK6eaHWKVSuplE4E37/Ho7AvCl2b51+hf9or9arfOPdpWMAijZ1/JgsJILWQ1uhAEH+n6RO4aXapzM29ZqEhF4Ol0AHLHC0pqTKPtAAAAAElFTkSuQmCC" alt="image" /></div> <style>
+ .hmisctable438264 {
  border: none;
  font-size: 80%;
  }
- .hmisctable255840 td {
+ .hmisctable438264 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable255840 th {
+ .hmisctable438264 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable255840">
+ <table class="hmisctable438264">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>6360</td><td>320</td><td>139</td><td>1</td><td>127.3</td><td>22.17</td><td>100</td><td>105</td><td>113</td><td>124</td><td>138</td><td>154</td><td>166</td></tr>
+ <tr><td>5698</td><td>274</td><td>137</td><td>1</td><td>127.4</td><td>22.26</td><td>100.0</td><td>105.0</td><td>113.0</td><td>124.0</td><td>138.0</td><td>154.0</td><td>166.1</td></tr>
  </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  73  80  81  82  83 ,  <font color="MidnightBlue">highest</font>: 228 230 238 256 270</span> <hr class="thinhr"> <span style="font-weight:bold">lbxtc</span>: Total cholesterol <span style='font-family:Verdana;font-size:75%;'>mg/dL</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAcUlEQVQ4jc2VUQrAIAxDU+9/aMGt6Goz+rO4JyiKkIcQhFEAnw6ARsEFv/AlNBYLSiGPJ8cBrVQre8nF8sBNS++VdSHleB9zLfGb7WFU67deSrcQ9C4lNHvGFLREcvcfWBZasbl6kcc8hlnSYFpqxE0HMBYLaQg/GCIAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable358135 {
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  73  80  81  83  85 ,  <font color="MidnightBlue">highest</font>: 226 230 238 256 270</span> <hr class="thinhr"> <span style="font-weight:bold">lbxtc</span>: Total cholesterol <span style='font-family:Verdana;font-size:75%;'>mg/dL</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAcUlEQVQ4jc2V0QoAERREh///6MXKonvHethZJ6GoOakJAgNII016EBm4oXe+wc0sPnhQSsWF14DSasdLK3asl90Gh5/76GkJH80KIlrHeqnc5pCVk8psininJdDLFauf4J5TJfRTa3Nbys6qMat2PrsAqsULPFmORTIAAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable875308 {
  border: none;
  font-size: 80%;
  }
- .hmisctable358135 td {
+ .hmisctable875308 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable358135 th {
+ .hmisctable875308 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable358135">
+ <table class="hmisctable875308">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>6410</td><td>270</td><td>268</td><td>1</td><td>203.9</td><td>46.64</td><td>142</td><td>154</td><td>175</td><td>201</td><td>229</td><td>258</td><td>277</td></tr>
+ <tr><td>5742</td><td>230</td><td>264</td><td>1</td><td>204.1</td><td>46.4</td><td>143</td><td>155</td><td>175</td><td>201</td><td>228</td><td>258</td><td>277</td></tr>
  </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  82  83  85  92  94 ,  <font color="MidnightBlue">highest</font>: 441 458 539 650 704</span> <hr class="thinhr"> <span style="font-weight:bold">lbdhdd</span>: HDL cholesterol <span style='font-family:Verdana;font-size:75%;'>mg/dL</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAeUlEQVQ4jdWU2Q6AIAwEd/3/j/bgEtkqL7RxkgqBh06AFZQAqcLAJgGugrG9nk+vPPPm717eaqpdZxPlpbKAksdhFppH47xcX9rQpzg0Qm5UexncDT29aucXnE7u4TXL8jd3Zgw5g5z3Yh2YRhqfLmMsa21D/g+O2gEPHQt1j9X7igAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable548787 {
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  82  83  85  92  94 ,  <font color="MidnightBlue">highest</font>: 431 440 458 539 650</span> <hr class="thinhr"> <span style="font-weight:bold">lbdhdd</span>: HDL cholesterol <span style='font-family:Verdana;font-size:75%;'>mg/dL</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAeElEQVQ4jdWVSwrAIAxEJ73/oUuM2loz6MaEPvEDLvJQByEugPU0cLkApYNsn2fpVVfR/N0rWs0rN9hkeXlZQMvjtErNIzmv0JdGvR5SbnQq0hw83oaRXr0yIfDkPl67HH9zmrGSM2jbRvokNgsZhoxZFVl9vbp5AyaDC4K0HJiFAAAAAElFTkSuQmCC" alt="image" /></div> <style>
+ .hmisctable962108 {
  border: none;
  font-size: 80%;
  }
- .hmisctable548787 td {
+ .hmisctable962108 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable548787 th {
+ .hmisctable962108 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable548787">
+ <table class="hmisctable962108">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>6410</td><td>270</td><td>113</td><td>1</td><td>54.56</td><td>17.99</td><td>33</td><td>37</td><td>42</td><td>52</td><td>63</td><td>76</td><td>85</td></tr>
+ <tr><td>5742</td><td>230</td><td>109</td><td>1</td><td>54.64</td><td>17.91</td><td>33</td><td>37</td><td>43</td><td>52</td><td>64</td><td>76</td><td>85</td></tr>
  </table>
- <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  17  19  21  22  23 ,  <font color="MidnightBlue">highest</font>: 151 152 154 164 188</span> <hr class="thinhr">
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  17  22  23  24  25 ,  <font color="MidnightBlue">highest</font>: 146 151 152 154 188</span> <hr class="thinhr">
 ```
 
 
@@ -372,105 +372,105 @@ left: 0.1em;
 bottom: -1ex;
 }
 </style>
- <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Comorbidities <br><br> 4  Variables   6680  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">diabetes</span> <style>
- .hmisctable971718 {
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Comorbidities <br><br> 4  Variables   5972  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">diabetes</span> <style>
+ .hmisctable702069 {
  border: none;
  font-size: 80%;
  }
- .hmisctable971718 td {
+ .hmisctable702069 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable971718 th {
+ .hmisctable702069 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable971718">
+ <table class="hmisctable702069">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>6680</td><td>0</td><td>2</td></tr>
+ <tr><td>5972</td><td>0</td><td>2</td></tr>
  </table>
  <pre style="font-size:85%;">
  Value         No   Yes
- Frequency   5828   852
- Proportion 0.872 0.128
+ Frequency   5214   758
+ Proportion 0.873 0.127
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">chf</span>: congestive heart failure <style>
- .hmisctable202739 {
+ .hmisctable999073 {
  border: none;
  font-size: 80%;
  }
- .hmisctable202739 td {
+ .hmisctable999073 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable202739 th {
+ .hmisctable999073 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable202739">
+ <table class="hmisctable999073">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>6680</td><td>0</td><td>2</td></tr>
+ <tr><td>5972</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value         No   Yes
+ Frequency   5739   233
+ Proportion 0.961 0.039
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">cancer</span> <style>
+ .hmisctable830465 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable830465 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable830465 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable830465">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>5972</td><td>0</td><td>2</td></tr>
+ </table>
+ <pre style="font-size:85%;">
+ Value         No   Yes
+ Frequency   5359   613
+ Proportion 0.897 0.103
+ </pre>
+ <hr class="thinhr"> <span style="font-weight:bold">stroke</span> <style>
+ .hmisctable489891 {
+ border: none;
+ font-size: 80%;
+ }
+ .hmisctable489891 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable489891 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable489891">
+ <tr><th>n</th><th>missing</th><th>distinct</th></tr>
+ <tr><td>5972</td><td>0</td><td>2</td></tr>
  </table>
  <pre style="font-size:85%;">
  Value        No  Yes
- Frequency  6416  264
+ Frequency  5734  238
  Proportion 0.96 0.04
- </pre>
- <hr class="thinhr"> <span style="font-weight:bold">cancer</span> <style>
- .hmisctable576556 {
- border: none;
- font-size: 80%;
- }
- .hmisctable576556 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable576556 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable576556">
- <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>6680</td><td>0</td><td>2</td></tr>
- </table>
- <pre style="font-size:85%;">
- Value         No   Yes
- Frequency   6008   672
- Proportion 0.899 0.101
- </pre>
- <hr class="thinhr"> <span style="font-weight:bold">stroke</span> <style>
- .hmisctable821832 {
- border: none;
- font-size: 80%;
- }
- .hmisctable821832 td {
- text-align: center;
- padding: 0 1ex 0 1ex;
- }
- .hmisctable821832 th {
- color: MidnightBlue;
- text-align: center;
- padding: 0 1ex 0 1ex;
- font-weight: normal;
- }
- </style>
- <table class="hmisctable821832">
- <tr><th>n</th><th>missing</th><th>distinct</th></tr>
- <tr><td>6680</td><td>0</td><td>2</td></tr>
- </table>
- <pre style="font-size:85%;">
- Value         No   Yes
- Frequency   6406   274
- Proportion 0.959 0.041
  </pre>
  <hr class="thinhr">
 ```
@@ -522,583 +522,625 @@ left: 0.1em;
 bottom: -1ex;
 }
 </style>
- <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Physical activity <br><br> 16  Variables   6680  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">tac</span>: total activity counts per day<div style='float: right; text-align: right;'><img src="data:image/png;base64,
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Physical activity <br><br> 16  Variables   5972  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">tac</span>: total activity counts per day<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAeElEQVQ4jc2TUQrAMAhDk97/0EXcKBOxa4d2waLgh4+UgIEAROtMoTmCSJu3rpB3GEblUM3lslhH4Mw9Afghl490guwZuJALlfEcLkyZ1LQi31a5qj71PrBGle8cdrGSbcMnrDzzJGGY5/CVeL1goBS1dKQJuW7ZAf50CiyOwi4/AAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable717443 {
+ .hmisctable433111 {
  border: none;
  font-size: 70%;
  }
- .hmisctable717443 td {
+ .hmisctable433111 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable717443 th {
+ .hmisctable433111 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable717443">
+ <table class="hmisctable433111">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>5965</td><td>1</td><td>244811</td><td>143738</td><td> 69233</td><td> 94872</td><td>150571</td><td>223572</td><td>314224</td><td>417410</td><td>486450</td></tr>
+ <tr><td>5972</td><td>0</td><td>5965</td><td>1</td><td>244811</td><td>143738</td><td> 69233</td><td> 94872</td><td>150571</td><td>223572</td><td>314224</td><td>417410</td><td>486450</td></tr>
  </table>
  <style>
- .hmisctable298253 {
+ .hmisctable852180 {
  border: none;
  font-size: 85%;
  }
- .hmisctable298253 td {
+ .hmisctable852180 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable298253 th {
+ .hmisctable852180 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable298253">
+ <table class="hmisctable852180">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>   8263.000</td><td>   8931.833</td><td>  12123.000</td><td>  14642.000</td><td>  15656.000</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td> 981517.167</td><td> 986261.000</td><td> 986593.800</td><td>1097823.500</td><td>1122542.600</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac</span>: total log activity count (log(1+activity))<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAfElEQVQ4jcXVSw6AMAgE0Kn3P7TB+gETUspgnQVxIfhiQkCjAvQCCTfqNXijAhNulh1cAnpkVbrcFEf1t8tl3bjlrgGpzDa1RFHUlTX7OKsC88uirQkURQv1pVF53KiFJiVx3tuFHiWL4477dp43Wz6L+oTUfl+bWl553AEbgQkhPLsNjQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable112948 {
+ .hmisctable100082 {
  border: none;
  font-size: 80%;
  }
- .hmisctable112948 td {
+ .hmisctable100082 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable112948 th {
+ .hmisctable100082 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable112948">
+ <table class="hmisctable100082">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>5969</td><td>1</td><td>2900</td><td>873.5</td><td>1613</td><td>1900</td><td>2385</td><td>2911</td><td>3431</td><td>3877</td><td>4164</td></tr>
+ <tr><td>5972</td><td>0</td><td>5969</td><td>1</td><td>2900</td><td>873.5</td><td>1613</td><td>1900</td><td>2385</td><td>2911</td><td>3431</td><td>3877</td><td>4164</td></tr>
  </table>
  <style>
- .hmisctable303566 {
+ .hmisctable692948 {
  border: none;
  font-size: 85%;
  }
- .hmisctable303566 td {
+ .hmisctable692948 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable303566 th {
+ .hmisctable692948 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable303566">
+ <table class="hmisctable692948">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td> 313.0835</td><td> 364.4561</td><td> 400.8157</td><td> 429.9288</td><td> 466.0362</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>5436.1548</td><td>5492.5395</td><td>5588.3401</td><td>5655.4680</td><td>6122.6779</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">mvpa</span>: Moderate or vigorous physical activity <span style='font-family:Verdana;font-size:75%;'>minutes</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAZUlEQVQ4je2TMQ7AIAwD7fz/0Q0JKg2CgQkPtYgCZjlZMkgClBPMDC4T0891JiSWHJksV6tj6HYDq0ZeWokVLiG4L5dSbAuuCE6SSyC/0cetWHd9cnbdaCecuOfuH+9k6TZd9HkAi+sMS39wEIcAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable104117 {
+ .hmisctable614447 {
  border: none;
  font-size: 70%;
  }
- .hmisctable104117 td {
+ .hmisctable614447 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable104117 th {
+ .hmisctable614447 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable104117">
+ <table class="hmisctable614447">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>1163</td><td>1</td><td>19.19</td><td>20.9</td><td> 0.800</td><td> 1.429</td><td> 4.000</td><td>12.000</td><td>26.762</td><td>46.000</td><td>59.921</td></tr>
+ <tr><td>5972</td><td>0</td><td>1163</td><td>1</td><td>19.19</td><td>20.9</td><td> 0.800</td><td> 1.429</td><td> 4.000</td><td>12.000</td><td>26.762</td><td>46.000</td><td>59.921</td></tr>
  </table>
  <style>
- .hmisctable911486 {
+ .hmisctable583319 {
  border: none;
  font-size: 85%;
  }
- .hmisctable911486 td {
+ .hmisctable583319 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable911486 th {
+ .hmisctable583319 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable911486">
+ <table class="hmisctable583319">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.1428571</td><td>  0.1666667</td><td>  0.2000000</td><td>  0.2500000</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>180.8333333</td><td>186.2000000</td><td>194.8000000</td><td>208.5000000</td><td>249.0000000</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">wt</span>: total accelerometer wear time <span style='font-family:Verdana;font-size:75%;'>minutes</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAb0lEQVQ4jc2TAQrAIAwD4/7/6Fl0YzBXs9KIJ7RFMBxCUWgA9LIAHBRo9MEa9y7MPL8qYMAGXl/s6qU0c6I9Ib2Xs30ka/eR95L82ij0h5LM7RUYkZJ6BYVEcldWglWqnm0T7CRS0BLvwszPi+p0AluKCaq/eVlsAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable602982 {
+ .hmisctable479620 {
  border: none;
  font-size: 70%;
  }
- .hmisctable602982 td {
+ .hmisctable479620 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable602982 th {
+ .hmisctable479620 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable602982">
+ <table class="hmisctable479620">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>3613</td><td>1</td><td>866.1</td><td>139.8</td><td> 684.3</td><td> 721.0</td><td> 782.9</td><td> 852.1</td><td> 922.0</td><td>1000.6</td><td>1111.5</td></tr>
+ <tr><td>5972</td><td>0</td><td>3613</td><td>1</td><td>866.1</td><td>139.8</td><td> 684.3</td><td> 721.0</td><td> 782.9</td><td> 852.1</td><td> 922.0</td><td>1000.6</td><td>1111.5</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  600.000  601.500  602.000  603.000  604.000 ,  <font color="MidnightBlue">highest</font>: 1425.286 1426.250 1426.286 1426.857 1440.000</span> <hr class="thinhr"> <span style="font-weight:bold">tlac.1</span>: total log actvity count 12:00AM-2:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAQUlEQVQ4jWNgZGRgYBx8gIGJiQGIBx0YdRdpYNRdpAGG0fxIEhh1F2lgULtrELoMnB+BOZIekBGFhcDQHAinQSwAjl0NIj1QrBkAAAAASUVORK5CYII=" alt="image" /></div> <pre style="font-size:80%;">
-        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-     5972      708     2656    0.829    30.92    51.83     0.00     0.00     0.00 
-      .50      .75      .90      .95 
-     0.00    24.38    94.43   169.25 
- </pre>
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAQUlEQVQ4jWNgZGRgYBx8gIGJiQGIBx0YdRdpYNRdpAGG0fxIEhh1F2lgULtrELoMnB+BOZIekBGFhcDQHAinQSwAjl0NIj1QrBkAAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable559284 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable559284 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable559284 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable559284">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>0</td><td>2656</td><td>0.829</td><td>30.92</td><td>51.83</td><td>  0.00</td><td>  0.00</td><td>  0.00</td><td>  0.00</td><td> 24.38</td><td> 94.43</td><td>169.25</td></tr>
+ </table>
  <style>
- .hmisctable452635 {
+ .hmisctable710157 {
  border: none;
  font-size: 85%;
  }
- .hmisctable452635 td {
+ .hmisctable710157 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable452635 th {
+ .hmisctable710157 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable452635">
+ <table class="hmisctable710157">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.1569446</td><td>  0.1831020</td><td>  0.2299197</td><td>  0.2559656</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>597.3808309</td><td>620.0469233</td><td>674.1677375</td><td>709.3300116</td><td>719.0239316</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.2</span>: total log actvity count 2:00AM-4:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAR0lEQVQ4je2TMQoAMAgDo/9/dEsjRUqXbA45ESM6ZAkigJgHMrF7HPalYV8acB4l7EvDvjSYx6ornkWRjDe7ZHs5F4pPBttckvsNKbH3bIIAAAAASUVORK5CYII=" alt="image" /></div> <pre style="font-size:80%;">
-        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-     5972      708     1770    0.653    19.09    34.47     0.00     0.00     0.00 
-      .50      .75      .90      .95 
-     0.00     2.91    51.83   110.64 
- </pre>
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAR0lEQVQ4je2TMQoAMAgDo/9/dEsjRUqXbA45ESM6ZAkigJgHMrF7HPalYV8acB4l7EvDvjSYx6ornkWRjDe7ZHs5F4pPBttckvsNKbH3bIIAAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable831215 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable831215 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable831215 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable831215">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>0</td><td>1770</td><td>0.653</td><td>19.09</td><td>34.47</td><td>  0.00</td><td>  0.00</td><td>  0.00</td><td>  0.00</td><td>  2.91</td><td> 51.83</td><td>110.64</td></tr>
+ </table>
  <style>
- .hmisctable859153 {
+ .hmisctable983183 {
  border: none;
  font-size: 85%;
  }
- .hmisctable859153 td {
+ .hmisctable983183 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable859153 th {
+ .hmisctable983183 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable859153">
+ <table class="hmisctable983183">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.00000000</td><td>  0.09902103</td><td>  0.11552453</td><td>  0.15694461</td><td>  0.23104906</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>586.34967162</td><td>611.00545824</td><td>617.44773130</td><td>737.25383394</td><td>775.42871350</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.3</span>: total log actvity count 4:00AM-6:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAASklEQVQ4jWNgZGRgYBx8gIGJiQGIBx0YdRdpYNRdpAGG0fxIEhh1F2lgULtrELoMnB+BORIK4QwMDj45ohUyQghULkSAEVEqgFgAjKANGzSYGugAAAAASUVORK5CYII=" alt="image" /></div> <pre style="font-size:80%;">
-        n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-     5972      708     2834    0.855    43.29    70.78     0.00     0.00     0.00 
-      .50      .75      .90      .95 
-     0.00    38.74   147.59   248.43 
- </pre>
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAASklEQVQ4jWNgZGRgYBx8gIGJiQGIBx0YdRdpYNRdpAGG0fxIEhh1F2lgULtrELoMnB+BORIK4QwMDj45ohUyQghULkSAEVEqgFgAjKANGzSYGugAAAAASUVORK5CYII=" alt="image" /></div> <style>
+ .hmisctable350541 {
+ border: none;
+ font-size: 70%;
+ }
+ .hmisctable350541 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable350541 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable350541">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>5972</td><td>0</td><td>2834</td><td>0.855</td><td>43.29</td><td>70.78</td><td>  0.00</td><td>  0.00</td><td>  0.00</td><td>  0.00</td><td> 38.74</td><td>147.59</td><td>248.43</td></tr>
+ </table>
  <style>
- .hmisctable131145 {
+ .hmisctable435966 {
  border: none;
  font-size: 85%;
  }
- .hmisctable131145 td {
+ .hmisctable435966 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable131145 th {
+ .hmisctable435966 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable131145">
+ <table class="hmisctable435966">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.1155245</td><td>  0.1386294</td><td>  0.2299197</td><td>  0.2682397</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>679.1484297</td><td>697.1093552</td><td>704.5766819</td><td>719.3198459</td><td>769.6014301</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.4</span>: total log actvity count 6:00AM-8:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAVElEQVQ4je2TSwrAIAwF33j/Q7fWVoK4aAQxiwzktwgMgQgk4qFSdEc40stHevlQ/qOL0F6V0yID3cvwnfCk7MzrB31rm1f9Rz+YjoWEGWnjU98CF7dPDF6FBo4mAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable414046 {
+ .hmisctable410152 {
  border: none;
  font-size: 70%;
  }
- .hmisctable414046 td {
+ .hmisctable410152 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable414046 th {
+ .hmisctable410152 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable414046">
+ <table class="hmisctable410152">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>5285</td><td>0.998</td><td>177</td><td>178.6</td><td>  0.00</td><td>  0.00</td><td> 36.94</td><td>137.34</td><td>282.09</td><td>416.35</td><td>496.25</td></tr>
+ <tr><td>5972</td><td>0</td><td>5285</td><td>0.998</td><td>177</td><td>178.6</td><td>  0.00</td><td>  0.00</td><td> 36.94</td><td>137.34</td><td>282.09</td><td>416.35</td><td>496.25</td></tr>
  </table>
  <style>
- .hmisctable331418 {
+ .hmisctable554309 {
  border: none;
  font-size: 85%;
  }
- .hmisctable331418 td {
+ .hmisctable554309 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable331418 th {
+ .hmisctable554309 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable331418">
+ <table class="hmisctable554309">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.2299197</td><td>  0.3465736</td><td>  0.6148132</td><td>  0.6839274</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>774.8811640</td><td>792.6938042</td><td>822.1482092</td><td>832.9933042</td><td>857.9018816</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.5</span>: total log actvity count 8:00AM-10:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAf0lEQVQ4jc3TgQqAMAgE0NP//+jGklywDXUaHcwGlXsUggig/wXMaMsdfUl2oS6b/gcuSOkNkAtzutqzmITFl0czuRaaVb5x3Ud5XBk07Oax33GKhhTNYxyU8NkmrgTPmxbxyaRrqUvYVRz24JD93yxAi+tk4IIh0FP0OsxiWxd1kAfrJobkCgAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable189485 {
+ .hmisctable904632 {
  border: none;
  font-size: 70%;
  }
- .hmisctable189485 td {
+ .hmisctable904632 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable189485 th {
+ .hmisctable904632 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable189485">
+ <table class="hmisctable904632">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>5834</td><td>1</td><td>339.3</td><td>191.7</td><td> 39.52</td><td>102.56</td><td>221.28</td><td>346.74</td><td>460.18</td><td>552.17</td><td>610.19</td></tr>
+ <tr><td>5972</td><td>0</td><td>5834</td><td>1</td><td>339.3</td><td>191.7</td><td> 39.52</td><td>102.56</td><td>221.28</td><td>346.74</td><td>460.18</td><td>552.17</td><td>610.19</td></tr>
  </table>
  <style>
- .hmisctable922886 {
+ .hmisctable682044 {
  border: none;
  font-size: 85%;
  }
- .hmisctable922886 td {
+ .hmisctable682044 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable922886 th {
+ .hmisctable682044 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable922886">
+ <table class="hmisctable682044">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.2310491</td><td>  0.7250248</td><td>  0.8652549</td><td>  1.0357837</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>812.0225306</td><td>812.8675420</td><td>813.2942210</td><td>824.5800445</td><td>888.1759271</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.6</span>: total log actvity count 10:00AM-12:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAf0lEQVQ4jcWT2w6AMAhDi///0Wawywsqt0gfls0EetJYUJGAqk2y7koJIrnxmdt3FifHFcn3Jq6Vka42rkeiLq5hyL5GhblclQOZgZZ+6KObKZHa98j7H27kcqNZuKrk5FIHdkqFXB4yTPf6dHKEIKkYjapRoG9RTcNtfJrIjxugDgi3M3APhgAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable582918 {
+ .hmisctable760161 {
  border: none;
- font-size: 70%;
+ font-size: 80%;
  }
- .hmisctable582918 td {
+ .hmisctable760161 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable582918 th {
+ .hmisctable760161 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable582918">
+ <table class="hmisctable760161">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>5931</td><td>1</td><td>407.7</td><td>163.6</td><td>150.4</td><td>218.6</td><td>316.2</td><td>415.0</td><td>506.7</td><td>589.9</td><td>634.9</td></tr>
+ <tr><td>5972</td><td>0</td><td>5931</td><td>1</td><td>407.7</td><td>163.6</td><td>150.4</td><td>218.6</td><td>316.2</td><td>415.0</td><td>506.7</td><td>589.9</td><td>634.9</td></tr>
  </table>
  <style>
- .hmisctable298841 {
+ .hmisctable681191 {
  border: none;
  font-size: 85%;
  }
- .hmisctable298841 td {
+ .hmisctable681191 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable298841 th {
+ .hmisctable681191 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable298841">
+ <table class="hmisctable681191">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.6986213</td><td>  2.6001909</td><td>  4.5903937</td><td>  5.7234361</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>807.7712473</td><td>808.7247458</td><td>811.5701740</td><td>884.1169241</td><td>892.0314653</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.7</span>: total log actvity count 12:00PM-2:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAfUlEQVQ4jc3VgQqAMAgE0Gv//9EhwmbIyDytjthGrPUQZDjIAProXBYMMiKCjrKQFwP0qYM6AS4T+jOX8X3i2oumjMO1ucjCZVoojJK80Y+m8eIFy1Ut/sljkcW1uDJlYnU3m0s8yxW37TaXgpwv4Jo33Bp07ov/1/VqlfUJz8QI+LPBphkAAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable718294 {
+ .hmisctable739270 {
  border: none;
  font-size: 80%;
  }
- .hmisctable718294 td {
+ .hmisctable739270 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable718294 th {
+ .hmisctable739270 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable718294">
+ <table class="hmisctable739270">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>5947</td><td>1</td><td>418</td><td>146.9</td><td>192.1</td><td>250.4</td><td>337.6</td><td>423.5</td><td>507.2</td><td>581.3</td><td>623.7</td></tr>
+ <tr><td>5972</td><td>0</td><td>5947</td><td>1</td><td>418</td><td>146.9</td><td>192.1</td><td>250.4</td><td>337.6</td><td>423.5</td><td>507.2</td><td>581.3</td><td>623.7</td></tr>
  </table>
  <style>
- .hmisctable800938 {
+ .hmisctable554861 {
  border: none;
  font-size: 85%;
  }
- .hmisctable800938 td {
+ .hmisctable554861 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable800938 th {
+ .hmisctable554861 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable800938">
+ <table class="hmisctable554861">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.000000</td><td>  1.734669</td><td>  2.704424</td><td>  5.605670</td><td>  6.387910</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>788.370472</td><td>796.082067</td><td>813.380498</td><td>821.733575</td><td>885.445891</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.8</span>: total log actvity count 2:00PM-4:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAf0lEQVQ4jc2UiwqAIAxF7/r/jy63BRMp3aPHAZtC6lG4gpIArcEOK8CWAGhN4ZF8Cggtc24uNsZLOl96WaOBgluLe8142WsuVCLmiM8RtXUpJpFOx6mcUrmbW5vTPQj/8UooReVufy/xiYnh4omuVfLrQXNG6OuDDLtpAglSuO6jGgjxbwA97AAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable189045 {
+ .hmisctable198700 {
  border: none;
- font-size: 70%;
+ font-size: 80%;
  }
- .hmisctable189045 td {
+ .hmisctable198700 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable189045 th {
+ .hmisctable198700 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable189045">
+ <table class="hmisctable198700">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>5954</td><td>1</td><td>411.7</td><td>147.8</td><td>192.1</td><td>243.1</td><td>323.6</td><td>414.3</td><td>501.7</td><td>577.5</td><td>619.9</td></tr>
+ <tr><td>5972</td><td>0</td><td>5954</td><td>1</td><td>411.7</td><td>147.8</td><td>192.1</td><td>243.1</td><td>323.6</td><td>414.3</td><td>501.7</td><td>577.5</td><td>619.9</td></tr>
  </table>
  <style>
- .hmisctable652066 {
+ .hmisctable664880 {
  border: none;
  font-size: 85%;
  }
- .hmisctable652066 td {
+ .hmisctable664880 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable652066 th {
+ .hmisctable664880 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable652066">
+ <table class="hmisctable664880">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.000000</td><td>  1.974752</td><td>  3.096473</td><td>  4.094345</td><td>  5.772020</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>792.683985</td><td>837.042353</td><td>846.553847</td><td>877.212734</td><td>904.872351</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.9</span>: total log actvity count 4:00PM-6:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAf0lEQVQ4jcWV4QqAMAiEz97/oYvMRTXavDO6H1OY3j4EGUwXcCYtVz0XVdjkp0s2dFcFKLCeitu/uPpUBYNju9+AgktBY1pHg6oYG7E+80ih7/cxz0QOLdPBQjFkc/USEYU3LKxDynL1ig+PYqgEHPxXM1zDLmLz5nR/rQWLYCt6iwjaJPnjlQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable526554 {
+ .hmisctable856271 {
  border: none;
  font-size: 80%;
  }
- .hmisctable526554 td {
+ .hmisctable856271 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable526554 th {
+ .hmisctable856271 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable526554">
+ <table class="hmisctable856271">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>5955</td><td>1</td><td>397</td><td>140.3</td><td>185.4</td><td>234.8</td><td>316.4</td><td>401.8</td><td>483.5</td><td>553.6</td><td>591.4</td></tr>
+ <tr><td>5972</td><td>0</td><td>5955</td><td>1</td><td>397</td><td>140.3</td><td>185.4</td><td>234.8</td><td>316.4</td><td>401.8</td><td>483.5</td><td>553.6</td><td>591.4</td></tr>
  </table>
  <style>
- .hmisctable553540 {
+ .hmisctable570234 {
  border: none;
  font-size: 85%;
  }
- .hmisctable553540 td {
+ .hmisctable570234 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable553540 th {
+ .hmisctable570234 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable553540">
+ <table class="hmisctable570234">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.000000</td><td>  2.957040</td><td>  3.401197</td><td>  4.148165</td><td>  5.084134</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>771.497952</td><td>783.128869</td><td>801.039991</td><td>809.429425</td><td>822.294800</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.10</span>: total log actvity count 6:00PM-8:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAgElEQVQ4jc2UgQqAIAxEb/3/R1fb0FFZzs3qYZcExkM8QV4Aif3N8ylg8YGNGox+15GE60fW5opPvG6NrNyLXr1Of/ZitbDeY6GcSoWpfRyVkk0L7dccqbBb8ywkWCFw0g4ryy2Zi98ORiJd5+zXLQjTuOHudUMSVIM05OEm8mwF8CEIR0/MQD0AAAAASUVORK5CYII=" alt="image" /></div> <style>
- .hmisctable684617 {
+ .hmisctable863688 {
  border: none;
- font-size: 70%;
+ font-size: 80%;
  }
- .hmisctable684617 td {
+ .hmisctable863688 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable684617 th {
+ .hmisctable863688 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable684617">
+ <table class="hmisctable863688">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>5932</td><td>1</td><td>337.6</td><td>151.3</td><td>114.1</td><td>165.5</td><td>246.6</td><td>339.5</td><td>433.1</td><td>504.4</td><td>548.9</td></tr>
+ <tr><td>5972</td><td>0</td><td>5932</td><td>1</td><td>337.6</td><td>151.3</td><td>114.1</td><td>165.5</td><td>246.6</td><td>339.5</td><td>433.1</td><td>504.4</td><td>548.9</td></tr>
  </table>
  <style>
- .hmisctable907329 {
+ .hmisctable886468 {
  border: none;
  font-size: 85%;
  }
- .hmisctable907329 td {
+ .hmisctable886468 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable907329 th {
+ .hmisctable886468 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable907329">
+ <table class="hmisctable886468">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.000000</td><td>  1.311822</td><td>  1.353699</td><td>  1.753975</td><td>  3.459493</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>778.168243</td><td>778.774433</td><td>802.020060</td><td>851.421446</td><td>860.123328</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.11</span>: total log actvity count 8:00PM-10:00PM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAe0lEQVQ4jc3TUQ6AIAwD0Hb3P7QKQTdBwxCQEgETPl6WFCTA9QIR7N9yqXH9Afe4ZvqeXEgRvc3jlVzQsX/GOBII08e74S3h9dg+hglINpmKyKipoYmT83rr+rgUcE0X4uy++/q7jLFZCF8JnTm6Hta1nXemg7rV8Q25AU/VCWPjrzjNAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable339668 {
+ .hmisctable942443 {
  border: none;
  font-size: 70%;
  }
- .hmisctable339668 td {
+ .hmisctable942443 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable339668 th {
+ .hmisctable942443 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable339668">
+ <table class="hmisctable942443">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
- <tr><td>5972</td><td>708</td><td>5786</td><td>1</td><td>223.2</td><td>158.2</td><td> 10.22</td><td> 42.32</td><td>116.77</td><td>212.72</td><td>315.90</td><td>411.75</td><td>471.84</td></tr>
+ <tr><td>5972</td><td>0</td><td>5786</td><td>1</td><td>223.2</td><td>158.2</td><td> 10.22</td><td> 42.32</td><td>116.77</td><td>212.72</td><td>315.90</td><td>411.75</td><td>471.84</td></tr>
  </table>
  <style>
- .hmisctable705579 {
+ .hmisctable721537 {
  border: none;
  font-size: 85%;
  }
- .hmisctable705579 td {
+ .hmisctable721537 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable705579 th {
+ .hmisctable721537 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable705579">
+ <table class="hmisctable721537">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.0000000</td><td>  0.6229449</td><td>  0.6708919</td><td>  1.0233141</td><td>  1.0525597</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>724.9040071</td><td>753.8848070</td><td>821.4989318</td><td>826.3463412</td><td>839.8942777</td></tr>
  </table>
  <hr class="thinhr"> <span style="font-weight:bold">tlac.12</span>: total log actvity count 10:00PM-12:00AM<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAT0lEQVQ4je3TvQoAIAiF0Xt7/4fuB5WgQFzKwU8Eh4azBBJgvtAaxqarXLHKFQv1H0MtV0KZuNLJzKX9BkmH69571/yPfrTZzsh4DyirVwf2WgylYdrF0gAAAABJRU5ErkJggg==" alt="image" /></div> <pre style="font-size:80%;">
         n  missing distinct     Info     Mean      Gmd      .05      .10      .25 
-     5972      708     4943    0.995    95.37    114.3    0.000    0.000    6.693 
+     5972        0     4943    0.995    95.37    114.3    0.000    0.000    6.693 
       .50      .75      .90      .95 
    55.438  141.863  251.308  328.945 
  </pre>
  <style>
- .hmisctable920048 {
+ .hmisctable241370 {
  border: none;
  font-size: 85%;
  }
- .hmisctable920048 td {
+ .hmisctable241370 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable920048 th {
+ .hmisctable241370 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable920048">
+ <table class="hmisctable241370">
  <tr><td><font color="MidnightBlue">lowest</font> :</td><td>  0.00000000</td><td>  0.09902103</td><td>  0.17328680</td><td>  0.27798716</td><td>  0.41291025</td></tr>
  <tr><td><font color="MidnightBlue">highest</font>:</td><td>683.58618305</td><td>698.46723961</td><td>702.66304648</td><td>707.15487443</td><td>733.61717206</td></tr>
  </table>

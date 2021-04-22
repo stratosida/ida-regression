@@ -1,11 +1,11 @@
-# (PART) National Health and Nutrition Examination Survey (NHANES) {-}
+# National Health and Nutrition Examination Survey (NHANES) {-}
 
 
 
 
 # Introduction to NHANES
 
-To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section  [nhanes_IDAP.Rmd](nhanes_IDAP.Rmd).
+To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section  [nhanes_IDAP](nhanes_IDAP.html).
 
 **Hypothetical research aim for IDA**  
 *is to develop a multivariable model for MVPA (minutes of moderate/vigorous physical activity).*
@@ -14,7 +14,7 @@ To demonstrate the workflow and content of IDA, we created a hypothetical resear
 
 
 
-## Dataset Description
+## NHANES Dataset Description
 
 The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The survey examines a nationally representative sample of non-institutionalized US civilians using a multistage probability sampling design that considers geographical area and minority representation. Sample weights are generated to create nationally representative estimates for the US population and subgroups defined by age, sex, and race/ethnicity. [Link to CDC NHANES website](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm). NHANES collects data on various health and behavior indicators, including physical activity and self‐reported diagnosis of prevalent health conditions such as diabetes mellitus, coronary artery disease, stroke, and cancer.
 
@@ -76,89 +76,86 @@ We refer to the source data set as the dataset available online [here](https://g
 
 ### Data dictionary
 
-Additional meta-data is added to the original *source* data set. We write this new modified data set back to the **data** folder after adding additional meta-data for the following variables
+Additional meta-data is added to the original *source* data set. We write this new modified data set back to the **data** folder after adding additional meta-data (units, labels).
 
-We select the variables of interest for the modeling by dropping variables we do not check in IDA.
 
-We display the contents (data dictionary)  to ensure the additional data is added, and then write back the changes to the data folder in the file "data/a_nhanes.rda". 
-
-Input object size:	 1360968 bytes;	 31 variables	 6680 observations
-New object size:	1361512 bytes;	31 variables	6680 observations
+Input object size:	 1195488 bytes;	 31 variables	 5972 observations
+New object size:	1196032 bytes;	31 variables	5972 observations
 
 ```{=html}
-<hr><h4>Data frame:a_nhanes</h4>6680 observations and 31 variables, maximum # NAs:708  
+<hr><h4>Data frame:a_nhanes</h4>5972 observations and 31 variables, maximum # NAs:395  
  <hr>
  <style>
- .hmisctable898956 {
+ .hmisctable117965 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable898956 td {
+ .hmisctable117965 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable898956 th {
+ .hmisctable117965 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable898956" border="1">
+ <table class="hmisctable117965" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>seqn</td><td>respondent sequence number</td><td></td><td></td><td>integer</td><td>integer</td><td>  0</td></tr>
  <tr><td>age</td><td>age</td><td>years</td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
  <tr><td>gender</td><td>gender</td><td></td><td><a href="#levels.gender">2</a></td><td></td><td>integer</td><td>  0</td></tr>
- <tr><td>educationadult</td><td>education level</td><td></td><td><a href="#levels.educationadult">3</a></td><td></td><td>integer</td><td>  7</td></tr>
- <tr><td>smokecigs</td><td>smoking status</td><td></td><td><a href="#levels.smokecigs">3</a></td><td></td><td>integer</td><td>  4</td></tr>
+ <tr><td>educationadult</td><td>education level</td><td></td><td><a href="#levels.educationadult">3</a></td><td></td><td>integer</td><td>  4</td></tr>
+ <tr><td>smokecigs</td><td>smoking status</td><td></td><td><a href="#levels.smokecigs">3</a></td><td></td><td>integer</td><td>  2</td></tr>
  <tr><td>drinkstatus</td><td>alcohol consumption</td><td></td><td><a href="#levels.drinkstatus">4</a></td><td></td><td>integer</td><td>  0</td></tr>
- <tr><td>alcohol</td><td>alcohol consumption</td><td></td><td></td><td>integer</td><td>integer</td><td>466</td></tr>
- <tr><td>bmi</td><td>body mass index</td><td>kg/m2</td><td></td><td>numeric</td><td>double</td><td> 56</td></tr>
+ <tr><td>alcohol</td><td>alcohol consumption</td><td></td><td></td><td>integer</td><td>integer</td><td>395</td></tr>
+ <tr><td>bmi</td><td>body mass index</td><td>kg/m2</td><td></td><td>numeric</td><td>double</td><td> 44</td></tr>
  <tr><td>diabetes</td><td>diabetes</td><td></td><td><a href="#levels.diabetes">2</a></td><td></td><td>integer</td><td>  0</td></tr>
  <tr><td>chf</td><td>congestive heart failure</td><td></td><td><a href="#levels.diabetes">2</a></td><td></td><td>integer</td><td>  0</td></tr>
  <tr><td>cancer</td><td>cancer</td><td></td><td><a href="#levels.diabetes">2</a></td><td></td><td>integer</td><td>  0</td></tr>
  <tr><td>stroke</td><td>stroke</td><td></td><td><a href="#levels.diabetes">2</a></td><td></td><td>integer</td><td>  0</td></tr>
- <tr><td>sys</td><td>Systolic blood pressure</td><td>mg/dl</td><td></td><td>integer</td><td>integer</td><td>320</td></tr>
- <tr><td>lbxtc</td><td>Total cholesterol</td><td>mg/dl</td><td></td><td>integer</td><td>integer</td><td>270</td></tr>
- <tr><td>lbdhdd</td><td>HDL cholesterol</td><td>mg/dl</td><td></td><td>integer</td><td>integer</td><td>270</td></tr>
- <tr><td>tac</td><td>total activity counts per day</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac</td><td>total log activity count (log(1+activity))</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>mvpa</td><td>Moderate or vigorous physical activity</td><td>minutes</td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>wt</td><td>total accelerometer wear time</td><td>minutes</td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.1</td><td>total log actvity count 12:00AM-2:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.2</td><td>total log actvity count 2:00AM-4:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.3</td><td>total log actvity count 4:00AM-6:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.4</td><td>total log actvity count 6:00AM-8:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.5</td><td>total log actvity count 8:00AM-10:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.6</td><td>total log actvity count 10:00AM-12:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.7</td><td>total log actvity count 12:00PM-2:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.8</td><td>total log actvity count 2:00PM-4:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.9</td><td>total log actvity count 4:00PM-6:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.10</td><td>total log actvity count 6:00PM-8:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.11</td><td>total log actvity count 8:00PM-10:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
- <tr><td>tlac.12</td><td>total log actvity count 10:00PM-12:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>708</td></tr>
+ <tr><td>sys</td><td>Systolic blood pressure</td><td>mg/dl</td><td></td><td>integer</td><td>integer</td><td>274</td></tr>
+ <tr><td>lbxtc</td><td>Total cholesterol</td><td>mg/dl</td><td></td><td>integer</td><td>integer</td><td>230</td></tr>
+ <tr><td>lbdhdd</td><td>HDL cholesterol</td><td>mg/dl</td><td></td><td>integer</td><td>integer</td><td>230</td></tr>
+ <tr><td>tac</td><td>total activity counts per day</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac</td><td>total log activity count (log(1+activity))</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>mvpa</td><td>Moderate or vigorous physical activity</td><td>minutes</td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>wt</td><td>total accelerometer wear time</td><td>minutes</td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.1</td><td>total log actvity count 12:00AM-2:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.2</td><td>total log actvity count 2:00AM-4:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.3</td><td>total log actvity count 4:00AM-6:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.4</td><td>total log actvity count 6:00AM-8:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.5</td><td>total log actvity count 8:00AM-10:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.6</td><td>total log actvity count 10:00AM-12:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.7</td><td>total log actvity count 12:00PM-2:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.8</td><td>total log actvity count 2:00PM-4:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.9</td><td>total log actvity count 4:00PM-6:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.10</td><td>total log actvity count 6:00PM-8:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.11</td><td>total log actvity count 8:00PM-10:00PM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
+ <tr><td>tlac.12</td><td>total log actvity count 10:00PM-12:00AM</td><td></td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
  </table>
 
  <hr>
  <style>
- .hmisctable651424 {
+ .hmisctable813217 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable651424 td {
+ .hmisctable813217 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable651424 th {
+ .hmisctable813217 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable651424" border="1">
+ <table class="hmisctable813217" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.gender">gender</a></td><td>Male</td></tr>
  <tr><td></td><td>Female</td></tr>

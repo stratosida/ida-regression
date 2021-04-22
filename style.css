@@ -25,21 +25,3 @@ pre code {
 .book .book-summary ul.summary li.divider {
     height: 0px;
 }
-
-
-/*____Code Chunks____*/
-
-.sourceCode pre {
-  margin: 0 !important; /* makes space above and below symmetrical*/
-}
-
-.sourceCode {
-  margin-bottom: 0.85em; /* adds same amount of margin as a <p> would */
-}
-
-/*------------ TOC --------------*/
-
-.book .book-summary {
-  background: white;
-  border-right: none;
-}

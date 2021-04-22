@@ -7,19 +7,17 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 
-#load(here::here("data", "nhanesdat.rdata"))
-
-load(here::here("a_nhanes.rda"))
+load(here::here("data", "a_nhanes.rda"))
 
 ## remove missing
-#a_nhanes <- a_nhanes %>% drop_na(tlac.1)
-# save(a_nhanes, file=here::here("data","a_nhanes.rda"))
+a_nhanes <- a_nhanes %>% drop_na(tlac.1)
+save(a_nhanes, file=here::here("data","a_nhanes.rda"))
 
 ```
 
 # Introduction to NHANES
 
-To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section  [nhanes_IDAP.Rmd](nhanes_IDAP.Rmd).
+To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section  [nhanes_IDAP](nhanes_IDAP.html).
 
 **Hypothetical research aim for IDA**  
 *is to develop a multivariable model for MVPA (minutes of moderate/vigorous physical activity).*
