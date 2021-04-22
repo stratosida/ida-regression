@@ -26,7 +26,7 @@ The focus of this document/website is to provide examples on conducting initial 
 
 ## Project Description
 
-**Objective:**  Develope initial data analysis plan (IDAP) and provide sample reports for IDA before executing the statistical analysis plan (SAP) for regression modeling.
+**Objective:**  Develop initial data analysis plan (IDAP) and provide sample reports for IDA before executing the statistical analysis plan (SAP) for regression modeling.
 
 Six steps of the IDA framework [Ref 1] are
 
@@ -35,7 +35,7 @@ Six steps of the IDA framework [Ref 1] are
 3. Data screening
 4. Initial data reporting
 5. Updating/refining the statistical analysis plan
-6. Reporting of IDA findings in research papers
+6. Reporting of IDA findings in research papers [Ref 2]
 
 For our objective, we assume that meta data exist and data cleaning has already been done. We created hypothetical statistical analyses plans for each of the data sets. 
  
@@ -87,9 +87,9 @@ Beware: the package list above is currently static, so consider that it may not 
     * Global file that includes these files as chapters ("bookdown.yml", "index.Rmd")
     
 * data-raw - Repository for original data sets and their data dictionaries 
-    * Bacteremia  (modified from original per Medical University of Vienna, Austria; on this github repository)
-    * Crash-2  [Data sets from Vanderbilt University](http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets) 
-    * NHANES  (downloaded from CDC and combined data according to [Ref 6];  on this github repository)
+    * Crash-2  (Publication [Ref 3], Data sets from Vanderbilt University](http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets; on this github repository)
+    * Bacteremia  (Publication [Ref 4] modified from original per Medical University of Vienna, Austria; on this github repository) 
+    * NHANES  (Publications [Ref 6 and 7], downloaded from CDC [Ref 5];  on this github repository)
 
 * data - Repository for analysis data sets
     * a_bact.rda  
