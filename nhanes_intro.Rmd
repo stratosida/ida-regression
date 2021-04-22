@@ -1,4 +1,4 @@
-# (PART) National Health and Nutrition Examination Survey (NHANES) {-}
+# National Health and Nutrition Examination Survey (NHANES) {-}
 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
@@ -9,10 +9,12 @@ library(Hmisc)
 
 #load(here::here("data", "nhanesdat.rdata"))
 
-load(here::here("data","a_nhanes.rda"))
+load(here::here("a_nhanes.rda"))
 
 ## remove missing
 #a_nhanes <- a_nhanes %>% drop_na(tlac.1)
+# save(a_nhanes, file=here::here("data","a_nhanes.rda"))
+
 ```
 
 # Introduction to NHANES
@@ -26,7 +28,7 @@ To demonstrate the workflow and content of IDA, we created a hypothetical resear
 
 
 
-## Dataset Description
+## NHANES Dataset Description
 
 The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The survey examines a nationally representative sample of non-institutionalized US civilians using a multistage probability sampling design that considers geographical area and minority representation. Sample weights are generated to create nationally representative estimates for the US population and subgroups defined by age, sex, and race/ethnicity. [Link to CDC NHANES website](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm). NHANES collects data on various health and behavior indicators, including physical activity and self‐reported diagnosis of prevalent health conditions such as diabetes mellitus, coronary artery disease, stroke, and cancer.
 
@@ -88,11 +90,8 @@ We refer to the source data set as the dataset available online [here](https://g
 
 ### Data dictionary
 
-Additional meta-data is added to the original *source* data set. We write this new modified data set back to the **data** folder after adding additional meta-data for the following variables
+Additional meta-data is added to the original *source* data set. We write this new modified data set back to the **data** folder after adding additional meta-data (units, labels).
 
-We select the variables of interest for the modeling by dropping variables we do not check in IDA.
-
-We display the contents (data dictionary)  to ensure the additional data is added, and then write back the changes to the data folder in the file "data/a_nhanes.rda". 
 
 ```{r labels_nhanes, warning=FALSE, message=FALSE, echo=FALSE, results='asis'} 
 ## Complete metadata by adding missing labels. 
