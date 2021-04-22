@@ -79,30 +79,30 @@ We refer to the source data set as the dataset available online [here](https://g
 Additional meta-data is added to the original *source* data set. We write this new modified data set back to the **data** folder after adding additional meta-data (units, labels).
 
 
-Input object size:	 1195488 bytes;	 31 variables	 5972 observations
+Input object size:	 1196032 bytes;	 31 variables	 5972 observations
 New object size:	1196032 bytes;	31 variables	5972 observations
 
 ```{=html}
 <hr><h4>Data frame:a_nhanes</h4>5972 observations and 31 variables, maximum # NAs:395  
  <hr>
  <style>
- .hmisctable185428 {
+ .hmisctable212501 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable185428 td {
+ .hmisctable212501 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable185428 th {
+ .hmisctable212501 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable185428" border="1">
+ <table class="hmisctable212501" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>seqn</td><td>respondent sequence number</td><td></td><td></td><td>integer</td><td>integer</td><td>  0</td></tr>
  <tr><td>age</td><td>age</td><td>years</td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
@@ -139,23 +139,23 @@ New object size:	1196032 bytes;	31 variables	5972 observations
 
  <hr>
  <style>
- .hmisctable888658 {
+ .hmisctable724673 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable888658 td {
+ .hmisctable724673 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable888658 th {
+ .hmisctable724673 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable888658" border="1">
+ <table class="hmisctable724673" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.gender">gender</a></td><td>Male</td></tr>
  <tr><td></td><td>Female</td></tr>
