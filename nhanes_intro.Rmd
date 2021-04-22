@@ -10,8 +10,8 @@ library(Hmisc)
 load(here::here("data", "a_nhanes.rda"))
 
 ## remove missing
-a_nhanes <- a_nhanes %>% drop_na(tlac.1)
-save(a_nhanes, file=here::here("data","a_nhanes.rda"))
+#a_nhanes <- a_nhanes %>% drop_na(tlac.1)
+#save(a_nhanes, file=here::here("data","a_nhanes.rda"))
 
 ```
 
@@ -194,7 +194,7 @@ Hmisc::html(Hmisc::contents(a_nhanes),
 # vars<-c("seqn", demog_vars,life_vars,health_vars, physio_vars, pa_vars )
 # a_nhanes <- a_nhanes %>%  select(all_of(vars))
 # save(a_nhanes, file =  "a_nhanes.rda")
-#save(a_nhanes, file = here::here("data", "a_nhanes.rda"))
+# save(a_nhanes, file = here::here("data", "a_nhanes.rda"))
 
 ```
 
