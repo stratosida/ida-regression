@@ -17,14 +17,30 @@ description: "The focus of this document/website is to provide guidance on condu
 ---
 
 
+# (PART) Overview {-}
+
+The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses.
+
 ```{r include = FALSE}
-## Load source function
+## For reproducibility 
+#library(checkpoint)
+
+## Point to a specific point in time in MRAN
+## This will install the same packages if they are not installed
+#checkpoint("2020-07-01") 
+
+## load packages
 library(here)
+
+## Load source function
 source(here::here("R", "ida_plot_univar.R"))
 ```
 
 
-# (PART) Overview {-}
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
 
-
-The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses.

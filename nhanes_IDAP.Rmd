@@ -3,13 +3,10 @@
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
 ## Load libraries
-library(here)
-library(tidyverse)
-library(Hmisc)
-library(gtsummary)
-
-#load(here::here("data", "nhanesdat.rdata"))
-load(here::here("a_nhanes.rda"))
+#library(here)
+#library(tidyverse)
+#library(Hmisc)
+#library(gtsummary)
 ```
 
 Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place. 
