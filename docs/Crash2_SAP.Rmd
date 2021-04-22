@@ -1,5 +1,5 @@
 
-# Statistical analysis plan
+# Initial data analysis plan
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
 ## Load libraries
@@ -63,7 +63,7 @@ The outcome variable, early death (i.e., death within 28 days from injury) must 
 This can be derived using the following code logic:
 
 ```{r, eval=FALSE}
-## NOTE: This is for demostration purposes, this code is not run here. 
+## NOTE: This is for demonstration purposes, this code is not run here. 
 ## The derivation was executed earlier. 
 
 a_crash2$time2death <-

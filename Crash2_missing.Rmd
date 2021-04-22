@@ -10,6 +10,8 @@ library(naniar) ## for missing data
 library(gt)
 library(kableExtra)
 library(DT)
+
+## load data
 load(here::here("data", "a_crash2.rda"))
 ```
 
@@ -18,10 +20,10 @@ load(here::here("data", "a_crash2.rda"))
 
 Number and percentage of missing. 
 
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
+```{r, message = FALSE, warning = FALSE , echo=FALSE}
 a_crash2 %>%
   select(-time2death,-ddeath, -entryid, -trandomised, -earlydeath) %>%
-  miss_var_summary() %>%
+  naniar::miss_var_summary() %>%
   gt::gt() %>%
     gt::cols_label(
     variable = md("**Variable**"),
@@ -31,7 +33,8 @@ a_crash2 %>%
   gt::fmt_number(
     columns = vars(pct_miss),
     decimals = 2
-  )
+  ) 
+
 
 ```
 

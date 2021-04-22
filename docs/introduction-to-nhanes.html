@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Introduction to NHANES | Regression without regrets</title>
+  <title>Chapter 7 Introduction to NHANES | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Introduction to NHANES | Regression without regrets" />
+  <meta property="og:title" content="Chapter 7 Introduction to NHANES | Regression without regrets" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bailliem/ida-regression-private" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Introduction to NHANES | Regression without regrets" />
+  <meta name="twitter:title" content="Chapter 7 Introduction to NHANES | Regression without regrets" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="national-health-and-nutrition-examination-survey-nhanes.html"/>
+<link rel="prev" href="missing-data.html"/>
 <link rel="next" href="initial-data-analysis-plan-idap.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery.min.js"></script>
@@ -59,10 +59,6 @@
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -442,42 +438,41 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  background-color: #f8f8f8; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
 code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -513,17 +508,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#section-session-info"><i class="fa fa-check"></i><b>4.3</b> Section session info</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html"><i class="fa fa-check"></i><b>5</b> Statistical analysis plan</a>
+<li class="chapter" data-level="5" data-path="initial-data-analysis-plan.html"><a href="initial-data-analysis-plan.html"><i class="fa fa-check"></i><b>5</b> Initial data analysis plan</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#outcome-variable"><i class="fa fa-check"></i><b>5.1</b> Outcome variable</a></li>
-<li class="chapter" data-level="5.2" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#statistical-methods"><i class="fa fa-check"></i><b>5.2</b> Statistical methods</a></li>
-<li class="chapter" data-level="5.3" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#remarks"><i class="fa fa-check"></i><b>5.3</b> Remarks</a></li>
-<li class="chapter" data-level="5.4" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#preparations"><i class="fa fa-check"></i><b>5.4</b> Preparations</a></li>
-<li class="chapter" data-level="5.5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#sources"><i class="fa fa-check"></i><b>5.5</b> Sources</a>
+<li class="chapter" data-level="5.1" data-path="initial-data-analysis-plan.html"><a href="initial-data-analysis-plan.html#outcome-variable"><i class="fa fa-check"></i><b>5.1</b> Outcome variable</a></li>
+<li class="chapter" data-level="5.2" data-path="initial-data-analysis-plan.html"><a href="initial-data-analysis-plan.html#statistical-methods"><i class="fa fa-check"></i><b>5.2</b> Statistical methods</a></li>
+<li class="chapter" data-level="5.3" data-path="initial-data-analysis-plan.html"><a href="initial-data-analysis-plan.html#remarks"><i class="fa fa-check"></i><b>5.3</b> Remarks</a></li>
+<li class="chapter" data-level="5.4" data-path="initial-data-analysis-plan.html"><a href="initial-data-analysis-plan.html#preparations"><i class="fa fa-check"></i><b>5.4</b> Preparations</a></li>
+<li class="chapter" data-level="5.5" data-path="initial-data-analysis-plan.html"><a href="initial-data-analysis-plan.html#sources"><i class="fa fa-check"></i><b>5.5</b> Sources</a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#data-dictionary"><i class="fa fa-check"></i><b>5.5.1</b> Data dictionary</a></li>
+<li class="chapter" data-level="5.5.1" data-path="initial-data-analysis-plan.html"><a href="initial-data-analysis-plan.html#data-dictionary"><i class="fa fa-check"></i><b>5.5.1</b> Data dictionary</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#references"><i class="fa fa-check"></i><b>5.6</b> References</a></li>
+<li class="chapter" data-level="5.6" data-path="initial-data-analysis-plan.html"><a href="initial-data-analysis-plan.html#references"><i class="fa fa-check"></i><b>5.6</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>6</b> Missing data</a>
 <ul>
@@ -532,149 +527,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="missing-data.html"><a href="missing-data.html#incomplete-cases"><i class="fa fa-check"></i><b>6.3</b> (In)complete cases</a></li>
 <li class="chapter" data-level="6.4" data-path="missing-data.html"><a href="missing-data.html#section-session-info-1"><i class="fa fa-check"></i><b>6.4</b> Section session info</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html"><i class="fa fa-check"></i><b>7</b> Univariate distribution checks</a>
+<li class="part"><span><b>II NHANES</b></span></li>
+<li class="chapter" data-level="7" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html"><i class="fa fa-check"></i><b>7</b> Introduction to NHANES</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#data-set-overview"><i class="fa fa-check"></i><b>7.1</b> Data set overview</a>
+<li class="chapter" data-level="7.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-description"><i class="fa fa-check"></i><b>7.1</b> NHANES Dataset Description</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#demographic-variables"><i class="fa fa-check"></i><b>7.1.1</b> Demographic variables</a></li>
-<li class="chapter" data-level="7.1.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#physiological-measurements"><i class="fa fa-check"></i><b>7.1.2</b> Physiological measurements</a></li>
-<li class="chapter" data-level="7.1.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#characteristics-of-injury"><i class="fa fa-check"></i><b>7.1.3</b> Characteristics of injury</a></li>
+<li class="chapter" data-level="7.1.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#variables"><i class="fa fa-check"></i><b>7.1.1</b> Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#categorical-variables"><i class="fa fa-check"></i><b>7.2</b> Categorical variables</a>
+<li class="chapter" data-level="7.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-contents"><i class="fa fa-check"></i><b>7.2</b> NHANES dataset contents</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#categorical-ordinal-plots"><i class="fa fa-check"></i><b>7.2.1</b> Categorical ordinal plots</a></li>
+<li class="chapter" data-level="7.2.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#source-dataset-1"><i class="fa fa-check"></i><b>7.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="7.2.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#data-dictionary-1"><i class="fa fa-check"></i><b>7.2.2</b> Data dictionary</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#continuous-variables"><i class="fa fa-check"></i><b>7.3</b> Continuous variables</a>
+<li class="chapter" data-level="7.3" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#references-1"><i class="fa fa-check"></i><b>7.3</b> References</a></li>
+<li class="chapter" data-level="7.4" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#section-session-info-2"><i class="fa fa-check"></i><b>7.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html"><i class="fa fa-check"></i><b>8</b> Initial data analysis plan (IDAP)</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#age"><i class="fa fa-check"></i><b>7.3.1</b> Age</a></li>
-<li class="chapter" data-level="7.3.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#blood-pressure"><i class="fa fa-check"></i><b>7.3.2</b> Blood pressure</a></li>
-<li class="chapter" data-level="7.3.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#respiratory-rate"><i class="fa fa-check"></i><b>7.3.3</b> Respiratory rate</a></li>
-<li class="chapter" data-level="7.3.4" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#heart-rate"><i class="fa fa-check"></i><b>7.3.4</b> Heart rate</a></li>
-<li class="chapter" data-level="7.3.5" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#central-capillary-refill-time"><i class="fa fa-check"></i><b>7.3.5</b> Central capillary refill time</a></li>
-<li class="chapter" data-level="7.3.6" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#hours-since-injury"><i class="fa fa-check"></i><b>7.3.6</b> Hours since injury</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#section-session-info-2"><i class="fa fa-check"></i><b>7.4</b> Section session info</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html"><i class="fa fa-check"></i><b>8</b> Multivariate distributions</a>
+<li class="chapter" data-level="8.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#initial-data-analysis-strategy"><i class="fa fa-check"></i><b>8.1</b> Initial data analysis strategy</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overview-1"><i class="fa fa-check"></i><b>8.1</b> Overview</a>
-<ul>
-<li class="chapter" data-level="8.1.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-correlation"><i class="fa fa-check"></i><b>8.1.1</b> Variable correlation</a></li>
-<li class="chapter" data-level="8.1.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-clustering"><i class="fa fa-check"></i><b>8.1.2</b> Variable clustering</a></li>
-<li class="chapter" data-level="8.1.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-redundancy"><i class="fa fa-check"></i><b>8.1.3</b> Variable redundancy</a></li>
+<li class="chapter" data-level="8.1.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-missing-values"><i class="fa fa-check"></i><b>8.1.1</b> IDA domain: missing values</a></li>
+<li class="chapter" data-level="8.1.2" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-univariate-distributions"><i class="fa fa-check"></i><b>8.1.2</b> IDA domain: univariate distributions</a></li>
+<li class="chapter" data-level="8.1.3" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-multivariate-system-of-variables"><i class="fa fa-check"></i><b>8.1.3</b> IDA domain: multivariate system of variables</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-sex"><i class="fa fa-check"></i><b>8.2</b> Summary reports by sex</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overall"><i class="fa fa-check"></i><b>8.2.1</b> Overall</a></li>
-<li class="chapter" data-level="8.2.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-age-by-sex"><i class="fa fa-check"></i><b>8.2.2</b> Distribution of age by sex</a></li>
-<li class="chapter" data-level="8.2.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-sex"><i class="fa fa-check"></i><b>8.2.3</b> Distribution of systolic blood pressure by sex</a></li>
-<li class="chapter" data-level="8.2.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-sex"><i class="fa fa-check"></i><b>8.2.4</b> Distribution of heart rate by sex</a></li>
-<li class="chapter" data-level="8.2.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-sex"><i class="fa fa-check"></i><b>8.2.5</b> Distribution of respiratory rate by sex</a></li>
-<li class="chapter" data-level="8.2.6" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-sex"><i class="fa fa-check"></i><b>8.2.6</b> Distribution of central capillary refille time by sex</a></li>
-<li class="chapter" data-level="8.2.7" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-hours-since-injury-by-sex"><i class="fa fa-check"></i><b>8.2.7</b> Distribution of hours since injury by sex</a></li>
-<li class="chapter" data-level="8.2.8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-glasgow-coma-score-by-sex"><i class="fa fa-check"></i><b>8.2.8</b> Distribution of Glasgow coma score by sex</a></li>
-<li class="chapter" data-level="8.2.9" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-injury-type-by-sex"><i class="fa fa-check"></i><b>8.2.9</b> Distribution of injury type by sex</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-age"><i class="fa fa-check"></i><b>8.3</b> Summary reports by age</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-age-categories"><i class="fa fa-check"></i><b>8.3.1</b> Distribution of systolic blood pressure by age categories</a></li>
-<li class="chapter" data-level="8.3.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-age-categories"><i class="fa fa-check"></i><b>8.3.2</b> Distribution of heart rate by age categories</a></li>
-<li class="chapter" data-level="8.3.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-age-categories"><i class="fa fa-check"></i><b>8.3.3</b> Distribution of respiratory rate by age categories</a></li>
-<li class="chapter" data-level="8.3.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-age-categories"><i class="fa fa-check"></i><b>8.3.4</b> Distribution of central capillary refille time by age categories</a></li>
-<li class="chapter" data-level="8.3.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#wip-multivariate-scatter-plots"><i class="fa fa-check"></i><b>8.3.5</b> WIP: multivariate scatter plots</a></li>
-<li class="chapter" data-level="8.3.6" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#wip-scatter-plots-with-a-third-or-fourth-variable"><i class="fa fa-check"></i><b>8.3.6</b> WIP: Scatter plots with a third or fourth variable</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4</b> Summary reports by Glasgow coma score</a>
-<ul>
-<li class="chapter" data-level="8.4.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-age-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.1</b> Distribution of age by Glasgow coma score</a></li>
-<li class="chapter" data-level="8.4.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.2</b> Distribution of systolic blood pressure by Glasgow coma score</a></li>
-<li class="chapter" data-level="8.4.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.3</b> Distribution of heart rate by Glasgow coma score</a></li>
-<li class="chapter" data-level="8.4.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.4</b> Distribution of respiratory rate by Glasgow coma score</a></li>
-<li class="chapter" data-level="8.4.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.5</b> Distribution of central capillary refille time by Glasgow coma score</a></li>
-</ul></li>
-<li class="chapter" data-level="8.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#section-session-info-3"><i class="fa fa-check"></i><b>8.5</b> Section session info</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="national-health-and-nutrition-examination-survey-nhanes.html"><a href="national-health-and-nutrition-examination-survey-nhanes.html"><i class="fa fa-check"></i>National Health and Nutrition Examination Survey (NHANES)</a></li>
-<li class="chapter" data-level="9" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html"><i class="fa fa-check"></i><b>9</b> Introduction to NHANES</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-description"><i class="fa fa-check"></i><b>9.1</b> NHANES Dataset Description</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#variables"><i class="fa fa-check"></i><b>9.1.1</b> Variables</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-contents"><i class="fa fa-check"></i><b>9.2</b> NHANES dataset contents</a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#source-dataset-1"><i class="fa fa-check"></i><b>9.2.1</b> Source dataset</a></li>
-<li class="chapter" data-level="9.2.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#data-dictionary-1"><i class="fa fa-check"></i><b>9.2.2</b> Data dictionary</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#references-1"><i class="fa fa-check"></i><b>9.3</b> References</a></li>
-<li class="chapter" data-level="9.4" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#section-session-info-4"><i class="fa fa-check"></i><b>9.4</b> Section session info</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html"><i class="fa fa-check"></i><b>10</b> Initial data analysis plan (IDAP)</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#initial-data-analysis-strategy"><i class="fa fa-check"></i><b>10.1</b> Initial data analysis strategy</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-missing-values"><i class="fa fa-check"></i><b>10.1.1</b> IDA domain: missing values</a></li>
-<li class="chapter" data-level="10.1.2" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-univariate-distributions"><i class="fa fa-check"></i><b>10.1.2</b> IDA domain: univariate distributions</a></li>
-<li class="chapter" data-level="10.1.3" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-multivariate-system-of-variables"><i class="fa fa-check"></i><b>10.1.3</b> IDA domain: multivariate system of variables</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="missing-data-1.html"><a href="missing-data-1.html"><i class="fa fa-check"></i><b>11</b> Missing data</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="missing-data-1.html"><a href="missing-data-1.html#per-variable-missingness-1"><i class="fa fa-check"></i><b>11.1</b> Per variable missingness</a></li>
-<li class="chapter" data-level="11.2" data-path="missing-data-1.html"><a href="missing-data-1.html#variable-summaries-for-complete-vs-incomplete-cases"><i class="fa fa-check"></i><b>11.2</b> Variable summaries for complete vs incomplete cases</a></li>
-<li class="chapter" data-level="11.3" data-path="missing-data-1.html"><a href="missing-data-1.html#missingness-patterns-over-variables-1"><i class="fa fa-check"></i><b>11.3</b> Missingness patterns over variables</a></li>
-<li class="chapter" data-level="11.4" data-path="missing-data-1.html"><a href="missing-data-1.html#incomplete-cases-1"><i class="fa fa-check"></i><b>11.4</b> (In)complete cases</a></li>
-<li class="chapter" data-level="11.5" data-path="missing-data-1.html"><a href="missing-data-1.html#section-session-info-5"><i class="fa fa-check"></i><b>11.5</b> Section session info</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html"><i class="fa fa-check"></i><b>12</b> Univariate distribution checks</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#data-set-overview-1"><i class="fa fa-check"></i><b>12.1</b> Data set overview</a>
-<ul>
-<li class="chapter" data-level="12.1.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#demographic-and-lifestyle-variables"><i class="fa fa-check"></i><b>12.1.1</b> Demographic and lifestyle variables</a></li>
-<li class="chapter" data-level="12.1.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#physiological-measurements-1"><i class="fa fa-check"></i><b>12.1.2</b> Physiological measurements</a></li>
-<li class="chapter" data-level="12.1.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#comorbidities"><i class="fa fa-check"></i><b>12.1.3</b> Comorbidities</a></li>
-<li class="chapter" data-level="12.1.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#physical-activity-variables"><i class="fa fa-check"></i><b>12.1.4</b> Physical activity variables</a></li>
-</ul></li>
-<li class="chapter" data-level="12.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#categorical-variables-1"><i class="fa fa-check"></i><b>12.2</b> Categorical variables</a></li>
-<li class="chapter" data-level="12.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#continuous-variables-1"><i class="fa fa-check"></i><b>12.3</b> Continuous variables</a>
-<ul>
-<li class="chapter" data-level="12.3.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#age-1"><i class="fa fa-check"></i><b>12.3.1</b> Age</a></li>
-<li class="chapter" data-level="12.3.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#blood-pressure-1"><i class="fa fa-check"></i><b>12.3.2</b> Blood pressure</a></li>
-<li class="chapter" data-level="12.3.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#body-mass-index"><i class="fa fa-check"></i><b>12.3.3</b> Body mass index</a></li>
-<li class="chapter" data-level="12.3.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#outcome-time-of-moderate-or-vigrous-physical-activity-and-related-variables"><i class="fa fa-check"></i><b>12.3.4</b> Outcome= Time of moderate or vigrous physical activity and related variables</a></li>
-</ul></li>
-<li class="chapter" data-level="12.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#section-session-info-6"><i class="fa fa-check"></i><b>12.4</b> Section session info</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html"><i class="fa fa-check"></i><b>13</b> Multivariate distributions</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#overview-2"><i class="fa fa-check"></i><b>13.1</b> Overview</a>
-<ul>
-<li class="chapter" data-level="13.1.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-correlation-1"><i class="fa fa-check"></i><b>13.1.1</b> Variable correlation</a></li>
-<li class="chapter" data-level="13.1.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-clustering-1"><i class="fa fa-check"></i><b>13.1.2</b> Variable clustering</a></li>
-<li class="chapter" data-level="13.1.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-redundancy-1"><i class="fa fa-check"></i><b>13.1.3</b> Variable redundancy</a></li>
-</ul></li>
-<li class="chapter" data-level="13.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-reports-by-pivotal-covariates-age-and-gender"><i class="fa fa-check"></i><b>13.2</b> Summary reports by pivotal covariates age and gender</a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-age-by-gender"><i class="fa fa-check"></i><b>13.2.1</b> Distribution of age by gender</a></li>
-</ul></li>
-<li class="chapter" data-level="13.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-and-gender"><i class="fa fa-check"></i><b>13.3</b> Summary report by age group and gender</a>
-<ul>
-<li class="chapter" data-level="13.3.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-gender"><i class="fa fa-check"></i><b>13.3.1</b> Summary report by gender</a></li>
-<li class="chapter" data-level="13.3.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-for-men"><i class="fa fa-check"></i><b>13.3.2</b> Summary report by age group for men</a></li>
-<li class="chapter" data-level="13.3.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-for-women"><i class="fa fa-check"></i><b>13.3.3</b> Summary report by age group for women</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#continuous-variables-by-age-and-gender"><i class="fa fa-check"></i><b>13.4</b> Continuous variables by age and gender</a>
-<ul>
-<li class="chapter" data-level="13.4.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-systolic-blood-pressure"><i class="fa fa-check"></i><b>13.4.1</b> Distribution of systolic blood pressure</a></li>
-<li class="chapter" data-level="13.4.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-bmi"><i class="fa fa-check"></i><b>13.4.2</b> Distribution of BMI</a></li>
-<li class="chapter" data-level="13.4.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-wear-time"><i class="fa fa-check"></i><b>13.4.3</b> Distribution of wear time</a></li>
-</ul></li>
-<li class="chapter" data-level="13.5" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#physical-activity-data-outcome"><i class="fa fa-check"></i><b>13.5</b> Physical activity data (outcome)</a>
-<ul>
-<li class="chapter" data-level="13.5.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-mvpa"><i class="fa fa-check"></i><b>13.5.1</b> Distribution of MVPA</a></li>
-<li class="chapter" data-level="13.5.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-mvpa-and-total-log-activity-count-by-time-of-day"><i class="fa fa-check"></i><b>13.5.2</b> Distribution of MVPA and Total log activity count by time of day</a></li>
-</ul></li>
-<li class="chapter" data-level="13.6" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#section-session-info-7"><i class="fa fa-check"></i><b>13.6</b> Section session info</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -696,27 +571,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction-to-nhanes" class="section level1" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Introduction to NHANES</h1>
+<div id="introduction-to-nhanes" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Introduction to NHANES</h1>
 <p>To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section <a href="nhanes_IDAP.html">nhanes_IDAP</a>.</p>
 <p><strong>Hypothetical research aim for IDA</strong><br />
 <em>is to develop a multivariable model for MVPA (minutes of moderate/vigorous physical activity).</em></p>
 <p><em>MVPA can be used to examine factors distinguishing very active participants with large amounts of time spent on MVPA from others (using untransformed data) or distinguishing participants according to percentage changes in MVPA (logarithmic scale) thus de-emphasizing extreme values.</em></p>
-<div id="nhanes-dataset-description" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> NHANES Dataset Description</h2>
+<div id="nhanes-dataset-description" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> NHANES Dataset Description</h2>
 <p>The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. The survey examines a nationally representative sample of non-institutionalized US civilians using a multistage probability sampling design that considers geographical area and minority representation. Sample weights are generated to create nationally representative estimates for the US population and subgroups defined by age, sex, and race/ethnicity. <a href="https://www.cdc.gov/nchs/nhanes/about_nhanes.htm">Link to CDC NHANES website</a>. NHANES collects data on various health and behavior indicators, including physical activity and self‐reported diagnosis of prevalent health conditions such as diabetes mellitus, coronary artery disease, stroke, and cancer.</p>
 <p>Physical activity was measured with a waist‐worn uniaxial accelerometer (AM‐7164; ActiGraph) for up to 7 days. Participants were asked to wear the devie while awake except when simming or bathing. Data were cleaned according to calibration specification and nonwear time defined by an interval of at least 60 consecutive minutes of zero activity intensity counts. Days with fewer than 10 hours of wear time were excluded and participants with at least 1 valid day of accelerometer data were included in the analysis. Mean counts per minute were calculated by dividing the sum of activity counts for a valid day by the number of minutes of wear time in that day across all valid days (Troiano 2008).</p>
 <p>Moderate or vigorous intensity was based on count thresholds. Time spent in such activities was determined by summing minutes in a day where the count met the criterion for that intensity (Troiano 2008).</p>
 <p>The NHANES 2003–2004 and 2005–2006 have a total of 14,631 participants with accelerometry data. Participants aged 30 to 85 at the time they wore the accelerometer are included. Other inclusion criteria are in line with the choices for the prediction model of 5 year mortality presented by <a href="https://doi.org/10.1093/gerona/glz193">Smirnova et al, J Gerontol A Biol Sci Med Sci 2020</a>. The preparation of the data was based on “Organizing and Analyzing the Activity Data in NHANES”
 <a href="https://doi.org/10.1007/s12561-018-09229-9">Leroux et al, Statistics in Biosciences 2019</a>. High quality processed activity data combined with mortality and demographic information can be downloaded and used in R with code from Andrew Leroux (<a href="https://andrew-leroux.github.io/rnhanesdata/articles" class="uri">https://andrew-leroux.github.io/rnhanesdata/articles</a>).</p>
-<div id="variables" class="section level3" number="9.1.1">
-<h3><span class="header-section-number">9.1.1</span> Variables</h3>
-<div id="outcome-variable-1" class="section level4" number="9.1.1.1">
-<h4><span class="header-section-number">9.1.1.1</span> Outcome variable</h4>
+<div id="variables" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Variables</h3>
+<div id="outcome-variable-1" class="section level4" number="7.1.1.1">
+<h4><span class="header-section-number">7.1.1.1</span> Outcome variable</h4>
 <p>MVPA (total minutes of moderate/vigorous physical activity which is defined as more than 2020 counts per minute) (<code>mvpa</code>, minutes)</p>
 </div>
-<div id="sociodemographic-variables" class="section level4" number="9.1.1.2">
-<h4><span class="header-section-number">9.1.1.2</span> Sociodemographic variables</h4>
+<div id="sociodemographic-variables" class="section level4" number="7.1.1.2">
+<h4><span class="header-section-number">7.1.1.2</span> Sociodemographic variables</h4>
 <ul>
 <li>age at examination (i.e. when participants wore the device) (<code>age</code>, years)</li>
 <li>gender (<code>gender</code>, “Male” and “Female”)</li>
@@ -725,8 +600,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Person Months of Follow-up from MEC/Exam Date (<code>permth.exm</code>) (follow-up time in this cohort in years = permth.exm/12)</li>
 </ul>
 </div>
-<div id="health-and-behavior-variables" class="section level4" number="9.1.1.3">
-<h4><span class="header-section-number">9.1.1.3</span> Health and behavior variables</h4>
+<div id="health-and-behavior-variables" class="section level4" number="7.1.1.3">
+<h4><span class="header-section-number">7.1.1.3</span> Health and behavior variables</h4>
 <ul>
 <li>smoking status (Current, Former [those reporting quitting within the previous 6 months], and Never) (<code>smokecigs</code>)</li>
 <li>alcohol consumption (<code>drinkstatus</code>) (Non-Drinker, Moderate Drinker, Heavy Drinker, Missing alcohol)</li>
@@ -741,8 +616,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>HDL cholesterol (<code>lbdhdd</code>, mg/dL)</li>
 </ul>
 </div>
-<div id="physical-activity-data" class="section level4" number="9.1.1.4">
-<h4><span class="header-section-number">9.1.1.4</span> Physical activity data</h4>
+<div id="physical-activity-data" class="section level4" number="7.1.1.4">
+<h4><span class="header-section-number">7.1.1.4</span> Physical activity data</h4>
 <p>Summary measures are calculated due to the large size of minute level accelerometer-derived physical activity data.</p>
 <ul>
 <li>total activity counts per day (<code>TAC/d</code>)</li>
@@ -754,37 +629,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div id="nhanes-dataset-contents" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> NHANES dataset contents</h2>
-<div id="source-dataset-1" class="section level3" number="9.2.1">
-<h3><span class="header-section-number">9.2.1</span> Source dataset</h3>
+<div id="nhanes-dataset-contents" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> NHANES dataset contents</h2>
+<div id="source-dataset-1" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Source dataset</h3>
 <p>We refer to the source data set as the dataset available online <a href="https://github.com/bailliem/ida-regression-private/tree/master/data">here</a></p>
 </div>
-<div id="data-dictionary-1" class="section level3" number="9.2.2">
-<h3><span class="header-section-number">9.2.2</span> Data dictionary</h3>
+<div id="data-dictionary-1" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Data dictionary</h3>
 <p>Additional meta-data is added to the original <em>source</em> data set. We write this new modified data set back to the <strong>data</strong> folder after adding additional meta-data (units, labels).</p>
 <p>Input object size: 1196032 bytes; 31 variables 5972 observations
 New object size: 1196032 bytes; 31 variables 5972 observations</p>
 <hr><h4>Data frame:a_nhanes</h4>5972 observations and 31 variables, maximum # NAs:395  
  <hr>
  <style>
- .hmisctable212501 {
+ .hmisctable655000 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable212501 td {
+ .hmisctable655000 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable212501 th {
+ .hmisctable655000 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable212501" border="1">
+ <table class="hmisctable655000" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>seqn</td><td>respondent sequence number</td><td></td><td></td><td>integer</td><td>integer</td><td>  0</td></tr>
  <tr><td>age</td><td>age</td><td>years</td><td></td><td>numeric</td><td>double</td><td>  0</td></tr>
@@ -821,23 +696,23 @@ New object size: 1196032 bytes; 31 variables 5972 observations</p>
 
  <hr>
  <style>
- .hmisctable724673 {
+ .hmisctable310012 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable724673 td {
+ .hmisctable310012 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable724673 th {
+ .hmisctable310012 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable724673" border="1">
+ <table class="hmisctable310012" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.gender">gender</a></td><td>Male</td></tr>
  <tr><td></td><td>Female</td></tr>
@@ -859,14 +734,14 @@ New object size: 1196032 bytes; 31 variables 5972 observations</p>
 
 </div>
 </div>
-<div id="references-1" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> References</h2>
+<div id="references-1" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> References</h2>
 <p>Troiano RP, Berrigan D, Dodd KW, Mâsse LC, Tilert T, McDowell M. Physical activity in the United States measured by accelerometer. Med Sci Sports Exerc. 2008 Jan;40(1):181-8. doi: 10.1249/mss.0b013e31815a51b3. PMID: 18091006.</p>
 <p>Leroux A, Di J, Smirnova E, Mcguffey E, Cao Q, Bayatmokhtari E, Tabacu L, Zipunnikov V, Urbanek JK, Crainiceanu C. Organizing and Analyzing the Activity Data in NHANES. Stat Biosci 11, 262–287 (2019). <a href="https://doi-org.proxy1.cl.msu.edu/10.1007/s12561-018-09229-9" class="uri">https://doi-org.proxy1.cl.msu.edu/10.1007/s12561-018-09229-9</a></p>
 <p>Smirnova E, Leroux A, Tabacu L, Zipunnikov V, Crainiceanu C, Urbanek JK. The Predictive Performance of Objective Measures of Physical Activity Derived From Accelerometry Data for 5-Year All-Cause Mortality in Older Adults: National Health and Nutritional Examination Survey 2003–2006, The Journals of Gerontology: Series A, Volume 75, Issue 9, September 2020, Pages 1779–1785, <a href="https://doi.org/10.1093/gerona/glz193" class="uri">https://doi.org/10.1093/gerona/glz193</a></p>
 </div>
-<div id="section-session-info-4" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Section session info</h2>
+<div id="section-session-info-2" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Section session info</h2>
 <pre><code>## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 18363)
@@ -922,7 +797,7 @@ New object size: 1196032 bytes; 31 variables 5972 observations</p>
           </div>
         </div>
       </div>
-<a href="national-health-and-nutrition-examination-survey-nhanes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="missing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="initial-data-analysis-plan-idap.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

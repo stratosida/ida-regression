@@ -1,5 +1,5 @@
 
-# Statistical analysis plan
+# Initial data analysis plan
 
 
 Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place. 
@@ -57,7 +57,7 @@ This can be derived using the following code logic:
 
 
 ```r
-## NOTE: This is for demostration purposes, this code is not run here. 
+## NOTE: This is for demonstration purposes, this code is not run here. 
 ## The derivation was executed earlier. 
 
 a_crash2$time2death <-
@@ -85,7 +85,7 @@ a_crash2 %>%
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#iivwbwxqji .gt_table {
+#npfbagpjto .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -110,7 +110,7 @@ a_crash2 %>%
   border-left-color: #D3D3D3;
 }
 
-#iivwbwxqji .gt_heading {
+#npfbagpjto .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -122,7 +122,7 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#iivwbwxqji .gt_title {
+#npfbagpjto .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -132,7 +132,7 @@ a_crash2 %>%
   border-bottom-width: 0;
 }
 
-#iivwbwxqji .gt_subtitle {
+#npfbagpjto .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -142,13 +142,13 @@ a_crash2 %>%
   border-top-width: 0;
 }
 
-#iivwbwxqji .gt_bottom_border {
+#npfbagpjto .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iivwbwxqji .gt_col_headings {
+#npfbagpjto .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -163,7 +163,7 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#iivwbwxqji .gt_col_heading {
+#npfbagpjto .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -183,7 +183,7 @@ a_crash2 %>%
   overflow-x: hidden;
 }
 
-#iivwbwxqji .gt_column_spanner_outer {
+#npfbagpjto .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -195,15 +195,15 @@ a_crash2 %>%
   padding-right: 4px;
 }
 
-#iivwbwxqji .gt_column_spanner_outer:first-child {
+#npfbagpjto .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iivwbwxqji .gt_column_spanner_outer:last-child {
+#npfbagpjto .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iivwbwxqji .gt_column_spanner {
+#npfbagpjto .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -215,7 +215,7 @@ a_crash2 %>%
   width: 100%;
 }
 
-#iivwbwxqji .gt_group_heading {
+#npfbagpjto .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -237,7 +237,7 @@ a_crash2 %>%
   vertical-align: middle;
 }
 
-#iivwbwxqji .gt_empty_group_heading {
+#npfbagpjto .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -252,15 +252,15 @@ a_crash2 %>%
   vertical-align: middle;
 }
 
-#iivwbwxqji .gt_from_md > :first-child {
+#npfbagpjto .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iivwbwxqji .gt_from_md > :last-child {
+#npfbagpjto .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iivwbwxqji .gt_row {
+#npfbagpjto .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -279,7 +279,7 @@ a_crash2 %>%
   overflow-x: hidden;
 }
 
-#iivwbwxqji .gt_stub {
+#npfbagpjto .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -291,7 +291,7 @@ a_crash2 %>%
   padding-left: 12px;
 }
 
-#iivwbwxqji .gt_summary_row {
+#npfbagpjto .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -301,7 +301,7 @@ a_crash2 %>%
   padding-right: 5px;
 }
 
-#iivwbwxqji .gt_first_summary_row {
+#npfbagpjto .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -311,7 +311,7 @@ a_crash2 %>%
   border-top-color: #D3D3D3;
 }
 
-#iivwbwxqji .gt_grand_summary_row {
+#npfbagpjto .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -321,7 +321,7 @@ a_crash2 %>%
   padding-right: 5px;
 }
 
-#iivwbwxqji .gt_first_grand_summary_row {
+#npfbagpjto .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -331,11 +331,11 @@ a_crash2 %>%
   border-top-color: #D3D3D3;
 }
 
-#iivwbwxqji .gt_striped {
+#npfbagpjto .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iivwbwxqji .gt_table_body {
+#npfbagpjto .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -344,7 +344,7 @@ a_crash2 %>%
   border-bottom-color: #D3D3D3;
 }
 
-#iivwbwxqji .gt_footnotes {
+#npfbagpjto .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -358,13 +358,13 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#iivwbwxqji .gt_footnote {
+#npfbagpjto .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#iivwbwxqji .gt_sourcenotes {
+#npfbagpjto .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -378,46 +378,46 @@ a_crash2 %>%
   border-right-color: #D3D3D3;
 }
 
-#iivwbwxqji .gt_sourcenote {
+#npfbagpjto .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#iivwbwxqji .gt_left {
+#npfbagpjto .gt_left {
   text-align: left;
 }
 
-#iivwbwxqji .gt_center {
+#npfbagpjto .gt_center {
   text-align: center;
 }
 
-#iivwbwxqji .gt_right {
+#npfbagpjto .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iivwbwxqji .gt_font_normal {
+#npfbagpjto .gt_font_normal {
   font-weight: normal;
 }
 
-#iivwbwxqji .gt_font_bold {
+#npfbagpjto .gt_font_bold {
   font-weight: bold;
 }
 
-#iivwbwxqji .gt_font_italic {
+#npfbagpjto .gt_font_italic {
   font-style: italic;
 }
 
-#iivwbwxqji .gt_super {
+#npfbagpjto .gt_super {
   font-size: 65%;
 }
 
-#iivwbwxqji .gt_footnote_marks {
+#npfbagpjto .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="iivwbwxqji" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="npfbagpjto" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>

@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Initial analysis plan | Regression without regrets</title>
+  <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Initial analysis plan | Regression without regrets" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
+  <meta name="github-repo" content="bailliem/ida-regression-private" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Initial analysis plan | Regression without regrets" />
+  
+  <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
+  
+
+<meta name="author" content="M. Baillie, G. Heinze &amp; M. Huebner" />
+
+
+<meta name="date" content="2021-04-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-crash-2.html"/>
+<link rel="next" href="introduction-to-nhanes.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">IDA report</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="ida-framework.html"><a href="ida-framework.html"><i class="fa fa-check"></i><b>1</b> IDA Framework</a></li>
+<li class="chapter" data-level="2" data-path="scope-of-the-regression-analyses-for-the-examples.html"><a href="scope-of-the-regression-analyses-for-the-examples.html"><i class="fa fa-check"></i><b>2</b> Scope of the regression analyses for the examples</a></li>
+<li class="chapter" data-level="3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html"><i class="fa fa-check"></i><b>3</b> Data screening and possible actions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#univariate-distributions"><i class="fa fa-check"></i><b>3.1</b> Univariate distributions</a></li>
+<li class="chapter" data-level="3.2" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#bivariate-distributions"><i class="fa fa-check"></i><b>3.2</b> Bivariate distributions</a></li>
+<li class="chapter" data-level="3.3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#missing-values"><i class="fa fa-check"></i><b>3.3</b> Missing values</a></li>
+</ul></li>
+<li class="part"><span><b>I CRASH-2</b></span></li>
+<li class="chapter" data-level="4" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html"><i class="fa fa-check"></i><b>4</b> Introduction to CRASH-2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash-2-description"><i class="fa fa-check"></i><b>4.1</b> CRASH-2 Description</a></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash2-dataset-contents"><i class="fa fa-check"></i><b>4.2</b> Crash2 dataset contents</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#source-dataset"><i class="fa fa-check"></i><b>4.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="4.2.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#updated-analysis-dataset"><i class="fa fa-check"></i><b>4.2.2</b> Updated analysis dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#section-session-info"><i class="fa fa-check"></i><b>4.3</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="initial-analysis-plan.html"><a href="initial-analysis-plan.html"><i class="fa fa-check"></i><b>5</b> Initial analysis plan</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="initial-analysis-plan.html"><a href="initial-analysis-plan.html#outcome-variable"><i class="fa fa-check"></i><b>5.1</b> Outcome variable</a></li>
+<li class="chapter" data-level="5.2" data-path="initial-analysis-plan.html"><a href="initial-analysis-plan.html#statistical-methods"><i class="fa fa-check"></i><b>5.2</b> Statistical methods</a></li>
+<li class="chapter" data-level="5.3" data-path="initial-analysis-plan.html"><a href="initial-analysis-plan.html#remarks"><i class="fa fa-check"></i><b>5.3</b> Remarks</a></li>
+<li class="chapter" data-level="5.4" data-path="initial-analysis-plan.html"><a href="initial-analysis-plan.html#preparations"><i class="fa fa-check"></i><b>5.4</b> Preparations</a></li>
+<li class="chapter" data-level="5.5" data-path="initial-analysis-plan.html"><a href="initial-analysis-plan.html#sources"><i class="fa fa-check"></i><b>5.5</b> Sources</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="initial-analysis-plan.html"><a href="initial-analysis-plan.html#data-dictionary"><i class="fa fa-check"></i><b>5.5.1</b> Data dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="initial-analysis-plan.html"><a href="initial-analysis-plan.html#references"><i class="fa fa-check"></i><b>5.6</b> References</a></li>
+</ul></li>
+<li class="part"><span><b>II NHANES</b></span></li>
+<li class="chapter" data-level="6" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html"><i class="fa fa-check"></i><b>6</b> Introduction to NHANES</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-description"><i class="fa fa-check"></i><b>6.1</b> NHANES Dataset Description</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#variables"><i class="fa fa-check"></i><b>6.1.1</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-contents"><i class="fa fa-check"></i><b>6.2</b> NHANES dataset contents</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#source-dataset-1"><i class="fa fa-check"></i><b>6.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="6.2.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#data-dictionary-1"><i class="fa fa-check"></i><b>6.2.2</b> Data dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#references-1"><i class="fa fa-check"></i><b>6.3</b> References</a></li>
+<li class="chapter" data-level="6.4" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#section-session-info-1"><i class="fa fa-check"></i><b>6.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html"><i class="fa fa-check"></i><b>7</b> Initial data analysis plan (IDAP)</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#initial-data-analysis-strategy"><i class="fa fa-check"></i><b>7.1</b> Initial data analysis strategy</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-missing-values"><i class="fa fa-check"></i><b>7.1.1</b> IDA domain: missing values</a></li>
+<li class="chapter" data-level="7.1.2" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-univariate-distributions"><i class="fa fa-check"></i><b>7.1.2</b> IDA domain: univariate distributions</a></li>
+<li class="chapter" data-level="7.1.3" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-multivariate-system-of-variables"><i class="fa fa-check"></i><b>7.1.3</b> IDA domain: multivariate system of variables</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Regression without regrets</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="initial-analysis-plan" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Initial analysis plan</h1>
+<p>Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place.
+IDA may lead to an update or refinement of the analysis plan. To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan.</p>
+<p><strong>Hypothetical research aim for IDA:</strong> Develop a multivariable model for early death (death within 28 days from injury) using nine independent variables of mixed type (continuous, categorical, semicontinuous) with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome.</p>
+<p>The assumed analysis aim is in line with the prediction model presented by <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>, <a href="https://www.bmj.com/highwire/filestream/634478/field_highwire_adjunct_files/0/perp003158.ww1_default.pdf">supplement available at</a>.</p>
+<div id="outcome-variable" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Outcome variable</h2>
+<p>Early death, i.e. in-hospital death within 28 days from injury (binary variable)</p>
+</div>
+<div id="statistical-methods" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Statistical methods</h2>
+<p>Logistic regression will be used to model early death by the following independent variables (measured at randomisation) deemed important to predict early death.</p>
+<p>Demographic measurements:</p>
+<ul>
+<li>Age (<code>age</code>, years)</li>
+<li>Sex (<code>sex</code>, male or female)</li>
+</ul>
+<p>Physiological measurements:</p>
+<ul>
+<li>Systolic blood pressure (<code>sbp</code>, mmHg)</li>
+<li>Heart rate (<code>hr</code>, 1/min)</li>
+<li>Respiratory rate (<code>rr</code>, 1/min)</li>
+<li>Glasgow coma score (<code>gcs</code>, points)</li>
+<li>Central capillary refill time (<code>cc</code>, seconds)</li>
+</ul>
+<p>Characteristics of injury measurements:</p>
+<ul>
+<li>Time since injury (<code>injurytime</code>, hours)</li>
+<li>Type of injury (<code>injurytype</code>, ‘blunt,’ ‘penetrating’ or ‘blunt and penetrating’)</li>
+</ul>
+<p>Restricted cubic splines with 3 degrees of freedom with knots set to default values will be used for continuous variables. As the final prediction model should be parsimonious enough to simplify its application, a backward elimination algorithm with a significance level set at <span class="math inline">\(\alpha=0.05\)</span> will be applied to remove statistically insignificant effects. Finally, nonlinear representation of each continuous variable will be tested against linear representation at <span class="math inline">\(\alpha=0.05\)</span>. In case of lacking added value of a nonlinear effect, the model will be refitted with a linear effect for that variable.</p>
+</div>
+<div id="remarks" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Remarks</h2>
+<ul>
+<li><p>Regarding type of injury, the original paper describes its treatment in the model as follows: ‘Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as ’penetrating’ or ‘blunt and penetrating.’ ’ It is not clear from that description what happened to the ‘blunt’ group. (I assume they were collapsed with ‘blunt and penetrating.’) ** we are going to consider the three categories, and then check aout recommendations for the final analysis-MH**</p></li>
+<li><p>The original paper describes the modeling approach as follows: ‘We used a backward step-wise approach. Firstly, we included all potential prognostic factors and interaction terms that users considered plausible. These interactions included all potential predictors with type of injury, time since injury, and age. We then removed, one at a time, terms for which we found no strong evidence of an association, judged according to the P values (&lt;0.05) from the Wald test.’ This would mean they tested at least 24 interaction terms, each possibly using several degrees of freedom! In the final model, only an interaction of Glasgow coma score and type of injury was included.</p></li>
+</ul>
+</div>
+<div id="preparations" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Preparations</h2>
+<p>The outcome variable, early death (i.e., death within 28 days from injury) must be computed from the time span between date of death and date of randomization using the following logic:</p>
+<ul>
+<li>transform ddeath and trandomisation into an interpretable date format and then compute the difference</li>
+<li>interpret missing (i.e. NAs) as ‘not died within study period, at least not within 28 days’</li>
+<li>if patients died after 28 days, treat as alive</li>
+</ul>
+<p>This can be derived using the following code logic:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="initial-analysis-plan.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## </span><span class="al">NOTE</span><span class="do">: This is for demostration purposes, this code is not run here. </span></span>
+<span id="cb2-2"><a href="initial-analysis-plan.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## The derivation was executed earlier. </span></span>
+<span id="cb2-3"><a href="initial-analysis-plan.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="initial-analysis-plan.html#cb2-4" aria-hidden="true" tabindex="-1"></a>a_crash2<span class="sc">$</span>time2death <span class="ot">&lt;-</span></span>
+<span id="cb2-5"><a href="initial-analysis-plan.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(a_crash2<span class="sc">$</span>ddeath) <span class="sc">-</span> <span class="fu">as.Date</span>(a_crash2<span class="sc">$</span>trandomised))</span>
+<span id="cb2-6"><a href="initial-analysis-plan.html#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="initial-analysis-plan.html#cb2-7" aria-hidden="true" tabindex="-1"></a>a_crash2<span class="sc">$</span>earlydeath[<span class="sc">!</span><span class="fu">is.na</span>(a_crash2<span class="sc">$</span>time2death)] <span class="ot">&lt;-</span></span>
+<span id="cb2-8"><a href="initial-analysis-plan.html#cb2-8" aria-hidden="true" tabindex="-1"></a>  (a_crash2<span class="sc">$</span>time2death[<span class="sc">!</span><span class="fu">is.na</span>(a_crash2<span class="sc">$</span>time2death)] <span class="sc">&lt;=</span> <span class="dv">28</span>) <span class="sc">+</span> <span class="dv">0</span></span>
+<span id="cb2-9"><a href="initial-analysis-plan.html#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="initial-analysis-plan.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># +0 to transform it from TRUE/FALSE to 1/0</span></span>
+<span id="cb2-11"><a href="initial-analysis-plan.html#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># NA in time2death means alive at day 28</span></span>
+<span id="cb2-12"><a href="initial-analysis-plan.html#cb2-12" aria-hidden="true" tabindex="-1"></a>a_crash2<span class="sc">$</span>earlydeath[<span class="fu">is.na</span>(a_crash2<span class="sc">$</span>time2death)] <span class="ot">&lt;-</span> <span class="dv">0</span>    </span></code></pre></div>
+<p>We also display the marginal distribution of the derived outcome variable.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="initial-analysis-plan.html#cb3-1" aria-hidden="true" tabindex="-1"></a>a_crash2 <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="initial-analysis-plan.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(earlydeath) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="initial-analysis-plan.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>()</span></code></pre></div>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#fpjetbzrdt .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#fpjetbzrdt .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fpjetbzrdt .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#fpjetbzrdt .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#fpjetbzrdt .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fpjetbzrdt .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fpjetbzrdt .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#fpjetbzrdt .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#fpjetbzrdt .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#fpjetbzrdt .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#fpjetbzrdt .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#fpjetbzrdt .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fpjetbzrdt .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fpjetbzrdt .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#fpjetbzrdt .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#fpjetbzrdt .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#fpjetbzrdt .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#fpjetbzrdt .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fpjetbzrdt .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#fpjetbzrdt .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fpjetbzrdt .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#fpjetbzrdt .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#fpjetbzrdt .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fpjetbzrdt .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fpjetbzrdt .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#fpjetbzrdt .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fpjetbzrdt .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#fpjetbzrdt .gt_left {
+  text-align: left;
+}
+
+#fpjetbzrdt .gt_center {
+  text-align: center;
+}
+
+#fpjetbzrdt .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#fpjetbzrdt .gt_font_normal {
+  font-weight: normal;
+}
+
+#fpjetbzrdt .gt_font_bold {
+  font-weight: bold;
+}
+
+#fpjetbzrdt .gt_font_italic {
+  font-style: italic;
+}
+
+#fpjetbzrdt .gt_super {
+  font-size: 65%;
+}
+
+#fpjetbzrdt .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="fpjetbzrdt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 20,207</strong><sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Death within 28 days from injury</td>
+      <td class="gt_row gt_center">3,076 (15%)</td>
+    </tr>
+  </tbody>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="2">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          n (%)
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table></div>
+<p>The number of deaths computed in the data set coincides with the number reported in <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>.</p>
+</div>
+<div id="sources" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Sources</h2>
+<p>Data obtained from <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets" class="uri">http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets</a></p>
+<p>To download the data set, click the <a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda">link to data set</a></p>
+<div id="data-dictionary" class="section level3" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Data dictionary</h3>
+<p>The data dictionary can be found <a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.html">LINK</a></p>
+</div>
+</div>
+<div id="references" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> References</h2>
+<p>CRASH-2 Collaborators. Effects of tranexamic acid on death, vascular occlusive events, and blood transfusion in trauma patients with significant haemorrhage (CRASH-2): a randomised, placebo-controlled trial. Lancet 2010;376:23-32</p>
+<p>Perel P, Prieto-Merino D, Shakur H, Clayton T, Lecky F, Bouamra O, Russell R, Faulkner M, Steyerberg EW, Roberts I. Predicting early death in patients with traumatic bleeding: development and validation of prognostic model. BMJ 2012; 345(aug15 1): e5166.</p>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-crash-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-nhanes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/Crash2_SAP.Rmd",
+"text": "Edit this chapter"
+},
+"history": {
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/Crash2_SAP.Rmd",
+"text": "Chapter edit history"
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/bailliem/ida-regression-private/raw/master/Crash2_SAP.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

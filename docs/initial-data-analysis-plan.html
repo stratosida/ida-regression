@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Scope of the regression analyses for the examples | Regression without regrets</title>
+  <title>Chapter 5 Initial data analysis plan | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Scope of the regression analyses for the examples | Regression without regrets" />
+  <meta property="og:title" content="Chapter 5 Initial data analysis plan | Regression without regrets" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bailliem/ida-regression-private" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Scope of the regression analyses for the examples | Regression without regrets" />
+  <meta name="twitter:title" content="Chapter 5 Initial data analysis plan | Regression without regrets" />
   
   <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ida-framework.html"/>
-<link rel="next" href="data-screening-and-possible-actions.html"/>
+<link rel="prev" href="introduction-to-crash-2.html"/>
+<link rel="next" href="missing-data.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -571,65 +571,462 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="scope-of-the-regression-analyses-for-the-examples" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Scope of the regression analyses for the examples</h1>
-<p>Regression models can be used for a wide range of purposes, for the purpose of these examples the assumptions on the regression analysis set-up in this paper are listed in Table 1. Thus, IDA tasks will be explained in a well-defined, practically relevant setting. Since a key principle is that IDA does not touch the research question no associations between dependent (outcome) and independent (non-outcome) variables are considered.</p>
-<p><em>Table 1:</em> The scope of the regression analyses considered for IDA tasks</p>
-<table>
-<colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Aspects of the research plan</th>
-<th>Assumptions in this paper</th>
-<th>Reason for the assumption</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Dependent (outcome) variable</td>
-<td>One dependent variable that can be continuous or binary; exclude time-to-event or longitudinal outcomes</td>
-<td>Explain IDA tasks in a well-defined, practically relevant setting</td>
-</tr>
-<tr class="even">
-<td>Regression models</td>
-<td>Models with linear predictors</td>
-<td>Explain IDA tasks in a well-defined, practically relevant setting</td>
-</tr>
-<tr class="odd">
-<td>Purpose of regression model</td>
-<td>Adjust effect of one variable of interest for confounders; quantify the effects of explanatory variables on the outcome</td>
-<td>Explain IDA tasks in a well-defined, practically relevant setting</td>
-</tr>
-<tr class="even">
-<td>Independent variables</td>
-<td>“explanatory” or “confounder” depending on purpose of model; small to moderate number of mixed types; Not high dimensional; no repeated measurements</td>
-<td>To demonstrate IDA approaches for a mix of variables likely to be encountered in practice</td>
-</tr>
-<tr class="odd">
-<td>Statistical analysis plan</td>
-<td>Exists, defines the outcome variable, the type of regression model to be used, and a set of independent variables</td>
-<td>IDA does not touch the research question, but may lead to an update or refinement of the analysis plan</td>
-</tr>
-</tbody>
-</table>
-<p><strong>References</strong>:</p>
-<p>Vach W. Regression Models as a Tool in Medical Research. Chapman/Hall CRC 2012</p>
-<p>Harrell FE. Regression Modeling Strategies. Springer (2nd ed) 2015</p>
-<p>Royston P and Sauerbrei W. Multivariable Model Building. Wiley (2008)</p>
-<p>[…]</p>
+<div id="initial-data-analysis-plan" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Initial data analysis plan</h1>
+<p>Since a key principle of IDA is not to touch the research questions, before IDA commences the research aim and statistical analysis plan needs to be in place.
+IDA may lead to an update or refinement of the analysis plan. To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan.</p>
+<p><strong>Hypothetical research aim for IDA:</strong> Develop a multivariable model for early death (death within 28 days from injury) using nine independent variables of mixed type (continuous, categorical, semicontinuous) with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome.</p>
+<p>The assumed analysis aim is in line with the prediction model presented by <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>, <a href="https://www.bmj.com/highwire/filestream/634478/field_highwire_adjunct_files/0/perp003158.ww1_default.pdf">supplement available at</a>.</p>
+<div id="outcome-variable" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Outcome variable</h2>
+<p>Early death, i.e. in-hospital death within 28 days from injury (binary variable)</p>
+</div>
+<div id="statistical-methods" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Statistical methods</h2>
+<p>Logistic regression will be used to model early death by the following independent variables (measured at randomisation) deemed important to predict early death.</p>
+<p>Demographic measurements:</p>
+<ul>
+<li>Age (<code>age</code>, years)</li>
+<li>Sex (<code>sex</code>, male or female)</li>
+</ul>
+<p>Physiological measurements:</p>
+<ul>
+<li>Systolic blood pressure (<code>sbp</code>, mmHg)</li>
+<li>Heart rate (<code>hr</code>, 1/min)</li>
+<li>Respiratory rate (<code>rr</code>, 1/min)</li>
+<li>Glasgow coma score (<code>gcs</code>, points)</li>
+<li>Central capillary refill time (<code>cc</code>, seconds)</li>
+</ul>
+<p>Characteristics of injury measurements:</p>
+<ul>
+<li>Time since injury (<code>injurytime</code>, hours)</li>
+<li>Type of injury (<code>injurytype</code>, ‘blunt,’ ‘penetrating’ or ‘blunt and penetrating’)</li>
+</ul>
+<p>Restricted cubic splines with 3 degrees of freedom with knots set to default values will be used for continuous variables. As the final prediction model should be parsimonious enough to simplify its application, a backward elimination algorithm with a significance level set at <span class="math inline">\(\alpha=0.05\)</span> will be applied to remove statistically insignificant effects. Finally, nonlinear representation of each continuous variable will be tested against linear representation at <span class="math inline">\(\alpha=0.05\)</span>. In case of lacking added value of a nonlinear effect, the model will be refitted with a linear effect for that variable.</p>
+</div>
+<div id="remarks" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Remarks</h2>
+<ul>
+<li><p>Regarding type of injury, the original paper describes its treatment in the model as follows: ‘Type of injury had three categories—-penetrating, blunt, or blunt and penetrating—but we analysed it as ’penetrating’ or ‘blunt and penetrating.’ ’ It is not clear from that description what happened to the ‘blunt’ group. (I assume they were collapsed with ‘blunt and penetrating.’) ** we are going to consider the three categories, and then check aout recommendations for the final analysis-MH**</p></li>
+<li><p>The original paper describes the modeling approach as follows: ‘We used a backward step-wise approach. Firstly, we included all potential prognostic factors and interaction terms that users considered plausible. These interactions included all potential predictors with type of injury, time since injury, and age. We then removed, one at a time, terms for which we found no strong evidence of an association, judged according to the P values (&lt;0.05) from the Wald test.’ This would mean they tested at least 24 interaction terms, each possibly using several degrees of freedom! In the final model, only an interaction of Glasgow coma score and type of injury was included.</p></li>
+</ul>
+</div>
+<div id="preparations" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Preparations</h2>
+<p>The outcome variable, early death (i.e., death within 28 days from injury) must be computed from the time span between date of death and date of randomization using the following logic:</p>
+<ul>
+<li>transform ddeath and trandomisation into an interpretable date format and then compute the difference</li>
+<li>interpret missing (i.e. NAs) as ‘not died within study period, at least not within 28 days’</li>
+<li>if patients died after 28 days, treat as alive</li>
+</ul>
+<p>This can be derived using the following code logic:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="initial-data-analysis-plan.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## </span><span class="al">NOTE</span><span class="do">: This is for demonstration purposes, this code is not run here. </span></span>
+<span id="cb2-2"><a href="initial-data-analysis-plan.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## The derivation was executed earlier. </span></span>
+<span id="cb2-3"><a href="initial-data-analysis-plan.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="initial-data-analysis-plan.html#cb2-4" aria-hidden="true" tabindex="-1"></a>a_crash2<span class="sc">$</span>time2death <span class="ot">&lt;-</span></span>
+<span id="cb2-5"><a href="initial-data-analysis-plan.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(a_crash2<span class="sc">$</span>ddeath) <span class="sc">-</span> <span class="fu">as.Date</span>(a_crash2<span class="sc">$</span>trandomised))</span>
+<span id="cb2-6"><a href="initial-data-analysis-plan.html#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="initial-data-analysis-plan.html#cb2-7" aria-hidden="true" tabindex="-1"></a>a_crash2<span class="sc">$</span>earlydeath[<span class="sc">!</span><span class="fu">is.na</span>(a_crash2<span class="sc">$</span>time2death)] <span class="ot">&lt;-</span></span>
+<span id="cb2-8"><a href="initial-data-analysis-plan.html#cb2-8" aria-hidden="true" tabindex="-1"></a>  (a_crash2<span class="sc">$</span>time2death[<span class="sc">!</span><span class="fu">is.na</span>(a_crash2<span class="sc">$</span>time2death)] <span class="sc">&lt;=</span> <span class="dv">28</span>) <span class="sc">+</span> <span class="dv">0</span></span>
+<span id="cb2-9"><a href="initial-data-analysis-plan.html#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="initial-data-analysis-plan.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># +0 to transform it from TRUE/FALSE to 1/0</span></span>
+<span id="cb2-11"><a href="initial-data-analysis-plan.html#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># NA in time2death means alive at day 28</span></span>
+<span id="cb2-12"><a href="initial-data-analysis-plan.html#cb2-12" aria-hidden="true" tabindex="-1"></a>a_crash2<span class="sc">$</span>earlydeath[<span class="fu">is.na</span>(a_crash2<span class="sc">$</span>time2death)] <span class="ot">&lt;-</span> <span class="dv">0</span>    </span></code></pre></div>
+<p>We also display the marginal distribution of the derived outcome variable.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="initial-data-analysis-plan.html#cb3-1" aria-hidden="true" tabindex="-1"></a>a_crash2 <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="initial-data-analysis-plan.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(earlydeath) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="initial-data-analysis-plan.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>()</span></code></pre></div>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
 
+#npfbagpjto .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#npfbagpjto .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#npfbagpjto .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#npfbagpjto .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#npfbagpjto .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#npfbagpjto .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#npfbagpjto .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#npfbagpjto .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#npfbagpjto .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#npfbagpjto .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#npfbagpjto .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#npfbagpjto .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#npfbagpjto .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#npfbagpjto .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#npfbagpjto .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#npfbagpjto .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#npfbagpjto .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#npfbagpjto .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#npfbagpjto .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#npfbagpjto .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#npfbagpjto .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#npfbagpjto .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#npfbagpjto .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#npfbagpjto .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#npfbagpjto .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#npfbagpjto .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#npfbagpjto .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#npfbagpjto .gt_left {
+  text-align: left;
+}
+
+#npfbagpjto .gt_center {
+  text-align: center;
+}
+
+#npfbagpjto .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#npfbagpjto .gt_font_normal {
+  font-weight: normal;
+}
+
+#npfbagpjto .gt_font_bold {
+  font-weight: bold;
+}
+
+#npfbagpjto .gt_font_italic {
+  font-style: italic;
+}
+
+#npfbagpjto .gt_super {
+  font-size: 65%;
+}
+
+#npfbagpjto .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="npfbagpjto" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 20,207</strong><sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Death within 28 days from injury</td>
+      <td class="gt_row gt_center">3,076 (15%)</td>
+    </tr>
+  </tbody>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="2">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          n (%)
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table></div>
+<p>The number of deaths computed in the data set coincides with the number reported in <a href="https://doi.org/10.1136/bmj.e5166">Perel et al, BMJ 2012</a>.</p>
+</div>
+<div id="sources" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Sources</h2>
+<p>Data obtained from <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets" class="uri">http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets</a></p>
+<p>To download the data set, click the <a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.rda">link to data set</a></p>
+<div id="data-dictionary" class="section level3" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Data dictionary</h3>
+<p>The data dictionary can be found <a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.html">LINK</a></p>
+</div>
+</div>
+<div id="references" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> References</h2>
+<p>CRASH-2 Collaborators. Effects of tranexamic acid on death, vascular occlusive events, and blood transfusion in trauma patients with significant haemorrhage (CRASH-2): a randomised, placebo-controlled trial. Lancet 2010;376:23-32</p>
+<p>Perel P, Prieto-Merino D, Shakur H, Clayton T, Lecky F, Bouamra O, Russell R, Faulkner M, Steyerberg EW, Roberts I. Predicting early death in patients with traumatic bleeding: development and validation of prognostic model. BMJ 2012; 345(aug15 1): e5166.</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="ida-framework.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-screening-and-possible-actions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-crash-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="missing-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -660,18 +1057,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/bailliem/ida-regression-private/edit/master/scope.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/Crash2_SAP.Rmd",
 "text": "Edit this chapter"
 },
 "history": {
-"link": "https://github.com/bailliem/ida-regression-private/commits/master/scope.Rmd",
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/Crash2_SAP.Rmd",
 "text": "Chapter edit history"
 },
 "view": {
 "link": null,
 "text": null
 },
-"download": ["https://github.com/bailliem/ida-regression-private/raw/master/scope.Rmd"],
+"download": ["https://github.com/bailliem/ida-regression-private/raw/master/Crash2_SAP.Rmd"],
 "toc": {
 "collapse": "section"
 }

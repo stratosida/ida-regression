@@ -21,6 +21,11 @@ description: "The focus of this document/website is to provide guidance on condu
 
 The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses.
 
+We present the work flow of IDA through a series of case studies: 
+
+* CRASH-2
+* National Health and Nutrition Examination Survey (NHANES)
+
 
 
 
