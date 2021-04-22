@@ -87,7 +87,7 @@ Beware: the package list above is currently static, so consider that it may not 
     * Global file that includes these files as chapters ("bookdown.yml", "index.Rmd")
     
 * data-raw - Repository for original data sets and their data dictionaries 
-    * Crash-2  (Publication [Ref 3], Data sets from Vanderbilt University](http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets; on this github repository)
+    * Crash-2  (Publication [Ref 3], data set from Vanderbilt University; on this github repository)
     * Bacteremia  (Publication [Ref 4] modified from original per Medical University of Vienna, Austria; on this github repository) 
     * NHANES  (Publications [Ref 6 and 7], downloaded from CDC [Ref 5];  on this github repository)
 
