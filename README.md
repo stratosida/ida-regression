@@ -10,12 +10,14 @@ This bookdown book is a *work in progress*. We'll update this `README` and the r
 
 #### -- Project Updates: 
 
-* last updated: 2021-04-17 by Marianne Huebner. Update: Added NHANES files
-* Date: 2020-06-30 by Mark Baillie. Update: Create Bookdown
+* last updated: 2021-04-17 by Marianne Huebner. Update: Added NHANES Example
+* Date: 2021-03-30 by Georg Heinze. Update: Created bact_dev branch with Bacteremia Example
+* Date: 2020-06-30 by Mark Baillie. Update: Create Bookdown and added Crash-2 Example
 
 #### Abbreviations
+SAP - statistical analysis plan </br>
 IDA - initial data analysis </br>
-SAP - statistical analysis plan
+IDAP - initial data analysis plan 
 
 
 # Repository for IDA for regression modeling 
@@ -24,7 +26,7 @@ The focus of this document/website is to provide examples on conducting initial 
 
 ## Project Description
 
-**Objective:**  provide sample reports for initial data analyses (IDA) before executing the statistical analysis plan (SAP) for regression modeling.
+**Objective:**  Develope initial data analysis plan (IDAP) and provide sample reports for IDA before executing the statistical analysis plan (SAP) for regression modeling.
 
 Six steps of the IDA framework [Ref 1] are
 
@@ -39,12 +41,11 @@ For our objective, we assume that meta data exist and data cleaning has already 
  
 ## Project Outcomes
  
-1. Sample IDA reports to illustrate data screening and initial reporting (steps 3 and 4 of the IDA framework)
-2. Recommendations for IDA (step 3 of IDA framework) 
+1. Sample IDA plans and IDA reports to illustrate data screening and initial reporting (steps 3 and 4 of the IDA framework)
+2. Recommendations for numerical and graphical summaries (step 3 of IDA framework) 
 2. Explanation and elaboration of potential consequences to the SAP as a result of IDA findings (step 5 of IDA framework)
 3. Recommendations for reporting of IDA for regression analyses (step 6 of IDA framework)
-4. Manuscript with scope of regression model, results, and consequences of IDA 
-
+4. Manuscript with scope of regression model, generic IDA strategy, examples with IDA discoveries and consequences
  
 ## Installation instructions
 
@@ -67,7 +68,7 @@ pak::pkg_install(pkg_list)
 
 You should now be able to render the site in all the usual ways for bookdown, such as `bookdown::render_book()` or *Addins > Preview Book*.
 
-Note: the package list above is currently static, so consider that it may not be up to date.
+Beware: the package list above is currently static, so consider that it may not be up to date.
 
 
 ## Structure  
@@ -75,27 +76,31 @@ Note: the package list above is currently static, so consider that it may not be
 
 * main - General files
     * Explanation of the IDA framework ("IDA_framework.Rmd")
-    * Description of possible IDA actions ("data_screen.Rmd")
     * Scope of the regression models for this project ("scope.Rmd")
+    * Description of possible IDA actions ("data_screen.Rmd")
     * General IDA strategy for regression models within this scope ("GeneralStrategy.md")
-    * Introduction of each of the three data sets  ("_intro_.Rmd") with extensions ("bact_", "CRASH2_", "nhanes_")
-    * Statistical analysis plan for each data set ("_SAP.Rmd")
-    * IDA plan for each data set("_IDA.Rmd")
+    * Introduction of each of the three data sets  ("_intro_.Rmd") with appropriate naming extensions ("bact_", "CRASH2_", "nhanes_")
+    * Initial data analysis plan for each data set ("_IDAP.Rmd")
     * Missingness IDA for each data set ("_missing_.Rmd")
     * Univariate IDA for each data set("_univar.Rmd")
     * Multivariate IDA for each data set ("_multivar.Rmd")
     * Global file that includes these files as chapters ("bookdown.yml", "index.Rmd")
     
-* data - Repository for example data sets and their data dictionaries *(add data sets to Open Science Framework?)*
-    * Bacteremia  (on this github repository)
-    * Crash2  [Data sets from Vanderbilt University](http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets) 
-    * NHANES  (on this github repository)
+* data-raw - Repository for original data sets and their data dictionaries 
+    * Bacteremia  (modified from original per Medical University of Vienna, Austria; on this github repository)
+    * Crash-2  [Data sets from Vanderbilt University](http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets) 
+    * NHANES  (downloaded from CDC and combined data according to [Ref 6];  on this github repository)
+
+* data - Repository for analysis data sets
+    * a_bact.rda  
+    * a_crash2.rda  
+    * a_nhanes.rda  
     
 * docs - IDA reports
     * html outputs of IDA
     * references
     
-* R - R functions for data visualization
+* R - R functions for data visualization and transformations used in the R markdown files
 
 * assets - style files and images
 
