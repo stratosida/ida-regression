@@ -20,7 +20,7 @@ load(here::here("data", "bact_env_b.rda"))
 Number and percentage of missing. 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-a_bact %>%
+b_bact %>%
   select(-ID, -BC) %>%
   miss_var_summary() %>%
   gt::gt() %>%
@@ -42,14 +42,14 @@ Investigate for groups of variables:
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 b_bact %>%
   select() %>%
-  mutate(Any_Variable_missing = ifelse(apply(a_bact,1,any_miss),NA,1)) %>%
-  mutate(Any_Demographics_missing = ifelse(apply(a_bact[,demog_vars],1,any_miss),NA,1)) %>%
-  mutate(Any_VIP_missing = ifelse(apply(a_bact[,c(demog_vars,pivotal_vars, vip_vars)],1,any_miss),NA,1)) %>%
-  mutate(Any_Leuko_missing = ifelse(apply(a_bact[,c(leuko_related_vars)],1,any_miss),NA,1)) %>%
-  mutate(Any_Kidney_missing = ifelse(apply(a_bact[,c(kidney_related_vars)],1,any_miss),NA,1)) %>%
-  mutate(Any_Acute_missing = ifelse(apply(a_bact[,c(acute_related_vars)],1,any_miss),NA,1)) %>%
-  mutate(Any_remaining_missing = ifelse(apply(a_bact[,c(remaining_vars)],1,any_miss),NA,1)) %>%
-  mutate(Any_VIP_leuko_kidney_acute_missing =  ifelse(apply(a_bact[,c(demog_vars,pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_Variable_missing = ifelse(apply(b_bact,1,any_miss),NA,1)) %>%
+  mutate(Any_Demographics_missing = ifelse(apply(b_bact[,demog_vars],1,any_miss),NA,1)) %>%
+  mutate(Any_VIP_missing = ifelse(apply(b_bact[,c(demog_vars,pivotal_vars, vip_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_Leuko_missing = ifelse(apply(b_bact[,c(leuko_related_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_Kidney_missing = ifelse(apply(b_bact[,c(kidney_related_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_Acute_missing = ifelse(apply(b_bact[,c(acute_related_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_remaining_missing = ifelse(apply(b_bact[,c(remaining_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_VIP_leuko_kidney_acute_missing =  ifelse(apply(b_bact[,c(demog_vars,pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars)],1,any_miss),NA,1)) %>%
   miss_var_summary() %>%
   gt::gt() %>%
     gt::cols_label(
@@ -65,13 +65,6 @@ b_bact %>%
 ```
 
 From this table we learn that as long as we model with only VIPs or with leukocyte-related variables, we can expect less than 10% missing values and this may justify a complete-case analysis. Including also kidney- and acute phase related variables will raise the proportion of missing values to about 36% which leads to a significant drop in power. A multiple imputation may then recover a lot of the information and may in particular be beneficial to keep the power of the (otherwise very complete) VIPs.
-
-
-## Compare characteristics between complete cases and cases with at least one missing value
-
-Qu: Is this for 'missing' or 'univar/multivar' domains?
-
-(follow-up section later on after distributions have been shown)
 
 
 ## Missingness patterns over variables

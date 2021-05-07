@@ -58,7 +58,7 @@ vc_bact<-Hmisc::varclus(as.matrix(c_bact[,variables]))
 plot(vc_bact, cex=0.7)
 ```
 
-Some of the clusters that pop up here are related to width/volume of blood cells (MPV, PDW), red blood cells (RBC, HGB, HCT; MCV, MCH), and some further 'known' associations such as that between KREA and eGFR (which is clear from construction of eGFR), and between ASAT and ALAT, between AMY and PAMY or between TP and ALB).
+Some of the clusters that pop up here are related to width/volume of blood cells (MPV, PDW), red blood cells (RBC, HGB, HCT; MCV, MCH), and some further 'known' associations such as that between KREA and eGFR (which follows from the construction of eGFR), and between ASAT and ALAT, between AMY and PAMY or between TP and ALB).
 
 In the following scatterplots we have a look at those associations:
 
@@ -75,11 +75,15 @@ ggplot(c_bact, aes(MCV, MCH))+geom_point() + geom_smooth()
 
 ggplot(c_bact, aes(t_KREA, eGFR))+geom_point() + geom_smooth()
 
+
 ggplot(c_bact, aes(t_ASAT, t_ALAT))+geom_point() + geom_smooth()
 
 ggplot(c_bact, aes(t_AMY, t_PAMY))+geom_point() + geom_smooth()
 
+
 ggplot(c_bact, aes(t_WBC, t_NEU))+geom_point() + geom_smooth()
+
+
 
 
 ```
@@ -129,7 +133,7 @@ c_bact %>%
 ggplot(data=c_bact, mapping=aes(x=Alter, y=t_WBC, color=gender)) + geom_point() + geom_smooth()
 ```
 
-### Plot all variables vs. age/sex groups
+### Plot all variables vs. WBC in age/sex groups
 
 ```{r}
 c_bact$Agegroup <- factor(cut(c_bact$Alter, c(min(c_bact$Alter), 50, 65, max(c_bact$Alter))))
@@ -186,23 +190,27 @@ Hmisc::redun(~I(EOSR)+I(BASOR)+I(NEUR)+I(LYMR)+I(MONOR), data=c_bact)
 Now we use the absolute concentrations. BASO is modeled as linear because it has very few distinct values:
 
 ```{r}
-Hmisc::redun(~t_EOS+I(t_BASO)+t_NEU+t_LYM+t_MONO, data=c_bact)
+Hmisc::redun(~t_EOS+I(t_BASO)+t_NEU+t_LYM+MONO, data=c_bact)
 ```
 
 Now we add WBC:
 
 ```{r}
-Hmisc::redun(~t_EOS+I(t_BASO)+t_NEU+t_LYM+t_MONO+t_WBC, data=c_bact)
+Hmisc::redun(~t_EOS+I(t_BASO)+t_NEU+t_LYM+MONO+t_WBC, data=c_bact)
 ```
 
-This indicates very large $R^2$ values for NEU and WBC, meaning that probably because of their large correlation, the variables are nearly redundant. (This also becomes clear from the histogram of NEUR, which shows the ratios of NEU to WBC.) *When including both covariates in a model, it may happen that standard errors are inflated such that an association cannot be statistically proven; nevertheless, according to the preceding studies both variables could be important!* One way to circumvent the problem is to generate a complementary variable that is defined as the difference of WBC and NEU and use this variable instead of WBC. This variable is expected to be correlated with the sum of MONO, LYM, BASO and EOS.
+This indicates very large $R^2$ values for NEU and WBC, meaning that probably because of their large correlation, the variables are nearly redundant. (This also becomes clear from the histogram of NEUR, which shows the ratios of NEU to WBC.) *When including both covariates in a model, it may happen that standard errors are inflated such that an association cannot be statistically proven; nevertheless, according to the preceding studies both variables could be important!* One way to circumvent the problem is to generate a complementary variable that is defined as the difference of WBC and NEU and use this variable instead of WBC. 
 
 ```{r}
 WBC_NEU <- c_bact$WBC - c_bact$NEU
 sum_noNEU <- apply(c_bact[,c("EOS","BASO","LYM","MONO")],1,sum)
 
 ggplot(c_bact, aes(NEU, WBC_NEU)) + geom_point() + geom_smooth() + scale_x_continuous(trans="pseudo_log") + scale_y_continuous(trans="pseudo_log")
+```
 
+This variable is expected to be highly correlated with the sum of MONO, LYM, BASO and EOS:
+
+```{r}
 ggplot(c_bact, aes(sum_noNEU, WBC_NEU)) + geom_point() + geom_smooth() + scale_x_continuous(trans="pseudo_log") + scale_y_continuous(trans="pseudo_log")
 
 ```
@@ -213,7 +221,7 @@ Now we perform a full redundancy analysis, but omitting WBC, the leukocyte ratio
 
 ```{r}
 formula <- as.formula(
-              paste("~I(t_EOS)+I(t_BASO)+t_LYM+t_MONO+t_NEU+",
+              paste("~I(t_EOS)+I(t_BASO)+t_LYM+MONO+t_NEU+",
                     paste(unique(c(bact_transformed$demog_vars,
                                    c("t_BUN_KREA","eGFR","K"),
                                    bact_transformed$acute_related_vars,
@@ -223,23 +231,9 @@ formula <- as.formula(
 Hmisc::redun(formula, data=c_bact)
 ```
 
-This analysis suggests that HGB, MCH, RBC and PDW may be redundant on top of the other variables. Moreover, it should be noted that BUN, KREA and WBC were already omitted from this redundancy analysis.
-
-#### Redundancy analysis with imputed data set
-
-At last, we perform multiple imputation with predicted mean meatching and investigate whether  redundancies are consistent in five imputed datasets. It should be noted that multiple imputation involves a lot of modeling itself and we use just default models here - we may run into similar problems as when doing the main analysis without IDA!
-
-```{r}
-set.seed(7123981)
-mice_obj <- mice::mice(c_bact[,variables], m=1, method="pmm")
-```
+This analysis suggests that HCT, MCH, HGB and MPV may be redundant on top of the other variables. Note that BUN, KREA and WBC were already omitted from this redundancy analysis.
 
 
-```{r}
-Hmisc::redun(formula, complete(mice_obj))
-```
-
-This analysis suggests the same variables but now includes HCT instead of HGB; however, the difference in the initial $R^2$ values is only small.
 
 
 ## Section session info

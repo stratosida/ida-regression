@@ -12,7 +12,7 @@ library(Hmisc)
 
 To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section [Bact_SAP.Rmd](Bact_SAP.Rmd).
 
-**Hypothetical research aim for IDA** is to develop a multivariable diagnostic model for bacteremia using 49 continuous laboratory blood parameters, age and gender with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome. 
+**Hypothetical research aim for IDA** is to develop a multivariable diagnostic model for bacteremia using 49 continuous laboratory blood parameters, age and gender with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome ('explaining' the multivariable model). 
 
 A diagnostic prediction model was developed based on this data set and validated in "A Risk Prediction Model for Screening Bacteremic Patients: A Cross Sectional Study"  [Ratzinger et al, PLoS One 2014](https://doi.org/10.1371/journal.pone.0106765). The assumed research aim is in line with this diagnostic prediction model.
 
