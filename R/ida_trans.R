@@ -22,7 +22,7 @@ ida_trans<-function(x, equ.marg=0.05){
   if(min(x, na.rm=T)>0) interval=c(0,max(x))
   else interval=c(min(x[x>0]), max(x))
   
-  topt<-optimize(f=function(const) 1-cornorm(X=pseudo_log(x, sigma=const), qn=qn), interval=interval, tol=0.01)
+  topt<-optimize(f=function(const) 1-cornorm(X=pseudo_log(x, sigma=const), qn=qn), interval=interval, tol=0.05)
   
   if(topt$objective>(1-cn.orig-equ.marg)) {
     #cat("Original distribution better than any log.\n")
