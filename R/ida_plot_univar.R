@@ -10,12 +10,21 @@
 #' @param n_dodge if the 5 number summary clashes, split over n lines.
 #'               Default is display over 1 line
 #' @param bin_width Width of the histogram bin
-#'
+#' @param sigma transformation parameter for pseudo_log (NA for no transformation)
 #' @return gg ggplot object
 #' @export
 #'
 #' @examples
-ida_plot_univar <- function(data, var, n_dodge = 1, bin_width = 0.5) {
+ida_plot_univar <- function(data, var, n_dodge = 1, 
+                            bin_width = diff(range(data[[var]],na.rm=T))/min(length(unique(data[[var]])),100), 
+                            sigma, n_bars=100)                             {
+  
+  ## evaluate if sigma is na
+  
+  trans<-FALSE
+  if(!is.na(sigma)) trans<-TRUE
+  
+
   
   ## number of missing observations
   nmiss <-
@@ -27,13 +36,30 @@ ida_plot_univar <- function(data, var, n_dodge = 1, bin_width = 0.5) {
   
   # vector of variable for calculating five number summary
   x <- as.numeric(data[[var]])
+  x <- x[!is.na(x)]
+  x_orig<-x
+  if(trans) x <- pseudo_log(x, sigma=sigma)
+  
+  
+  # breaks for histogram
+  ## compute n_bars+1 quantiles and divide the range into nbars 
+  ## take a weighted average of the two sequences to compromise between small and wide bins
+  
+  if(length(unique(x))<n_bars*2) {
+    brks <- unique(x) 
+    }  else {
+    brks1 <- seq(min(x), max(x), length.out=n_bars+1)
+    brks2 <- quantile(x, seq(0,1,1/n_bars))
+    brks <- (brks2 + 3*brks1)/4
+  }
+  
   
   # title for plot
   title <-
     paste0("Univariate summary of ", label(data[[var]]), " [", units(data[[var]]), "]")
   
   # labels for histogram
-  y_axis <- "Number of subjects"
+  y_axis <- "Density"
   x_axis <-
     paste0(label(data[[var]]), " [", units(data[[var]]), "]")
   
@@ -47,12 +73,11 @@ ida_plot_univar <- function(data, var, n_dodge = 1, bin_width = 0.5) {
       nmiss,
       " subjects with missing values are not presented."
     )
+  if(trans) caption<-paste0(caption, "Using pseudo-log scale.")
   
   ## strip plot
   p1 <-
-    data %>%
-    filter(!is.na(.data[[var]])) %>%
-    ggplot(aes(x = as.numeric(.data[[var]]), y = 0)) +
+    ggplot(data=NULL,aes(x = x, y = 0)) +
     geom_jitter(
       width = 0.1,
       height = 0.1,
@@ -75,9 +100,9 @@ ida_plot_univar <- function(data, var, n_dodge = 1, bin_width = 0.5) {
   p2 <-
     data %>%
     filter(!is.na(.data[[var]])) %>%
-    ggplot2::ggplot(aes(as.numeric(.data[[var]]))) +
-    geom_histogram(
-      binwidth = bin_width,
+        ggplot2::ggplot(aes(x)) +
+    geom_histogram(aes(x=x, y=..density..),
+                   breaks=brks,
       center = 0,
       alpha = 0.6,
       fill = "firebrick2"
@@ -85,7 +110,8 @@ ida_plot_univar <- function(data, var, n_dodge = 1, bin_width = 0.5) {
     geom_rug() +
     scale_x_continuous(
       limit = c(min(x), max(x)),
-      breaks = round(fivenum(x), 1),
+      breaks = fivenum(x),
+      labels = round(fivenum(x_orig),1),
       guide = guide_axis(n.dodge = n_dodge)
     ) +
     ylab(y_axis) +
@@ -100,10 +126,10 @@ ida_plot_univar <- function(data, var, n_dodge = 1, bin_width = 0.5) {
   p3 <-
     data %>%
     filter(!is.na(.data[[var]])) %>%
-    ggplot(aes(x = as.numeric(.data[[var]]), y = 0)) +
+    ggplot(aes(x = x, y = 0)) +
     geom_boxplot(outlier.shape = NA, width = 0.1) +
     scale_x_continuous(limit = c(min(x), max(x)),
-                       breaks = c(round(fivenum(x), 1))) +
+                       breaks = c(fivenum(x))) +
     xlab(x_axis) +
     ggplot2::theme_minimal() +
     theme(

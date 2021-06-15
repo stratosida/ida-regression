@@ -1,0 +1,243 @@
+
+#  Multivariate distributions
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE }
+library(here)
+library(tidyverse)
+library(plotly)
+library(Hmisc)
+library(gtsummary)
+library(ggcorrplot)
+library(mice)
+## Read data 
+load(here::here("data", "bact_env_c.rda"))
+```
+
+
+
+## Overview
+
+### Variable correlation
+
+Compute correlations between the independent variables or their suggested transformations.
+
+
+
+```{r}
+variables <- unique(c(bact_transformed$demog_vars, 
+                      bact_transformed$pivotal_vars,
+                      bact_transformed$vip_vars,
+                      bact_transformed$leuko_related_vars,
+                      bact_transformed$leuko_ratio_vars,
+                      bact_transformed$kidney_related_vars,
+                      bact_transformed$acute_related_vars,
+                      bact_transformed$remaining_vars))
+
+corrp <- c_bact %>%
+    dplyr::select(all_of(variables)) %>%
+      cor(use="pairwise.complete.obs", method="pearson")
+
+corrs <- c_bact %>%
+    dplyr::select(all_of(variables)) %>%
+      cor(use="pairwise.complete.obs", method="spearman")
+
+# differences of pearson and spearman correlations to check for outliers
+corrd <- corrp-corrs
+```
+
+Next, we depict the correlation coefficient in a quadratic heat map:
+
+```{r}
+ggcorrplot(corrp, tl.cex=5, tl.srt=90)
+```
+
+Explore if there are clusters of variables. Such clusters may give rise to define groups of variables for which a summary or only a representative may be considered in modeling:
+
+```{r}
+vc_bact<-Hmisc::varclus(as.matrix(c_bact[,variables]))
+plot(vc_bact, cex=0.7)
+```
+
+Some of the clusters that pop up here are related to width/volume of blood cells (MPV, PDW), red blood cells (RBC, HGB, HCT; MCV, MCH), and some further 'known' associations such as that between KREA and eGFR (which follows from the construction of eGFR), and between ASAT and ALAT, between AMY and PAMY or between TP and ALB).
+
+In the following scatterplots we have a look at those associations:
+
+```{r}
+ggplot(c_bact, aes(MPV, PDW))+geom_point() + geom_smooth()
+
+ggplot(c_bact, aes(RBC, HGB))+geom_point() + geom_smooth()
+
+ggplot(c_bact, aes(RBC, HCT))+geom_point() + geom_smooth()
+
+ggplot(c_bact, aes(HGB, HCT))+geom_point() + geom_smooth()
+
+ggplot(c_bact, aes(MCV, MCH))+geom_point() + geom_smooth()
+
+ggplot(c_bact, aes(t_KREA, eGFR))+geom_point() + geom_smooth()
+
+
+ggplot(c_bact, aes(t_ASAT, t_ALAT))+geom_point() + geom_smooth()
+
+ggplot(c_bact, aes(t_AMY, t_PAMY))+geom_point() + geom_smooth()
+
+
+ggplot(c_bact, aes(t_WBC, t_NEU))+geom_point() + geom_smooth()
+
+
+
+
+```
+
+
+Create scatterplots for pairs of variables with a large distance between Spearman and Pearson correlations (could be an indication of nonlinear association):
+
+```{r}
+for(j in 1:(length(variables)-1)){
+  for(jj in (j+1):(length(variables))){
+    if(abs(corrd[j, jj])>0.1) print(ggplot(data=c_bact, mapping=aes(x=.data[[variables[j]]],y=.data[[variables[jj]]]))+ geom_point()+geom_smooth())
+  }
+}
+
+
+
+```
+
+
+
+
+
+
+### Distribution of age by sex
+
+```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of age by sex"}
+# only plot observatons with a non-missing value for Sex
+c_bact %>%
+  filter(!(is.na(sex))) %>%
+  with(., histboxp(
+    x = Alter,
+    group = sex,
+    sd = TRUE,
+    bins = 200
+  ))
+
+
+```
+
+### Distribution of leukocytes by age, coloured by sex
+
+```{r}
+c_bact$gender=factor(c_bact$sex, levels=c(1,2), labels=c("male","female"))
+
+
+c_bact %>%
+ggplot(data=c_bact, mapping=aes(x=Alter, y=t_WBC, color=gender)) + geom_point() + geom_smooth()
+```
+
+### Plot all variables vs. WBC in age/sex groups
+
+```{r}
+c_bact$Agegroup <- factor(cut(c_bact$Alter, c(min(c_bact$Alter), 50, 65, max(c_bact$Alter))))
+table(c_bact$gender,c_bact$Agegroup)
+```
+
+
+
+```{r}
+for(j in 4:length(variables)){
+    p1 <- 
+      c_bact %>% 
+      filter(!is.na(Agegroup)) %>% 
+      ggplot(c_bact, mapping=aes(x=t_WBC,y=.data[[variables[j]]])) + 
+      geom_point() + 
+      geom_smooth() +  
+      geom_rug() +
+      facet_grid(gender ~ Agegroup)
+    print(p1)
+}
+#+
+#  theme_minimal()
+
+```
+
+## Variable redundancy 
+
+### Redundancy among very important predictors
+
+First we start with a redundancy analysis with the predictors deemed important by preceding studies.
+
+```{r}
+formula <- as.formula(
+              paste("~Alter+",
+                    paste(unique(c(bact_transformed$pivotal_vars,
+                                   bact_transformed$vip_vars)),
+                          collapse="+")))
+
+
+Hmisc::redun(formula, data=c_bact)
+
+```
+
+This analysis suggests redundancy of WBC after NEU is in the predictor set. We investigate this further by looking only at leukocyte-related variables.
+
+### Redundancy among leukocyte-related variables
+
+In redundancy analysis of all predictor variables, the large number of non-complete cases is an issue.  First we start with the leukocyte ratios - there should be large redundancy issues. This is even the case if no nonlinear modeling is applied.
+
+```{r}
+Hmisc::redun(~I(EOSR)+I(BASOR)+I(NEUR)+I(LYMR)+I(MONOR), data=c_bact)
+```
+
+Now we use the absolute concentrations. BASO is modeled as linear because it has very few distinct values:
+
+```{r}
+Hmisc::redun(~t_EOS+I(t_BASO)+t_NEU+t_LYM+MONO, data=c_bact)
+```
+
+Now we add WBC:
+
+```{r}
+Hmisc::redun(~t_EOS+I(t_BASO)+t_NEU+t_LYM+MONO+t_WBC, data=c_bact)
+```
+
+This indicates very large $R^2$ values for NEU and WBC, meaning that probably because of their large correlation, the variables are nearly redundant. (This also becomes clear from the histogram of NEUR, which shows the ratios of NEU to WBC.) *When including both covariates in a model, it may happen that standard errors are inflated such that an association cannot be statistically proven; nevertheless, according to the preceding studies both variables could be important!* One way to circumvent the problem is to generate a complementary variable that is defined as the difference of WBC and NEU and use this variable instead of WBC. 
+
+```{r}
+WBC_NEU <- c_bact$WBC - c_bact$NEU
+sum_noNEU <- apply(c_bact[,c("EOS","BASO","LYM","MONO")],1,sum)
+
+ggplot(c_bact, aes(NEU, WBC_NEU)) + geom_point() + geom_smooth() + scale_x_continuous(trans="pseudo_log") + scale_y_continuous(trans="pseudo_log")
+```
+
+This variable is expected to be highly correlated with the sum of MONO, LYM, BASO and EOS:
+
+```{r}
+ggplot(c_bact, aes(sum_noNEU, WBC_NEU)) + geom_point() + geom_smooth() + scale_x_continuous(trans="pseudo_log") + scale_y_continuous(trans="pseudo_log")
+
+```
+
+### Redundancy among all potential predictors
+
+Now we perform a full redundancy analysis, but omitting WBC, the leukocyte ratio variables, and BUN and KREA (for their use in constructing BUN_KREA and eGFR).
+
+```{r}
+formula <- as.formula(
+              paste("~I(t_EOS)+I(t_BASO)+t_LYM+MONO+t_NEU+",
+                    paste(unique(c(bact_transformed$demog_vars,
+                                   c("t_BUN_KREA","eGFR","K"),
+                                   bact_transformed$acute_related_vars,
+                                   bact_transformed$remaining_vars)),collapse="+")))
+
+
+Hmisc::redun(formula, data=c_bact)
+```
+
+This analysis suggests that HCT, MCH, HGB and MPV may be redundant on top of the other variables. Note that BUN, KREA and WBC were already omitted from this redundancy analysis.
+
+
+
+
+## Section session info
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+sessionInfo()
+```

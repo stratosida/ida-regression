@@ -1,0 +1,117 @@
+# Bacteremia {-}
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
+## Load libraries for this chapter
+library(here)
+library(tidyverse)
+library(Hmisc)
+```
+
+# Introduction to Bacteremia
+
+To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section [Bact_SAP.Rmd](Bact_SAP.Rmd).
+
+**Hypothetical research aim for IDA** is to develop a multivariable diagnostic model for bacteremia using 49 continuous laboratory blood parameters, age and gender with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome ('explaining' the multivariable model). 
+
+A diagnostic prediction model was developed based on this data set and validated in "A Risk Prediction Model for Screening Bacteremic Patients: A Cross Sectional Study"  [Ratzinger et al, PLoS One 2014](https://doi.org/10.1371/journal.pone.0106765). The assumed research aim is in line with this diagnostic prediction model.
+
+
+## Dataset Description
+
+Ratzinger et al (2014) performed a diagnostic study in which age, sex and 49 laboratory variables can be used to diagnose bacteremia status  of a blood sample using a multivariable model.  Between January 2006 and December 2010, patients with the clinical suspicion to suffer from bacteraemia were included if blood culture analysis was requested by the responsible physician and blood was sampled for assessment of haematology and biochemistry. The data consists of 14,691 observations from different patients.
+
+Our version of this data was slightly modified compared to original version, and this modified version was cleared by the Medical University of Vienna for public use (DC 2019-0054). Variable names have been kept as they were (partly German abbreviations). A data dictionary is available in the **misc** folder of the project directory ('bacteremia-DataDictionary.csv').
+
+In the original paper describing the study [(Ratzinger et al, PLoS One 2014)](https://doi.org/10.1371/journal.pone.0106765), a machine learning approach was taken to diagnose a positive status of blood culture. The true status was determined for all blood samples by blood culture analysis, which is the gold standard. Here we will make use of a multivariable logistic regression model.
+
+
+## Bacteremia dataset contents
+
+### Source dataset 
+
+We refer to the source data set as the dataset available in this repository.
+
+Display the source dataset contents. This dataset is in the **data** folder of the project directory. 
+
+```{r contents_bact,  warning=FALSE, message=FALSE, echo=FALSE, results='asis'} 
+## Load the dataset from the data folder. 
+
+bact<-read.csv(here::here("data", "Bacteremia_public_S2.csv"))
+
+Hmisc::html(Hmisc::contents(bact),
+            maxlevels = 10,
+            levelType = 'table')
+
+bact.dd<-read.csv(here::here("misc", "bacteremia-DataDictionary.csv"))
+
+#bact.dd
+```
+
+
+### Updated analysis dataset
+
+Additional meta-data is added to the original *source* data set. We write this new modified (annotated) data set back to the **data** folder after adding additional meta-data for all variables. The meta-data is taken from the data dictionary.
+
+At the stage we could select the variables of interest to take in to the IDA phase by dropping variables we do not check in IDA.
+
+As a cross check we display the contents again to ensure the additional data is added, and then write  the changes to the data folder in the file "data/a_bact.rda". 
+
+```{r contents_abact, warning=FALSE, message=FALSE, echo=FALSE, results='asis'} 
+
+## Complete metadata by adding missing labels. 
+## Generate a derived dataset stored in data as we are adding to the original source dataset obtained. 
+
+bact_subset <- bact
+
+## select candidate predictor variables. -- See SAP
+
+#bact_subset <- 
+#  bact  %>%
+#  dplyr::select(
+#    ID,
+#    Alter,
+#    WBC,
+#    KREA,
+#    BUN,
+#    PLT,
+#    NEU,
+#    BloodCulture
+#  )
+
+labels_list <- bact.dd$Label
+units_list <- bact.dd$Units
+
+names(labels_list) <- names(units_list) <- bact.dd$Variable
+
+## Complete metadata by adding missing labels.
+a_bact <- Hmisc::upData(
+  bact_subset,
+  labels = labels_list[names(bact_subset)], units=units_list[names(bact_subset)])
+
+## Derive outcome variable
+a_bact$BC <-   as.numeric(a_bact$BloodCulture=="yes")+0
+
+
+## Add meta data
+a_bact <- Hmisc::upData(a_bact ,
+               labels = c(BC = 'bacteremia'), units = c(BC = '0/1'))
+
+
+## Display contents
+Hmisc::html(Hmisc::contents(a_bact),
+            maxlevels = 10,
+            levelType = 'table')
+
+## Write to data folder
+save(a_bact, file = here::here("data", "a_bact.rda"))
+```
+
+## Section session info
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+sessionInfo()
+```
+
+
+
