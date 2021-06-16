@@ -10,11 +10,12 @@ Number and percentage of missing.
 
 
 ```{=html}
+<div id="ufvbchhbla" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ovnsqsmykv .gt_table {
+#ufvbchhbla .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -39,7 +40,7 @@ Number and percentage of missing.
   border-left-color: #D3D3D3;
 }
 
-#ovnsqsmykv .gt_heading {
+#ufvbchhbla .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -51,7 +52,7 @@ Number and percentage of missing.
   border-right-color: #D3D3D3;
 }
 
-#ovnsqsmykv .gt_title {
+#ufvbchhbla .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -61,7 +62,7 @@ Number and percentage of missing.
   border-bottom-width: 0;
 }
 
-#ovnsqsmykv .gt_subtitle {
+#ufvbchhbla .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -71,13 +72,13 @@ Number and percentage of missing.
   border-top-width: 0;
 }
 
-#ovnsqsmykv .gt_bottom_border {
+#ufvbchhbla .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ovnsqsmykv .gt_col_headings {
+#ufvbchhbla .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -92,7 +93,7 @@ Number and percentage of missing.
   border-right-color: #D3D3D3;
 }
 
-#ovnsqsmykv .gt_col_heading {
+#ufvbchhbla .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -112,7 +113,7 @@ Number and percentage of missing.
   overflow-x: hidden;
 }
 
-#ovnsqsmykv .gt_column_spanner_outer {
+#ufvbchhbla .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -124,15 +125,15 @@ Number and percentage of missing.
   padding-right: 4px;
 }
 
-#ovnsqsmykv .gt_column_spanner_outer:first-child {
+#ufvbchhbla .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ovnsqsmykv .gt_column_spanner_outer:last-child {
+#ufvbchhbla .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ovnsqsmykv .gt_column_spanner {
+#ufvbchhbla .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -144,7 +145,7 @@ Number and percentage of missing.
   width: 100%;
 }
 
-#ovnsqsmykv .gt_group_heading {
+#ufvbchhbla .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -166,7 +167,7 @@ Number and percentage of missing.
   vertical-align: middle;
 }
 
-#ovnsqsmykv .gt_empty_group_heading {
+#ufvbchhbla .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -181,15 +182,15 @@ Number and percentage of missing.
   vertical-align: middle;
 }
 
-#ovnsqsmykv .gt_from_md > :first-child {
+#ufvbchhbla .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ovnsqsmykv .gt_from_md > :last-child {
+#ufvbchhbla .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ovnsqsmykv .gt_row {
+#ufvbchhbla .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -208,7 +209,7 @@ Number and percentage of missing.
   overflow-x: hidden;
 }
 
-#ovnsqsmykv .gt_stub {
+#ufvbchhbla .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -220,7 +221,7 @@ Number and percentage of missing.
   padding-left: 12px;
 }
 
-#ovnsqsmykv .gt_summary_row {
+#ufvbchhbla .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -230,7 +231,7 @@ Number and percentage of missing.
   padding-right: 5px;
 }
 
-#ovnsqsmykv .gt_first_summary_row {
+#ufvbchhbla .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -240,7 +241,7 @@ Number and percentage of missing.
   border-top-color: #D3D3D3;
 }
 
-#ovnsqsmykv .gt_grand_summary_row {
+#ufvbchhbla .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -250,7 +251,7 @@ Number and percentage of missing.
   padding-right: 5px;
 }
 
-#ovnsqsmykv .gt_first_grand_summary_row {
+#ufvbchhbla .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -260,11 +261,11 @@ Number and percentage of missing.
   border-top-color: #D3D3D3;
 }
 
-#ovnsqsmykv .gt_striped {
+#ufvbchhbla .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ovnsqsmykv .gt_table_body {
+#ufvbchhbla .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -273,7 +274,7 @@ Number and percentage of missing.
   border-bottom-color: #D3D3D3;
 }
 
-#ovnsqsmykv .gt_footnotes {
+#ufvbchhbla .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -287,13 +288,13 @@ Number and percentage of missing.
   border-right-color: #D3D3D3;
 }
 
-#ovnsqsmykv .gt_footnote {
+#ufvbchhbla .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ovnsqsmykv .gt_sourcenotes {
+#ufvbchhbla .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -307,144 +308,112 @@ Number and percentage of missing.
   border-right-color: #D3D3D3;
 }
 
-#ovnsqsmykv .gt_sourcenote {
+#ufvbchhbla .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ovnsqsmykv .gt_left {
+#ufvbchhbla .gt_left {
   text-align: left;
 }
 
-#ovnsqsmykv .gt_center {
+#ufvbchhbla .gt_center {
   text-align: center;
 }
 
-#ovnsqsmykv .gt_right {
+#ufvbchhbla .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ovnsqsmykv .gt_font_normal {
+#ufvbchhbla .gt_font_normal {
   font-weight: normal;
 }
 
-#ovnsqsmykv .gt_font_bold {
+#ufvbchhbla .gt_font_bold {
   font-weight: bold;
 }
 
-#ovnsqsmykv .gt_font_italic {
+#ufvbchhbla .gt_font_italic {
   font-style: italic;
 }
 
-#ovnsqsmykv .gt_super {
+#ufvbchhbla .gt_super {
   font-size: 65%;
 }
 
-#ovnsqsmykv .gt_footnote_marks {
+#ufvbchhbla .gt_footnote_marks {
   font-style: italic;
+  font-weight: normal;
   font-size: 65%;
 }
 </style>
-<div id="ovnsqsmykv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Variable</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Missing (count)</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"><strong>Missing (count)</strong></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"><strong>Missing (%)</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">alcohol</td>
-      <td class="gt_row gt_center">395</td>
-      <td class="gt_row gt_right">6.61</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">sys</td>
-      <td class="gt_row gt_center">274</td>
-      <td class="gt_row gt_right">4.59</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">lbxtc</td>
-      <td class="gt_row gt_center">230</td>
-      <td class="gt_row gt_right">3.85</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">lbdhdd</td>
-      <td class="gt_row gt_center">230</td>
-      <td class="gt_row gt_right">3.85</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">bmi</td>
-      <td class="gt_row gt_center">44</td>
-      <td class="gt_row gt_right">0.74</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">educationadult</td>
-      <td class="gt_row gt_center">4</td>
-      <td class="gt_row gt_right">0.07</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">smokecigs</td>
-      <td class="gt_row gt_center">2</td>
-      <td class="gt_row gt_right">0.03</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">age</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">gender</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">diabetes</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">chf</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">cancer</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">stroke</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">tac</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">tlac</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">mvpa</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">wt</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
+    <tr><td class="gt_row gt_left">alcohol</td>
+<td class="gt_row gt_right">395</td>
+<td class="gt_row gt_right">6.61</td></tr>
+    <tr><td class="gt_row gt_left">sys</td>
+<td class="gt_row gt_right">274</td>
+<td class="gt_row gt_right">4.59</td></tr>
+    <tr><td class="gt_row gt_left">lbxtc</td>
+<td class="gt_row gt_right">230</td>
+<td class="gt_row gt_right">3.85</td></tr>
+    <tr><td class="gt_row gt_left">lbdhdd</td>
+<td class="gt_row gt_right">230</td>
+<td class="gt_row gt_right">3.85</td></tr>
+    <tr><td class="gt_row gt_left">bmi</td>
+<td class="gt_row gt_right">44</td>
+<td class="gt_row gt_right">0.74</td></tr>
+    <tr><td class="gt_row gt_left">educationadult</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">0.07</td></tr>
+    <tr><td class="gt_row gt_left">smokecigs</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">0.03</td></tr>
+    <tr><td class="gt_row gt_left">age</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">gender</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">diabetes</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">chf</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">cancer</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">stroke</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">tac</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">tlac</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">mvpa</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">wt</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
   </tbody>
   
   
-</table></div>
+</table>
+</div>
 ```
 
 
@@ -452,11 +421,12 @@ Investigate for groups of variables:
 
 
 ```{=html}
+<div id="caxnoyatkd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#nesspqcayz .gt_table {
+#caxnoyatkd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -481,7 +451,7 @@ Investigate for groups of variables:
   border-left-color: #D3D3D3;
 }
 
-#nesspqcayz .gt_heading {
+#caxnoyatkd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -493,7 +463,7 @@ Investigate for groups of variables:
   border-right-color: #D3D3D3;
 }
 
-#nesspqcayz .gt_title {
+#caxnoyatkd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -503,7 +473,7 @@ Investigate for groups of variables:
   border-bottom-width: 0;
 }
 
-#nesspqcayz .gt_subtitle {
+#caxnoyatkd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -513,13 +483,13 @@ Investigate for groups of variables:
   border-top-width: 0;
 }
 
-#nesspqcayz .gt_bottom_border {
+#caxnoyatkd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nesspqcayz .gt_col_headings {
+#caxnoyatkd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -534,7 +504,7 @@ Investigate for groups of variables:
   border-right-color: #D3D3D3;
 }
 
-#nesspqcayz .gt_col_heading {
+#caxnoyatkd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -554,7 +524,7 @@ Investigate for groups of variables:
   overflow-x: hidden;
 }
 
-#nesspqcayz .gt_column_spanner_outer {
+#caxnoyatkd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -566,15 +536,15 @@ Investigate for groups of variables:
   padding-right: 4px;
 }
 
-#nesspqcayz .gt_column_spanner_outer:first-child {
+#caxnoyatkd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nesspqcayz .gt_column_spanner_outer:last-child {
+#caxnoyatkd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nesspqcayz .gt_column_spanner {
+#caxnoyatkd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -586,7 +556,7 @@ Investigate for groups of variables:
   width: 100%;
 }
 
-#nesspqcayz .gt_group_heading {
+#caxnoyatkd .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -608,7 +578,7 @@ Investigate for groups of variables:
   vertical-align: middle;
 }
 
-#nesspqcayz .gt_empty_group_heading {
+#caxnoyatkd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -623,15 +593,15 @@ Investigate for groups of variables:
   vertical-align: middle;
 }
 
-#nesspqcayz .gt_from_md > :first-child {
+#caxnoyatkd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nesspqcayz .gt_from_md > :last-child {
+#caxnoyatkd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nesspqcayz .gt_row {
+#caxnoyatkd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -650,7 +620,7 @@ Investigate for groups of variables:
   overflow-x: hidden;
 }
 
-#nesspqcayz .gt_stub {
+#caxnoyatkd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -662,7 +632,7 @@ Investigate for groups of variables:
   padding-left: 12px;
 }
 
-#nesspqcayz .gt_summary_row {
+#caxnoyatkd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -672,7 +642,7 @@ Investigate for groups of variables:
   padding-right: 5px;
 }
 
-#nesspqcayz .gt_first_summary_row {
+#caxnoyatkd .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -682,7 +652,7 @@ Investigate for groups of variables:
   border-top-color: #D3D3D3;
 }
 
-#nesspqcayz .gt_grand_summary_row {
+#caxnoyatkd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -692,7 +662,7 @@ Investigate for groups of variables:
   padding-right: 5px;
 }
 
-#nesspqcayz .gt_first_grand_summary_row {
+#caxnoyatkd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -702,11 +672,11 @@ Investigate for groups of variables:
   border-top-color: #D3D3D3;
 }
 
-#nesspqcayz .gt_striped {
+#caxnoyatkd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nesspqcayz .gt_table_body {
+#caxnoyatkd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -715,7 +685,7 @@ Investigate for groups of variables:
   border-bottom-color: #D3D3D3;
 }
 
-#nesspqcayz .gt_footnotes {
+#caxnoyatkd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -729,13 +699,13 @@ Investigate for groups of variables:
   border-right-color: #D3D3D3;
 }
 
-#nesspqcayz .gt_footnote {
+#caxnoyatkd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#nesspqcayz .gt_sourcenotes {
+#caxnoyatkd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -749,94 +719,82 @@ Investigate for groups of variables:
   border-right-color: #D3D3D3;
 }
 
-#nesspqcayz .gt_sourcenote {
+#caxnoyatkd .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#nesspqcayz .gt_left {
+#caxnoyatkd .gt_left {
   text-align: left;
 }
 
-#nesspqcayz .gt_center {
+#caxnoyatkd .gt_center {
   text-align: center;
 }
 
-#nesspqcayz .gt_right {
+#caxnoyatkd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nesspqcayz .gt_font_normal {
+#caxnoyatkd .gt_font_normal {
   font-weight: normal;
 }
 
-#nesspqcayz .gt_font_bold {
+#caxnoyatkd .gt_font_bold {
   font-weight: bold;
 }
 
-#nesspqcayz .gt_font_italic {
+#caxnoyatkd .gt_font_italic {
   font-style: italic;
 }
 
-#nesspqcayz .gt_super {
+#caxnoyatkd .gt_super {
   font-size: 65%;
 }
 
-#nesspqcayz .gt_footnote_marks {
+#caxnoyatkd .gt_footnote_marks {
   font-style: italic;
+  font-weight: normal;
   font-size: 65%;
 }
 </style>
-<div id="nesspqcayz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Variable</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Missing (count)</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"><strong>Missing (count)</strong></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1"><strong>Missing (%)</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">any_variable_missing</td>
-      <td class="gt_row gt_center">768</td>
-      <td class="gt_row gt_right">12.86</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">any_lab_missing</td>
-      <td class="gt_row gt_center">470</td>
-      <td class="gt_row gt_right">7.87</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">any_lifestyle_missing</td>
-      <td class="gt_row gt_center">431</td>
-      <td class="gt_row gt_right">7.22</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">any_demographics_missing</td>
-      <td class="gt_row gt_center">4</td>
-      <td class="gt_row gt_right">0.07</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">any_vip_missing</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">any_health_missing</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">any_physact_missing</td>
-      <td class="gt_row gt_center">0</td>
-      <td class="gt_row gt_right">0.00</td>
-    </tr>
+    <tr><td class="gt_row gt_left">any_variable_missing</td>
+<td class="gt_row gt_right">768</td>
+<td class="gt_row gt_right">12.86</td></tr>
+    <tr><td class="gt_row gt_left">any_lab_missing</td>
+<td class="gt_row gt_right">470</td>
+<td class="gt_row gt_right">7.87</td></tr>
+    <tr><td class="gt_row gt_left">any_lifestyle_missing</td>
+<td class="gt_row gt_right">431</td>
+<td class="gt_row gt_right">7.22</td></tr>
+    <tr><td class="gt_row gt_left">any_demographics_missing</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">0.07</td></tr>
+    <tr><td class="gt_row gt_left">any_vip_missing</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">any_health_missing</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
+    <tr><td class="gt_row gt_left">any_physact_missing</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.00</td></tr>
   </tbody>
   
   
-</table></div>
+</table>
+</div>
 ```
 
 Overall, 13% are missing when all variables are included in a model. There is no missingness in the VIPs and 7% in life style variables such as smoking and alcohol consumption.
@@ -948,7 +906,7 @@ Then we report the pattern of missing for this set of patients.
 
 
 ```
-## R version 4.0.2 (2020-06-22)
+## R version 4.1.0 (2021-05-18)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 18363)
 ## 
@@ -966,45 +924,46 @@ Then we report the pattern of missing for this set of patients.
 ## [8] base     
 ## 
 ## other attached packages:
-##  [1] VIM_6.1.0        colorspace_2.0-0 arsenal_3.6.1    DT_0.17         
-##  [5] kableExtra_1.3.1 gt_0.2.2         naniar_0.6.0     Hmisc_4.5-0     
-##  [9] Formula_1.2-4    survival_3.1-12  lattice_0.20-41  forcats_0.5.1   
-## [13] stringr_1.4.0    dplyr_1.0.5      purrr_0.3.4      readr_1.4.0     
-## [17] tidyr_1.1.3      tibble_3.1.0     ggplot2_3.3.3    tidyverse_1.3.0 
+##  [1] VIM_6.1.0        colorspace_2.0-1 arsenal_3.6.3    DT_0.18         
+##  [5] kableExtra_1.3.4 gt_0.3.0         naniar_0.6.1     Hmisc_4.5-0     
+##  [9] Formula_1.2-4    survival_3.2-11  lattice_0.20-44  forcats_0.5.1   
+## [13] stringr_1.4.0    dplyr_1.0.6      purrr_0.3.4      readr_1.4.0     
+## [17] tidyr_1.1.3      tibble_3.1.2     ggplot2_3.3.3    tidyverse_1.3.1 
 ## [21] here_1.0.1      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] ellipsis_0.3.1      class_7.3-17        rio_0.5.16         
-##  [4] visdat_0.5.3        rprojroot_2.0.2     htmlTable_2.1.0    
-##  [7] base64enc_0.1-3     fs_1.5.0            rstudioapi_0.13    
-## [10] farver_2.1.0        fansi_0.4.2         lubridate_1.7.9.2  
-## [13] ranger_0.12.1       xml2_1.3.2          splines_4.0.2      
-## [16] robustbase_0.93-7   knitr_1.31          jsonlite_1.7.2     
-## [19] broom_0.7.4         cluster_2.1.0       dbplyr_2.1.0       
-## [22] png_0.1-7           compiler_4.0.2      httr_1.4.2         
-## [25] backports_1.2.1     assertthat_0.2.1    Matrix_1.3-2       
-## [28] cli_2.3.1           htmltools_0.5.1.1   tools_4.0.2        
-## [31] gtable_0.3.0        glue_1.4.2          Rcpp_1.0.6         
-## [34] carData_3.0-4       cellranger_1.1.0    jquerylib_0.1.3    
-## [37] vctrs_0.3.6         crosstalk_1.1.1     lmtest_0.9-38      
-## [40] xfun_0.21           laeken_0.5.1        openxlsx_4.2.3     
-## [43] rvest_0.3.6         lifecycle_1.0.0     DEoptimR_1.0-8     
-## [46] MASS_7.3-53.1       zoo_1.8-8           scales_1.1.1       
-## [49] hms_1.0.0           RColorBrewer_1.1-2  yaml_2.2.1         
-## [52] curl_4.3            gridExtra_2.3       UpSetR_1.4.0       
-## [55] sass_0.3.1          rpart_4.1-15        latticeExtra_0.6-29
-## [58] stringi_1.5.3       highr_0.8           e1071_1.7-4        
-## [61] checkmate_2.0.0     boot_1.3-25         zip_2.1.1          
-## [64] commonmark_1.7      rlang_0.4.10        pkgconfig_2.0.3    
-## [67] evaluate_0.14       labeling_0.4.2      htmlwidgets_1.5.3  
-## [70] tidyselect_1.1.0    plyr_1.8.6          magrittr_2.0.1     
-## [73] bookdown_0.21       R6_2.5.0            generics_0.1.0     
-## [76] DBI_1.1.1           pillar_1.5.1        haven_2.3.1        
-## [79] foreign_0.8-80      withr_2.4.1         abind_1.4-5        
-## [82] sp_1.4-5            nnet_7.3-14         modelr_0.1.8       
-## [85] crayon_1.4.1        car_3.0-10          utf8_1.1.4         
-## [88] rmarkdown_2.7       jpeg_0.1-8.1        readxl_1.3.1       
-## [91] data.table_1.14.0   vcd_1.4-8           reprex_1.0.0       
-## [94] digest_0.6.27       webshot_0.5.2       munsell_0.5.0      
-## [97] viridisLite_0.3.0   bslib_0.2.4
+##   [1] ellipsis_0.3.2      class_7.3-19        rio_0.5.26         
+##   [4] visdat_0.5.3        rprojroot_2.0.2     htmlTable_2.2.1    
+##   [7] base64enc_0.1-3     fs_1.5.0            rstudioapi_0.13    
+##  [10] proxy_0.4-26        farver_2.1.0        fansi_0.4.2        
+##  [13] lubridate_1.7.10    ranger_0.12.1       xml2_1.3.2         
+##  [16] splines_4.1.0       robustbase_0.93-8   knitr_1.33         
+##  [19] jsonlite_1.7.2      broom_0.7.6         cluster_2.1.2      
+##  [22] dbplyr_2.1.1        png_0.1-7           compiler_4.1.0     
+##  [25] httr_1.4.2          backports_1.2.1     assertthat_0.2.1   
+##  [28] Matrix_1.3-3        cli_2.5.0           htmltools_0.5.1.1  
+##  [31] tools_4.1.0         gtable_0.3.0        glue_1.4.2         
+##  [34] Rcpp_1.0.6          carData_3.0-4       cellranger_1.1.0   
+##  [37] jquerylib_0.1.4     vctrs_0.3.8         svglite_2.0.0      
+##  [40] crosstalk_1.1.1     lmtest_0.9-38       xfun_0.23          
+##  [43] laeken_0.5.1        openxlsx_4.2.3      rvest_1.0.0        
+##  [46] lifecycle_1.0.0     DEoptimR_1.0-9      zoo_1.8-9          
+##  [49] MASS_7.3-54         scales_1.1.1        hms_1.1.0          
+##  [52] RColorBrewer_1.1-2  yaml_2.2.1          curl_4.3.1         
+##  [55] gridExtra_2.3       UpSetR_1.4.0        sass_0.4.0         
+##  [58] rpart_4.1-15        latticeExtra_0.6-29 stringi_1.6.2      
+##  [61] highr_0.9           e1071_1.7-7         checkmate_2.0.0    
+##  [64] boot_1.3-28         zip_2.1.1           commonmark_1.7     
+##  [67] rlang_0.4.11        pkgconfig_2.0.3     systemfonts_1.0.2  
+##  [70] evaluate_0.14       labeling_0.4.2      htmlwidgets_1.5.3  
+##  [73] tidyselect_1.1.1    plyr_1.8.6          magrittr_2.0.1     
+##  [76] bookdown_0.22       R6_2.5.0            generics_0.1.0     
+##  [79] DBI_1.1.1           pillar_1.6.1        haven_2.4.1        
+##  [82] foreign_0.8-81      withr_2.4.2         abind_1.4-5        
+##  [85] sp_1.4-5            nnet_7.3-16         modelr_0.1.8       
+##  [88] crayon_1.4.1        car_3.0-10          utf8_1.2.1         
+##  [91] rmarkdown_2.8       jpeg_0.1-8.1        readxl_1.3.1       
+##  [94] data.table_1.14.0   vcd_1.4-8           reprex_2.0.0       
+##  [97] digest_0.6.27       webshot_0.5.2       munsell_0.5.0      
+## [100] viridisLite_0.4.0   bslib_0.2.5.1
 ```

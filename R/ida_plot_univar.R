@@ -17,7 +17,7 @@
 #' @examples
 ida_plot_univar <- function(data, var, n_dodge = 1, 
                             bin_width = diff(range(data[[var]],na.rm=T))/min(length(unique(data[[var]])),100), 
-                            sigma, n_bars=100)                             {
+                            sigma = NA, n_bars=100)                             {
   
   ## evaluate if sigma is na
   

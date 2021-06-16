@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 18 Multivariate distributions | Regression without regrets</title>
+  <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 18 Multivariate distributions | Regression without regrets" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
+  <meta name="github-repo" content="bailliem/ida-regression-private" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 18 Multivariate distributions | Regression without regrets" />
+  
+  <meta name="twitter:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
+  
+
+<meta name="author" content="M. Baillie, G. Heinze &amp; M. Huebner" />
+
+
+<meta name="date" content="2021-06-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="univariate-distribution-checks-2.html"/>
+
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.18/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">IDA report</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="ida-framework.html"><a href="ida-framework.html"><i class="fa fa-check"></i><b>1</b> IDA Framework</a></li>
+<li class="chapter" data-level="2" data-path="scope-of-the-regression-analyses-for-the-examples.html"><a href="scope-of-the-regression-analyses-for-the-examples.html"><i class="fa fa-check"></i><b>2</b> Scope of the regression analyses for the examples</a></li>
+<li class="chapter" data-level="3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html"><i class="fa fa-check"></i><b>3</b> Data screening and possible actions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#univariate-distributions"><i class="fa fa-check"></i><b>3.1</b> Univariate distributions</a></li>
+<li class="chapter" data-level="3.2" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#bivariate-distributions"><i class="fa fa-check"></i><b>3.2</b> Bivariate distributions</a></li>
+<li class="chapter" data-level="3.3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#missing-values"><i class="fa fa-check"></i><b>3.3</b> Missing values</a></li>
+</ul></li>
+<li class="part"><span><b>I CRASH-2</b></span></li>
+<li class="chapter" data-level="4" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html"><i class="fa fa-check"></i><b>4</b> Introduction to CRASH-2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash-2-description"><i class="fa fa-check"></i><b>4.1</b> CRASH-2 Description</a></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash2-dataset-contents"><i class="fa fa-check"></i><b>4.2</b> Crash2 dataset contents</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#source-dataset"><i class="fa fa-check"></i><b>4.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="4.2.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#updated-analysis-dataset"><i class="fa fa-check"></i><b>4.2.2</b> Updated analysis dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#section-session-info"><i class="fa fa-check"></i><b>4.3</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html"><i class="fa fa-check"></i><b>5</b> Statistical analysis plan</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#outcome-variable"><i class="fa fa-check"></i><b>5.1</b> Outcome variable</a></li>
+<li class="chapter" data-level="5.2" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#statistical-methods"><i class="fa fa-check"></i><b>5.2</b> Statistical methods</a></li>
+<li class="chapter" data-level="5.3" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#remarks"><i class="fa fa-check"></i><b>5.3</b> Remarks</a></li>
+<li class="chapter" data-level="5.4" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#preparations"><i class="fa fa-check"></i><b>5.4</b> Preparations</a></li>
+<li class="chapter" data-level="5.5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#sources"><i class="fa fa-check"></i><b>5.5</b> Sources</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#data-dictionary"><i class="fa fa-check"></i><b>5.5.1</b> Data dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#references"><i class="fa fa-check"></i><b>5.6</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>6</b> Missing data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="missing-data.html"><a href="missing-data.html#per-variable-missingness"><i class="fa fa-check"></i><b>6.1</b> Per variable missingness</a></li>
+<li class="chapter" data-level="6.2" data-path="missing-data.html"><a href="missing-data.html#missingness-patterns-over-variables"><i class="fa fa-check"></i><b>6.2</b> Missingness patterns over variables</a></li>
+<li class="chapter" data-level="6.3" data-path="missing-data.html"><a href="missing-data.html#incomplete-cases"><i class="fa fa-check"></i><b>6.3</b> (In)complete cases</a></li>
+<li class="chapter" data-level="6.4" data-path="missing-data.html"><a href="missing-data.html#section-session-info-1"><i class="fa fa-check"></i><b>6.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html"><i class="fa fa-check"></i><b>7</b> Univariate distribution checks</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#data-set-overview"><i class="fa fa-check"></i><b>7.1</b> Data set overview</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#demographic-variables"><i class="fa fa-check"></i><b>7.1.1</b> Demographic variables</a></li>
+<li class="chapter" data-level="7.1.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#physiological-measurements"><i class="fa fa-check"></i><b>7.1.2</b> Physiological measurements</a></li>
+<li class="chapter" data-level="7.1.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#characteristics-of-injury"><i class="fa fa-check"></i><b>7.1.3</b> Characteristics of injury</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#categorical-variables"><i class="fa fa-check"></i><b>7.2</b> Categorical variables</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#categorical-ordinal-plots"><i class="fa fa-check"></i><b>7.2.1</b> Categorical ordinal plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#continuous-variables"><i class="fa fa-check"></i><b>7.3</b> Continuous variables</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#age"><i class="fa fa-check"></i><b>7.3.1</b> Age</a></li>
+<li class="chapter" data-level="7.3.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#blood-pressure"><i class="fa fa-check"></i><b>7.3.2</b> Blood pressure</a></li>
+<li class="chapter" data-level="7.3.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#respiratory-rate"><i class="fa fa-check"></i><b>7.3.3</b> Respiratory rate</a></li>
+<li class="chapter" data-level="7.3.4" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#heart-rate"><i class="fa fa-check"></i><b>7.3.4</b> Heart rate</a></li>
+<li class="chapter" data-level="7.3.5" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#central-capillary-refill-time"><i class="fa fa-check"></i><b>7.3.5</b> Central capillary refill time</a></li>
+<li class="chapter" data-level="7.3.6" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#hours-since-injury"><i class="fa fa-check"></i><b>7.3.6</b> Hours since injury</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#section-session-info-2"><i class="fa fa-check"></i><b>7.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html"><i class="fa fa-check"></i><b>8</b> Multivariate distributions</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overview-1"><i class="fa fa-check"></i><b>8.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-correlation"><i class="fa fa-check"></i><b>8.1.1</b> Variable correlation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-clustering"><i class="fa fa-check"></i><b>8.1.2</b> Variable clustering</a></li>
+<li class="chapter" data-level="8.1.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-redundancy"><i class="fa fa-check"></i><b>8.1.3</b> Variable redundancy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-sex"><i class="fa fa-check"></i><b>8.2</b> Summary reports by sex</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overall"><i class="fa fa-check"></i><b>8.2.1</b> Overall</a></li>
+<li class="chapter" data-level="8.2.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-age-by-sex"><i class="fa fa-check"></i><b>8.2.2</b> Distribution of age by sex</a></li>
+<li class="chapter" data-level="8.2.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-sex"><i class="fa fa-check"></i><b>8.2.3</b> Distribution of systolic blood pressure by sex</a></li>
+<li class="chapter" data-level="8.2.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-sex"><i class="fa fa-check"></i><b>8.2.4</b> Distribution of heart rate by sex</a></li>
+<li class="chapter" data-level="8.2.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-sex"><i class="fa fa-check"></i><b>8.2.5</b> Distribution of respiratory rate by sex</a></li>
+<li class="chapter" data-level="8.2.6" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-sex"><i class="fa fa-check"></i><b>8.2.6</b> Distribution of central capillary refille time by sex</a></li>
+<li class="chapter" data-level="8.2.7" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-hours-since-injury-by-sex"><i class="fa fa-check"></i><b>8.2.7</b> Distribution of hours since injury by sex</a></li>
+<li class="chapter" data-level="8.2.8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-glasgow-coma-score-by-sex"><i class="fa fa-check"></i><b>8.2.8</b> Distribution of Glasgow coma score by sex</a></li>
+<li class="chapter" data-level="8.2.9" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-injury-type-by-sex"><i class="fa fa-check"></i><b>8.2.9</b> Distribution of injury type by sex</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-age"><i class="fa fa-check"></i><b>8.3</b> Summary reports by age</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-age-categories"><i class="fa fa-check"></i><b>8.3.1</b> Distribution of systolic blood pressure by age categories</a></li>
+<li class="chapter" data-level="8.3.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-age-categories"><i class="fa fa-check"></i><b>8.3.2</b> Distribution of heart rate by age categories</a></li>
+<li class="chapter" data-level="8.3.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-age-categories"><i class="fa fa-check"></i><b>8.3.3</b> Distribution of respiratory rate by age categories</a></li>
+<li class="chapter" data-level="8.3.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-age-categories"><i class="fa fa-check"></i><b>8.3.4</b> Distribution of central capillary refille time by age categories</a></li>
+<li class="chapter" data-level="8.3.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#wip-multivariate-scatter-plots"><i class="fa fa-check"></i><b>8.3.5</b> WIP: multivariate scatter plots</a></li>
+<li class="chapter" data-level="8.3.6" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#wip-scatter-plots-with-a-third-or-fourth-variable"><i class="fa fa-check"></i><b>8.3.6</b> WIP: Scatter plots with a third or fourth variable</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4</b> Summary reports by Glasgow coma score</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-age-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.1</b> Distribution of age by Glasgow coma score</a></li>
+<li class="chapter" data-level="8.4.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.2</b> Distribution of systolic blood pressure by Glasgow coma score</a></li>
+<li class="chapter" data-level="8.4.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.3</b> Distribution of heart rate by Glasgow coma score</a></li>
+<li class="chapter" data-level="8.4.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.4</b> Distribution of respiratory rate by Glasgow coma score</a></li>
+<li class="chapter" data-level="8.4.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.5</b> Distribution of central capillary refille time by Glasgow coma score</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#section-session-info-3"><i class="fa fa-check"></i><b>8.5</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="national-health-and-nutrition-examination-survey-nhanes.html"><a href="national-health-and-nutrition-examination-survey-nhanes.html"><i class="fa fa-check"></i>National Health and Nutrition Examination Survey (NHANES)</a></li>
+<li class="chapter" data-level="9" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html"><i class="fa fa-check"></i><b>9</b> Introduction to NHANES</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-description"><i class="fa fa-check"></i><b>9.1</b> NHANES Dataset Description</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#variables"><i class="fa fa-check"></i><b>9.1.1</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-contents"><i class="fa fa-check"></i><b>9.2</b> NHANES dataset contents</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#source-dataset-1"><i class="fa fa-check"></i><b>9.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="9.2.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#data-dictionary-1"><i class="fa fa-check"></i><b>9.2.2</b> Data dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#references-1"><i class="fa fa-check"></i><b>9.3</b> References</a></li>
+<li class="chapter" data-level="9.4" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#section-session-info-4"><i class="fa fa-check"></i><b>9.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html"><i class="fa fa-check"></i><b>10</b> Initial data analysis plan (IDAP)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#initial-data-analysis-strategy"><i class="fa fa-check"></i><b>10.1</b> Initial data analysis strategy</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-missing-values"><i class="fa fa-check"></i><b>10.1.1</b> IDA domain: missing values</a></li>
+<li class="chapter" data-level="10.1.2" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-univariate-distributions"><i class="fa fa-check"></i><b>10.1.2</b> IDA domain: univariate distributions</a></li>
+<li class="chapter" data-level="10.1.3" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-multivariate-system-of-variables"><i class="fa fa-check"></i><b>10.1.3</b> IDA domain: multivariate system of variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="missing-data-1.html"><a href="missing-data-1.html"><i class="fa fa-check"></i><b>11</b> Missing data</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="missing-data-1.html"><a href="missing-data-1.html#per-variable-missingness-1"><i class="fa fa-check"></i><b>11.1</b> Per variable missingness</a></li>
+<li class="chapter" data-level="11.2" data-path="missing-data-1.html"><a href="missing-data-1.html#variable-summaries-for-complete-vs-incomplete-cases"><i class="fa fa-check"></i><b>11.2</b> Variable summaries for complete vs incomplete cases</a></li>
+<li class="chapter" data-level="11.3" data-path="missing-data-1.html"><a href="missing-data-1.html#missingness-patterns-over-variables-1"><i class="fa fa-check"></i><b>11.3</b> Missingness patterns over variables</a></li>
+<li class="chapter" data-level="11.4" data-path="missing-data-1.html"><a href="missing-data-1.html#incomplete-cases-1"><i class="fa fa-check"></i><b>11.4</b> (In)complete cases</a></li>
+<li class="chapter" data-level="11.5" data-path="missing-data-1.html"><a href="missing-data-1.html#section-session-info-5"><i class="fa fa-check"></i><b>11.5</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html"><i class="fa fa-check"></i><b>12</b> Univariate distribution checks</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#data-set-overview-1"><i class="fa fa-check"></i><b>12.1</b> Data set overview</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#demographic-and-lifestyle-variables"><i class="fa fa-check"></i><b>12.1.1</b> Demographic and lifestyle variables</a></li>
+<li class="chapter" data-level="12.1.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#physiological-measurements-1"><i class="fa fa-check"></i><b>12.1.2</b> Physiological measurements</a></li>
+<li class="chapter" data-level="12.1.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#comorbidities"><i class="fa fa-check"></i><b>12.1.3</b> Comorbidities</a></li>
+<li class="chapter" data-level="12.1.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#physical-activity-variables"><i class="fa fa-check"></i><b>12.1.4</b> Physical activity variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#categorical-variables-1"><i class="fa fa-check"></i><b>12.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="12.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#continuous-variables-1"><i class="fa fa-check"></i><b>12.3</b> Continuous variables</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#age-1"><i class="fa fa-check"></i><b>12.3.1</b> Age</a></li>
+<li class="chapter" data-level="12.3.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#blood-pressure-1"><i class="fa fa-check"></i><b>12.3.2</b> Blood pressure</a></li>
+<li class="chapter" data-level="12.3.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#body-mass-index"><i class="fa fa-check"></i><b>12.3.3</b> Body mass index</a></li>
+<li class="chapter" data-level="12.3.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#outcome-time-of-moderate-or-vigrous-physical-activity-and-related-variables"><i class="fa fa-check"></i><b>12.3.4</b> Outcome= Time of moderate or vigrous physical activity and related variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#section-session-info-6"><i class="fa fa-check"></i><b>12.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html"><i class="fa fa-check"></i><b>13</b> Multivariate distributions</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#overview-2"><i class="fa fa-check"></i><b>13.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-correlation-1"><i class="fa fa-check"></i><b>13.1.1</b> Variable correlation</a></li>
+<li class="chapter" data-level="13.1.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-clustering-1"><i class="fa fa-check"></i><b>13.1.2</b> Variable clustering</a></li>
+<li class="chapter" data-level="13.1.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-redundancy-1"><i class="fa fa-check"></i><b>13.1.3</b> Variable redundancy</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-reports-by-pivotal-covariates-age-and-gender"><i class="fa fa-check"></i><b>13.2</b> Summary reports by pivotal covariates age and gender</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-age-by-gender"><i class="fa fa-check"></i><b>13.2.1</b> Distribution of age by gender</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-and-gender"><i class="fa fa-check"></i><b>13.3</b> Summary report by age group and gender</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-gender"><i class="fa fa-check"></i><b>13.3.1</b> Summary report by gender</a></li>
+<li class="chapter" data-level="13.3.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-for-men"><i class="fa fa-check"></i><b>13.3.2</b> Summary report by age group for men</a></li>
+<li class="chapter" data-level="13.3.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-for-women"><i class="fa fa-check"></i><b>13.3.3</b> Summary report by age group for women</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#continuous-variables-by-age-and-gender"><i class="fa fa-check"></i><b>13.4</b> Continuous variables by age and gender</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-systolic-blood-pressure"><i class="fa fa-check"></i><b>13.4.1</b> Distribution of systolic blood pressure</a></li>
+<li class="chapter" data-level="13.4.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-bmi"><i class="fa fa-check"></i><b>13.4.2</b> Distribution of BMI</a></li>
+<li class="chapter" data-level="13.4.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-wear-time"><i class="fa fa-check"></i><b>13.4.3</b> Distribution of wear time</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#physical-activity-data-outcome"><i class="fa fa-check"></i><b>13.5</b> Physical activity data (outcome)</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-mvpa"><i class="fa fa-check"></i><b>13.5.1</b> Distribution of MVPA</a></li>
+<li class="chapter" data-level="13.5.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-mvpa-and-total-log-activity-count-by-time-of-day"><i class="fa fa-check"></i><b>13.5.2</b> Distribution of MVPA and Total log activity count by time of day</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#section-session-info-7"><i class="fa fa-check"></i><b>13.6</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bacteremia.html"><a href="bacteremia.html"><i class="fa fa-check"></i>Bacteremia</a></li>
+<li class="chapter" data-level="14" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html"><i class="fa fa-check"></i><b>14</b> Introduction to Bacteremia</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#dataset-description"><i class="fa fa-check"></i><b>14.1</b> Dataset Description</a></li>
+<li class="chapter" data-level="14.2" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#bacteremia-dataset-contents"><i class="fa fa-check"></i><b>14.2</b> Bacteremia dataset contents</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#source-dataset-2"><i class="fa fa-check"></i><b>14.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="14.2.2" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#updated-analysis-dataset-1"><i class="fa fa-check"></i><b>14.2.2</b> Updated analysis dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#section-session-info-8"><i class="fa fa-check"></i><b>14.3</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="ida-plan.html"><a href="ida-plan.html"><i class="fa fa-check"></i><b>15</b> IDA plan</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="ida-plan.html"><a href="ida-plan.html#preparations-1"><i class="fa fa-check"></i><b>15.1</b> Preparations</a></li>
+<li class="chapter" data-level="15.2" data-path="ida-plan.html"><a href="ida-plan.html#ida-domains"><i class="fa fa-check"></i><b>15.2</b> IDA domains</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-missing-values-1"><i class="fa fa-check"></i><b>15.2.1</b> IDA domain: missing values</a></li>
+<li class="chapter" data-level="15.2.2" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-univariate-distributions-1"><i class="fa fa-check"></i><b>15.2.2</b> IDA domain: univariate distributions</a></li>
+<li class="chapter" data-level="15.2.3" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-multivariate-system-of-variables-1"><i class="fa fa-check"></i><b>15.2.3</b> IDA domain: multivariate system of variables</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="ida-plan.html"><a href="ida-plan.html#sources-1"><i class="fa fa-check"></i><b>15.3</b> Sources</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="ida-plan.html"><a href="ida-plan.html#data-dictionary-2"><i class="fa fa-check"></i><b>15.3.1</b> Data dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="ida-plan.html"><a href="ida-plan.html#references-2"><i class="fa fa-check"></i><b>15.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="missing-data-2.html"><a href="missing-data-2.html"><i class="fa fa-check"></i><b>16</b> Missing data</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="missing-data-2.html"><a href="missing-data-2.html#per-variable-missingness-2"><i class="fa fa-check"></i><b>16.1</b> Per variable missingness</a></li>
+<li class="chapter" data-level="16.2" data-path="missing-data-2.html"><a href="missing-data-2.html#missingness-patterns-over-variables-2"><i class="fa fa-check"></i><b>16.2</b> Missingness patterns over variables</a></li>
+<li class="chapter" data-level="16.3" data-path="missing-data-2.html"><a href="missing-data-2.html#section-session-info-9"><i class="fa fa-check"></i><b>16.3</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html"><i class="fa fa-check"></i><b>17</b> Univariate distribution checks</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#data-set-overview-2"><i class="fa fa-check"></i><b>17.1</b> Data set overview</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#demographic-variables-1"><i class="fa fa-check"></i><b>17.1.1</b> Demographic variables</a></li>
+<li class="chapter" data-level="17.1.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#pivotal-variables-and-very-important-predictors"><i class="fa fa-check"></i><b>17.1.2</b> Pivotal variables and very important predictors</a></li>
+<li class="chapter" data-level="17.1.3" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#further-variables-related-to-leukocyte-types-and-leukocyte-ratios"><i class="fa fa-check"></i><b>17.1.3</b> Further variables related to leukocyte types and leukocyte ratios</a></li>
+<li class="chapter" data-level="17.1.4" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#kidney-function-related-variables"><i class="fa fa-check"></i><b>17.1.4</b> Kidney function related variables</a></li>
+<li class="chapter" data-level="17.1.5" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#acute-phase-reaction-related-variables"><i class="fa fa-check"></i><b>17.1.5</b> Acute phase reaction related variables</a></li>
+<li class="chapter" data-level="17.1.6" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#remaining-variables"><i class="fa fa-check"></i><b>17.1.6</b> Remaining variables</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#categorical-variables-2"><i class="fa fa-check"></i><b>17.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="17.3" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#continuous-variables-2"><i class="fa fa-check"></i><b>17.3</b> Continuous variables</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#suggested-transformations"><i class="fa fa-check"></i><b>17.3.1</b> Suggested transformations</a></li>
+<li class="chapter" data-level="17.3.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#univariate-distribution-with-variables-using-the-original-variable-and-the-suggested-transformations"><i class="fa fa-check"></i><b>17.3.2</b> Univariate distribution with variables using the original variable and the suggested transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#section-session-info-10"><i class="fa fa-check"></i><b>17.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html"><i class="fa fa-check"></i><b>18</b> Multivariate distributions</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#overview-3"><i class="fa fa-check"></i><b>18.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#variable-correlation-2"><i class="fa fa-check"></i><b>18.1.1</b> Variable correlation</a></li>
+<li class="chapter" data-level="18.1.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#distribution-of-age-by-sex-1"><i class="fa fa-check"></i><b>18.1.2</b> Distribution of age by sex</a></li>
+<li class="chapter" data-level="18.1.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#distribution-of-leukocytes-by-age-coloured-by-sex"><i class="fa fa-check"></i><b>18.1.3</b> Distribution of leukocytes by age, coloured by sex</a></li>
+<li class="chapter" data-level="18.1.4" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#plot-all-variables-vs.-wbc-in-agesex-groups"><i class="fa fa-check"></i><b>18.1.4</b> Plot all variables vs. WBC in age/sex groups</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#variable-redundancy-2"><i class="fa fa-check"></i><b>18.2</b> Variable redundancy</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-very-important-predictors"><i class="fa fa-check"></i><b>18.2.1</b> Redundancy among very important predictors</a></li>
+<li class="chapter" data-level="18.2.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-leukocyte-related-variables"><i class="fa fa-check"></i><b>18.2.2</b> Redundancy among leukocyte-related variables</a></li>
+<li class="chapter" data-level="18.2.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-all-potential-predictors"><i class="fa fa-check"></i><b>18.2.3</b> Redundancy among all potential predictors</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#section-session-info-11"><i class="fa fa-check"></i><b>18.3</b> Section session info</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Regression without regrets</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multivariate-distributions-2" class="section level1" number="18">
+<h1><span class="header-section-number">Chapter 18</span> Multivariate distributions</h1>
+<div id="overview-3" class="section level2" number="18.1">
+<h2><span class="header-section-number">18.1</span> Overview</h2>
+<div id="variable-correlation-2" class="section level3" number="18.1.1">
+<h3><span class="header-section-number">18.1.1</span> Variable correlation</h3>
+<p>Compute correlations between the independent variables or their suggested transformations.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="multivariate-distributions-2.html#cb93-1" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(bact_transformed<span class="sc">$</span>demog_vars, </span>
+<span id="cb93-2"><a href="multivariate-distributions-2.html#cb93-2" aria-hidden="true" tabindex="-1"></a>                      bact_transformed<span class="sc">$</span>pivotal_vars,</span>
+<span id="cb93-3"><a href="multivariate-distributions-2.html#cb93-3" aria-hidden="true" tabindex="-1"></a>                      bact_transformed<span class="sc">$</span>vip_vars,</span>
+<span id="cb93-4"><a href="multivariate-distributions-2.html#cb93-4" aria-hidden="true" tabindex="-1"></a>                      bact_transformed<span class="sc">$</span>leuko_related_vars,</span>
+<span id="cb93-5"><a href="multivariate-distributions-2.html#cb93-5" aria-hidden="true" tabindex="-1"></a>                      bact_transformed<span class="sc">$</span>leuko_ratio_vars,</span>
+<span id="cb93-6"><a href="multivariate-distributions-2.html#cb93-6" aria-hidden="true" tabindex="-1"></a>                      bact_transformed<span class="sc">$</span>kidney_related_vars,</span>
+<span id="cb93-7"><a href="multivariate-distributions-2.html#cb93-7" aria-hidden="true" tabindex="-1"></a>                      bact_transformed<span class="sc">$</span>acute_related_vars,</span>
+<span id="cb93-8"><a href="multivariate-distributions-2.html#cb93-8" aria-hidden="true" tabindex="-1"></a>                      bact_transformed<span class="sc">$</span>remaining_vars))</span>
+<span id="cb93-9"><a href="multivariate-distributions-2.html#cb93-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-10"><a href="multivariate-distributions-2.html#cb93-10" aria-hidden="true" tabindex="-1"></a>corrp <span class="ot">&lt;-</span> c_bact <span class="sc">%&gt;%</span></span>
+<span id="cb93-11"><a href="multivariate-distributions-2.html#cb93-11" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(variables)) <span class="sc">%&gt;%</span></span>
+<span id="cb93-12"><a href="multivariate-distributions-2.html#cb93-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cor</span>(<span class="at">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>, <span class="at">method=</span><span class="st">&quot;pearson&quot;</span>)</span>
+<span id="cb93-13"><a href="multivariate-distributions-2.html#cb93-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-14"><a href="multivariate-distributions-2.html#cb93-14" aria-hidden="true" tabindex="-1"></a>corrs <span class="ot">&lt;-</span> c_bact <span class="sc">%&gt;%</span></span>
+<span id="cb93-15"><a href="multivariate-distributions-2.html#cb93-15" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(variables)) <span class="sc">%&gt;%</span></span>
+<span id="cb93-16"><a href="multivariate-distributions-2.html#cb93-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cor</span>(<span class="at">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>, <span class="at">method=</span><span class="st">&quot;spearman&quot;</span>)</span>
+<span id="cb93-17"><a href="multivariate-distributions-2.html#cb93-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-18"><a href="multivariate-distributions-2.html#cb93-18" aria-hidden="true" tabindex="-1"></a><span class="co"># differences of pearson and spearman correlations to check for outliers</span></span>
+<span id="cb93-19"><a href="multivariate-distributions-2.html#cb93-19" aria-hidden="true" tabindex="-1"></a>corrd <span class="ot">&lt;-</span> corrp<span class="sc">-</span>corrs</span></code></pre></div>
+<p>Next, we depict the correlation coefficient in a quadratic heat map:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="multivariate-distributions-2.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorrplot</span>(corrp, <span class="at">tl.cex=</span><span class="dv">5</span>, <span class="at">tl.srt=</span><span class="dv">90</span>)</span></code></pre></div>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Explore if there are clusters of variables. Such clusters may give rise to define groups of variables for which a summary or only a representative may be considered in modeling:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="multivariate-distributions-2.html#cb95-1" aria-hidden="true" tabindex="-1"></a>vc_bact<span class="ot">&lt;-</span>Hmisc<span class="sc">::</span><span class="fu">varclus</span>(<span class="fu">as.matrix</span>(c_bact[,variables]))</span>
+<span id="cb95-2"><a href="multivariate-distributions-2.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vc_bact, <span class="at">cex=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Some of the clusters that pop up here are related to width/volume of blood cells (MPV, PDW), red blood cells (RBC, HGB, HCT; MCV, MCH), and some further ‘known’ associations such as that between KREA and eGFR (which follows from the construction of eGFR), and between ASAT and ALAT, between AMY and PAMY or between TP and ALB).</p>
+<p>In the following scatterplots we have a look at those associations:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="multivariate-distributions-2.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(MPV, PDW))<span class="sc">+</span><span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1102 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1102 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="multivariate-distributions-2.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(RBC, HGB))<span class="sc">+</span><span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 461 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 461 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="multivariate-distributions-2.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(RBC, HCT))<span class="sc">+</span><span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 461 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 461 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="multivariate-distributions-2.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(HGB, HCT))<span class="sc">+</span><span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 42 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 42 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-5-4.png" width="672" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="multivariate-distributions-2.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(MCV, MCH))<span class="sc">+</span><span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 42 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 42 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-5-5.png" width="672" /></p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="multivariate-distributions-2.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(t_KREA, eGFR))<span class="sc">+</span><span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.
+## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 159 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 159 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-5-6.png" width="672" /></p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="multivariate-distributions-2.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(t_ASAT, t_ALAT))<span class="sc">+</span><span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.</code></pre>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1195 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1195 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-5-7.png" width="672" /></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="multivariate-distributions-2.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(t_AMY, t_PAMY))<span class="sc">+</span><span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.</code></pre>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 7182 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 7182 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-5-8.png" width="672" /></p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="multivariate-distributions-2.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(t_WBC, t_NEU))<span class="sc">+</span><span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 728 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 728 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-5-9.png" width="672" /></p>
+<p>Create scatterplots for pairs of variables with a large distance between Spearman and Pearson correlations (could be an indication of nonlinear association):</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="multivariate-distributions-2.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(variables)<span class="sc">-</span><span class="dv">1</span>)){</span>
+<span id="cb134-2"><a href="multivariate-distributions-2.html#cb134-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(jj <span class="cf">in</span> (j<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">length</span>(variables))){</span>
+<span id="cb134-3"><a href="multivariate-distributions-2.html#cb134-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">abs</span>(corrd[j, jj])<span class="sc">&gt;</span><span class="fl">0.1</span>) <span class="fu">print</span>(<span class="fu">ggplot</span>(<span class="at">data=</span>c_bact, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>.data[[variables[j]]],<span class="at">y=</span>.data[[variables[jj]]]))<span class="sc">+</span> <span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>())</span>
+<span id="cb134-4"><a href="multivariate-distributions-2.html#cb134-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb134-5"><a href="multivariate-distributions-2.html#cb134-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 174 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 174 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1279 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1279 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 732 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 732 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 732 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 732 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-6-4.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 732 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 732 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-6-5.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 732 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 732 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-6-6.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 732 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 732 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-6-7.png" width="672" /></p>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.
+## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1580 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1580 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-6-8.png" width="672" /></p>
+</div>
+<div id="distribution-of-age-by-sex-1" class="section level3" number="18.1.2">
+<h3><span class="header-section-number">18.1.2</span> Distribution of age by sex</h3>
+<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<div id="htmlwidget-b61b506f161be1967baa" style="width:672px;height:250px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b61b506f161be1967baa">{"x":{"visdat":{"5c7c6cb91a1d":["function () ","plotlyVisDat"],"5c7c70d554fe":["function () ","data"],"5c7c44258b":["function () ","data"],"5c7c7d33bd7":["function () ","data"],"5c7c228fff7":["function () ","data"],"5c7c28054bc9":["function () ","data"],"5c7c3ea55ac3":["function () ","data"],"5c7c55fc6760":["function () ","data"]},"cur_data":"5c7c55fc6760","attrs":{"5c7c70d554fe":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"xend":{},"yend":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","color":["black"],"name":"Histogram","legendgroup":"Histogram","showlegend":true,"inherit":true},"5c7c44258b":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"markers","color":["black"],"text":{},"hoverinfo":"text","size":[5],"name":"Mean","legendgroup":"Mean","showlegend":true,"inherit":true},"5c7c7d33bd7":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"xend":{},"yend":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","name":"Median","legendgroup":"Median","showlegend":true,"color":["black"],"line":{"width":3},"inherit":true},"5c7c228fff7":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"xend":{},"yend":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","name":"Quartiles","legendgroup":"Quartiles","showlegend":true,"color":["blue"],"line":{"width":2},"inherit":true},"5c7c28054bc9":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"xend":{},"yend":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","name":"0.05, 0.95<br>Quantiles","legendgroup":"0.05, 0.95<br>Quantiles","showlegend":true,"color":["red"],"line":{"width":2},"inherit":true},"5c7c28054bc9.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"xend":{},"yend":{},"type":"scatter","mode":"lines","hoverinfo":"none","showlegend":false,"alpha":0.3,"color":["red"],"legendgroup":"0.05, 0.95<br>Quantiles","name":"ignored","inherit":true},"5c7c28054bc9.2":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"xend":{},"yend":{},"type":"scatter","mode":"lines","hoverinfo":"none","showlegend":false,"alpha":0.3,"color":["blue"],"legendgroup":"Quartiles","name":"ignored","inherit":true},"5c7c28054bc9.3":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"xend":{},"yend":{},"type":"scatter","mode":"lines","hoverinfo":"none","showlegend":false,"alpha":0.3,"color":["red"],"legendgroup":"0.05, 0.95<br>Quantiles","name":"ignored","inherit":true},"5c7c3ea55ac3":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"xend":{},"yend":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","color":["light gray"],"name":"Gini <span style=\"text-decoration: overline\">|Δ|<\/span>","legendgroup":"Gini <span style=\"text-decoration: overline\">|Δ|<\/span>","visible":"legendonly","showlegend":true,"inherit":true},"5c7c55fc6760":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"xend":{},"yend":{},"type":"scatter","mode":"lines","text":{},"hoverinfo":"text","color":["light blue"],"name":"SD","legendgroup":"SD","visible":"legendonly","showlegend":true,"inherit":true}},"layout":{"height":250,"margin":{"b":40,"l":70,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Patient Age <span style='font-family:Verdana;font-size:75%;'>years<\/span>","zeroline":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"","tickvals":[-1,-2],"ticktext":["1","2"]},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[16,16,null,17,17,null,18,18,null,19,19,null,20,20,null,21,21,null,22,22,null,23,23,null,24,24,null,25,25,null,26,26,null,27,27,null,28,28,null,29,29,null,30,30,null,31,31,null,32,32,null,33,33,null,34,34,null,35,35,null,36,36,null,37,37,null,38,38,null,39,39,null,40,40,null,41,41,null,42,42,null,43,43,null,44,44,null,45,45,null,46,46,null,47,47,null,48,48,null,49,49,null,50,50,null,51,51,null,52,52,null,53,53,null,54,54,null,55,55,null,56,56,null,57,57,null,58,58,null,59,59,null,60,60,null,61,61,null,62,62,null,63,63,null,64,64,null,65,65,null,66,66,null,67,67,null,68,68,null,69,69,null,70,70,null,71,71,null,72,72,null,73,73,null,74,74,null,75,75,null,76,76,null,77,77,null,78,78,null,79,79,null,80,80,null,81,81,null,82,82,null,83,83,null,84,84,null,85,85,null,86,86,null,87,87,null,88,88,null,89,89,null,90,90,null,91,91,null,92,92,null,93,93,null,94,94,null,95,95,null,96,96,null,97,97,null,98,98,null,99,99,null,16,16,null,17,17,null,18,18,null,19,19,null,20,20,null,21,21,null,22,22,null,23,23,null,24,24,null,25,25,null,26,26,null,27,27,null,28,28,null,29,29,null,30,30,null,31,31,null,32,32,null,33,33,null,34,34,null,35,35,null,36,36,null,37,37,null,38,38,null,39,39,null,40,40,null,41,41,null,42,42,null,43,43,null,44,44,null,45,45,null,46,46,null,47,47,null,48,48,null,49,49,null,50,50,null,51,51,null,52,52,null,53,53,null,54,54,null,55,55,null,56,56,null,57,57,null,58,58,null,59,59,null,60,60,null,61,61,null,62,62,null,63,63,null,64,64,null,65,65,null,66,66,null,67,67,null,68,68,null,69,69,null,70,70,null,71,71,null,72,72,null,73,73,null,74,74,null,75,75,null,76,76,null,77,77,null,78,78,null,79,79,null,80,80,null,81,81,null,82,82,null,83,83,null,84,84,null,85,85,null,86,86,null,87,87,null,88,88,null,89,89,null,90,90,null,91,91,null,92,92,null,93,93,null,94,94,null,95,95,null,96,96,null,97,97,null,98,98,null,99,99,null,101,101],"y":[-1,-0.992207792207792,null,-1,-0.971428571428571,null,-1,-0.92987012987013,null,-1,-0.877922077922078,null,-1,-0.854545454545454,null,-1,-0.838961038961039,null,-1,-0.854545454545454,null,-1,-0.820779220779221,null,-1,-0.802597402597403,null,-1,-0.81038961038961,null,-1,-0.838961038961039,null,-1,-0.828571428571429,null,-1,-0.81038961038961,null,-1,-0.794805194805195,null,-1,-0.787012987012987,null,-1,-0.833766233766234,null,-1,-0.828571428571429,null,-1,-0.787012987012987,null,-1,-0.750649350649351,null,-1,-0.776623376623377,null,-1,-0.78961038961039,null,-1,-0.81038961038961,null,-1,-0.745454545454545,null,-1,-0.774025974025974,null,-1,-0.737662337662338,null,-1,-0.711688311688312,null,-1,-0.727272727272727,null,-1,-0.693506493506494,null,-1,-0.680519480519481,null,-1,-0.693506493506494,null,-1,-0.755844155844156,null,-1,-0.633766233766234,null,-1,-0.641558441558442,null,-1,-0.65974025974026,null,-1,-0.615584415584416,null,-1,-0.625974025974026,null,-1,-0.649350649350649,null,-1,-0.644155844155844,null,-1,-0.654545454545455,null,-1,-0.6,null,-1,-0.527272727272727,null,-1,-0.574025974025974,null,-1,-0.485714285714286,null,-1,-0.584415584415584,null,-1,-0.457142857142857,null,-1,-0.503896103896104,null,-1,-0.457142857142857,null,-1,-0.451948051948052,null,-1,-0.420779220779221,null,-1,-0.425974025974026,null,-1,-0.420779220779221,null,-1,-0.4,null,-1,-0.41038961038961,null,-1,-0.501298701298701,null,-1,-0.524675324675325,null,-1,-0.550649350649351,null,-1,-0.649350649350649,null,-1,-0.662337662337662,null,-1,-0.638961038961039,null,-1,-0.646753246753247,null,-1,-0.65974025974026,null,-1,-0.683116883116883,null,-1,-0.688311688311688,null,-1,-0.701298701298701,null,-1,-0.758441558441558,null,-1,-0.763636363636364,null,-1,-0.787012987012987,null,-1,-0.771428571428571,null,-1,-0.787012987012987,null,-1,-0.820779220779221,null,-1,-0.88051948051948,null,-1,-0.888311688311688,null,-1,-0.927272727272727,null,-1,-0.92987012987013,null,-1,-0.963636363636364,null,-1,-0.961038961038961,null,-1,-0.98961038961039,null,-1,-0.98961038961039,null,-1,-0.992207792207792,null,-1,-0.984415584415584,null,-1,-0.994805194805195,null,-1,-0.98961038961039,null,-1,-0.994805194805195,null,-1,-0.994805194805195,null,-2,-1.99279563653244,null,-2,-1.95317163746083,null,-2,-1.88112800278519,null,-2,-1.88473018451897,null,-2,-1.81268654984333,null,-2,-1.76225600557038,null,-2,-1.78026691423929,null,-2,-1.70101891609609,null,-2,-1.72623418823256,null,-2,-1.72623418823256,null,-2,-1.7982778229082,null,-2,-1.69741673436231,null,-2,-1.76946036903795,null,-2,-1.74064291516769,null,-2,-1.7586538238366,null,-2,-1.80188000464199,null,-2,-1.72983636996635,null,-2,-1.74424509690147,null,-2,-1.74424509690147,null,-2,-1.71182546129744,null,-2,-1.73343855170013,null,-2,-1.74424509690147,null,-2,-1.63617964488801,null,-2,-1.67580364395961,null,-2,-1.6794058256934,null,-2,-1.73343855170013,null,-2,-1.74424509690147,null,-2,-1.75144946036904,null,-2,-1.70462109782987,null,-2,-1.76585818730417,null,-2,-1.66499709875827,null,-2,-1.66499709875827,null,-2,-1.6181687362191,null,-2,-1.66139491702449,null,-2,-1.63617964488801,null,-2,-1.59295346408263,null,-2,-1.67580364395961,null,-2,-1.61096437275154,null,-2,-1.66139491702449,null,-2,-1.65058837182314,null,-2,-1.69021237089474,null,-2,-1.6577927352907,null,-2,-1.66139491702449,null,-2,-1.59295346408263,null,-2,-1.5785447371475,null,-2,-1.61096437275154,null,-2,-1.60015782755019,null,-2,-1.60376000928397,null,-2,-1.54972728327724,null,-2,-1.57494255541372,null,-2,-1.51370546593942,null,-2,-1.56413601021237,null,-2,-1.56413601021237,null,-2,-1.62537309968667,null,-2,-1.63978182662179,null,-2,-1.6794058256934,null,-2,-1.63978182662179,null,-2,-1.71542764303122,null,-2,-1.70101891609609,null,-2,-1.66499709875827,null,-2,-1.71182546129744,null,-2,-1.63257746315423,null,-2,-1.69741673436231,null,-2,-1.719029824765,null,-2,-1.72983636996635,null,-2,-1.6577927352907,null,-2,-1.73704073343391,null,-2,-1.70822327956365,null,-2,-1.70462109782987,null,-2,-1.71182546129744,null,-2,-1.79467564117442,null,-2,-1.7982778229082,null,-2,-1.84870836718115,null,-2,-1.90994545665545,null,-2,-1.92075200185679,null,-2,-1.94596727399327,null,-2,-1.97478472786353,null,-2,-1.96397818266218,null,-2,-1.97478472786353,null,-2,-1.98559127306487,null,-2,-1.98559127306487,null,-2,-1.98919345479865,null,-2,-1.98919345479865,null,-2,-1.98919345479865,null,-2,-1.99639781826622],"type":"scatter","mode":"lines","text":["16<br>0<br>n=3","16<br>0<br>n=3",null,"17<br>0.001<br>n=11","17<br>0.001<br>n=11",null,"18<br>0.003<br>n=27","18<br>0.003<br>n=27",null,"19<br>0.006<br>n=47","19<br>0.006<br>n=47",null,"20<br>0.007<br>n=56","20<br>0.007<br>n=56",null,"21<br>0.007<br>n=62","21<br>0.007<br>n=62",null,"22<br>0.007<br>n=56","22<br>0.007<br>n=56",null,"23<br>0.008<br>n=69","23<br>0.008<br>n=69",null,"24<br>0.009<br>n=76","24<br>0.009<br>n=76",null,"25<br>0.009<br>n=73","25<br>0.009<br>n=73",null,"26<br>0.007<br>n=62","26<br>0.007<br>n=62",null,"27<br>0.008<br>n=66","27<br>0.008<br>n=66",null,"28<br>0.009<br>n=73","28<br>0.009<br>n=73",null,"29<br>0.009<br>n=79","29<br>0.009<br>n=79",null,"30<br>0.01<br>n=82","30<br>0.01<br>n=82",null,"31<br>0.007<br>n=64","31<br>0.007<br>n=64",null,"32<br>0.008<br>n=66","32<br>0.008<br>n=66",null,"33<br>0.01<br>n=82","33<br>0.01<br>n=82",null,"34<br>0.011<br>n=96","34<br>0.011<br>n=96",null,"35<br>0.01<br>n=86","35<br>0.01<br>n=86",null,"36<br>0.009<br>n=81","36<br>0.009<br>n=81",null,"37<br>0.009<br>n=73","37<br>0.009<br>n=73",null,"38<br>0.011<br>n=98","38<br>0.011<br>n=98",null,"39<br>0.01<br>n=87","39<br>0.01<br>n=87",null,"40<br>0.012<br>n=101","40<br>0.012<br>n=101",null,"41<br>0.013<br>n=111","41<br>0.013<br>n=111",null,"42<br>0.012<br>n=105","42<br>0.012<br>n=105",null,"43<br>0.014<br>n=118","43<br>0.014<br>n=118",null,"44<br>0.014<br>n=123","44<br>0.014<br>n=123",null,"45<br>0.014<br>n=118","45<br>0.014<br>n=118",null,"46<br>0.011<br>n=94","46<br>0.011<br>n=94",null,"47<br>0.017<br>n=141","47<br>0.017<br>n=141",null,"48<br>0.016<br>n=138","48<br>0.016<br>n=138",null,"49<br>0.015<br>n=131","49<br>0.015<br>n=131",null,"50<br>0.017<br>n=148","50<br>0.017<br>n=148",null,"51<br>0.017<br>n=144","51<br>0.017<br>n=144",null,"52<br>0.016<br>n=135","52<br>0.016<br>n=135",null,"53<br>0.016<br>n=137","53<br>0.016<br>n=137",null,"54<br>0.016<br>n=133","54<br>0.016<br>n=133",null,"55<br>0.018<br>n=154","55<br>0.018<br>n=154",null,"56<br>0.021<br>n=182","56<br>0.021<br>n=182",null,"57<br>0.019<br>n=164","57<br>0.019<br>n=164",null,"58<br>0.023<br>n=198","58<br>0.023<br>n=198",null,"59<br>0.019<br>n=160","59<br>0.019<br>n=160",null,"60<br>0.024<br>n=209","60<br>0.024<br>n=209",null,"61<br>0.022<br>n=191","61<br>0.022<br>n=191",null,"62<br>0.024<br>n=209","62<br>0.024<br>n=209",null,"63<br>0.025<br>n=211","63<br>0.025<br>n=211",null,"64<br>0.026<br>n=223","64<br>0.026<br>n=223",null,"65<br>0.026<br>n=221","65<br>0.026<br>n=221",null,"66<br>0.026<br>n=223","66<br>0.026<br>n=223",null,"67<br>0.027<br>n=231","67<br>0.027<br>n=231",null,"68<br>0.027<br>n=227","68<br>0.027<br>n=227",null,"69<br>0.022<br>n=192","69<br>0.022<br>n=192",null,"70<br>0.021<br>n=183","70<br>0.021<br>n=183",null,"71<br>0.02<br>n=173","71<br>0.02<br>n=173",null,"72<br>0.016<br>n=135","72<br>0.016<br>n=135",null,"73<br>0.015<br>n=130","73<br>0.015<br>n=130",null,"74<br>0.016<br>n=139","74<br>0.016<br>n=139",null,"75<br>0.016<br>n=136","75<br>0.016<br>n=136",null,"76<br>0.015<br>n=131","76<br>0.015<br>n=131",null,"77<br>0.014<br>n=122","77<br>0.014<br>n=122",null,"78<br>0.014<br>n=120","78<br>0.014<br>n=120",null,"79<br>0.013<br>n=115","79<br>0.013<br>n=115",null,"80<br>0.011<br>n=93","80<br>0.011<br>n=93",null,"81<br>0.011<br>n=91","81<br>0.011<br>n=91",null,"82<br>0.01<br>n=82","82<br>0.01<br>n=82",null,"83<br>0.01<br>n=88","83<br>0.01<br>n=88",null,"84<br>0.01<br>n=82","84<br>0.01<br>n=82",null,"85<br>0.008<br>n=69","85<br>0.008<br>n=69",null,"86<br>0.005<br>n=46","86<br>0.005<br>n=46",null,"87<br>0.005<br>n=43","87<br>0.005<br>n=43",null,"88<br>0.003<br>n=28","88<br>0.003<br>n=28",null,"89<br>0.003<br>n=27","89<br>0.003<br>n=27",null,"90<br>0.002<br>n=14","90<br>0.002<br>n=14",null,"91<br>0.002<br>n=15","91<br>0.002<br>n=15",null,"92<br>0<br>n=4","92<br>0<br>n=4",null,"93<br>0<br>n=4","93<br>0<br>n=4",null,"94<br>0<br>n=3","94<br>0<br>n=3",null,"95<br>0.001<br>n=6","95<br>0.001<br>n=6",null,"96<br>0<br>n=2","96<br>0<br>n=2",null,"97<br>0<br>n=4","97<br>0<br>n=4",null,"98<br>0<br>n=2","98<br>0<br>n=2",null,"99<br>0<br>n=2","99<br>0<br>n=2",null,"16<br>0<br>n=2","16<br>0<br>n=2",null,"17<br>0.002<br>n=13","17<br>0.002<br>n=13",null,"18<br>0.005<br>n=33","18<br>0.005<br>n=33",null,"19<br>0.005<br>n=32","19<br>0.005<br>n=32",null,"20<br>0.008<br>n=52","20<br>0.008<br>n=52",null,"21<br>0.011<br>n=66","21<br>0.011<br>n=66",null,"22<br>0.01<br>n=61","22<br>0.01<br>n=61",null,"23<br>0.013<br>n=83","23<br>0.013<br>n=83",null,"24<br>0.012<br>n=76","24<br>0.012<br>n=76",null,"25<br>0.012<br>n=76","25<br>0.012<br>n=76",null,"26<br>0.009<br>n=56","26<br>0.009<br>n=56",null,"27<br>0.014<br>n=84","27<br>0.014<br>n=84",null,"28<br>0.01<br>n=64","28<br>0.01<br>n=64",null,"29<br>0.012<br>n=72","29<br>0.012<br>n=72",null,"30<br>0.011<br>n=67","30<br>0.011<br>n=67",null,"31<br>0.009<br>n=55","31<br>0.009<br>n=55",null,"32<br>0.012<br>n=75","32<br>0.012<br>n=75",null,"33<br>0.012<br>n=71","33<br>0.012<br>n=71",null,"34<br>0.012<br>n=71","34<br>0.012<br>n=71",null,"35<br>0.013<br>n=80","35<br>0.013<br>n=80",null,"36<br>0.012<br>n=74","36<br>0.012<br>n=74",null,"37<br>0.012<br>n=71","37<br>0.012<br>n=71",null,"38<br>0.016<br>n=101","38<br>0.016<br>n=101",null,"39<br>0.015<br>n=90","39<br>0.015<br>n=90",null,"40<br>0.014<br>n=89","40<br>0.014<br>n=89",null,"41<br>0.012<br>n=74","41<br>0.012<br>n=74",null,"42<br>0.012<br>n=71","42<br>0.012<br>n=71",null,"43<br>0.011<br>n=69","43<br>0.011<br>n=69",null,"44<br>0.013<br>n=82","44<br>0.013<br>n=82",null,"45<br>0.011<br>n=65","45<br>0.011<br>n=65",null,"46<br>0.015<br>n=93","46<br>0.015<br>n=93",null,"47<br>0.015<br>n=93","47<br>0.015<br>n=93",null,"48<br>0.017<br>n=106","48<br>0.017<br>n=106",null,"49<br>0.015<br>n=94","49<br>0.015<br>n=94",null,"50<br>0.016<br>n=101","50<br>0.016<br>n=101",null,"51<br>0.018<br>n=113","51<br>0.018<br>n=113",null,"52<br>0.015<br>n=90","52<br>0.015<br>n=90",null,"53<br>0.018<br>n=108","53<br>0.018<br>n=108",null,"54<br>0.015<br>n=94","54<br>0.015<br>n=94",null,"55<br>0.016<br>n=97","55<br>0.016<br>n=97",null,"56<br>0.014<br>n=86","56<br>0.014<br>n=86",null,"57<br>0.015<br>n=95","57<br>0.015<br>n=95",null,"58<br>0.015<br>n=94","58<br>0.015<br>n=94",null,"59<br>0.018<br>n=113","59<br>0.018<br>n=113",null,"60<br>0.019<br>n=117","60<br>0.019<br>n=117",null,"61<br>0.018<br>n=108","61<br>0.018<br>n=108",null,"62<br>0.018<br>n=111","62<br>0.018<br>n=111",null,"63<br>0.018<br>n=110","63<br>0.018<br>n=110",null,"64<br>0.02<br>n=125","64<br>0.02<br>n=125",null,"65<br>0.019<br>n=118","65<br>0.019<br>n=118",null,"66<br>0.022<br>n=135","66<br>0.022<br>n=135",null,"67<br>0.02<br>n=121","67<br>0.02<br>n=121",null,"68<br>0.02<br>n=121","68<br>0.02<br>n=121",null,"69<br>0.017<br>n=104","69<br>0.017<br>n=104",null,"70<br>0.016<br>n=100","70<br>0.016<br>n=100",null,"71<br>0.014<br>n=89","71<br>0.014<br>n=89",null,"72<br>0.016<br>n=100","72<br>0.016<br>n=100",null,"73<br>0.013<br>n=79","73<br>0.013<br>n=79",null,"74<br>0.013<br>n=83","74<br>0.013<br>n=83",null,"75<br>0.015<br>n=93","75<br>0.015<br>n=93",null,"76<br>0.013<br>n=80","76<br>0.013<br>n=80",null,"77<br>0.017<br>n=102","77<br>0.017<br>n=102",null,"78<br>0.014<br>n=84","78<br>0.014<br>n=84",null,"79<br>0.013<br>n=78","79<br>0.013<br>n=78",null,"80<br>0.012<br>n=75","80<br>0.012<br>n=75",null,"81<br>0.015<br>n=95","81<br>0.015<br>n=95",null,"82<br>0.012<br>n=73","82<br>0.012<br>n=73",null,"83<br>0.013<br>n=81","83<br>0.013<br>n=81",null,"84<br>0.013<br>n=82","84<br>0.013<br>n=82",null,"85<br>0.013<br>n=80","85<br>0.013<br>n=80",null,"86<br>0.009<br>n=57","86<br>0.009<br>n=57",null,"87<br>0.009<br>n=56","87<br>0.009<br>n=56",null,"88<br>0.007<br>n=42","88<br>0.007<br>n=42",null,"89<br>0.004<br>n=25","89<br>0.004<br>n=25",null,"90<br>0.004<br>n=22","90<br>0.004<br>n=22",null,"91<br>0.002<br>n=15","91<br>0.002<br>n=15",null,"92<br>0.001<br>n=7","92<br>0.001<br>n=7",null,"93<br>0.002<br>n=10","93<br>0.002<br>n=10",null,"94<br>0.001<br>n=7","94<br>0.001<br>n=7",null,"95<br>0.001<br>n=4","95<br>0.001<br>n=4",null,"96<br>0.001<br>n=4","96<br>0.001<br>n=4",null,"97<br>0<br>n=3","97<br>0<br>n=3",null,"98<br>0<br>n=3","98<br>0<br>n=3",null,"99<br>0<br>n=3","99<br>0<br>n=3",null,"101<br>0<br>n=1","101<br>0<br>n=1"],"hoverinfo":["text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text",null,"text","text"],"name":"Histogram","legendgroup":"Histogram","showlegend":true,"marker":{"color":"rgba(0,0,0,1)","line":{"color":"rgba(0,0,0,1)"}},"textfont":{"color":"rgba(0,0,0,1)"},"error_y":{"color":"rgba(0,0,0,1)"},"error_x":{"color":"rgba(0,0,0,1)"},"line":{"color":"rgba(0,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[56.7389878163074,55.3762794476036],"y":[-1.225,-2.225],"type":"scatter","mode":"markers","text":["Mean:56.739<br>n=8536<br>0 missing","Mean:55.376<br>n=6155<br>0 missing"],"hoverinfo":["text","text"],"name":"Mean","legendgroup":"Mean","showlegend":true,"marker":{"color":"rgba(0,0,0,1)","size":[5,5],"sizemode":"area","line":{"color":"rgba(0,0,0,1)"}},"textfont":{"color":"rgba(0,0,0,1)","size":5},"error_y":{"color":"rgba(0,0,0,1)","width":5},"error_x":{"color":"rgba(0,0,0,1)","width":5},"line":{"color":"rgba(0,0,0,1)","width":5},"xaxis":"x","yaxis":"y","frame":null},{"x":[59,59,null,57,57],"y":[-1.4,-1.05,null,-2.4,-2.05],"type":"scatter","mode":"lines","text":["Q<sub>0.5<\/sub>:59","Q<sub>0.5<\/sub>:59",null,"Q<sub>0.5<\/sub>:57","Q<sub>0.5<\/sub>:57"],"hoverinfo":["text","text",null,"text","text"],"name":"Median","legendgroup":"Median","showlegend":true,"line":{"color":"rgba(0,0,0,1)","width":3},"marker":{"color":"rgba(0,0,0,1)","line":{"color":"rgba(0,0,0,1)"}},"textfont":{"color":"rgba(0,0,0,1)"},"error_y":{"color":"rgba(0,0,0,1)"},"error_x":{"color":"rgba(0,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[45,45,null,69,69,null,40,40,null,70,70],"y":[-1.365,-1.085,null,-1.365,-1.085,null,-2.365,-2.085,null,-2.365,-2.085],"type":"scatter","mode":"lines","text":["Q<sub>0.25<\/sub>:45","Q<sub>0.25<\/sub>:45",null,"Q<sub>0.75<\/sub>:69","Q<sub>0.75<\/sub>:69",null,"Q<sub>0.25<\/sub>:40","Q<sub>0.25<\/sub>:40",null,"Q<sub>0.75<\/sub>:70","Q<sub>0.75<\/sub>:70"],"hoverinfo":["text","text",null,"text","text",null,"text","text",null,"text","text"],"name":"Quartiles","legendgroup":"Quartiles","showlegend":true,"line":{"color":"rgba(0,0,255,1)","width":2},"marker":{"color":"rgba(0,0,255,1)","line":{"color":"rgba(0,0,255,1)"}},"textfont":{"color":"rgba(0,0,255,1)"},"error_y":{"color":"rgba(0,0,255,1)"},"error_x":{"color":"rgba(0,0,255,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[25,25,null,83,83,null,23,23,null,85,85],"y":[-1.337,-1.113,null,-1.337,-1.113,null,-2.337,-2.113,null,-2.337,-2.113],"type":"scatter","mode":"lines","text":["Q<sub>0.05<\/sub>:25","Q<sub>0.05<\/sub>:25",null,"Q<sub>0.95<\/sub>:83","Q<sub>0.95<\/sub>:83",null,"Q<sub>0.05<\/sub>:23","Q<sub>0.05<\/sub>:23",null,"Q<sub>0.95<\/sub>:85","Q<sub>0.95<\/sub>:85"],"hoverinfo":["text","text",null,"text","text",null,"text","text",null,"text","text"],"name":"0.05, 0.95<br>Quantiles","legendgroup":"0.05, 0.95<br>Quantiles","showlegend":true,"line":{"color":"rgba(255,0,0,1)","width":2},"marker":{"color":"rgba(255,0,0,1)","line":{"color":"rgba(255,0,0,1)"}},"textfont":{"color":"rgba(255,0,0,1)"},"error_y":{"color":"rgba(255,0,0,1)"},"error_x":{"color":"rgba(255,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[25,45,null,23,40],"y":[-1.225,-1.225,null,-2.225,-2.225],"type":"scatter","mode":"lines","hoverinfo":["none","none",null,"none","none"],"showlegend":false,"legendgroup":"0.05, 0.95<br>Quantiles","name":"ignored","marker":{"color":"rgba(255,0,0,0.3)","line":{"color":"rgba(255,0,0,1)"}},"textfont":{"color":"rgba(255,0,0,0.3)"},"error_y":{"color":"rgba(255,0,0,0.3)"},"error_x":{"color":"rgba(255,0,0,0.3)"},"line":{"color":"rgba(255,0,0,0.3)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[45,69,null,40,70],"y":[-1.225,-1.225,null,-2.225,-2.225],"type":"scatter","mode":"lines","hoverinfo":["none","none",null,"none","none"],"showlegend":false,"legendgroup":"Quartiles","name":"ignored","marker":{"color":"rgba(0,0,255,0.3)","line":{"color":"rgba(0,0,255,1)"}},"textfont":{"color":"rgba(0,0,255,0.3)"},"error_y":{"color":"rgba(0,0,255,0.3)"},"error_x":{"color":"rgba(0,0,255,0.3)"},"line":{"color":"rgba(0,0,255,0.3)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[69,83,null,70,85],"y":[-1.225,-1.225,null,-2.225,-2.225],"type":"scatter","mode":"lines","hoverinfo":["none","none",null,"none","none"],"showlegend":false,"legendgroup":"0.05, 0.95<br>Quantiles","name":"ignored","marker":{"color":"rgba(255,0,0,0.3)","line":{"color":"rgba(255,0,0,1)"}},"textfont":{"color":"rgba(255,0,0,0.3)"},"error_y":{"color":"rgba(255,0,0,0.3)"},"error_x":{"color":"rgba(255,0,0,0.3)"},"line":{"color":"rgba(255,0,0,0.3)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[16,35.6526683500158,null,16,38.2050473271068],"y":[-1.19,-1.19,null,-2.19,-2.19],"type":"scatter","mode":"lines","text":["Gini mean difference:19.653","Gini mean difference:19.653",null,"Gini mean difference:22.205","Gini mean difference:22.205"],"hoverinfo":["text","text",null,"text","text"],"name":"Gini <span style=\"text-decoration: overline\">|Δ|<\/span>","legendgroup":"Gini <span style=\"text-decoration: overline\">|Δ|<\/span>","visible":"legendonly","showlegend":true,"marker":{"color":"rgba(211,211,211,1)","line":{"color":"rgba(211,211,211,1)"}},"textfont":{"color":"rgba(211,211,211,1)"},"error_y":{"color":"rgba(211,211,211,1)"},"error_x":{"color":"rgba(211,211,211,1)"},"line":{"color":"rgba(211,211,211,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[16,33.2614699217978,null,16,35.2926697751301],"y":[-1.23,-1.23,null,-2.23,-2.23],"type":"scatter","mode":"lines","text":["SD:17.261","SD:17.261",null,"SD:19.293","SD:19.293"],"hoverinfo":["text","text",null,"text","text"],"name":"SD","legendgroup":"SD","visible":"legendonly","showlegend":true,"marker":{"color":"rgba(173,216,230,1)","line":{"color":"rgba(173,216,230,1)"}},"textfont":{"color":"rgba(173,216,230,1)"},"error_y":{"color":"rgba(173,216,230,1)"},"error_x":{"color":"rgba(173,216,230,1)"},"line":{"color":"rgba(173,216,230,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 7.4: Distribution of age by sex
+</p>
+</div>
+</div>
+<div id="distribution-of-leukocytes-by-age-coloured-by-sex" class="section level3" number="18.1.3">
+<h3><span class="header-section-number">18.1.3</span> Distribution of leukocytes by age, coloured by sex</h3>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="multivariate-distributions-2.html#cb155-1" aria-hidden="true" tabindex="-1"></a>c_bact<span class="sc">$</span>gender<span class="ot">=</span><span class="fu">factor</span>(c_bact<span class="sc">$</span>sex, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;male&quot;</span>,<span class="st">&quot;female&quot;</span>))</span>
+<span id="cb155-2"><a href="multivariate-distributions-2.html#cb155-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-3"><a href="multivariate-distributions-2.html#cb155-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-4"><a href="multivariate-distributions-2.html#cb155-4" aria-hidden="true" tabindex="-1"></a>c_bact <span class="sc">%&gt;%</span></span>
+<span id="cb155-5"><a href="multivariate-distributions-2.html#cb155-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>c_bact, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>Alter, <span class="at">y=</span>t_WBC, <span class="at">color=</span>gender)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 462 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 462 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="plot-all-variables-vs.-wbc-in-agesex-groups" class="section level3" number="18.1.4">
+<h3><span class="header-section-number">18.1.4</span> Plot all variables vs. WBC in age/sex groups</h3>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="multivariate-distributions-2.html#cb160-1" aria-hidden="true" tabindex="-1"></a>c_bact<span class="sc">$</span>Agegroup <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">cut</span>(c_bact<span class="sc">$</span>Alter, <span class="fu">c</span>(<span class="fu">min</span>(c_bact<span class="sc">$</span>Alter), <span class="dv">50</span>, <span class="dv">65</span>, <span class="fu">max</span>(c_bact<span class="sc">$</span>Alter))))</span>
+<span id="cb160-2"><a href="multivariate-distributions-2.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(c_bact<span class="sc">$</span>gender,c_bact<span class="sc">$</span>Agegroup)</span></code></pre></div>
+<pre><code>##         
+##          (16,50] (50,65] (65,101]
+##   male      2900    2671     2962
+##   female    2460    1579     2114</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="multivariate-distributions-2.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">4</span><span class="sc">:</span><span class="fu">length</span>(variables)){</span>
+<span id="cb162-2"><a href="multivariate-distributions-2.html#cb162-2" aria-hidden="true" tabindex="-1"></a>    p1 <span class="ot">&lt;-</span> </span>
+<span id="cb162-3"><a href="multivariate-distributions-2.html#cb162-3" aria-hidden="true" tabindex="-1"></a>      c_bact <span class="sc">%&gt;%</span> </span>
+<span id="cb162-4"><a href="multivariate-distributions-2.html#cb162-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Agegroup)) <span class="sc">%&gt;%</span> </span>
+<span id="cb162-5"><a href="multivariate-distributions-2.html#cb162-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(c_bact, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>t_WBC,<span class="at">y=</span>.data[[variables[j]]])) <span class="sc">+</span> </span>
+<span id="cb162-6"><a href="multivariate-distributions-2.html#cb162-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb162-7"><a href="multivariate-distributions-2.html#cb162-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_smooth</span>() <span class="sc">+</span>  </span>
+<span id="cb162-8"><a href="multivariate-distributions-2.html#cb162-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_rug</span>() <span class="sc">+</span></span>
+<span id="cb162-9"><a href="multivariate-distributions-2.html#cb162-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">facet_grid</span>(gender <span class="sc">~</span> Agegroup)</span>
+<span id="cb162-10"><a href="multivariate-distributions-2.html#cb162-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(p1)</span>
+<span id="cb162-11"><a href="multivariate-distributions-2.html#cb162-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 634 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 634 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 620 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 620 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 728 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 728 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-3.png" width="672" /></p>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.
+## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 462 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 462 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-4.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 552 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 552 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-5.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 557 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 557 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-6.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 666 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 666 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-7.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 648 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 648 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-8.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 732 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 732 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-9.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 732 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 732 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-10.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 732 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 732 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-11.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 732 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 732 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-12.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 732 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 732 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-13.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 2428 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2428 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-14.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 620 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 620 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-15.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 635 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 635 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-16.png" width="672" /></p>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.
+## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 2990 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2990 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-17.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 614 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 614 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-18.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1610 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1610 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-19.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1446 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1446 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-20.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1718 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1718 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-21.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 463 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 463 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-22.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 462 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 462 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-23.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 463 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 463 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-24.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 463 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 463 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-25.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 463 rows containing non-finite values (stat_smooth).
+
+## Warning: Removed 463 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-26.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 476 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 476 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-27.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1104 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1104 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-28.png" width="672" /></p>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.
+## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 2887 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2887 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-29.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 2955 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2955 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-30.png" width="672" /></p>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.
+## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1724 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1724 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-31.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1733 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1733 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-32.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1696 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1696 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-33.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 2313 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2313 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-34.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 3476 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 3476 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-35.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1892 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1892 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-36.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 2008 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2008 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-37.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 2108 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2108 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-38.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 4323 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 4323 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-39.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 7410 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 7410 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-40.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 4108 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 4108 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-41.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 2865 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2865 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-42.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1851 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1851 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-43.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 2149 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2149 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-44.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 2514 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 2514 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-45.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 4572 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 4572 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-46.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 5440 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 5440 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-47.png" width="672" /></p>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type labelled/integer. Defaulting to continuous.
+## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 5417 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 5417 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-48.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 1104 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 1104 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-49.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 463 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 463 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-10-50.png" width="672" /></p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="multivariate-distributions-2.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="co">#+</span></span>
+<span id="cb307-2"><a href="multivariate-distributions-2.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  theme_minimal()</span></span></code></pre></div>
+</div>
+</div>
+<div id="variable-redundancy-2" class="section level2" number="18.2">
+<h2><span class="header-section-number">18.2</span> Variable redundancy</h2>
+<div id="redundancy-among-very-important-predictors" class="section level3" number="18.2.1">
+<h3><span class="header-section-number">18.2.1</span> Redundancy among very important predictors</h3>
+<p>First we start with a redundancy analysis with the predictors deemed important by preceding studies.</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="multivariate-distributions-2.html#cb308-1" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(</span>
+<span id="cb308-2"><a href="multivariate-distributions-2.html#cb308-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste</span>(<span class="st">&quot;~Alter+&quot;</span>,</span>
+<span id="cb308-3"><a href="multivariate-distributions-2.html#cb308-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">paste</span>(<span class="fu">unique</span>(<span class="fu">c</span>(bact_transformed<span class="sc">$</span>pivotal_vars,</span>
+<span id="cb308-4"><a href="multivariate-distributions-2.html#cb308-4" aria-hidden="true" tabindex="-1"></a>                                   bact_transformed<span class="sc">$</span>vip_vars)),</span>
+<span id="cb308-5"><a href="multivariate-distributions-2.html#cb308-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">collapse=</span><span class="st">&quot;+&quot;</span>)))</span>
+<span id="cb308-6"><a href="multivariate-distributions-2.html#cb308-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb308-7"><a href="multivariate-distributions-2.html#cb308-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb308-8"><a href="multivariate-distributions-2.html#cb308-8" aria-hidden="true" tabindex="-1"></a>Hmisc<span class="sc">::</span><span class="fu">redun</span>(formula, <span class="at">data=</span>c_bact)</span></code></pre></div>
+<pre><code>## 
+## Redundancy Analysis
+## 
+## Hmisc::redun(formula = formula, data = c_bact)
+## 
+## n: 13793     p: 6    nk: 3 
+## 
+## Number of NAs:    898 
+## Frequencies of Missing Values Due to Each Variable
+##  Alter  t_WBC  t_BUN t_KREA  t_NEU    PLT 
+##      0    462    172    159    728     42 
+## 
+## 
+## Transformation of target variables forced to be linear
+## 
+## R-squared cutoff: 0.9    Type: ordinary 
+## 
+## R^2 with which each variable can be predicted from all other variables:
+## 
+##  Alter  t_WBC  t_BUN t_KREA  t_NEU    PLT 
+##  0.196  0.934  0.610  0.574  0.933  0.161 
+## 
+## Rendundant variables:
+## 
+## t_WBC
+## 
+## Predicted from variables:
+## 
+## Alter t_BUN t_KREA t_NEU PLT 
+## 
+##   Variable Deleted   R^2 R^2 after later deletions
+## 1            t_WBC 0.934</code></pre>
+<p>This analysis suggests redundancy of WBC after NEU is in the predictor set. We investigate this further by looking only at leukocyte-related variables.</p>
+</div>
+<div id="redundancy-among-leukocyte-related-variables" class="section level3" number="18.2.2">
+<h3><span class="header-section-number">18.2.2</span> Redundancy among leukocyte-related variables</h3>
+<p>In redundancy analysis of all predictor variables, the large number of non-complete cases is an issue. First we start with the leukocyte ratios - there should be large redundancy issues. This is even the case if no nonlinear modeling is applied.</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="multivariate-distributions-2.html#cb310-1" aria-hidden="true" tabindex="-1"></a>Hmisc<span class="sc">::</span><span class="fu">redun</span>(<span class="sc">~</span><span class="fu">I</span>(EOSR)<span class="sc">+</span><span class="fu">I</span>(BASOR)<span class="sc">+</span><span class="fu">I</span>(NEUR)<span class="sc">+</span><span class="fu">I</span>(LYMR)<span class="sc">+</span><span class="fu">I</span>(MONOR), <span class="at">data=</span>c_bact)</span></code></pre></div>
+<pre><code>## 
+## Redundancy Analysis
+## 
+## Hmisc::redun(formula = ~I(EOSR) + I(BASOR) + I(NEUR) + I(LYMR) + 
+##     I(MONOR), data = c_bact)
+## 
+## n: 13959     p: 5    nk: 3 
+## 
+## Number of NAs:    732 
+## Frequencies of Missing Values Due to Each Variable
+##  I(EOSR) I(BASOR)  I(NEUR)  I(LYMR) I(MONOR) 
+##      732      732      732      732      732 
+## 
+## 
+## Transformation of target variables forced to be linear
+## 
+## R-squared cutoff: 0.9    Type: ordinary 
+## 
+## R^2 with which each variable can be predicted from all other variables:
+## 
+##  I(EOSR) I(BASOR)  I(NEUR)  I(LYMR) I(MONOR) 
+##        1        1        1        1        1 
+## 
+## Rendundant variables:
+## 
+## I(EOSR)
+## 
+## Predicted from variables:
+## 
+## I(BASOR) I(NEUR) I(LYMR) I(MONOR) 
+## 
+##   Variable Deleted R^2 R^2 after later deletions
+## 1          I(EOSR)   1</code></pre>
+<p>Now we use the absolute concentrations. BASO is modeled as linear because it has very few distinct values:</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="multivariate-distributions-2.html#cb312-1" aria-hidden="true" tabindex="-1"></a>Hmisc<span class="sc">::</span><span class="fu">redun</span>(<span class="sc">~</span>t_EOS<span class="sc">+</span><span class="fu">I</span>(t_BASO)<span class="sc">+</span>t_NEU<span class="sc">+</span>t_LYM<span class="sc">+</span>MONO, <span class="at">data=</span>c_bact)</span></code></pre></div>
+<pre><code>## 
+## Redundancy Analysis
+## 
+## Hmisc::redun(formula = ~t_EOS + I(t_BASO) + t_NEU + t_LYM + MONO, 
+##     data = c_bact)
+## 
+## n: 13963     p: 5    nk: 3 
+## 
+## Number of NAs:    728 
+## Frequencies of Missing Values Due to Each Variable
+##     t_EOS I(t_BASO)     t_NEU     t_LYM      MONO 
+##       135       146       728       262       246 
+## 
+## 
+## Transformation of target variables forced to be linear
+## 
+## R-squared cutoff: 0.9    Type: ordinary 
+## 
+## R^2 with which each variable can be predicted from all other variables:
+## 
+##     t_EOS I(t_BASO)     t_NEU     t_LYM      MONO 
+##     0.144     0.171     0.312     0.264     0.348 
+## 
+## No redundant variables</code></pre>
+<p>Now we add WBC:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="multivariate-distributions-2.html#cb314-1" aria-hidden="true" tabindex="-1"></a>Hmisc<span class="sc">::</span><span class="fu">redun</span>(<span class="sc">~</span>t_EOS<span class="sc">+</span><span class="fu">I</span>(t_BASO)<span class="sc">+</span>t_NEU<span class="sc">+</span>t_LYM<span class="sc">+</span>MONO<span class="sc">+</span>t_WBC, <span class="at">data=</span>c_bact)</span></code></pre></div>
+<pre><code>## 
+## Redundancy Analysis
+## 
+## Hmisc::redun(formula = ~t_EOS + I(t_BASO) + t_NEU + t_LYM + MONO + 
+##     t_WBC, data = c_bact)
+## 
+## n: 13963     p: 6    nk: 3 
+## 
+## Number of NAs:    728 
+## Frequencies of Missing Values Due to Each Variable
+##     t_EOS I(t_BASO)     t_NEU     t_LYM      MONO     t_WBC 
+##       135       146       728       262       246       462 
+## 
+## 
+## Transformation of target variables forced to be linear
+## 
+## R-squared cutoff: 0.9    Type: ordinary 
+## 
+## R^2 with which each variable can be predicted from all other variables:
+## 
+##     t_EOS I(t_BASO)     t_NEU     t_LYM      MONO     t_WBC 
+##     0.177     0.179     0.982     0.666     0.502     0.985 
+## 
+## Rendundant variables:
+## 
+## t_WBC
+## 
+## Predicted from variables:
+## 
+## t_EOS I(t_BASO) t_NEU t_LYM MONO 
+## 
+##   Variable Deleted   R^2 R^2 after later deletions
+## 1            t_WBC 0.985</code></pre>
+<p>This indicates very large <span class="math inline">\(R^2\)</span> values for NEU and WBC, meaning that probably because of their large correlation, the variables are nearly redundant. (This also becomes clear from the histogram of NEUR, which shows the ratios of NEU to WBC.) <em>When including both covariates in a model, it may happen that standard errors are inflated such that an association cannot be statistically proven; nevertheless, according to the preceding studies both variables could be important!</em> One way to circumvent the problem is to generate a complementary variable that is defined as the difference of WBC and NEU and use this variable instead of WBC.</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="multivariate-distributions-2.html#cb316-1" aria-hidden="true" tabindex="-1"></a>WBC_NEU <span class="ot">&lt;-</span> c_bact<span class="sc">$</span>WBC <span class="sc">-</span> c_bact<span class="sc">$</span>NEU</span>
+<span id="cb316-2"><a href="multivariate-distributions-2.html#cb316-2" aria-hidden="true" tabindex="-1"></a>sum_noNEU <span class="ot">&lt;-</span> <span class="fu">apply</span>(c_bact[,<span class="fu">c</span>(<span class="st">&quot;EOS&quot;</span>,<span class="st">&quot;BASO&quot;</span>,<span class="st">&quot;LYM&quot;</span>,<span class="st">&quot;MONO&quot;</span>)],<span class="dv">1</span>,sum)</span>
+<span id="cb316-3"><a href="multivariate-distributions-2.html#cb316-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-4"><a href="multivariate-distributions-2.html#cb316-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(NEU, WBC_NEU)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">trans=</span><span class="st">&quot;pseudo_log&quot;</span>) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">trans=</span><span class="st">&quot;pseudo_log&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 728 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 728 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>This variable is expected to be highly correlated with the sum of MONO, LYM, BASO and EOS:</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="multivariate-distributions-2.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(c_bact, <span class="fu">aes</span>(sum_noNEU, WBC_NEU)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">trans=</span><span class="st">&quot;pseudo_log&quot;</span>) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">trans=</span><span class="st">&quot;pseudo_log&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 728 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 728 rows containing missing values (geom_point).</code></pre>
+<p><img src="Bact_multivar_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="redundancy-among-all-potential-predictors" class="section level3" number="18.2.3">
+<h3><span class="header-section-number">18.2.3</span> Redundancy among all potential predictors</h3>
+<p>Now we perform a full redundancy analysis, but omitting WBC, the leukocyte ratio variables, and BUN and KREA (for their use in constructing BUN_KREA and eGFR).</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="multivariate-distributions-2.html#cb324-1" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(</span>
+<span id="cb324-2"><a href="multivariate-distributions-2.html#cb324-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste</span>(<span class="st">&quot;~I(t_EOS)+I(t_BASO)+t_LYM+MONO+t_NEU+&quot;</span>,</span>
+<span id="cb324-3"><a href="multivariate-distributions-2.html#cb324-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">paste</span>(<span class="fu">unique</span>(<span class="fu">c</span>(bact_transformed<span class="sc">$</span>demog_vars,</span>
+<span id="cb324-4"><a href="multivariate-distributions-2.html#cb324-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">c</span>(<span class="st">&quot;t_BUN_KREA&quot;</span>,<span class="st">&quot;eGFR&quot;</span>,<span class="st">&quot;K&quot;</span>),</span>
+<span id="cb324-5"><a href="multivariate-distributions-2.html#cb324-5" aria-hidden="true" tabindex="-1"></a>                                   bact_transformed<span class="sc">$</span>acute_related_vars,</span>
+<span id="cb324-6"><a href="multivariate-distributions-2.html#cb324-6" aria-hidden="true" tabindex="-1"></a>                                   bact_transformed<span class="sc">$</span>remaining_vars)),<span class="at">collapse=</span><span class="st">&quot;+&quot;</span>)))</span>
+<span id="cb324-7"><a href="multivariate-distributions-2.html#cb324-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb324-8"><a href="multivariate-distributions-2.html#cb324-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb324-9"><a href="multivariate-distributions-2.html#cb324-9" aria-hidden="true" tabindex="-1"></a>Hmisc<span class="sc">::</span><span class="fu">redun</span>(formula, <span class="at">data=</span>c_bact)</span></code></pre></div>
+<pre><code>## 
+## Redundancy Analysis
+## 
+## Hmisc::redun(formula = formula, data = c_bact)
+## 
+## n: 3980  p: 44   nk: 3 
+## 
+## Number of NAs:    10711 
+## Frequencies of Missing Values Due to Each Variable
+##   I(t_EOS)  I(t_BASO)      t_LYM       MONO      t_NEU      Alter        sex 
+##        135        146        262        246        728          0          0 
+## t_BUN_KREA       eGFR          K        FIB        CRP     t_ASAT     t_ALAT 
+##        174        159       2008       2567        155       1154        987 
+##      t_GGT        MCV        HGB        HCT        MCH       MCHC        RDW 
+##       1262         42         41         42         42         42         56 
+##        MPV         NT     t_APTT        NA.         CA     t_PHOS         MG 
+##        702       2467       2549       1282       1276       1242       1869 
+##         HS     t_GBIL         TP        ALB      t_AMY     t_PAMY      t_LIP 
+##       3061       1441       1583       1676       3913       7114       3699 
+##        CHE       t_AP      t_LDH       t_CK      t_GLU     t_TRIG       CHOL 
+##       2447       1400       1714       2080       4192       5061       5045 
+##        PDW        RBC 
+##       1102        461 
+## 
+## 
+## Transformation of target variables forced to be linear
+## 
+## R-squared cutoff: 0.9    Type: ordinary 
+## 
+## R^2 with which each variable can be predicted from all other variables:
+## 
+##   I(t_EOS)  I(t_BASO)      t_LYM       MONO      t_NEU      Alter        sex 
+##      0.251      0.244      0.389      0.426      0.425      0.612      0.321 
+## t_BUN_KREA       eGFR          K        FIB        CRP     t_ASAT     t_ALAT 
+##      0.376      0.637      0.300      0.670      0.659      0.874      0.762 
+##      t_GGT        MCV        HGB        HCT        MCH       MCHC        RDW 
+##      0.643      0.993      0.996      0.996      0.995      0.984      0.530 
+##        MPV         NT     t_APTT        NA.         CA     t_PHOS         MG 
+##      0.905      0.340      0.257      0.335      0.530      0.314      0.244 
+##         HS     t_GBIL         TP        ALB      t_AMY     t_PAMY      t_LIP 
+##      0.482      0.393      0.787      0.855      0.667      0.720      0.580 
+##        CHE       t_AP      t_LDH       t_CK      t_GLU     t_TRIG       CHOL 
+##      0.658      0.615      0.588      0.585      0.263      0.384      0.498 
+##        PDW        RBC 
+##      0.899      0.977 
+## 
+## Rendundant variables:
+## 
+## HCT MCH HGB MPV
+## 
+## Predicted from variables:
+## 
+## I(t_EOS) I(t_BASO) t_LYM MONO t_NEU Alter sex t_BUN_KREA eGFR K FIB CRP t_ASAT t_ALAT t_GGT MCV MCHC RDW NT t_APTT NA. CA t_PHOS MG HS t_GBIL TP ALB t_AMY t_PAMY t_LIP CHE t_AP t_LDH t_CK t_GLU t_TRIG CHOL PDW RBC 
+## 
+##   Variable Deleted   R^2 R^2 after later deletions
+## 1              HCT 0.996         0.996 0.975 0.975
+## 2              MCH 0.994               0.994 0.994
+## 3              HGB 0.975                     0.975
+## 4              MPV 0.904</code></pre>
+<p>This analysis suggests that HCT, MCH, HGB and MPV may be redundant on top of the other variables. Note that BUN, KREA and WBC were already omitted from this redundancy analysis.</p>
+</div>
+</div>
+<div id="section-session-info-11" class="section level2" number="18.3">
+<h2><span class="header-section-number">18.3</span> Section session info</h2>
+<pre><code>## R version 4.1.0 (2021-05-18)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18363)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] mice_3.13.0      ggcorrplot_0.1.3 gtsummary_1.4.1  Hmisc_4.5-0     
+##  [5] Formula_1.2-4    survival_3.2-11  lattice_0.20-44  plotly_4.9.3    
+##  [9] forcats_0.5.1    stringr_1.4.0    dplyr_1.0.6      purrr_0.3.4     
+## [13] readr_1.4.0      tidyr_1.1.3      tibble_3.1.2     ggplot2_3.3.3   
+## [17] tidyverse_1.3.1  here_1.0.1      
+## 
+## loaded via a namespace (and not attached):
+##  [1] nlme_3.1-152        fs_1.5.0            lubridate_1.7.10   
+##  [4] RColorBrewer_1.1-2  httr_1.4.2          rprojroot_2.0.2    
+##  [7] tools_4.1.0         backports_1.2.1     bslib_0.2.5.1      
+## [10] utf8_1.2.1          R6_2.5.0            rpart_4.1-15       
+## [13] mgcv_1.8-35         DBI_1.1.1           lazyeval_0.2.2     
+## [16] colorspace_2.0-1    nnet_7.3-16         withr_2.4.2        
+## [19] tidyselect_1.1.1    gridExtra_2.3       compiler_4.1.0     
+## [22] cli_2.5.0           rvest_1.0.0         gt_0.3.0           
+## [25] htmlTable_2.2.1     xml2_1.3.2          labeling_0.4.2     
+## [28] bookdown_0.22       sass_0.4.0          scales_1.1.1       
+## [31] checkmate_2.0.0     digest_0.6.27       foreign_0.8-81     
+## [34] rmarkdown_2.8       base64enc_0.1-3     jpeg_0.1-8.1       
+## [37] pkgconfig_2.0.3     htmltools_0.5.1.1   highr_0.9          
+## [40] dbplyr_2.1.1        htmlwidgets_1.5.3   rlang_0.4.11       
+## [43] readxl_1.3.1        rstudioapi_0.13     farver_2.1.0       
+## [46] jquerylib_0.1.4     generics_0.1.0      jsonlite_1.7.2     
+## [49] crosstalk_1.1.1     magrittr_2.0.1      Matrix_1.3-3       
+## [52] Rcpp_1.0.6          munsell_0.5.0       fansi_0.4.2        
+## [55] lifecycle_1.0.0     stringi_1.6.2       yaml_2.2.1         
+## [58] plyr_1.8.6          grid_4.1.0          crayon_1.4.1       
+## [61] haven_2.4.1         splines_4.1.0       hms_1.1.0          
+## [64] knitr_1.33          pillar_1.6.1        reshape2_1.4.4     
+## [67] reprex_2.0.0        glue_1.4.2          evaluate_0.14      
+## [70] latticeExtra_0.6-29 broom.helpers_1.3.0 data.table_1.14.0  
+## [73] modelr_0.1.8        png_0.1-7           vctrs_0.3.8        
+## [76] cellranger_1.1.0    gtable_0.3.0        assertthat_0.2.1   
+## [79] xfun_0.23           broom_0.7.6         viridisLite_0.4.0  
+## [82] cluster_2.1.2       ellipsis_0.3.2</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="univariate-distribution-checks-2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bailliem/ida-regression-private/edit/master/Bact_multivar.Rmd",
+"text": "Edit this chapter"
+},
+"history": {
+"link": "https://github.com/bailliem/ida-regression-private/commits/master/Bact_multivar.Rmd",
+"text": "Chapter edit history"
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/bailliem/ida-regression-private/raw/master/Bact_multivar.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
