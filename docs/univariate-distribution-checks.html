@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Univariate distribution checks | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Univariate distribution checks | Regression without regrets" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="M. Baillie, G. Heinze &amp; M. Huebner" />
 
 
-<meta name="date" content="2021-04-22" />
+<meta name="date" content="2021-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="missing-data.html"/>
 <link rel="next" href="multivariate-distributions.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,9 +51,11 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.17/datatables.js"></script>
+<script src="libs/datatables-binding-0.18/datatables.js"></script>
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
@@ -417,6 +419,7 @@ $(document).ready(function () {
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -476,6 +479,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -676,6 +680,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13.6" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#section-session-info-7"><i class="fa fa-check"></i><b>13.6</b> Section session info</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="bacteremia.html"><a href="bacteremia.html"><i class="fa fa-check"></i>Bacteremia</a></li>
+<li class="chapter" data-level="14" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html"><i class="fa fa-check"></i><b>14</b> Introduction to Bacteremia</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#dataset-description"><i class="fa fa-check"></i><b>14.1</b> Dataset Description</a></li>
+<li class="chapter" data-level="14.2" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#bacteremia-dataset-contents"><i class="fa fa-check"></i><b>14.2</b> Bacteremia dataset contents</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#source-dataset-2"><i class="fa fa-check"></i><b>14.2.1</b> Source dataset</a></li>
+<li class="chapter" data-level="14.2.2" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#updated-analysis-dataset-1"><i class="fa fa-check"></i><b>14.2.2</b> Updated analysis dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#section-session-info-8"><i class="fa fa-check"></i><b>14.3</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="ida-plan.html"><a href="ida-plan.html"><i class="fa fa-check"></i><b>15</b> IDA plan</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="ida-plan.html"><a href="ida-plan.html#preparations-1"><i class="fa fa-check"></i><b>15.1</b> Preparations</a></li>
+<li class="chapter" data-level="15.2" data-path="ida-plan.html"><a href="ida-plan.html#ida-domains"><i class="fa fa-check"></i><b>15.2</b> IDA domains</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-missing-values-1"><i class="fa fa-check"></i><b>15.2.1</b> IDA domain: missing values</a></li>
+<li class="chapter" data-level="15.2.2" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-univariate-distributions-1"><i class="fa fa-check"></i><b>15.2.2</b> IDA domain: univariate distributions</a></li>
+<li class="chapter" data-level="15.2.3" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-multivariate-system-of-variables-1"><i class="fa fa-check"></i><b>15.2.3</b> IDA domain: multivariate system of variables</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="ida-plan.html"><a href="ida-plan.html#sources-1"><i class="fa fa-check"></i><b>15.3</b> Sources</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="ida-plan.html"><a href="ida-plan.html#data-dictionary-2"><i class="fa fa-check"></i><b>15.3.1</b> Data dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="ida-plan.html"><a href="ida-plan.html#references-2"><i class="fa fa-check"></i><b>15.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="missing-data-2.html"><a href="missing-data-2.html"><i class="fa fa-check"></i><b>16</b> Missing data</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="missing-data-2.html"><a href="missing-data-2.html#per-variable-missingness-2"><i class="fa fa-check"></i><b>16.1</b> Per variable missingness</a></li>
+<li class="chapter" data-level="16.2" data-path="missing-data-2.html"><a href="missing-data-2.html#missingness-patterns-over-variables-2"><i class="fa fa-check"></i><b>16.2</b> Missingness patterns over variables</a></li>
+<li class="chapter" data-level="16.3" data-path="missing-data-2.html"><a href="missing-data-2.html#section-session-info-9"><i class="fa fa-check"></i><b>16.3</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html"><i class="fa fa-check"></i><b>17</b> Univariate distribution checks</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#data-set-overview-2"><i class="fa fa-check"></i><b>17.1</b> Data set overview</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#demographic-variables-1"><i class="fa fa-check"></i><b>17.1.1</b> Demographic variables</a></li>
+<li class="chapter" data-level="17.1.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#pivotal-variables-and-very-important-predictors"><i class="fa fa-check"></i><b>17.1.2</b> Pivotal variables and very important predictors</a></li>
+<li class="chapter" data-level="17.1.3" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#further-variables-related-to-leukocyte-types-and-leukocyte-ratios"><i class="fa fa-check"></i><b>17.1.3</b> Further variables related to leukocyte types and leukocyte ratios</a></li>
+<li class="chapter" data-level="17.1.4" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#kidney-function-related-variables"><i class="fa fa-check"></i><b>17.1.4</b> Kidney function related variables</a></li>
+<li class="chapter" data-level="17.1.5" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#acute-phase-reaction-related-variables"><i class="fa fa-check"></i><b>17.1.5</b> Acute phase reaction related variables</a></li>
+<li class="chapter" data-level="17.1.6" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#remaining-variables"><i class="fa fa-check"></i><b>17.1.6</b> Remaining variables</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#categorical-variables-2"><i class="fa fa-check"></i><b>17.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="17.3" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#continuous-variables-2"><i class="fa fa-check"></i><b>17.3</b> Continuous variables</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#suggested-transformations"><i class="fa fa-check"></i><b>17.3.1</b> Suggested transformations</a></li>
+<li class="chapter" data-level="17.3.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#univariate-distribution-with-variables-using-the-original-variable-and-the-suggested-transformations"><i class="fa fa-check"></i><b>17.3.2</b> Univariate distribution with variables using the original variable and the suggested transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#section-session-info-10"><i class="fa fa-check"></i><b>17.4</b> Section session info</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html"><i class="fa fa-check"></i><b>18</b> Multivariate distributions</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#overview-3"><i class="fa fa-check"></i><b>18.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#variable-correlation-2"><i class="fa fa-check"></i><b>18.1.1</b> Variable correlation</a></li>
+<li class="chapter" data-level="18.1.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#distribution-of-age-by-sex-1"><i class="fa fa-check"></i><b>18.1.2</b> Distribution of age by sex</a></li>
+<li class="chapter" data-level="18.1.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#distribution-of-leukocytes-by-age-coloured-by-sex"><i class="fa fa-check"></i><b>18.1.3</b> Distribution of leukocytes by age, coloured by sex</a></li>
+<li class="chapter" data-level="18.1.4" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#plot-all-variables-vs.-wbc-in-agesex-groups"><i class="fa fa-check"></i><b>18.1.4</b> Plot all variables vs. WBC in age/sex groups</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#variable-redundancy-2"><i class="fa fa-check"></i><b>18.2</b> Variable redundancy</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-very-important-predictors"><i class="fa fa-check"></i><b>18.2.1</b> Redundancy among very important predictors</a></li>
+<li class="chapter" data-level="18.2.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-leukocyte-related-variables"><i class="fa fa-check"></i><b>18.2.2</b> Redundancy among leukocyte-related variables</a></li>
+<li class="chapter" data-level="18.2.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-all-potential-predictors"><i class="fa fa-check"></i><b>18.2.3</b> Redundancy among all potential predictors</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#section-session-info-11"><i class="fa fa-check"></i><b>18.3</b> Section session info</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -749,42 +821,42 @@ bottom: -1ex;
 </style>
  <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Demographic variables <br><br> 2  Variables   20207  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">age</span>: Age <span style='font-family:Verdana;font-size:75%;'>years</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAhUlEQVQ4jc3TSw6AIAwE0Kn3P7TyUaAtCpFqJ8YmbnxKBzQSoJ32wTYSoJ32eXhRhnh0BQtzMe3XroRCTDF6cLF0XBa+u4IJ15FYyVxLy5Z2P1VDoVq38vdMjnXWxYjn4nlyoXaJ5fvVJZmrTnepizNf8EKVlDpBLeNs6BrsUh8RcrPDbQcg0QqG35KihwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable743487 {
+ .hmisctable379084 {
  border: none;
  font-size: 80%;
  }
- .hmisctable743487 td {
+ .hmisctable379084 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable743487 th {
+ .hmisctable379084 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable743487">
+ <table class="hmisctable379084">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20203</td><td>4</td><td>84</td><td>0.999</td><td>34.56</td><td>15.55</td><td>18</td><td>19</td><td>24</td><td>30</td><td>43</td><td>55</td><td>64</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1 14 15 16 17 ,  <font color="MidnightBlue">highest</font>: 92 94 95 96 99</span> <hr class="thinhr"> <span style="font-weight:bold">sex</span>: Sex <style>
- .hmisctable909300 {
+ .hmisctable650811 {
  border: none;
  font-size: 80%;
  }
- .hmisctable909300 td {
+ .hmisctable650811 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable909300 th {
+ .hmisctable650811 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable909300">
+ <table class="hmisctable650811">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>20206</td><td>1</td><td>2</td></tr>
  </table>
@@ -842,85 +914,85 @@ bottom: -1ex;
 </style>
  <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Physiological measurements <br><br> 5  Variables   20207  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">sbp</span>: Systolic Blood Pressure <span style='font-family:Verdana;font-size:75%;'>mmHg</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAeUlEQVQ4jeWTUQ6AMAhDO+9/aC2LQZ2a0bEf5aOQZdAXElCEAJSumMUiBKSumIXUBNdJ8RUug/kzV/ROsMtJ02N4X5O21j/1gNFypdOlciXS9UxqrN+5UujiXFtmacUz1yicnZcfF2sKXU2uCXePsS/u4Y41l3rb1BUP7gxgD5zU4QAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable728591 {
+ .hmisctable637929 {
  border: none;
  font-size: 80%;
  }
- .hmisctable728591 td {
+ .hmisctable637929 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable728591 th {
+ .hmisctable637929 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable728591">
+ <table class="hmisctable637929">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>19887</td><td>320</td><td>173</td><td>0.989</td><td>98.45</td><td>27.86</td><td> 60</td><td> 70</td><td> 80</td><td> 95</td><td>110</td><td>130</td><td>143</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   4  10  12  20  25 ,  <font color="MidnightBlue">highest</font>: 225 230 234 240 250</span> <hr class="thinhr"> <span style="font-weight:bold">hr</span>: Heart Rate <span style='font-family:Verdana;font-size:75%;'>/min</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAc0lEQVQ4je2T6wqAIBSDZ+//0HkhbVB4aoOCGng5PxyfR4ekCxizS1h0AWPeFtnT4fFzXfP4EpcjO/s8mmIp3Y5a9Ip3PEBhLhXPxQVQ8SRXRUFTX5nrPl34YG9HVCJX+fs1RMUrnQwuwprbtfjmPWUxjxVbmQwFkspBGQAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable468760 {
+ .hmisctable475242 {
  border: none;
  font-size: 80%;
  }
- .hmisctable468760 td {
+ .hmisctable475242 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable468760 th {
+ .hmisctable475242 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable468760">
+ <table class="hmisctable475242">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20070</td><td>137</td><td>173</td><td>0.996</td><td>104.5</td><td>23.38</td><td> 70</td><td> 80</td><td> 90</td><td>105</td><td>120</td><td>130</td><td>140</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :   3   4   5   6  10 ,  <font color="MidnightBlue">highest</font>: 190 192 198 200 220</span> <hr class="thinhr"> <span style="font-weight:bold">rr</span>: Respiratory Rate <span style='font-family:Verdana;font-size:75%;'>/min</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAdklEQVQ4je2T2wrAMAhD4/7/o9eumyCt1j6Yp4VAL0h7UAKJBWwKioQrFnYFRfq5zpTj4tMluIbJCuPWwqgmK2yENos/zTQXeZr+VzMUEy3LBTKa84nFgcdVx9iDBhO8xyvNVQsL3vdEPfIl5qh3uvtC359pyw0sKAx5Ml+DtwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable163616 {
+ .hmisctable467596 {
  border: none;
  font-size: 80%;
  }
- .hmisctable163616 td {
+ .hmisctable467596 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable163616 th {
+ .hmisctable467596 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable163616">
+ <table class="hmisctable467596">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20016</td><td>191</td><td>68</td><td>0.99</td><td>23.06</td><td>7.052</td><td>14</td><td>16</td><td>20</td><td>22</td><td>26</td><td>30</td><td>35</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  1  2  3  4  5 ,  <font color="MidnightBlue">highest</font>: 90 91 94 95 96</span> <hr class="thinhr"> <span style="font-weight:bold">gcs</span>: Glasgow Coma Score Total <span style='font-family:Verdana;font-size:75%;'>points</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAACgAAAANCAMAAADsQdzaAAAACVBMVEUAAADMzMz////1iUV5AAAAK0lEQVQokWNgJAYwMDAyMBEDGBiYhoTC4eFrkCoCCqFKoAjkKQwEoRiQEACOggNMVmIG8gAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable414135 {
+ .hmisctable678301 {
  border: none;
  font-size: 80%;
  }
- .hmisctable414135 td {
+ .hmisctable678301 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable414135 th {
+ .hmisctable678301 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable414135">
+ <table class="hmisctable678301">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20184</td><td>23</td><td>13</td><td>0.863</td><td>12.47</td><td>3.594</td><td> 4</td><td> 6</td><td>11</td><td>15</td><td>15</td><td>15</td><td>15</td></tr>
  </table>
@@ -935,22 +1007,22 @@ iVBORw0KGgoAAAANSUhEUgAAACgAAAANCAMAAADsQdzaAAAACVBMVEUAAADMzMz////1iUV5AAAAK0lE
  </pre>
  <hr class="thinhr"> <span style="font-weight:bold">cc</span>: Central Capillary Refille Time <span style='font-family:Verdana;font-size:75%;'>s</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAD0AAAANCAMAAAAtxpZ2AAAACVBMVEUAAADMzMz////1iUV5AAAAOklEQVQokdXRMQoAMAgEwT3//+ggFsEmxVlIth8EDwnkRgDh9rm2OUo9+rl/e6arTW1yerXA3eC5BjoXeQULuh8a6gAAAABJRU5ErkJggg==" alt="image" /></div> <style>
- .hmisctable814941 {
+ .hmisctable853661 {
  border: none;
  font-size: 80%;
  }
- .hmisctable814941 td {
+ .hmisctable853661 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable814941 th {
+ .hmisctable853661 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable814941">
+ <table class="hmisctable853661">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>19596</td><td>611</td><td>20</td><td>0.945</td><td>3.267</td><td>1.67</td><td>1</td><td>2</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
  </table>
@@ -1012,43 +1084,43 @@ bottom: -1ex;
 </style>
  <font color="MidnightBlue"><div align=center><span style="font-weight:bold">Characteristics of injury <br><br> 2  Variables   20207  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">injurytime</span>: Hours Since Injury <span style='font-family:Verdana;font-size:75%;'>hours</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAWklEQVQ4je3VOwoAIAxEwY33P7Qm+G/U7hVuIQophsCirEQyWpRKFCcq3/UWuAsHiyaKV8i2L9rGhosFc42qi0SbXKil7S4KzIu4uOKzrC31S38e+mNXY9czGQXhDQPyr+JzAAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable310096 {
+ .hmisctable538746 {
  border: none;
  font-size: 80%;
  }
- .hmisctable310096 td {
+ .hmisctable538746 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable310096 th {
+ .hmisctable538746 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable310096">
+ <table class="hmisctable538746">
  <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
  <tr><td>20196</td><td>11</td><td>93</td><td>0.972</td><td>2.844</td><td>2.35</td><td>0.5</td><td>1.0</td><td>1.0</td><td>2.0</td><td>4.0</td><td>6.0</td><td>7.0</td></tr>
  </table>
  <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0.10  0.15  0.20  0.25  0.30 ,  <font color="MidnightBlue">highest</font>: 22.00 45.00 48.00 72.00 96.00</span> <hr class="thinhr"> <span style="font-weight:bold">injurytype</span>: Injury type<div style='float: right; text-align: right;'><img src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lEQVQImWNgYIQBBgYmGCCKCeUyMIC0wk2Ai+JlMjCgMKEmMDAAADRjAKoEq8d0AAAAAElFTkSuQmCC" alt="image" /></div> <style>
- .hmisctable125387 {
+ .hmisctable860069 {
  border: none;
  font-size: 80%;
  }
- .hmisctable125387 td {
+ .hmisctable860069 td {
  text-align: center;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable125387 th {
+ .hmisctable860069 th {
  color: MidnightBlue;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: normal;
  }
  </style>
- <table class="hmisctable125387">
+ <table class="hmisctable860069">
  <tr><th>n</th><th>missing</th><th>distinct</th></tr>
  <tr><td>20207</td><td>0</td><td>3</td></tr>
  </table>
@@ -1077,6 +1149,7 @@ iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAMAAACn6Q83AAAACVBMVEUAAADMzMz////1iUV5AAAAJ0lE
 <p>There is evidence of digit preference. Explore further with targeted summaries. A more detailed univariate summaries for the variables of interest are also provided below.</p>
 <div id="age" class="section level3" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> Age</h3>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-4"></span>
 <img src="Crash2_univar_files/figure-html/unnamed-chunk-4-1.png" alt="Distribution of subject age [years]" width="768" />
 <p class="caption">
@@ -1087,6 +1160,7 @@ Figure 7.1: Distribution of subject age [years]
 </div>
 <div id="blood-pressure" class="section level3" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Blood pressure</h3>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-5"></span>
 <img src="Crash2_univar_files/figure-html/unnamed-chunk-5-1.png" alt="Distribution of SBP" width="768" />
 <p class="caption">
@@ -1096,6 +1170,7 @@ Figure 7.2: Distribution of SBP
 </div>
 <div id="respiratory-rate" class="section level3" number="7.3.3">
 <h3><span class="header-section-number">7.3.3</span> Respiratory rate</h3>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-6"></span>
 <img src="Crash2_univar_files/figure-html/unnamed-chunk-6-1.png" alt="Distribution of respiratory rate" width="768" />
 <p class="caption">
@@ -1105,6 +1180,7 @@ Figure 7.3: Distribution of respiratory rate
 </div>
 <div id="heart-rate" class="section level3" number="7.3.4">
 <h3><span class="header-section-number">7.3.4</span> Heart rate</h3>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-7"></span>
 <img src="Crash2_univar_files/figure-html/unnamed-chunk-7-1.png" alt="Distribution of heart rate" width="768" />
 <p class="caption">
@@ -1114,6 +1190,7 @@ Figure 7.4: Distribution of heart rate
 </div>
 <div id="central-capillary-refill-time" class="section level3" number="7.3.5">
 <h3><span class="header-section-number">7.3.5</span> Central capillary refill time</h3>
+<pre><code>## Warning: Removed 739 rows containing missing values (geom_point).</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-8"></span>
 <img src="Crash2_univar_files/figure-html/unnamed-chunk-8-1.png" alt="Distribution of Central capillary refill time" width="768" />
 <p class="caption">
@@ -1123,6 +1200,7 @@ Figure 7.5: Distribution of Central capillary refill time
 </div>
 <div id="hours-since-injury" class="section level3" number="7.3.6">
 <h3><span class="header-section-number">7.3.6</span> Hours since injury</h3>
+<pre><code>## Warning: Removed 28 rows containing missing values (geom_point).</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-9"></span>
 <img src="Crash2_univar_files/figure-html/unnamed-chunk-9-1.png" alt="Distribution of hours since injury" width="768" />
 <p class="caption">
@@ -1133,7 +1211,7 @@ Figure 7.6: Distribution of hours since injury
 </div>
 <div id="section-session-info-2" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> Section session info</h2>
-<pre><code>## R version 4.0.2 (2020-06-22)
+<pre><code>## R version 4.1.0 (2021-05-18)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 18363)
 ## 
@@ -1150,37 +1228,37 @@ Figure 7.6: Distribution of hours since injury
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] Hmisc_4.5-0     Formula_1.2-4   survival_3.1-12 lattice_0.20-41
-##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.5     purrr_0.3.4    
-##  [9] readr_1.4.0     tidyr_1.1.3     tibble_3.1.0    ggplot2_3.3.3  
-## [13] tidyverse_1.3.0 here_1.0.1     
+##  [1] Hmisc_4.5-0     Formula_1.2-4   survival_3.2-11 lattice_0.20-44
+##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.6     purrr_0.3.4    
+##  [9] readr_1.4.0     tidyr_1.1.3     tibble_3.1.2    ggplot2_3.3.3  
+## [13] tidyverse_1.3.1 here_1.0.1     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] httr_1.4.2          sass_0.3.1          jsonlite_1.7.2     
-##  [4] splines_4.0.2       modelr_0.1.8        bslib_0.2.4        
-##  [7] assertthat_0.2.1    highr_0.8           latticeExtra_0.6-29
-## [10] cellranger_1.1.0    yaml_2.2.1          pillar_1.5.1       
+##  [1] httr_1.4.2          sass_0.4.0          jsonlite_1.7.2     
+##  [4] splines_4.1.0       modelr_0.1.8        bslib_0.2.5.1      
+##  [7] assertthat_0.2.1    highr_0.9           latticeExtra_0.6-29
+## [10] cellranger_1.1.0    yaml_2.2.1          pillar_1.6.1       
 ## [13] backports_1.2.1     glue_1.4.2          digest_0.6.27      
-## [16] checkmate_2.0.0     RColorBrewer_1.1-2  rvest_0.3.6        
-## [19] colorspace_2.0-0    htmltools_0.5.1.1   Matrix_1.3-2       
-## [22] pkgconfig_2.0.3     broom_0.7.4         haven_2.3.1        
-## [25] bookdown_0.21       patchwork_1.1.1     scales_1.1.1       
-## [28] jpeg_0.1-8.1        htmlTable_2.1.0     farver_2.1.0       
-## [31] generics_0.1.0      ellipsis_0.3.1      withr_2.4.1        
-## [34] nnet_7.3-14         cli_2.3.1           magrittr_2.0.1     
+## [16] checkmate_2.0.0     RColorBrewer_1.1-2  rvest_1.0.0        
+## [19] colorspace_2.0-1    htmltools_0.5.1.1   Matrix_1.3-3       
+## [22] pkgconfig_2.0.3     broom_0.7.6         haven_2.4.1        
+## [25] bookdown_0.22       patchwork_1.1.1     scales_1.1.1       
+## [28] jpeg_0.1-8.1        htmlTable_2.2.1     farver_2.1.0       
+## [31] generics_0.1.0      ellipsis_0.3.2      withr_2.4.2        
+## [34] nnet_7.3-16         cli_2.5.0           magrittr_2.0.1     
 ## [37] crayon_1.4.1        readxl_1.3.1        evaluate_0.14      
 ## [40] fs_1.5.0            fansi_0.4.2         xml2_1.3.2         
-## [43] foreign_0.8-80      data.table_1.14.0   tools_4.0.2        
-## [46] hms_1.0.0           lifecycle_1.0.0     munsell_0.5.0      
-## [49] reprex_1.0.0        cluster_2.1.0       compiler_4.0.2     
-## [52] jquerylib_0.1.3     rlang_0.4.10        grid_4.0.2         
+## [43] foreign_0.8-81      data.table_1.14.0   tools_4.1.0        
+## [46] hms_1.1.0           lifecycle_1.0.0     munsell_0.5.0      
+## [49] reprex_2.0.0        cluster_2.1.2       compiler_4.1.0     
+## [52] jquerylib_0.1.4     rlang_0.4.11        grid_4.1.0         
 ## [55] rstudioapi_0.13     htmlwidgets_1.5.3   labeling_0.4.2     
-## [58] base64enc_0.1-3     rmarkdown_2.7       gtable_0.3.0       
+## [58] base64enc_0.1-3     rmarkdown_2.8       gtable_0.3.0       
 ## [61] DBI_1.1.1           R6_2.5.0            gridExtra_2.3      
-## [64] lubridate_1.7.9.2   knitr_1.31          utf8_1.1.4         
-## [67] rprojroot_2.0.2     stringi_1.5.3       Rcpp_1.0.6         
-## [70] vctrs_0.3.6         rpart_4.1-15        png_0.1-7          
-## [73] dbplyr_2.1.0        tidyselect_1.1.0    xfun_0.21</code></pre>
+## [64] lubridate_1.7.10    knitr_1.33          utf8_1.2.1         
+## [67] rprojroot_2.0.2     stringi_1.6.2       Rcpp_1.0.6         
+## [70] vctrs_0.3.8         rpart_4.1-15        png_0.1-7          
+## [73] dbplyr_2.1.1        tidyselect_1.1.1    xfun_0.23</code></pre>
 
 </div>
 </div>
@@ -1213,6 +1291,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

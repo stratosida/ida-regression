@@ -2,7 +2,7 @@
 title: "Regression without regrets"
 subtitle: "Workflow of initial data analyses"
 author: "M. Baillie, G. Heinze & M. Huebner"
-date: "2021-04-22"
+date: "2021-06-16"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:

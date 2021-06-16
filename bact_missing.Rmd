@@ -10,18 +10,7 @@ library(naniar) ## for missing data
 library(gt)
 library(kableExtra)
 library(DT)
-library(arsenal)
-#load(here::here("data", "a_nhanes.rda"))
-
-
-library(readr)
-bact <- read_csv("~/Documents/TG3/IDA_Regression/github_bacteremia/Bacteremia_public.csv")
-names(bact) <- make.names(casefold(names(bact)), allow_=FALSE)
-bact<-bact %>% rename(age = alter)
-bact<-bact %>% rename(sod = na.)
-#bact<-bact %>% rename(sodium = na.)
-
-vip<-c("age", "wbc", "bun", "krea", "plt", "neu")
+load(here::here("data", "bact_env_b.rda"))
 
 ```
 
@@ -31,11 +20,11 @@ vip<-c("age", "wbc", "bun", "krea", "plt", "neu")
 Number and percentage of missing. 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-bact %>%
-  select(-id) %>%
+b_bact %>%
+  select(-ID, -BC) %>%
   miss_var_summary() %>%
   gt::gt() %>%
-  gt::cols_label(
+    gt::cols_label(
     variable = md("**Variable**"),
     n_miss = md("**Missing (count)**"),
     pct_miss = md("**Missing (%)**")
@@ -44,114 +33,66 @@ bact %>%
     columns = vars(pct_miss),
     decimals = 2
   )
+
 ```
 
+
+Investigate for groups of variables:
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-bact %>%
-  select(-id) %>%
-  gg_miss_var(show_pct = TRUE)
-```
-
-## Variable summaries for complete vs incomplete cases
-
-Six  pivotal variables are age, WBC, BUN, KREA, PLT, NEU. The variable summaries of patient characteristics are compared between cases where these are complete to those where these are missing.
-
-```{r, results='asis', message =FALSE, warning =FALSE , echo=FALSE}
-
-vip<-c("age", "wbc", "bun", "krea", "plt", "neu")
-
-bact$missing<-"incomplete"
-idx<-complete.cases(bact[,vip])
-bact$missing[idx]<-"complete"
-
-
-bact_complete<-tableby(missing ~ ., data=bact[,-1], test=TRUE, numeric.stats=c("median","q1q3", "range"))
-
-# need results='asis' above for this to look good in the output
-summary(bact_complete, title = "Participant characteristics by missing status of six pivotal variables")
-
-tmp<-na.omit(bact)
-x<-round(100*nrow(tmp)/nrow(bact),1)
-
-sub<-na.omit(bact[,vip])
-xsub<-round(100*nrow(sub)/nrow(bact[,vip]),1)
+b_bact %>%
+  select() %>%
+  mutate(Any_Variable_missing = ifelse(apply(b_bact,1,any_miss),NA,1)) %>%
+  mutate(Any_Demographics_missing = ifelse(apply(b_bact[,demog_vars],1,any_miss),NA,1)) %>%
+  mutate(Any_VIP_missing = ifelse(apply(b_bact[,c(demog_vars,pivotal_vars, vip_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_Leuko_missing = ifelse(apply(b_bact[,c(leuko_related_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_Kidney_missing = ifelse(apply(b_bact[,c(kidney_related_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_Acute_missing = ifelse(apply(b_bact[,c(acute_related_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_remaining_missing = ifelse(apply(b_bact[,c(remaining_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_VIP_leuko_kidney_acute_missing =  ifelse(apply(b_bact[,c(demog_vars,pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars)],1,any_miss),NA,1)) %>%
+  miss_var_summary() %>%
+  gt::gt() %>%
+    gt::cols_label(
+    variable = md("**Variable**"),
+    n_miss = md("**Missing (count)**"),
+    pct_miss = md("**Missing (%)**")
+  ) %>%
+  gt::fmt_number(
+    columns = vars(pct_miss),
+    decimals = 2
+  )
 
 ```
 
-There are `r nrow(tmp)` (`r x` %) complete cases. The data set with the six pivotal variables age, WBC, BUN, KREA, PLT, NEU has `r nrow(sub)` (`r xsub` %) complete cases.
-
-## Missingness and the outcome variable
-
-```{r, results='asis', message =FALSE, warning =FALSE , echo=FALSE}
-
-table(bact$bloodculture, bact$missing)
-
-```
-
-## Missingness and distributions of other variables (this is just an example)
-
-```{r, results='asis', message =FALSE, warning =FALSE , echo=FALSE}
-library(ggplot2)
-ggplot(bact, 
-       aes(x = sod, 
-           y = hgb)) + 
-  geom_miss_point() + 
- # facet_wrap(~ozo$WindDirection)+ 
-  theme_bw() + theme(legend.title = element_blank()) 
-
-```
+From this table we learn that as long as we model with only VIPs or with leukocyte-related variables, we can expect less than 10% missing values and this may justify a complete-case analysis. Including also kidney- and acute phase related variables will raise the proportion of missing values to about 36% which leads to a significant drop in power. A multiple imputation may then recover a lot of the information and may in particular be beneficial to keep the power of the (otherwise very complete) VIPs.
 
 
 ## Missingness patterns over variables
 
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-library(VIM)
-vars<-colnames(bact[,-1])
-aggr(bact[,vars],numbers=TRUE)
-```
 
+First we create a dendogram that shows which variables tend to be missing together:
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-bact %>%
-  select(-id) %>%
-  naniar::vis_miss(sort_miss = TRUE, show_perc_col = TRUE) 
+s_bact <- b_bact[sample(1:nrow(b_bact), size=10000, repl=FALSE),]
+is_bact <- is.na(b_bact)*1
+perc_miss <- round(apply(is_bact, 2, mean)*100,0)
+colnames(is_bact)<-paste(colnames(is_bact),"(",perc_miss,")",sep="")
+hobj <- hclust(dist(t(is_bact)))
+plot(hobj, cex=0.5)
 ```
 
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-bact %>%
-  select(-id) %>%
-  gg_miss_case()
-```
+Furthermore, with variables missing in more than 10% of the cases, we create a heatmap that simultaneously shows the clusters of patients with missing values and the variables:
+
 
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
-bact %>%
-  select(age, wbc, bun, krea, plt, neu ) %>%
-  gg_miss_upset()
-
+heatmap(is_bact[,perc_miss>10])
+#  naniar::vis_miss(sort_miss = TRUE, cluster=TRUE,show_perc_col = FALSE) 
 ```
 
+In this heatmap, we see that CHOL and TRIG are always missing together (lowest hierarchy in dendogram), but there are no further such pairs among any other variables. There is also some evidence that when CHOL and TRIG are missing, also PAMY is missing, although this is not the case for a small proportion of patients. The big white space in the middle of the heatmap represents the approx. 30% of patients with no missing values in those variables.
 
 
-
-## (In)complete cases
-
-This section presents patients with a least one missing value. First we list out patients with at least one missing value in a filterable table. 
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-cc <-
-  bact %>%  
-  select(-id) %>% 
-  filter(!complete.cases(.))
-DT::datatable(cc)
-```
-
-Then we report the pattern of missing for this set of patients. 
-
-```{r, message =FALSE, warning =FALSE , echo=FALSE}
-cc %>% gg_miss_upset()
-```
 
 
 
