@@ -1,12 +1,13 @@
 # Univariate distribution checks
 
-This section reports a series of univariate summary checks of the CRASH-2 dataset.
+This section reports a series of univariate summary checks of the bacteremia dataset.
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 library(here)
 library(tidyverse)
 library(Hmisc)
 source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
+source(here("R", "ida_plot_univar_orig_vs_trans.R"))  ## function for side-by-side comparison of original vs. transformed scale, calls ida_plot_univar.R
 source(here("R", "ida_trans.R"))  ## function to determine transformation (log(x+c) or identity). 
 
 ## Load the dataset.
@@ -132,7 +133,7 @@ variables<- c("Alter", pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_v
 unique.variables <- unique(variables)
 #variables<- c("Alter", pivotal_vars, vip_vars)
 
-res<-sapply(unique.variables, function(X) ida_trans(b_bact[,X])$const)
+res<-sapply(unique.variables, function(X) ida_trans(b_bact[,X])$const) #takes long, calculate once, and save?
 
 res
 ```
@@ -186,6 +187,30 @@ for(j in 1:length(unique.variables)){
 ```{r}
 save(list=c("c_bact", "bact_variables", "sigma_values", "bact_transformed"), 
      file=here::here("data", "bact_env_c.rda"))
+```
+
+### Univariate distribution with variables using only the original variable and not the suggested transformations
+
+```{r}
+for(j in 1:length(unique.variables)){
+  print(ida_plot_univar(b_bact, unique.variables[j], sigma=res[j], n_bars=100, transform = FALSE))
+#  if(!is.na(res[j])){
+#    print(ida_plot_univar(b_bact, paste("t_",variables[j],sep="")))
+#  }
+}
+```
+
+### Comparison of univariate distributions with and without pseudo-log transformation
+
+The comparison is only shown for variables where a transformation is suggested.
+
+```{r, fig.width=12}
+for(j in 1:length(unique.variables)){
+#  print(ida_plot_univar_orig_vs_trans(b_bact, unique.variables[j], sigma=res[j], n_bars=100))
+ if(!is.na(res[j])){
+   print(ida_plot_univar_orig_vs_trans(b_bact, unique.variables[j], sigma=res[j], n_bars=100))
+ }
+}
 ```
 
 
