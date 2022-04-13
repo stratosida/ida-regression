@@ -189,7 +189,7 @@ save(list=c("c_bact", "bact_variables", "sigma_values", "bact_transformed"),
      file=here::here("data", "bact_env_c.rda"))
 ```
 
-### Univariate distribution with variables using only the original variable and not the suggested transformations
+### Univariate distribution with variables using only the original variable without the suggested transformations
 
 ```{r}
 for(j in 1:length(unique.variables)){
