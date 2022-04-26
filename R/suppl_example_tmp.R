@@ -76,7 +76,7 @@ plot_df <- cbind(
 
 p_original <- plot_df %>% 
   ggplot(aes(x = WBC, y = yhat, ymin = lwr, ymax = upr, color = model, fill = model)) +
-  geom_ribbon(alpha = .1, color = NA) +
+  geom_ribbon(alpha = .2, color = NA) +
   geom_line() +
   geom_rug(data = model_df_complete, aes(x = WBC), inherit.aes = FALSE) +
   labs(
@@ -113,6 +113,7 @@ p_original + (p_trans +
 
 
 # log reg with mfp using complete vs. part of data ----------------------------
+#'validity of predictions'
 
 fit_mfp_full <- mfp(BC ~ fp(t_WBC, df=2),
                     data = model_df_complete,
@@ -171,15 +172,27 @@ plot_df %>%
      xmax = max(model_df_part$t_WBC),
      ymin = -Inf, ymax = Inf, alpha = .1
   ) +
+  geom_ribbon(alpha = .2, color = NA) +
+  geom_line() +
+  geom_rug(data = model_df_complete, aes(x = t_WBC), inherit.aes = FALSE, color = gray(.5)) +
+  geom_rug(data = model_df_part, aes(x = t_WBC), inherit.aes = FALSE) +
+  # annotate(
+  #   'text',
+  #   label = 'data used for restricted model',
+  #   x = median(model_df_part$t_WBC),
+  #   y = Inf, vjust = .5, hjust = 1.1, angle = 90
+  # ) +
   annotate(
     'text',
     label = 'data used for restricted model',
-    x = median(model_df_part$t_WBC),
-    y = Inf, vjust = .5, hjust = 1.1, angle = 90
+    x = median(model_df_part$t_WBC)*1.1,
+    y = -6, vjust = 0, hjust = -0.02
   ) +
-  geom_ribbon(alpha = .2, color = NA) +
-  geom_line() +
-  geom_rug(data = model_df_complete, aes(x = t_WBC), inherit.aes = FALSE) +
+  annotate(
+    'segment',
+    x = median(model_df_part$t_WBC), xend = median(model_df_part$t_WBC)*1.1,
+    y = -Inf, yend = -6
+  ) +
   labs(
     y = 'log odds',
     color = 'model fitted with',
@@ -192,47 +205,49 @@ plot_df %>%
 # end log reg with mfp using complete vs. part of data ------------------------
 
 
+# multiple imputation of artificial missingness -------------------------------
 
-
-
-
-# complete case log reg -------------------------------------------------------
-
-# logistic regression model without fractional polynomials, complete cases
-fit_linear_complete <- glm(BC ~ Alter + t_WBC_noNEU + # use t_WBC or t_WBC_noNEU?
-                                t_BUN + t_KREA + 
-                                t_NEU + PLT,
-                           data = model_df_complete,
-                          family = binomial)
-
-# logistic regression model with fractional polynomials of order 1, complete cases
 fp_df <- 2
 
 fit_mfp_complete <- mfp(BC ~ fp(Alter, df=fp_df) + fp(t_WBC_noNEU, df=fp_df) + # use t_WBC or t_WBC_noNEU?
-                             fp(t_BUN, df=fp_df) + fp(t_KREA, df=fp_df) + 
-                             fp(t_NEU, df=fp_df) + fp(PLT, df=fp_df),
+                          fp(t_BUN, df=fp_df) + fp(t_KREA, df=fp_df) + 
+                          fp(t_NEU, df=fp_df) + fp(PLT, df=fp_df),
                         data = model_df_complete,
                         family = binomial)
 
-summary(fit_linear_complete)
 summary(fit_mfp_complete)
-
-# end complete case log reg ---------------------------------------------------
-
-
-# multiple imputation of artificial missingness -------------------------------
 
 # t_NEU and t_WBC are both highly significant (p<2e-16), create artificial NAs
 # for 50% of t_NEU (or other variable, since correlation of t_NEU and t_WBC is very high?)
 
 model_df_missings <- model_df_complete %>%
   mutate(
-    t_NEU = ifelse(
-      runif(dim(model_df_complete)[1]) > .5,  #~50%/50% TURE/FALSE
-      t_NEU,
+    t_WBC = ifelse(
+      runif(dim(model_df_complete)[1]) < .5,  #~50%/50% TURE/FALSE
+      t_WBC,
       NA
     )
   )
+
+md.pattern(model_df_missings)
+
+imp_data <- mice(model_df_missings, m=5, maxit = 50, method='pmm')
+
+imp_fits <- with(imp_data,
+     mfp(BC ~ fp(Alter, df=fp_df) + fp(t_WBC, df=fp_df) + # use t_WBC or t_WBC_noNEU?
+       fp(t_BUN, df=fp_df) + fp(t_KREA, df=fp_df) + 
+       fp(t_NEU, df=fp_df) + fp(PLT, df=fp_df),
+     family = binomial)
+)
+
+# imp_fits <- with(imp_data,
+#                  glm(BC ~ Alter + t_WBC + # use t_WBC or t_WBC_noNEU?
+#                        t_BUN + t_KREA + 
+#                        t_NEU + PLT,
+#                      family = binomial)
+# )
+
+summary(pool(imp_fits))
 
 # end multiple imputation of artificial missingness ---------------------------
 
