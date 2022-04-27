@@ -220,6 +220,7 @@ summary(fit_mfp_complete)
 # t_NEU and t_WBC are both highly significant (p<2e-16), create artificial NAs
 # for 50% of t_NEU (or other variable, since correlation of t_NEU and t_WBC is very high?)
 
+# introduce missingness
 model_df_missings <- model_df_complete %>%
   mutate(
     t_WBC = ifelse(
@@ -231,22 +232,42 @@ model_df_missings <- model_df_complete %>%
 
 md.pattern(model_df_missings)
 
-imp_data <- mice(model_df_missings, m=5, maxit = 50, method='pmm')
+# impute
+imp_data <- mice(model_df_missings %>%
+                   select(-t_WBC_noNEU, -t_NEU), 
+                 m=5, maxit = 50, method='pmm')
 
+# fit imputed data
 imp_fits <- with(imp_data,
      mfp(BC ~ fp(Alter, df=fp_df) + fp(t_WBC, df=fp_df) + # use t_WBC or t_WBC_noNEU?
-       fp(t_BUN, df=fp_df) + fp(t_KREA, df=fp_df) + 
-       fp(t_NEU, df=fp_df) + fp(PLT, df=fp_df),
+       fp(t_BUN, df=fp_df) + fp(t_KREA, df=fp_df) + fp(PLT, df=fp_df),
      family = binomial)
 )
 
-# imp_fits <- with(imp_data,
-#                  glm(BC ~ Alter + t_WBC + # use t_WBC or t_WBC_noNEU?
-#                        t_BUN + t_KREA + 
-#                        t_NEU + PLT,
-#                      family = binomial)
-# )
+# define tidy function for mfp-models
+tidy.mfp <- function(x, conf.int = FALSE, conf.level = 0.95, ...) {
+  
+  #warn_on_subclass(x, "tidy")
+  
+  ret <- as_tibble(summary(x)$coefficients, rownames = "term")
+  colnames(ret) <- c("term", "estimate", "std.error", "statistic", "p.value")
+  
+  # summary(x)$coefficients misses rank deficient rows (i.e. coefs that
+  # summary.lm() sets to NA), catch them here and add them back
+  coefs <- tibble::enframe(stats::coef(x), name = "term", value = "estimate")
+  coefs$term <- ret$term
+  ret <- left_join(coefs, ret, by = c("term", "estimate"))
+  
+  #if (conf.int) {
+  if (FALSE) {
+    ci <- broom_confint_terms(x, level = conf.level)
+    ret <- dplyr::left_join(ret, ci, by = "term")
+  }
+  
+  ret
+}
 
+# pooled results
 summary(pool(imp_fits))
 
 # end multiple imputation of artificial missingness ---------------------------
