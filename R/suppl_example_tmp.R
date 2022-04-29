@@ -141,22 +141,16 @@ for(i in 1:length(key_predictors_trans)){
       scale_color_ptol() +
       scale_fill_ptol() 
     
-    p_original + (p_trans +
+    p <- p_original + (p_trans +
                     theme(
                       axis.title.y = element_text(color = NA)
                     )) +
       plot_layout(guides = 'collect')
     
-    print(p_original)
+    print(p)
   }
   
 }
-
-
-
-
-
-ggsave()
 
 # not sure if WBC is the best choice to show this, try others?
 
@@ -166,94 +160,97 @@ ggsave()
 # log reg with mfp using complete vs. part of data ----------------------------
 #'validity of predictions'
 
-fit_mfp_full <- mfp(BC ~ fp(t_WBC, df=2),
-                    data = model_df_complete,
-                    family = binomial)
-
 m_pct <- .5
 
-model_df_part <- model_df_complete %>%
-                      filter(
-                        t_WBC > quantile(t_WBC, .5-m_pct/2),
-                        t_WBC < quantile(t_WBC, .5+m_pct/2)
-                      )
+for(i in 1:length(key_predictors_trans)){
+  
+  model_df_part <- model_df_complete[
+      (model_df_complete[,key_predictors_trans[i]] > quantile(model_df_complete[,key_predictors_trans[i]], .5-m_pct/2)) &
+      (model_df_complete[,key_predictors_trans[i]] < quantile(model_df_complete[,key_predictors_trans[i]], .5+m_pct/2)),]
+  
+  fit_mfp_part <- glm(as.formula(global_formula_fp), #use fp trafos from global model
+                      data = model_df_part,
+                      family = binomial) 
+  
+  summary(fit_mfp_complete)
+  summary(fit_mfp_part)
 
-fit_mfp_part <- mfp(BC ~ fp(t_WBC, df=2),
-                    data = model_df_part,
-                    family = binomial) 
-
-summary(fit_mfp_full)
-summary(fit_mfp_part)
-
-new_data <- tibble(
-  WBC = 0:150) %>%
-  mutate(
-    t_WBC = pseudo_log(WBC, sigma = sigma_values['WBC'])
-  )
-
-pred_full <- predict(fit_mfp_full, newdata = new_data, type = 'link', se.fit = TRUE)
-pred_part <- predict(fit_mfp_part, newdata = new_data, type = 'link', se.fit = TRUE)
-
-plot_df <- cbind(
-  new_data,
-  yhat_full = pred_full$fit,
-  lwr_full = pred_full$fit - 1.96*pred_full$se.fit,
-  upr_full = pred_full$fit + 1.96*pred_full$se.fit,
-  yhat_part = pred_part$fit,
-  lwr_part = pred_part$fit - 1.96*pred_part$se.fit,
-  upr_part = pred_part$fit + 1.96*pred_part$se.fit
-) %>%
-  pivot_longer(
-    cols = c(-WBC, -t_WBC)
-  ) %>%
-  separate(name, c('var', 'model')) %>%
-  pivot_wider(
-    id_cols = c(WBC, t_WBC, model), names_from = 'var', values_from = 'value'
-  )
-
-plot_df %>%
-  mutate(
-    model = case_when(
-      model == 'full' ~ 'complete data',
-      model == 'part' ~ paste0('median +/- ', m_pct*100/2, '%')
+  new_data <- bind_cols(
+    model_df_medians,
+    x_trans = model_df_complete[,key_predictors_trans[i]]
+    ) %>%
+    select(-key_predictors_trans[i]) %>%
+    as_tibble() %>%
+    distinct()
+  
+  pred_complete <- predict(fit_mfp_complete, 
+                           newdata = new_data %>%
+                             rename(!!key_predictors_trans[i] := x_trans),  # is needed so predict finds the variables
+                           type = 'link', se.fit = TRUE)
+  pred_part <- predict(fit_mfp_part, 
+                       newdata = new_data %>%
+                         rename(!!key_predictors_trans[i] := x_trans), 
+                       type = 'link', se.fit = TRUE)
+  plot_df <- cbind(
+    new_data,
+    yhat_full = pred_complete$fit,
+    yhat.lwr_full = pred_complete$fit - 1.96*pred_complete$se.fit,
+    yhat.upr_full = pred_complete$fit + 1.96*pred_complete$se.fit,
+    yhat_part = pred_part$fit,
+    yhat.lwr_part = pred_part$fit - 1.96*pred_part$se.fit,
+    yhat.upr_part = pred_part$fit + 1.96*pred_part$se.fit
+    ) %>%
+    as_tibble() %>%
+    pivot_longer(
+      cols = contains('yhat')
+    ) %>%
+    separate(name, c('var', 'model'), sep = '_') %>%
+    pivot_wider(
+      names_from = 'var', values_from = 'value'
     )
-  ) %>%
-  ggplot(aes(x = t_WBC, y = yhat, ymin = lwr, ymax = upr, color = model, fill = model)) +
-  annotate(
-    'rect', 
-     xmin = min(model_df_part$t_WBC), 
-     xmax = max(model_df_part$t_WBC),
-     ymin = -Inf, ymax = Inf, alpha = .1
-  ) +
-  geom_ribbon(alpha = .2, color = NA) +
-  geom_line() +
-  geom_rug(data = model_df_complete, aes(x = t_WBC), inherit.aes = FALSE, color = gray(.5)) +
-  geom_rug(data = model_df_part, aes(x = t_WBC), inherit.aes = FALSE) +
-  # annotate(
-  #   'text',
-  #   label = 'data used for restricted model',
-  #   x = median(model_df_part$t_WBC),
-  #   y = Inf, vjust = .5, hjust = 1.1, angle = 90
-  # ) +
-  annotate(
-    'text',
-    label = 'data used for restricted model',
-    x = median(model_df_part$t_WBC)*1.1,
-    y = -6, vjust = 0, hjust = -0.02
-  ) +
-  annotate(
-    'segment',
-    x = median(model_df_part$t_WBC), xend = median(model_df_part$t_WBC)*1.1,
-    y = -Inf, yend = -6
-  ) +
-  labs(
-    y = 'log odds',
-    color = 'model fitted with',
-    fill = 'model fitted with'
-  ) +
-  theme_minimal() +
-  scale_color_ptol() +
-  scale_fill_ptol() 
+  
+  p <- plot_df %>%
+    mutate(
+      model = case_when(
+        model == 'full' ~ 'complete data',
+        model == 'part' ~ paste0('median +/- ', m_pct*100/2, '%')
+      )
+    ) %>%
+    ggplot(aes(x = x_trans, y = yhat, ymin = yhat.lwr, ymax = yhat.upr, color = model, fill = model)) +
+    annotate(
+      'rect', 
+       xmin = min(model_df_part[,key_predictors_trans[i]]), 
+       xmax = max(model_df_part[,key_predictors_trans[i]]),
+       ymin = -Inf, ymax = Inf, alpha = .1
+    ) +
+    geom_ribbon(alpha = .2, color = NA) +
+    geom_line() +
+    geom_rug(data = new_data, aes(x = x_trans), inherit.aes = FALSE, color = gray(.5)) +
+    geom_rug(data = model_df_part, aes_string(x = key_predictors_trans[i]), inherit.aes = FALSE) +
+    annotate(
+      'text',
+      label = 'data used for restricted model',
+      x = median(model_df_part[,key_predictors_trans[i]])*1.1,
+      y = -6, vjust = 0, hjust = -0.02
+    ) +
+    annotate(
+      'segment',
+      x = median(model_df_part[,key_predictors_trans[i]]), xend = median(model_df_part[,key_predictors_trans[i]])*1.1,
+      y = -Inf, yend = -6
+    ) +
+    labs(
+      y = 'log odds',
+      color = 'model fitted with',
+      fill = 'model fitted with',
+      x = key_predictors_trans[i]
+    ) +
+    theme_minimal() +
+    scale_color_ptol() +
+    scale_fill_ptol() 
+  
+  print(p)
+
+}
 
 # end log reg with mfp using complete vs. part of data ------------------------
 
