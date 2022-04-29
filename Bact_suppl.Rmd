@@ -1,24 +1,25 @@
-# script for supplement, turn into Rmarkdown file later
+# Supplementary Example
 
-# libs & data -----------------------------------------------------------------
-
+```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
 library(here)
 library(tidyverse)
 library(Hmisc)
 library(ggplot2)
 library(mfp)
-library(effects)
 library(mice)
 library(patchwork)
 library(ggthemes)
-library(stats)
-library(gtsummary)
+library(gt)
 
 ## Read data 
 load(here::here("data", "bact_env_c.rda"))
 source(here::here("R", "ida_trans.R"))
 source(here::here("R", "tidy_mfp.R"))
 
+```
+
+```{r}
+# define key predictors without pseudo-log trafo ('orig') and transformed ('trans'), replace WBC with WBC_noNEU
 key_predictors_orig  <- bact_variables$vip_vars %>%
   str_replace('WBC', 'WBC_noNEU')
 key_predictors_trans <- bact_transformed$vip_vars %>%
@@ -27,19 +28,28 @@ key_predictors_trans <- bact_transformed$vip_vars %>%
 # include only complete cases
 model_df_complete <- c_bact[c('BC', unique(c(bact_variables$vip_vars, bact_transformed$vip_vars)))] %>%
   mutate(
-    WBC_noNEU = WBC - NEU,
-    t_WBC_noNEU = pseudo_log(WBC_noNEU, ida_trans(model_df_complete$WBC_noNEU)$const) 
+    WBC_noNEU = WBC - NEU
   ) %>%
   na.omit
 
-#fraction of cases used in complete case analysis
-dim(model_df_complete)[1] / dim(c_bact)[1]
+model_df_complete <- model_df_complete %>%
+  mutate(
+    t_WBC_noNEU = pseudo_log(WBC_noNEU, ida_trans(model_df_complete$WBC_noNEU)$const) 
+  )
 
-# end libs & data -------------------------------------------------------------
+pct_complete <- dim(model_df_complete)[1] / dim(c_bact)[1] * 100
+```
 
 
-# global model ----------------------------------------------------------------
-# fit full model with complete dataset, use these fp-transformations for all other analyses
+## Overview
+
+In the following examples we use the Bacteremia data with complete observations regarding the key predictors `r paste(key_predictors_orig, collapse = ', ')`, which represent `r round(pct_complete, 1)`% of the whole dataset. We will fit a global logistic regression model with the outcome 'BC' and the key predictors as explanatory variables. All key predictors will be transformed by fractional polynomials of order 1 (df = 2). If not indicated otherwise, we will use the fp-transformations of the key predictors determined in global model in all consecutive models.
+
+## Global Model
+
+Fit mfp model to complete data, save fp-trafos in formula.
+
+```{r global model, message = FALSE, warning = FALSE}
 
 global_formula <- paste0('BC ~ ', paste(paste0(paste0('fp(', key_predictors_trans), ',df=2)'), collapse = ' + '))
 
@@ -47,24 +57,28 @@ fit_mfp_complete <- mfp(as.formula(global_formula),
                         data = model_df_complete,
                         family = binomial)
 
-summary(fit_mfp_complete)
+tidy(fit_mfp_complete) %>% gt
 
 # save global formula with fp-trafos
 global_formula_fp <- paste('BC ~ ', paste0(tidy(fit_mfp_complete)$term[-1], collapse = ' + '))
 
-# end global model ------------------------------------------------------------
+```
 
+## Transformation of Variables
 
-# log reg with mfp using original and transformed variable --------------------
-# 'Transformation of Variables'
+Comparison of models using original vs. pseudo-log transformed covariates. Effect are shown in terms of log odds and on the original and the transformed scale.
 
+```{r trafo of variables, message = FALSE, warning = FALSE, fig.width=12}
+
+# fit the complete mfp model using only original, non-transformed variables
 fit_mfp_complete_notrans <- mfp(as.formula(global_formula %>% str_replace_all('t\\_', '')),
                      data = model_df_complete,
                      family = binomial)
 
-tidy(fit_mfp_complete)
-tidy(fit_mfp_complete_notrans)
+tidy(fit_mfp_complete) %>% gt 
+tidy(fit_mfp_complete_notrans) %>% gt
 
+# medians of all key predicors, selcted variables will be adjusted to these medians in effect plots
 model_df_medians <- model_df_complete[,unique(c(key_predictors_orig, key_predictors_trans))] %>%
   summarise_all(median)
 
@@ -146,17 +160,21 @@ for(i in 1:length(key_predictors_trans)){
                     theme(
                       axis.title.y = element_text(color = NA)
                     )) +
-      plot_layout(guides = 'collect')
+      plot_layout(guides = 'collect') +
+      plot_annotation(caption = 'adjusted to medians of all other covariates')
     
     print(p)
   }
   
 }
-# end log reg with mfb using original and transformed variable ----------------
 
+```
 
-# log reg with mfp using complete vs. part of data ----------------------------
-#'validity of predictions'
+## Validity of Predictions
+
+Comparison of support vs. extrapolations. For each key predictor we create a dataset which includes the median +/- 25% of the complete data and compare the fitted effects of the full vs. the reduced model on the range of the complete data. Note that in the reduced models we use the same fp-transformations as in the complete model.
+
+```{r prediction validity, message = FALSE, warning = FALSE, fig.width=9}
 
 m_pct <- .5
 
@@ -250,13 +268,21 @@ for(i in 1:length(key_predictors_trans)){
 
 }
 
-# end log reg with mfp using complete vs. part of data ------------------------
+```
 
+## Multiple Imputation
 
-# multiple imputation of artificial missingness -------------------------------
+To show the effect of multiple imputation if the number of missing values is high, we construct a dataset with 50% missings in one variable. First, recall the output of the complete model, relying on the Bacteremia data with complete cases regarding the key predictors.
 
-tidy(fit_mfp_complete)
+```{r, message = FALSE, warning = FALSE}
 
+tidy(fit_mfp_complete) %>% gt
+
+```
+
+Creatinine ('KREA') is significant at a level that might not survive if a substantial amount of missing creatinine values. We thus create a dataset were we artificially introduce 50% missing creatinine value, missing completely at random.
+
+```{r create missing crea, message = FALSE, warning = FALSE, fig.width = 10, fig.height=6, fig.width=12}
 # create 50% missings for t_KREA
 model_df_missings <- model_df_complete %>%
   mutate(
@@ -268,10 +294,21 @@ model_df_missings <- model_df_complete %>%
   )
 
 md.pattern(model_df_missings)
+```
+
+Next we fit a 'complete case' model in the case of missing creatinine data, using again the fp-transformations from the global model.
+
+```{r, message = FALSE, warning = FALSE}
 
 fit_mfp_missing <- glm(as.formula(global_formula_fp), #use same fp-trafos as in global model
                        data = model_df_missings,
                        family = binomial)
+
+```
+
+Now we impute the missing creatinine data using MICE with 50 imputations, fit the model using the fp-transformations from the global model and pool the results.
+
+```{r multiple imputation, message = FALSE, warning = FALSE, results='hide'}
 
 # impute
 imp_data <- mice(model_df_missings %>%
@@ -286,6 +323,12 @@ imp_fits <- with(imp_data,
 
 # pooled results
 fit_pooled <- pool(imp_fits)
+
+```
+
+We now can compare the outputs of the complete model, the complete model with missing data (i.e. only half of the original complete data is used), and the imputed model. (in table: complete / complete, missing / imputated; all numbers are rounded to 3 decimal points)
+
+```{r imputation comparison, message = FALSE, warning = FALSE}
 
 bind_rows(
   tidy(fit_mfp_complete)  %>% mutate(model = 'global'),
@@ -306,6 +349,7 @@ bind_rows(
   pivot_wider(
     names_from = name,
     values_from = combined
-  )
+  ) %>% gt
 
-# end multiple imputation of artificial missingness ---------------------------
+
+```

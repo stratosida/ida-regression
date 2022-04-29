@@ -25,6 +25,7 @@ rmd_files: [
   "Bact_SAP.Rmd",
   "bact_missing.Rmd",
   "Bact_univar.Rmd",
-  "Bact_multivar.Rmd"
+  "Bact_multivar.Rmd",
+  "Bact_suppl.Rmd"
   
 ]
