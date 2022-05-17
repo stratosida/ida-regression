@@ -301,160 +301,72 @@ Next we compare the global model to a model were for an important variable, in o
 
 m_pct <- .5
 
-i <- 2 #selects 'Age' in key_predictors_trans
-  
-# model_df_part <- model_df_complete[
-#     (model_df_complete[,key_predictors_trans[i]] > quantile(model_df_complete[,key_predictors_trans[i]], .5-m_pct/2)) &
-#     (model_df_complete[,key_predictors_trans[i]] < quantile(model_df_complete[,key_predictors_trans[i]], .5+m_pct/2)),]
-#
-# fit_mfp_part <- glm(as.formula(global_formula_fp), #use fp trafos from global model
-#                     data = model_df_part,
-#                     family = binomial) 
-# 
-# tidy(fit_mfp_part) %>%
-#   gt_model_table('restricted model')
+sel_central <- (model_df_complete$Alter > quantile(model_df_complete$Alter, 0.5-m_pct/2)) & 
+  (model_df_complete$Alter < quantile(model_df_complete$Alter, 0.5+m_pct/2)) #needed later
 
-new_data_complete <- bind_cols(
-  model_df_medians,
-  x_trans = model_df_complete[,key_predictors_trans[i]]
-  ) %>%
-  select(-key_predictors_trans[i]) %>%
-  as_tibble()
-
-new_data_central_50 <- new_data_complete %>% 
-  filter(x_trans %>% 
-           between(
-             quantile(x_trans, .5-m_pct/2),
-             quantile(x_trans, .5+m_pct/2))
-  )
-
-set.seed(1)
-sel_50_pct <- as.logical(round(runif(dim(new_data_complete)[1]))) # needed later
-new_data_sample_50 <- new_data_complete[sel_50_pct,]
-
+set.seed(2)
+sel_sample <- as.logical(round(runif(dim(model_df_complete)[1]))) # needed later
 
 pred_complete <- predict(fit_mfp_complete, 
-                         newdata = new_data_complete %>%
-                           rename(!!key_predictors_trans[i] := x_trans),  # is needed so predict finds the variables
-                         type = 'link', se.fit = TRUE)
+                         newdata = model_df_complete,
+                         type = 'response')
+y_complete <- fit_mfp_complete$y
 
-pred_central_50 <- predict(fit_mfp_complete, 
-                         newdata = new_data_central_50 %>%
-                           rename(!!key_predictors_trans[i] := x_trans),  # is needed so predict finds the variables
-                         type = 'link', se.fit = TRUE)
+pred_central <- predict(fit_mfp_complete, 
+                         newdata = model_df_complete[sel_central,],
+                         type = 'response')
+y_central <- fit_mfp_complete$y[sel_central]
 
-pred_sample_50 <- predict(fit_mfp_complete, 
-                         newdata = new_data_sample_50 %>%
-                           rename(!!key_predictors_trans[i] := x_trans),  # is needed so predict finds the variables
-                         type = 'link', se.fit = TRUE)
-
-plot_df <- bind_rows(
-  bind_cols(
-    new_data_complete,
-    model = 'complete',
-    yhat = pred_complete$fit,
-    yhat.lwr = pred_complete$fit - 1.96*pred_complete$se.fit,
-    yhat.upr = pred_complete$fit + 1.96*pred_complete$se.fit
-  ),
-  bind_cols(
-    new_data_central_50,
-    model = 'central 50%',
-    yhat = pred_central_50$fit,
-    yhat.lwr = pred_central_50$fit - 1.96*pred_central_50$se.fit,
-    yhat.upr = pred_central_50$fit + 1.96*pred_central_50$se.fit
-  ),
-  bind_cols(
-    new_data_sample_50,
-    model = 'sampled 50%',
-    yhat = pred_sample_50$fit,
-    yhat.lwr = pred_sample_50$fit - 1.96*pred_sample_50$se.fit,
-    yhat.upr = pred_sample_50$fit + 1.96*pred_sample_50$se.fit
-  ),
-)
-
-# p <- plot_df %>%
-#   ggplot(aes(x = x_trans, y = yhat, ymin = yhat.lwr, ymax = yhat.upr, color = model, fill = model)) +
-#   annotate(
-#     'rect', 
-#      xmin = min(model_df_part[,key_predictors_trans[i]]), 
-#      xmax = max(model_df_part[,key_predictors_trans[i]]),
-#      ymin = -Inf, ymax = Inf, alpha = .1
-#   ) +
-#   geom_ribbon(alpha = .2, color = NA) +
-#   geom_line() +
-  #geom_rug(data = new_data, aes(x = x_trans), inherit.aes = FALSE, color = gray(.5)) +
-  #geom_rug(data = model_df_part, aes_string(x = key_predictors_trans[i]), inherit.aes = FALSE) +
-  # annotate(
-  #   'text',
-  #   label = 'data used for restricted model',
-  #   x = median(model_df_part[,key_predictors_trans[i]])*1.1,
-  #   y = -3.9, vjust = 0, hjust = -0.02
-  # ) +
-  # annotate(
-  #   'segment',
-  #   x = median(model_df_part[,key_predictors_trans[i]]), xend = median(model_df_part[,key_predictors_trans[i]])*1.1,
-  #   y = -Inf, yend = -3.9
-  # ) +
-  # labs(
-  #   y = 'log odds',
-  #   color = 'model fitted with',
-  #   fill = 'model fitted with',
-  #   x = key_predictors_trans[i]
-  # ) +
-  # theme_minimal() +
-  # scale_color_ptol() +
-  # scale_fill_ptol() +
-  # theme(legend.position = 'bottom')
+pred_sample <- predict(fit_mfp_complete, 
+                         newdata = model_df_complete[sel_sample,],
+                         type = 'response')
+y_sample <- fit_mfp_complete$y[sel_sample]
 
 #Mc Fadden's R²
 r_squared_mcfadden <- with(summary(fit_mfp_complete), 1 - deviance/null.deviance)
 
-#AUC
-AUC_complete = auc(fit_mfp_complete$y, predict(fit_mfp_complete, type = 'response'))
+r_squared_lave <- function(y, prediction){
+  n <- length(y)
+  1-(((1/n)*sum((y-prediction)^2))/((1/n)*sum((y-mean(y))^2)))
+}
 
-AUC_central50 = auc(
-  fit_mfp_complete$y[fit_mfp_complete$X[,'Alter'] %>% between(
-    quantile(fit_mfp_complete$X[,'Alter'], .25), quantile(fit_mfp_complete$X[,'Alter'], .75))],
-  predict(fit_mfp_complete, new_data_central_50 %>% rename(Alter = x_trans), type = 'response')
-  )
 
-AUC_sample50 = auc(
-  fit_mfp_complete$y[sel_50_pct], 
-  predict(fit_mfp_complete, new_data_sample_50  %>% rename(Alter = x_trans), type = 'response'))
+
 
 tribble(
-  ~data, ~AUC,
-  'complete', AUC_complete %>% as.numeric,
-  'central 50%', AUC_central50 %>% as.numeric,
-  'sample 50%', AUC_sample50 %>% as.numeric
+  ~data, ~AUC, ~`Lave's R squared`,
+  'complete', auc(y_complete, pred_complete) %>% as.numeric(), r_squared_lave(y_complete, pred_complete),
+  'central 50%', auc(y_central, pred_central) %>% as.numeric(), r_squared_lave(y_central, pred_central),
+  '50% sample', auc(y_sample, pred_sample) %>% as.numeric(), r_squared_lave(y_sample, pred_sample),
   ) %>%
   gt() %>%
-  fmt_number(2, decimals = 3)
+  fmt_number(2, decimals = 3) %>%
+  fmt_number(3, decimals = 5)
 
 
 bind_rows(
   tibble(
-    BC = fit_mfp_complete$y,
-    prediction = predict(fit_mfp_complete, type = 'response'),
+    BC = y_complete,
+    prediction = pred_complete,
     model = 'complete'
   ),
   tibble(
-    BC = fit_mfp_complete$y[fit_mfp_complete$X[,'Alter'] %>% between(
-    quantile(fit_mfp_complete$X[,'Alter'], .25), quantile(fit_mfp_complete$X[,'Alter'], .75))],
-    prediction = predict(fit_mfp_complete, new_data_central_50 %>% rename(Alter = x_trans), type = 'response'),
+    BC = y_central,
+    prediction = pred_central,
     model = 'central 50%'
   ),
   tibble(
-    BC = fit_mfp_complete$y[sel_50_pct],
-    prediction = predict(fit_mfp_complete, new_data_sample_50  %>% rename(Alter = x_trans), type = 'response'),
-    model = 'sample 50%'
+    BC = y_sample,
+    prediction = pred_sample,
+    model = '50% sample'
   ),
   ) %>%
-  mutate(model = factor(model, levels = c('complete', 'central 50%', 'sample 50%'))) %>%
-  ggplot(aes(x = BC, y = prediction, group = BC)) +
+  mutate(model = factor(model, levels = c('complete', 'central 50%', '50% sample'))) %>%
+  ggplot(aes(x = factor(BC), y = prediction, group = BC)) +
   geom_boxplot() + 
   facet_grid(~model) +
-  theme_minimal()
+  theme_minimal() +
+  labs(x = 'BC')
 
 ```
 
@@ -596,9 +508,12 @@ bind_rows(
   gt %>%
   fmt_number(estimate, decimals = 2)
 
+
+fit_wbc_orig$coefficients[2] %>% round(2)
+
 ```
 
-The estimates $-0.56$ and $-2.92$ denote the change in log odds for the outcome when the 'term' variable changes by 1 unit, but cannot be compared directly. A $1$ unit change is only a small step on the original scale, where WBC_noNEU covers values from `r range(model_df_complete$WBC_noNEU)[1]` up to `r range(model_df_complete$WBC_noNEU)[2]`. In comparison, t_WBC_noNEU lies between `r round(range(model_df_complete$t_WBC_noNEU)[1],2)` up to `r round(range(model_df_complete$t_WBC_noNEU)[2],2)`, so change of $1$ unit cover almost half the range of the variable. 
+The estimates `r fit_wbc_orig$coefficients[2] %>% round(2)` and `r fit_wbc_trans$coefficients[2] %>% round(2)` denote the change in log odds for the outcome when the 'term' variable changes by 1 unit, but cannot be compared directly. A $1$ unit change is only a small step on the original scale, where WBC_noNEU covers values from `r range(model_df_complete$WBC_noNEU)[1]` up to `r range(model_df_complete$WBC_noNEU)[2]`. In comparison, t_WBC_noNEU lies between `r round(range(model_df_complete$t_WBC_noNEU)[1],2)` up to `r round(range(model_df_complete$t_WBC_noNEU)[2],2)`, so change of $1$ unit cover almost half the range of the variable. 
 
 ## Example 5: Plot of functional form should be resticted to areas with high density
 
