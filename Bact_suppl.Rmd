@@ -50,6 +50,13 @@ gt_model_table <- function(data, title = NA){
 
 ```
 
+
+## Overview
+
+In the following examples we use the Bacteremia data with complete observations regarding the key predictors `r paste(key_predictors_orig, collapse = ', ')`, which represent `r round(pct_complete, 1)`% of the whole dataset. We will fit a global logistic regression model with the outcome 'BC' and the key predictors as covariates. We will use pseudo-log transformations as suggested in the IDA. Within the model, all key predictors will be transformed by fractional polynomials of order 1 (df = 2).
+
+The aim of the examples is to showcase how decisions derived from IDA influence the results of the fitted model.
+
 ```{r}
 # define key predictors without pseudo-log trafo ('orig') and transformed ('trans'), replace WBC with WBC_noNEU
 key_predictors_orig  <- bact_variables$vip_vars %>%
@@ -72,15 +79,9 @@ model_df_complete <- model_df_complete %>%
 pct_complete <- dim(model_df_complete)[1] / dim(c_bact)[1] * 100
 ```
 
-## Overview
-
-In the following examples we use the Bacteremia data with complete observations regarding the key predictors `r paste(key_predictors_orig, collapse = ', ')`, which represent `r round(pct_complete, 1)`% of the whole dataset. We will fit a global logistic regression model with the outcome 'BC' and the key predictors as covariates. We will use pseudo-log transformations as suggested in the IDA. All key predictors will be transformed by fractional polynomials of order 1 (df = 2). If not indicated otherwise, we will use the fp-transformations of the key predictors determined in global model in all consecutive models.
-
-The aim of the examples is to showcase how decisions derived for the IDA influence the results of the fitted model.
-
 ## Global Model
 
-The global model will be fitted by the *mfp* function. For all models we report McFaddens's R² and the AUC, i.e. the area under the ROC curve, and boxplots comparing BC predictions with outcomes.
+The global model will be fitted by the *mfp* function. If not indicated otherwise, we will use the fp-transformations of the key predictors determined in global model in all consecutive models. For all models we report McFaddens's R² and the AUC, i.e. the area under the ROC curve, and boxplots comparing BC predictions with outcomes.
 
 ### Model Summary
 
@@ -111,7 +112,7 @@ p_model_complete
 
 ### Functional forms of global model
 
-We now take a look at the functional forms of the covariates in the global model, which are determined by the fp algorithm. Besides scaling factors, only for t_WBC_noNEU the fp algorithm chose a non-linear transformation (not the '^0.5' in the terms column). That means all other covariates enter the model in a linear fashion. In the following effect plots, each variable is adjusted to the median of the other variables in the model.
+We now take a look at the functional forms of the covariates in the global model, which are determined by the fp algorithm. Besides scaling factors, only for t_WBC_noNEU the fp algorithm chose a non-linear transformation (note the '^0.5' in the term column). This means all other covariates enter the model in a linear fashion. In the following effect plots, each variable is adjusted to the median of the other variables in the model.
 
 ```{r global model functional forms, message = FALSE, warning = FALSE}
 
@@ -165,7 +166,7 @@ for(i in 1:length(key_predictors_trans)){
 
 ## Example 1: to transform or not to transform
 
-Only for one out of the six key predictors did the fp algorithm chose a non-linear transformation. But out of those six variables, four were pseudo-log transformed before entering the model. In the first example we want to compare global model to a model using the key predictors on their original scale.
+Only for one out of the six key predictors did the fp algorithm chose a non-linear transformation. But out of those six variables, four were pseudo-log transformed before entering the model. In the first example we want to compare the global model to a model using the key predictors on their original scale.
 
 ```{r global model no trans, message = FALSE, warning = FALSE, fig.width=2, fig.height=3}
 # fit the complete mfp model using only original, non-transformed variables
@@ -173,20 +174,20 @@ fit_mfp_complete_notrans <- mfp(as.formula(global_formula %>% str_replace_all('t
                      data = model_df_complete,
                      family = binomial)
 
-#tidy(fit_mfp_complete) %>% gt 
 tidy(fit_mfp_complete_notrans) %>% gt_model_table('global model without pseudo-log tranformations')
 
 ```
-Note the different fp transformation arising when the key predictors are not pseudo-log transformed. On the original scale, three covariates instead of one now enter the model via a non-linear fp transformation. This suggests that a transfromation prior to the regression model 'outsources' the need for fp transformations. Now let us compare the model performances.
+Note the different fp-transformation arising when the key predictors are not pseudo-log transformed. On the original scale, three covariates instead of one now enter the model via a non-linear fp-transformation. This suggests that a transfromation prior to the regression model 'outsources' the need for transformations within the model. Now let us compare the model performances.
 
-```{r, message = FALSE, warning = FALSE, fig.width=4, fig.height=3}
+```{r, message = FALSE, warning = FALSE, fig.width=4, fig.height=4}
 p_model_notrans <- logreg_summary_plot(fit_mfp_complete_notrans, 'global model \nwithout pseudo-log \ntransformations') # maybe side by side with global model?
 
 p_model_complete + coord_cartesian(ylim = c(0,.8)) + p_model_notrans + theme(axis.title.y = element_blank()) + coord_cartesian(ylim = c(0,.8))
 ```
+
 With regards to McFadden's R² and the AUC, the differences between the two approaches is marignal.
 
-Next we will compare the differences of the functional forms in the two models for those covariates where a pseudo-log transformation was suggested. We will look at the log odds for bacteremia by each covariate on the original and the transformed scale, and compare the global model using the original and the pseudo-log transformed covariates. Each variable is adjusted for the median of all other variables used.
+Next we will compare the differences of the functional forms in the two models for those covariates where a pseudo-log transformation was suggested in IDA. We will look at the log odds for bacteremia by each covariate on the original and the transformed scale, and compare the global model using the original and the pseudo-log transformed covariates. Each variable is adjusted for the median of all other variables used.
 
 ```{r trafo of variables, message = FALSE, warning = FALSE, fig.width=10, fig.height=4}
 
@@ -293,9 +294,9 @@ for(i in 1:length(key_predictors_trans)){
 
 ```
 
-## Example2: the support of a model determines what it can explain
+## Example 2: the support of a model determines what it can explain
 
-Comparison of support vs. extrapolations. For each key predictor we create a dataset which includes the median +/- 25% of the complete data and compare the fitted effects of the full vs. the reduced model on the range of the complete data. Note that in the reduced models we use the same fp-transformations as in the complete model.
+Next we compare the global model to a model were for an important variable, in our case we chose age, the variable support is reduced to the central 50% of the data (i.e. data within the 25% and 75% quantiles). Again, in the reduced models we use the same fp-transformations as in the global model.
 
 ```{r prediction validity, message = FALSE, warning = FALSE, fig.width=12, fig.height=5}
 
@@ -312,7 +313,7 @@ fit_mfp_part <- glm(as.formula(global_formula_fp), #use fp trafos from global mo
                     family = binomial) 
 
 tidy(fit_mfp_part) %>%
-  gt_model_table('part of data used')
+  gt_model_table('restricted model')
 
 new_data <- bind_cols(
   model_df_medians,
@@ -512,6 +513,8 @@ bind_rows(
   fmt_number(2, decimals = 2)
 
 ```
+(Suggestion: show this with models without fp trafo?)
+
 Because the fp-transformations further complicate the interpretation of the regression coefficients, let us consider two logisitc regression models with WBC_noNEU and t_WBC_noNEU as single covariate, respectively.
 
 ```{r}
@@ -535,7 +538,7 @@ bind_rows(
 
 ```
 
-The estimates $-0.56$ and $-2.92$ denote the change in log odds for the outcome when the 'term' variable changes by 1 unit, but cannot be compared directly. A $1$ unit change is only a small step on the original scale, where WBC_noNEU covers values from `r range(model_df_complete$WBC_noNEU)[1]` up to `r range(model_df_complete$WBC_noNEU)[2]`. In comparison, t_WBC_noNEU lies between `r range(model_df_complete$t_WBC_noNEU)[1]` up to `r range(model_df_complete$t_WBC_noNEU)[2]`, so change of $1$ unit cover almost half the range of the variable. 
+The estimates $-0.56$ and $-2.92$ denote the change in log odds for the outcome when the 'term' variable changes by 1 unit, but cannot be compared directly. A $1$ unit change is only a small step on the original scale, where WBC_noNEU covers values from `r range(model_df_complete$WBC_noNEU)[1]` up to `r range(model_df_complete$WBC_noNEU)[2]`. In comparison, t_WBC_noNEU lies between `r round(range(model_df_complete$t_WBC_noNEU)[1],2)` up to `r round(range(model_df_complete$t_WBC_noNEU)[2],2)`, so change of $1$ unit cover almost half the range of the variable. 
 
 ## Example 5: Plot of functional form should be resticted to areas with high density
 
