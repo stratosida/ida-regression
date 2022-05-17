@@ -50,12 +50,7 @@ gt_model_table <- function(data, title = NA){
 
 ```
 
-
 ## Overview
-
-In the following examples we use the Bacteremia data with complete observations regarding the key predictors `r paste(key_predictors_orig, collapse = ', ')`, which represent `r round(pct_complete, 1)`% of the whole dataset. We will fit a global logistic regression model with the outcome 'BC' and the key predictors as covariates. We will use pseudo-log transformations as suggested in the IDA. Within the model, all key predictors will be transformed by fractional polynomials of order 1 (df = 2).
-
-The aim of the examples is to showcase how decisions derived from IDA influence the results of the fitted model.
 
 ```{r}
 # define key predictors without pseudo-log trafo ('orig') and transformed ('trans'), replace WBC with WBC_noNEU
@@ -78,6 +73,10 @@ model_df_complete <- model_df_complete %>%
 
 pct_complete <- dim(model_df_complete)[1] / dim(c_bact)[1] * 100
 ```
+
+In the following examples we use the Bacteremia data with complete observations regarding the key predictors `r paste(key_predictors_orig, collapse = ', ')`, which represent `r round(pct_complete, 1)`% of the whole dataset. We will fit a global logistic regression model with the outcome 'BC' and the key predictors as covariates. We will use pseudo-log transformations as suggested in the IDA. Within the model, all key predictors will be transformed by fractional polynomials of order 1 (df = 2).
+
+The aim of the examples is to showcase how decisions derived from IDA influence the results of the fitted model.
 
 ## Global Model
 
@@ -304,97 +303,132 @@ m_pct <- .5
 
 i <- 2 #selects 'Age' in key_predictors_trans
   
-model_df_part <- model_df_complete[
-    (model_df_complete[,key_predictors_trans[i]] > quantile(model_df_complete[,key_predictors_trans[i]], .5-m_pct/2)) &
-    (model_df_complete[,key_predictors_trans[i]] < quantile(model_df_complete[,key_predictors_trans[i]], .5+m_pct/2)),]
+# model_df_part <- model_df_complete[
+#     (model_df_complete[,key_predictors_trans[i]] > quantile(model_df_complete[,key_predictors_trans[i]], .5-m_pct/2)) &
+#     (model_df_complete[,key_predictors_trans[i]] < quantile(model_df_complete[,key_predictors_trans[i]], .5+m_pct/2)),]
+#
+# fit_mfp_part <- glm(as.formula(global_formula_fp), #use fp trafos from global model
+#                     data = model_df_part,
+#                     family = binomial) 
+# 
+# tidy(fit_mfp_part) %>%
+#   gt_model_table('restricted model')
 
-fit_mfp_part <- glm(as.formula(global_formula_fp), #use fp trafos from global model
-                    data = model_df_part,
-                    family = binomial) 
-
-tidy(fit_mfp_part) %>%
-  gt_model_table('restricted model')
-
-new_data <- bind_cols(
+new_data_complete <- bind_cols(
   model_df_medians,
   x_trans = model_df_complete[,key_predictors_trans[i]]
   ) %>%
   select(-key_predictors_trans[i]) %>%
-  as_tibble() %>%
-  distinct()
+  as_tibble()
 
-pred_complete <- predict(fit_mfp_complete, 
-                         newdata = new_data %>%
-                           rename(!!key_predictors_trans[i] := x_trans),  # is needed so predict finds the variables
-                         type = 'link', se.fit = TRUE)
-pred_part <- predict(fit_mfp_part, 
-                     newdata = new_data %>%
-                       rename(!!key_predictors_trans[i] := x_trans), 
-                     type = 'link', se.fit = TRUE)
-plot_df <- cbind(
-  new_data,
-  yhat_full = pred_complete$fit,
-  yhat.lwr_full = pred_complete$fit - 1.96*pred_complete$se.fit,
-  yhat.upr_full = pred_complete$fit + 1.96*pred_complete$se.fit,
-  yhat_part = pred_part$fit,
-  yhat.lwr_part = pred_part$fit - 1.96*pred_part$se.fit,
-  yhat.upr_part = pred_part$fit + 1.96*pred_part$se.fit
-  ) %>%
-  as_tibble() %>%
-  pivot_longer(
-    cols = contains('yhat')
-  ) %>%
-  separate(name, c('var', 'model'), sep = '_') %>%
-  pivot_wider(
-    names_from = 'var', values_from = 'value'
+new_data_central_50 <- new_data_complete %>% 
+  filter(x_trans %>% 
+           between(
+             quantile(x_trans, .5-m_pct/2),
+             quantile(x_trans, .5+m_pct/2))
   )
 
-p <- plot_df %>%
-  mutate(
-    model = case_when(
-      model == 'full' ~ 'complete data',
-      model == 'part' ~ paste0('data within \n', 50 - m_pct*100/2, '% quantile and\n', 50 + m_pct*100/2, '% quantile')
-    )
+sel_50_pct <- as.logical(round(runif(dim(new_data_complete)[1]))) # needed later
+new_data_sample_50 <- new_data_complete[sel_50_pct,]
+
+
+pred_complete <- predict(fit_mfp_complete, 
+                         newdata = new_data_complete %>%
+                           rename(!!key_predictors_trans[i] := x_trans),  # is needed so predict finds the variables
+                         type = 'link', se.fit = TRUE)
+
+pred_central_50 <- predict(fit_mfp_complete, 
+                         newdata = new_data_central_50 %>%
+                           rename(!!key_predictors_trans[i] := x_trans),  # is needed so predict finds the variables
+                         type = 'link', se.fit = TRUE)
+
+pred_sample_50 <- predict(fit_mfp_complete, 
+                         newdata = new_data_sample_50 %>%
+                           rename(!!key_predictors_trans[i] := x_trans),  # is needed so predict finds the variables
+                         type = 'link', se.fit = TRUE)
+
+plot_df <- bind_rows(
+  bind_cols(
+    new_data_complete,
+    model = 'complete',
+    yhat = pred_complete$fit,
+    yhat.lwr = pred_complete$fit - 1.96*pred_complete$se.fit,
+    yhat.upr = pred_complete$fit + 1.96*pred_complete$se.fit
+  ),
+  bind_cols(
+    new_data_central_50,
+    model = 'central 50%',
+    yhat = pred_central_50$fit,
+    yhat.lwr = pred_central_50$fit - 1.96*pred_central_50$se.fit,
+    yhat.upr = pred_central_50$fit + 1.96*pred_central_50$se.fit
+  ),
+  bind_cols(
+    new_data_sample_50,
+    model = 'sampled 50%',
+    yhat = pred_sample_50$fit,
+    yhat.lwr = pred_sample_50$fit - 1.96*pred_sample_50$se.fit,
+    yhat.upr = pred_sample_50$fit + 1.96*pred_sample_50$se.fit
+  ),
+)
+
+# p <- plot_df %>%
+#   ggplot(aes(x = x_trans, y = yhat, ymin = yhat.lwr, ymax = yhat.upr, color = model, fill = model)) +
+#   annotate(
+#     'rect', 
+#      xmin = min(model_df_part[,key_predictors_trans[i]]), 
+#      xmax = max(model_df_part[,key_predictors_trans[i]]),
+#      ymin = -Inf, ymax = Inf, alpha = .1
+#   ) +
+#   geom_ribbon(alpha = .2, color = NA) +
+#   geom_line() +
+  #geom_rug(data = new_data, aes(x = x_trans), inherit.aes = FALSE, color = gray(.5)) +
+  #geom_rug(data = model_df_part, aes_string(x = key_predictors_trans[i]), inherit.aes = FALSE) +
+  # annotate(
+  #   'text',
+  #   label = 'data used for restricted model',
+  #   x = median(model_df_part[,key_predictors_trans[i]])*1.1,
+  #   y = -3.9, vjust = 0, hjust = -0.02
+  # ) +
+  # annotate(
+  #   'segment',
+  #   x = median(model_df_part[,key_predictors_trans[i]]), xend = median(model_df_part[,key_predictors_trans[i]])*1.1,
+  #   y = -Inf, yend = -3.9
+  # ) +
+  # labs(
+  #   y = 'log odds',
+  #   color = 'model fitted with',
+  #   fill = 'model fitted with',
+  #   x = key_predictors_trans[i]
+  # ) +
+  # theme_minimal() +
+  # scale_color_ptol() +
+  # scale_fill_ptol() +
+  # theme(legend.position = 'bottom')
+
+#Mc Fadden's R²
+r_squared_mcfadden <- with(summary(fit_mfp_complete), 1 - deviance/null.deviance)
+
+#AUC
+AUC_complete = auc(fit_mfp_complete$y, predict(fit_mfp_complete, type = 'response'))
+
+AUC_central50 = auc(
+  fit_mfp_complete$y[fit_mfp_complete$X[,'Alter'] %>% between(
+    quantile(fit_mfp_complete$X[,'Alter'], .25), quantile(fit_mfp_complete$X[,'Alter'], .75))],
+  predict(fit_mfp_complete, new_data_central_50 %>% rename(Alter = x_trans), type = 'response')
+  )
+
+AUC_sample50 = auc(
+  fit_mfp_complete$y[sel_50_pct], 
+  predict(fit_mfp_complete, new_data_sample_50  %>% rename(Alter = x_trans), type = 'response'))
+
+tribble(
+  ~data, ~AUC,
+  'complete', AUC_complete %>% as.numeric,
+  'central 50%', AUC_central50 %>% as.numeric,
+  'sample 50%', AUC_sample50 %>% as.numeric
   ) %>%
-  ggplot(aes(x = x_trans, y = yhat, ymin = yhat.lwr, ymax = yhat.upr, color = model, fill = model)) +
-  annotate(
-    'rect', 
-     xmin = min(model_df_part[,key_predictors_trans[i]]), 
-     xmax = max(model_df_part[,key_predictors_trans[i]]),
-     ymin = -Inf, ymax = Inf, alpha = .1
-  ) +
-  geom_ribbon(alpha = .2, color = NA) +
-  geom_line() +
-  geom_rug(data = new_data, aes(x = x_trans), inherit.aes = FALSE, color = gray(.5)) +
-  geom_rug(data = model_df_part, aes_string(x = key_predictors_trans[i]), inherit.aes = FALSE) +
-  annotate(
-    'text',
-    label = 'data used for restricted model',
-    x = median(model_df_part[,key_predictors_trans[i]])*1.1,
-    y = -3.9, vjust = 0, hjust = -0.02
-  ) +
-  annotate(
-    'segment',
-    x = median(model_df_part[,key_predictors_trans[i]]), xend = median(model_df_part[,key_predictors_trans[i]])*1.1,
-    y = -Inf, yend = -3.9
-  ) +
-  labs(
-    y = 'log odds',
-    color = 'model fitted with',
-    fill = 'model fitted with',
-    x = key_predictors_trans[i]
-  ) +
-  theme_minimal() +
-  scale_color_ptol() +
-  scale_fill_ptol() +
-  theme(legend.position = 'bottom')
-
-
-p_model_restricted <- logreg_summary_plot(fit_mfp_part, 'restricted model')
-
-print(p + (p_model_complete + p_model_restricted))
-
-
+  gt() %>%
+  fmt_number(2, decimals = 3)
 
 ```
 
