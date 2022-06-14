@@ -71,7 +71,9 @@ model_df_complete <- model_df_complete %>%
     t_WBC_noNEU = pseudo_log(WBC_noNEU, ida_trans(model_df_complete$WBC_noNEU)$const) 
   )
 
-pct_complete <- dim(model_df_complete)[1] / dim(c_bact)[1] * 100
+n_excl_cases <- dim(c_bact)[1] - dim(model_df_complete)[1] 
+pct_excl <- round((1-(dim(model_df_complete)[1] / dim(c_bact)[1])) * 100,1)
+#pct_complete <- dim(model_df_complete)[1] / dim(c_bact)[1] * 100
 ```
 
 In the following examples we use the Bacteremia data with complete observations regarding the key predictors `r paste(key_predictors_orig, collapse = ', ')`, which represent `r round(pct_complete, 1)`% of the whole dataset. We will fit a global logistic regression model with the outcome 'BC' and the key predictors as covariates. We will use pseudo-log transformations as suggested in the IDA. Within the model, all key predictors will be transformed by fractional polynomials of order 1 (df = 2).
@@ -184,7 +186,7 @@ p_model_notrans <- logreg_summary_plot(fit_mfp_complete_notrans, 'global model \
 p_model_complete + coord_cartesian(ylim = c(0,.8)) + p_model_notrans + theme(axis.title.y = element_blank()) + coord_cartesian(ylim = c(0,.8))
 ```
 
-With regards to McFadden's R² and the AUC, the differences between the two approaches is marignal.
+With regards to McFadden's R² and the AUC, the differences between the two approaches is marginal.
 
 Next we will compare the differences of the functional forms in the two models for those covariates where a pseudo-log transformation was suggested in IDA. We will look at the log odds for bacteremia by each covariate on the original and the transformed scale, and compare the global model using the original and the pseudo-log transformed covariates. Each variable is adjusted for the median of all other variables used.
 
@@ -305,7 +307,7 @@ sel_central <- (model_df_complete$Alter > quantile(model_df_complete$Alter, 0.5-
   (model_df_complete$Alter < quantile(model_df_complete$Alter, 0.5+m_pct/2)) #needed later
 
 set.seed(2)
-sel_sample <- as.logical(round(runif(dim(model_df_complete)[1]))) # needed later
+sel_sample <- as.logical(round(runif(dim(model_df_complete)[1]))) # 50% random selection, needed later
 
 pred_complete <- predict(fit_mfp_complete, 
                          newdata = model_df_complete,
@@ -322,52 +324,46 @@ pred_sample <- predict(fit_mfp_complete,
                          type = 'response')
 y_sample <- fit_mfp_complete$y[sel_sample]
 
-#Mc Fadden's R²
-r_squared_mcfadden <- with(summary(fit_mfp_complete), 1 - deviance/null.deviance)
 
-r_squared_lave <- function(y, prediction){
+r_squared_efron <- function(y, prediction){
   n <- length(y)
   1-(((1/n)*sum((y-prediction)^2))/((1/n)*sum((y-mean(y))^2)))
 }
 
-
-
-
 tribble(
-  ~data, ~AUC, ~`Lave's R squared`,
-  'complete', auc(y_complete, pred_complete) %>% as.numeric(), r_squared_lave(y_complete, pred_complete),
-  'central 50%', auc(y_central, pred_central) %>% as.numeric(), r_squared_lave(y_central, pred_central),
-  '50% sample', auc(y_sample, pred_sample) %>% as.numeric(), r_squared_lave(y_sample, pred_sample),
+  ~data, ~AUC, ~`Efron's R squared`,
+  'complete', auc(y_complete, pred_complete) %>% as.numeric(), r_squared_efron(y_complete, pred_complete),
+  'central 50%', auc(y_central, pred_central) %>% as.numeric(), r_squared_efron(y_central, pred_central),
+  '50% sample', auc(y_sample, pred_sample) %>% as.numeric(), r_squared_efron(y_sample, pred_sample),
   ) %>%
   gt() %>%
   fmt_number(2, decimals = 3) %>%
   fmt_number(3, decimals = 5)
 
-
-bind_rows(
+p_ex2 <- rbind(
   tibble(
     BC = y_complete,
     prediction = pred_complete,
-    model = 'complete'
+    model = 'complete data'
   ),
   tibble(
     BC = y_central,
     prediction = pred_central,
-    model = 'central 50%'
+    model = 'within IQR (age)'
   ),
   tibble(
     BC = y_sample,
     prediction = pred_sample,
-    model = '50% sample'
-  ),
-  ) %>%
-  mutate(model = factor(model, levels = c('complete', 'central 50%', '50% sample'))) %>%
+    model = 'random 50% subsample'
+  )) %>%
+  mutate(model = factor(model, levels = c('complete data', 'within IQR (age)', 'random 50% subsample'))) %>%
   ggplot(aes(x = factor(BC), y = prediction, group = BC)) +
   geom_boxplot() + 
   facet_grid(~model) +
   theme_minimal() +
   labs(x = 'BC')
 
+p_ex2
 ```
 
 ## Example 3: the limits of mulitiple imputation
@@ -446,7 +442,7 @@ bind_rows(
   gt %>%
   fmt_number(
     3:5,
-    decimals = 2
+    decimals = 3
   ) %>%
   fmt_scientific(6)
   
@@ -454,21 +450,61 @@ bind_rows(
 
 The z-statistic for creatinine drops from 2.98 to 1.49 when half the data is missing. Also in other variables the z-statistic is less extreme in the 'missing, complete case analysis' compared to the global model. The interesting observations is that MI recreates estimates and standard errors very close to the global model in most variables, but not in the one that was being imputed, namely creatinine. In variable selection, chreatinine, which is highly significant in the 'true' model, is likely to be dropped, based on the imputed data. 
 
+```{r, message = FALSE, warning = FALSE}
+#pearson & spearman correalation of CREA and BUN
+
+r_pearson  <- cor(model_df_complete$t_KREA, model_df_complete$BUN, method = 'pearson') %>% round(3)
+r_spearman <- cor(model_df_complete$t_KREA, model_df_complete$BUN, method = 'spearman') %>% round(3)
+
+```
+
+
 ## Example 4: Interpretation of regression coefficient 'size'
 
 The variables WBC_noNEU and t_WBC_noNEU are on two very different scales:
 
-```{r ex 4 plots, message = FALSE, warning = FALSE, fig.width=3}
+```{r ex 4 plots, message = FALSE, warning = FALSE, fig.width=6, fig.height=4}
 
-model_df_complete %>%
-  select(WBC_noNEU, t_WBC_noNEU) %>%
-  pivot_longer(everything()) %>%
-  ggplot(aes(x = value)) +
-  facet_wrap(~name, scales = 'free') +
-  geom_boxplot(width = .1) +
+p_ex4 <- model_df_complete %>%
+  select(key_predictors_trans[str_detect(key_predictors_trans, 't_')]) %>%
+  mutate_all(as.numeric) %>%
+  pivot_longer(cols = everything()) %>%
+  ggplot(aes(x = value, group = name)) + 
+  facet_wrap(~name, scales = 'free', strip.position = "bottom") +
+  geom_histogram(fill = 'firebrick2', color = NA, alpha = 0.5) +
   theme_minimal() +
-  coord_flip() +
-  theme(axis.text.x = element_blank())
+  theme(strip.placement = 'outside')
+
+p_ex4
+
+
+fit_linear_complete <- glm(as.formula(paste0('BC ~ ', paste(key_predictors_trans, collapse = '+'))),
+                           data = model_df_complete,
+                           family = 'binomial') 
+
+tidy(fit_linear_complete) %>%
+  select(term, estimate_linear = estimate) %>%
+  filter(term != '(Intercept)') %>%
+  bind_cols(
+    sd_fp_t = c(
+      sd((model_df_complete$t_WBC_noNEU + 0.1)^0.5),
+      sd(model_df_complete$Alter / 100),
+      sd(model_df_complete$t_BUN),
+      sd(model_df_complete$t_KREA),
+      sd(model_df_complete$t_NEU + 0.1),
+      sd((model_df_complete$PLT + 1) / 100)
+    )
+  ) %>%
+  mutate(
+    beta_standardized = estimate_linear * sd_fp_t
+  ) %>%
+  select(term, beta_standardized) %>%
+  arrange(-abs(beta_standardized)) %>%
+  gt %>%
+  fmt_number(
+    beta_standardized, decimals = 4
+  )
+
   
 ```
 
@@ -518,6 +554,68 @@ The estimates `r fit_wbc_orig$coefficients[2] %>% round(2)` and `r fit_wbc_trans
 ## Example 5: Plot of functional form should be resticted to areas with high density
 
 The functional forms have wide confidence intervals when the data is sparse. In presentations of the effects, plots of the functional forms can be limited to areas with high density. In this analysis, PLT was very sparse above ~800 [UNITS], which is reflected in a large confidence interval for high PLT values. In the effect plot PLT values could be limited to values <800 [UNITS].
+
+```{r}
+
+new_data <- bind_cols(
+  model_df_medians[,names(model_df_medians) != 't_WBC_noNEU'],
+  t_WBC_noNEU = model_df_complete[,'t_WBC_noNEU']
+  ) %>%
+  as_tibble() %>%
+  distinct()
+
+pred_linear <- predict(fit_linear_complete,
+                       newdata = new_data,  # is needed so predict finds the variables
+                      type = 'link', se.fit = TRUE)
+
+pred_complete <- predict(fit_mfp_complete, 
+                      newdata = new_data,  # is needed so predict finds the variables
+                      type = 'link', se.fit = TRUE)
+
+plot_df <- 
+  rbind(
+    cbind(
+      new_data,
+      yhat = pred_linear$fit,
+      yhat.lwr = pred_linear$fit - 1.96*pred_linear$se.fit,
+      yhat.upr = pred_linear$fit + 1.96*pred_linear$se.fit,
+      model = 'linear'
+      ),
+    cbind(
+      new_data,
+      yhat = pred_complete$fit,
+      yhat.lwr = pred_complete$fit - 1.96*pred_complete$se.fit,
+      yhat.upr = pred_complete$fit + 1.96*pred_complete$se.fit,
+      model = 'mfp'
+      )
+  ) %>%
+  as_tibble() 
+
+p <- plot_df %>% 
+  ggplot(aes(x = t_WBC_noNEU, y = yhat, ymin = yhat.lwr, ymax = yhat.upr, color = model, group = model)) +
+  geom_ribbon(alpha = .2, color = NA) +
+  geom_line(size = 1) +
+  geom_rug(
+    data = fit_mfp_complete$X %>% as.data.frame, 
+    aes(x = t_WBC_noNEU), 
+    inherit.aes = FALSE) +
+  labs(
+    y = 'log odds'
+  ) +
+  theme_minimal() +
+  scale_color_ptol()
+
+
+logreg_summary_plot(fit_linear_complete, 'linear model')
+
+p  + (p + coord_cartesian(xlim = quantile(model_df_complete$t_WBC_noNEU, c(.05,.95)), ylim = c(-4.5, -0.5))) +
+  plot_layout(guides = 'collect')
+
+
+
+```
+
+
 
 ```{r example 5 plots, message = FALSE, warning = FALSE, fig.width=12, fig.height=5}
 
