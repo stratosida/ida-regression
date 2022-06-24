@@ -305,6 +305,12 @@ for(i in 1:length(key_predictors_trans)){
 
 Next we compare the reference model to a model were for an important variable, in our case we chose WBC_noNEU, the variable's support is reduced to the central 50% of the data (i.e. data within the 25% and 75% quantiles). Again, in the reduced models we use the same fp-transformations as in the reference model.
 
+The range and interquartile range of WBC_noNEU are: (`r min(model_df_complete$WBC_noNEU)`, `r max(model_df_complete$WBC_noNEU)`; (`r quantile(model_df_complete$WBC_noNEU, 0.25)`, `r quantile(model_df_complete$WBC_noNEU, 0.75)`).
+
+The range and interquartile range of t_WBC_noNEU are: (`r min(model_df_complete$t_WBC_noNEU)`, `r max(model_df_complete$t_WBC_noNEU)`; (`r quantile(model_df_complete$t_WBC_noNEU, 0.25)`, `r quantile(model_df_complete$t_WBC_noNEU, 0.75)`).
+
+
+
 ```{r prediction validity, message = FALSE, warning = FALSE, fig.width=6, fig.height=4}
 
 m_pct <- .5
