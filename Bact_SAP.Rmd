@@ -139,38 +139,38 @@ where for males $\kappa = 0.9, \alpha = -0.411$, and for females $\kappa = 0.7, 
 
 
 kappa <- rep(0.7, nrow(a_bact))
-kappa[a_bact$sex==1] <- 0.9
+kappa[a_bact$SEX==1] <- 0.9
 alpha <- rep(-0.329, nrow(a_bact))
-alpha[a_bact$sex==1] <- -0.411
+alpha[a_bact$SEX==1] <- -0.411
 
-a_bact$eGFR <- 141 * apply(cbind(a_bact$KREA/kappa, 1),1,min)**alpha * apply(cbind(a_bact$KREA/kappa, 1),1,max)**(-1.209) * 0.993**a_bact$Alter * 1.018**(a_bact$sex==2)
+a_bact$eGFR <- 141 * apply(cbind(a_bact$CREA/kappa, 1),1,min)**alpha * apply(cbind(a_bact$CREA/kappa, 1),1,max)**(-1.209) * 0.993**a_bact$AGE * 1.018**(a_bact$SEX==2)
 
-a_bact$BUN_KREA <- a_bact$BUN / a_bact$KREA
+a_bact$BUN_CREA <- a_bact$BUN / a_bact$CREA
 
 b_bact <- Hmisc::upData(a_bact ,
                labels = c(eGFR = 'estimated glomerular filtration rate', 
-                          BUN_KREA = 'BUN/Scr ratio'),
+                          BUN_CREA = 'BUN/Scr ratio'),
                units = c(eGFR = 'mL/min/1.73 m^2',
-                         BUN_KREA = 'unitless'))
+                         BUN_CREA = 'unitless'))
 
 
 ```
   Some correlation between these kidney function indicators (eGFR, potassium, BUN) can be expected. eGFR is a widely accepted and interpretable summary of kidney function. BUN should be in the range 6-20 (8-23 for adults older than 60 years). An ideal ratio of BUN to Scr is between 10 and 20. Ratios higher than 20 may be  associated with high protein diet but also with impaired eGFR (lower than 60).
   
-We define groups of variables: demographical, pivotal, leukocyte-related, leukocyte-ratio-related, kidney-related, acute-phase related:
+We define groups of variables: demographical, structural, key predictors, leukocyte-related, leukocyte-ratio-related, kidney-related, acute-phase related:
 
 ```{r}
-demog_vars <-c("Alter", "sex")
-pivotal_vars <- c("WBC", "Alter")
-vip_vars <- c("WBC", "Alter", "BUN","KREA","NEU","PLT")
+demog_vars <-c("AGE", "SEX")
+structural_vars <- c("WBC", "AGE", "SEX")
+key_predictors <- c("WBC", "AGE", "BUN","CREA","NEU","PLT")
 leuko_related_vars <-c("WBC", "NEU", "EOS", "BASO", "LYM", "MONO")
 leuko_ratio_vars <- c("NEUR", "EOSR", "BASOR", "LYMR", "MONOR")
-kidney_related_vars <- c("BUN", "K", "KREA", "eGFR", "BUN_KREA")
+kidney_related_vars <- c("BUN", "POTASS", "CREA", "eGFR", "BUN_CREA")
 acute_related_vars <- c("FIB", "CRP", "ASAT", "ALAT", "GGT")
 outcome_vars <-c("BloodCulture", "BC")
-remaining_vars <- names(a_bact)[is.na(match(names(a_bact),c("ID", demog_vars, pivotal_vars, vip_vars,leuko_related_vars,leuko_ratio_vars, kidney_related_vars,acute_related_vars, outcome_vars)))]
+remaining_vars <- names(a_bact)[is.na(match(names(a_bact),c("ID", demog_vars, structural_vars, key_predictors,leuko_related_vars,leuko_ratio_vars, kidney_related_vars,acute_related_vars, outcome_vars)))]
 
-bact_variables <- list(demog_vars=demog_vars, pivotal_vars=pivotal_vars, vip_vars=vip_vars, leuko_related_vars=leuko_related_vars, leuko_ratio_vars=leuko_ratio_vars, kidney_related_vars=kidney_related_vars, acute_related_vars=acute_related_vars,
+bact_variables <- list(demog_vars=demog_vars, structural_vars=structural_vars, key_predictors=key_predictors, leuko_related_vars=leuko_related_vars, leuko_ratio_vars=leuko_ratio_vars, kidney_related_vars=kidney_related_vars, acute_related_vars=acute_related_vars,
                        remaining_vars=remaining_vars, outcome_vars=outcome_vars)
 
 ```
@@ -259,6 +259,6 @@ Ratzinger, F., Dedeyan, M., Rammerstorfer, M., Perkmann, T., Burgmann, H., Makri
 
 ```{r}
 
-save(list=c("b_bact", "bact_variables", "demog_vars", "pivotal_vars","vip_vars","leuko_related_vars","leuko_ratio_vars","kidney_related_vars", "acute_related_vars","remaining_vars"), file = here::here("data", "bact_env_b.rda"))
+save(list=c("b_bact", "bact_variables", "demog_vars", "structural_vars","key_predictors","leuko_related_vars","leuko_ratio_vars","kidney_related_vars", "acute_related_vars","remaining_vars"), file = here::here("data", "bact_env_b.rda"))
 ```
 

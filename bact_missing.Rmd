@@ -44,12 +44,12 @@ b_bact %>%
   select() %>%
   mutate(Any_Variable_missing = ifelse(apply(b_bact,1,any_miss),NA,1)) %>%
   mutate(Any_Demographics_missing = ifelse(apply(b_bact[,demog_vars],1,any_miss),NA,1)) %>%
-  mutate(Any_VIP_missing = ifelse(apply(b_bact[,c(demog_vars,pivotal_vars, vip_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_key_structural_missing = ifelse(apply(b_bact[,c(demog_vars,structural_vars, key_predictors)],1,any_miss),NA,1)) %>%
   mutate(Any_Leuko_missing = ifelse(apply(b_bact[,c(leuko_related_vars)],1,any_miss),NA,1)) %>%
   mutate(Any_Kidney_missing = ifelse(apply(b_bact[,c(kidney_related_vars)],1,any_miss),NA,1)) %>%
   mutate(Any_Acute_missing = ifelse(apply(b_bact[,c(acute_related_vars)],1,any_miss),NA,1)) %>%
   mutate(Any_remaining_missing = ifelse(apply(b_bact[,c(remaining_vars)],1,any_miss),NA,1)) %>%
-  mutate(Any_VIP_leuko_kidney_acute_missing =  ifelse(apply(b_bact[,c(demog_vars,pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars)],1,any_miss),NA,1)) %>%
+  mutate(Any_key_structural_leuko_kidney_acute_missing =  ifelse(apply(b_bact[,c(demog_vars,structural_vars, key_predictors, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars)],1,any_miss),NA,1)) %>%
   miss_var_summary() %>%
   gt::gt() %>%
     gt::cols_label(
@@ -75,9 +75,10 @@ First we create a dendogram that shows which variables tend to be missing togeth
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 s_bact <- b_bact[sample(1:nrow(b_bact), size=10000, repl=FALSE),]
 is_bact <- is.na(b_bact)*1
+exl_vars <- which(colnames(is_bact) %in% c("BC","BloodCulture","ID"))
 perc_miss <- round(apply(is_bact, 2, mean)*100,0)
 colnames(is_bact)<-paste(colnames(is_bact),"(",perc_miss,")",sep="")
-hobj <- hclust(dist(t(is_bact)))
+hobj <- hclust(dist(t(is_bact[,-exl_vars])))
 plot(hobj, cex=0.5)
 ```
 
