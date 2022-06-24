@@ -7,6 +7,7 @@ library(here)
 library(tidyverse)
 library(Hmisc)
 source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
+source(here("R", "ida_plot_univar_orig_vs_trans.R"))  ## function for side-by-side comparison of original vs. transformed scale, calls ida_plot_univar.R
 source(here("R", "ida_trans.R"))  ## function to determine transformation (log(x+c) or identity). 
 
 ## Load the dataset.
@@ -180,7 +181,18 @@ for(j in 1:length(unique.variables)){
 #  }
 }
 ```
+### Comparison of univariate distributions with and without pseudo-log transformation
 
+The comparison is only shown for variables where a transformation is suggested.
+
+```{r, fig.width=12}
+for(j in 1:length(unique.variables)){
+#  print(ida_plot_univar_orig_vs_trans(b_bact, unique.variables[j], sigma=res[j], n_bars=100))
+ if(!is.na(res[j])){
+   print(ida_plot_univar_orig_vs_trans(b_bact, unique.variables[j], sigma=res[j], n_bars=100))
+ }
+}
+```
 
 ```{r}
 save(list=c("c_bact", "bact_variables", "sigma_values", "bact_transformed"), 
