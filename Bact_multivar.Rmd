@@ -65,25 +65,34 @@ Some of the clusters that pop up here are related to width/volume of blood cells
 In the following scatterplots we have a look at those associations:
 
 ```{r}
-ggplot(c_bact, aes(MPV, PDW))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(MPV, PDW))+geom_point(alpha = alpha_value) + geom_smooth() +
+    theme_minimal()
 
-ggplot(c_bact, aes(RBC, HGB))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(RBC, HGB))+geom_point(alpha = alpha_value) + geom_smooth() +
+    theme_minimal()
 
-ggplot(c_bact, aes(RBC, HCT))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(RBC, HCT))+geom_point(alpha = alpha_value) + geom_smooth() +
+    theme_minimal()
 
-ggplot(c_bact, aes(HGB, HCT))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(HGB, HCT))+geom_point(alpha = alpha_value) + geom_smooth() +
+    theme_minimal()
 
-ggplot(c_bact, aes(MCV, MCH))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(MCV, MCH))+geom_point(alpha = alpha_value) + geom_smooth() +
+    theme_minimal()
 
-ggplot(c_bact, aes(t_CREA, eGFR))+geom_point() + geom_smooth()
-
-
-ggplot(c_bact, aes(t_ASAT, t_ALAT))+geom_point() + geom_smooth()
-
-ggplot(c_bact, aes(t_AMY, t_PAMY))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(t_CREA, eGFR))+geom_point(alpha = alpha_value) + geom_smooth() +
+    theme_minimal()
 
 
-ggplot(c_bact, aes(t_WBC, t_NEU))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(t_ASAT, t_ALAT))+geom_point(alpha = alpha_value) + geom_smooth() +
+    theme_minimal()
+
+ggplot(c_bact, aes(t_AMY, t_PAMY))+geom_point(alpha = alpha_value) + geom_smooth() +
+    theme_minimal()
+
+
+ggplot(c_bact, aes(t_WBC, t_NEU))+geom_point(alpha = alpha_value) + geom_smooth() +
+    theme_minimal()
 
 
 
@@ -96,7 +105,8 @@ Create scatterplots for pairs of variables with a large distance between Spearma
 ```{r}
 for(j in 1:(length(variables)-1)){
   for(jj in (j+1):(length(variables))){
-    if(abs(corrd[j, jj])>0.1) print(ggplot(data=c_bact, mapping=aes(x=.data[[variables[j]]],y=.data[[variables[jj]]]))+ geom_point()+geom_smooth())
+    if(abs(corrd[j, jj])>0.1) print(ggplot(data=c_bact, mapping=aes(x=.data[[variables[j]]],y=.data[[variables[jj]]]))+ geom_point(alpha = alpha_value)+geom_smooth() +
+    theme_minimal())
   }
 }
 
@@ -132,7 +142,8 @@ c_bact$gender=factor(c_bact$SEX, levels=c(1,2), labels=c("male","female"))
 
 
 c_bact %>%
-ggplot(data=c_bact, mapping=aes(x=AGE, y=t_WBC, color=gender)) + geom_point() + geom_smooth()
+ggplot(data=c_bact, mapping=aes(x=AGE, y=t_WBC, color=gender)) + geom_point() + geom_smooth() +
+    theme_minimal()
 ```
 
 ### Plot all variables vs. WBC in age/sex groups
@@ -153,11 +164,11 @@ for(j in 4:length(variables)){
       geom_point(alpha=alpha_value) + 
       geom_smooth() +  
       geom_rug(alpha=alpha_value) +
-      facet_grid(gender ~ Agegroup)
-    print(p1)
+      facet_grid(gender ~ Agegroup, labeller=label_both)
+    print(p1) +
+    theme_minimal()
 }
-#+
-#  theme_minimal()
+
 
 ```
 
@@ -172,11 +183,10 @@ for(j in 4:length(variables)){
      # geom_point(alpha = alpha_value) + 
       geom_smooth() +  
      # geom_rug() +
-      facet_grid(gender ~ Agegroup)
-    print(p1)
+      facet_grid(gender ~ Agegroup, labeller=label_both)
+    print(p1) +
+    theme_minimal()
 }
-#+
-#  theme_minimal()
 ```
 
 ## Variable redundancy 

@@ -122,7 +122,8 @@ ida_plot_univar <- function(data, var, n_dodge = 1,
     theme(
       panel.grid.major.x = element_line(colour = "grey", size = 0.5),
       panel.grid.minor = element_blank(),
-      axis.title.x = element_blank()
+      axis.title.x = element_blank(),
+      axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)
     )
   
   ## boxplot
