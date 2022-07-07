@@ -82,7 +82,7 @@ ida_plot_univar <- function(data, var, n_dodge = 1,
   p1 <-
     ggplot(data=NULL,aes(x = x, y = 0)) +
     geom_jitter(
-      width = 0.1,
+      width = 0.0,
       height = 0.1,
       alpha = 0.2,
       color = "firebrick2"
