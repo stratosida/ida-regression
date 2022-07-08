@@ -80,6 +80,7 @@ ggsave(here('misc/figures_regression_without_regrets/p_fig3.png'), p_fig3, width
 
 # end figure 3: t_WBC & ALB by age and sex ------------------------------------
 
+#comment: figure 4 is a screenshot of a reduandancy analysis, not included here
 
 # figure 5: basophiles, original vs. pseudo-log -------------------------------
 
