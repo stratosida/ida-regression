@@ -16,6 +16,7 @@ rmd_files: [
   "bact_missing.Rmd",
   "Bact_univar.Rmd",
   "Bact_multivar.Rmd",
+  "Bact_suppl.Rmd",
   "Crash2_intro.Rmd",
   "Crash2_SAP.Rmd",
   "Crash2_missing.Rmd",

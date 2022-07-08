@@ -29,12 +29,12 @@ b_bact %>%
 ```
 
 
-### Structural variables and key predictors
+### Structural covariates and key predictors
 
 ```{r desc_b_bact_2, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
 b_bact %>%
   dplyr::select(all_of(c(structural_vars, key_predictors))) %>%
-  Hmisc::describe(descript = "Structural variables and key predictors") %>%
+  Hmisc::describe(descript = "Structural covariates and key predictors") %>%
   Hmisc::html(size = 80)
 ```
 
