@@ -19,9 +19,29 @@ source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries
 source(here("R", "ida_plot_univar_orig_vs_trans.R"))  ## function for side-by-side comparison of original vs. transformed scale, calls ida_plot_univar.R
 source(here("R", "ida_trans.R"))  ## function to determine transformation (log(x+c) or identity). 
 
+load(here::here("data", "bact_env_b.rda"))
 load(here::here("data", "bact_env_c.rda"))
 
 # end libs and data -----------------------------------------------------------
+
+
+# figure 1: dendrogram of missingness -----------------------------------------
+
+s_bact <- b_bact[sample(1:nrow(b_bact), size=10000, repl=FALSE),]
+is_bact <- is.na(b_bact)*1
+exl_vars <- which(colnames(is_bact) %in% c("BC","BloodCulture","ID"))
+perc_miss <- round(apply(is_bact, 2, mean)*100,0)
+colnames(is_bact)<-paste(colnames(is_bact),"(",perc_miss,")",sep="")
+hobj <- hclust(dist(t(is_bact[,-exl_vars])))
+
+tiff(file=here('misc/figures_regression_without_regrets/p_fig1.tiff'),
+    res = 250, width = 1500, height = 900)
+
+plot(hobj, cex=0.5)
+
+dev.off()
+
+# end figure 1: dendrogram of missingness -------------------------------------
 
 
 # figure 2: original vs. pseudo-log -------------------------------------------
@@ -40,6 +60,25 @@ ggsave(here('misc/figures_regression_without_regrets/p_fig2_2.png'), p_fig2_2, w
 ggsave(here('misc/figures_regression_without_regrets/p_fig2.png'), p_fig2, width = 8, height = 9)
 
 # end figure 2: original vs. pseudo-log ---------------------------------------
+
+
+# figure 3: t_WBC & ALB by age and sex ----------------------------------------
+
+c_bact$Agegroup <- factor(cut(c_bact$AGE, c(min(c_bact$AGE), 50, 65, max(c_bact$AGE))))
+c_bact$Sex=factor(c_bact$SEX, levels=c(1,2), labels=c("male","female"))
+
+p_fig3 <- c_bact %>% 
+  filter(!is.na(Agegroup)) %>% 
+  ggplot(c_bact, mapping=aes(x=t_WBC,y=ALB)) + 
+  geom_point(alpha=.1) + 
+  geom_smooth() +  
+  geom_rug(alpha=.1) +
+  facet_grid(Sex ~ Agegroup, labeller=label_both) +
+  theme_minimal()
+
+ggsave(here('misc/figures_regression_without_regrets/p_fig3.png'), p_fig3, width = 9, height = 6)
+
+# end figure 3: t_WBC & ALB by age and sex ------------------------------------
 
 
 # figure 5: basophiles, original vs. pseudo-log -------------------------------
