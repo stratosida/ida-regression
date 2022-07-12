@@ -33,7 +33,6 @@ ida_plot_univar_orig_vs_trans <- function(data, var, n_dodge = 1,
                                      bin_width = bin_width, 
                                      sigma = sigma, n_bars=n_bars, transform = TRUE)
     
-
     p_out <- p_original | p_transformed 
     
     return(p_out +
@@ -46,4 +45,3 @@ ida_plot_univar_orig_vs_trans <- function(data, var, n_dodge = 1,
   }
   
 }
-

@@ -26,7 +26,6 @@ ida_plot_univar <- function(data, var, n_dodge = 1,
   trans<-FALSE
   if(!is.na(sigma)) trans<-TRUE
   if(!transform) trans<-FALSE
-
   
   ## number of missing observations
   nmiss <-
@@ -49,7 +48,7 @@ ida_plot_univar <- function(data, var, n_dodge = 1,
   
   if(length(unique(x))<n_bars*2) {
     brks <- unique(x) 
-    }  else {
+  }  else {
     brks1 <- seq(min(x), max(x), length.out=n_bars+1)
     brks2 <- quantile(x, seq(0,1,1/n_bars))
     brks <- (brks2 + 3*brks1)/4
@@ -82,7 +81,7 @@ ida_plot_univar <- function(data, var, n_dodge = 1,
   p1 <-
     ggplot(data=NULL,aes(x = x, y = 0)) +
     geom_jitter(
-      width = 0.1,
+      width = 0.0,
       height = 0.1,
       alpha = 0.2,
       color = "firebrick2"
@@ -103,12 +102,12 @@ ida_plot_univar <- function(data, var, n_dodge = 1,
   p2 <-
     data %>%
     filter(!is.na(.data[[var]])) %>%
-        ggplot2::ggplot(aes(x)) +
+    ggplot2::ggplot(aes(x)) +
     geom_histogram(aes(x=x, y=..density..),
                    breaks=brks,
-      center = 0,
-      alpha = 0.6,
-      fill = "firebrick2"
+                   center = 0,
+                   alpha = 0.6,
+                   fill = "firebrick2"
     ) +
     geom_rug() +
     scale_x_continuous(
@@ -122,7 +121,8 @@ ida_plot_univar <- function(data, var, n_dodge = 1,
     theme(
       panel.grid.major.x = element_line(colour = "grey", size = 0.5),
       panel.grid.minor = element_blank(),
-      axis.title.x = element_blank()
+      axis.title.x = element_blank(),
+      axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)
     )
   
   ## boxplot

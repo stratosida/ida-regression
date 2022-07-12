@@ -70,7 +70,7 @@ bact_subset <- bact
 #  bact  %>%
 #  dplyr::select(
 #    ID,
-#    Alter,
+#    AGE,
 #    WBC,
 #    KREA,
 #    BUN,
