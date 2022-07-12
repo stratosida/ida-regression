@@ -42,7 +42,7 @@ gt_model_table <- function(data, title = NA){
     gt %>%
       fmt_number(
         2:4,
-        decimals = 3
+        decimals = 2
       ) %>%
       fmt_scientific(5) %>%
       tab_header(title = title)
@@ -58,17 +58,17 @@ scaled_brier <- function(model){
 
 ```{r}
 # define key predictors without pseudo-log trafo ('orig') and transformed ('trans'), replace WBC with WBC_noNEU
-key_predictors_orig  <- bact_variables$key_predictors %>%
+key_predictors_orig  <- bact_variables$vip_vars %>%
   str_replace('WBC', 'WBC_noNEU')
-key_predictors_trans <- bact_transformed$key_predictors %>%
+key_predictors_trans <- bact_transformed$vip_vars %>%
   str_replace('WBC', 'WBC_noNEU')
 
 # include only complete cases
-model_df_complete <- c_bact[c('BC', unique(c(bact_variables$key_predictors, bact_transformed$key_predictors)))] %>%
+model_df_complete <- c_bact[c('BC', unique(c(bact_variables$vip_vars, bact_transformed$vip_vars)))] %>%
   mutate(
     WBC_noNEU = WBC - NEU
   ) %>%
-  na.omit 
+  na.omit
 
 model_df_complete <- model_df_complete %>%
   mutate(
@@ -77,61 +77,49 @@ model_df_complete <- model_df_complete %>%
 
 n_excl_cases <- dim(c_bact)[1] - dim(model_df_complete)[1] 
 pct_excl <- round((1-(dim(model_df_complete)[1] / dim(c_bact)[1])) * 100,1)
-
-n_bacteremia <- sum(model_df_complete$BC)
-pct_bateremia <- round((n_bacteremia / dim(model_df_complete)[1])*100,1)
-
-model_df_complete %>%
-  select(key_predictors_orig, key_predictors_trans) %>%
-  ungroup %>%
-  summarise_all(
-    ~paste0(median(.) %>% round(2),
-            ' (',
-            paste0(quantile(., c(.025,.975)) %>% round(2), collapse = ','),
-            ')')
-  ) %>%
-  pivot_longer(everything())
-
+#pct_complete <- dim(model_df_complete)[1] / dim(c_bact)[1] * 100
 ```
 
-In the following examples we use the Bacteremia data with complete observations regarding the key predictors `r paste(key_predictors_orig, collapse = ', ')`, which represent `r round(pct_complete, 1)`% of the whole dataset. We will fit a reference logistic regression model with the outcome 'BC' and the key predictors as covariates. We will use pseudo-log transformations as suggested in the IDA. Within the model, all key predictors will be transformed by fractional polynomials of order 1 (df = 2).
+In the following examples we use the Bacteremia data with complete observations regarding the key predictors `r paste(key_predictors_orig, collapse = ', ')`, which represent `r round(pct_complete, 1)`% of the whole dataset. We will fit a global logistic regression model with the outcome 'BC' and the key predictors as covariates. We will use pseudo-log transformations as suggested in the IDA. Within the model, all key predictors will be transformed by fractional polynomials of order 1 (df = 2).
 
 The aim of the examples is to showcase how decisions derived from IDA influence the results of the fitted model.
 
-## S1.1 Reference Model
+## Global Model
 
-The reference model will be fitted by the *mfp* function. If not indicated otherwise, we will use the fp-transformations of the key predictors determined in reference model in all consecutive models. For all models we report scaled Brier score and the area under the ROC curve (AUROC), and boxplots comparing predictions of the probability of bacteremia with actual outcomes.
+The global model will be fitted by the *mfp* function. If not indicated otherwise, we will use the fp-transformations of the key predictors determined in global model in all consecutive models. For all models we report McFaddens's R² and the AUC, i.e. the area under the ROC curve, and boxplots comparing BC predictions with outcomes.
 
 ### Model Summary
 
-```{r reference model, message = FALSE, warning = FALSE, fig.width=2, fig.height=3}
+```{r global model, message = FALSE, warning = FALSE, fig.width=2, fig.height=3}
 
-reference_formula <- paste0('BC ~ ', paste(paste0(paste0('fp(', key_predictors_trans), ',df=2)'), collapse = ' + '))
+global_formula <- paste0('BC ~ ', paste(paste0(paste0('fp(', key_predictors_trans), ',df=2)'), collapse = ' + '))
 
-set.seed(1)
-fit_mfp_complete <- mfp(as.formula(reference_formula),
+fit_mfp_complete <- mfp(as.formula(global_formula),
                         data = model_df_complete,
                         family = binomial)
 
-# save reference formula with fp-trafos
-reference_formula_fp <- paste('BC ~ ', paste0(tidy(fit_mfp_complete)$term[-1], collapse = ' + '))
+# save global formula with fp-trafos
+global_formula_fp <- paste('BC ~ ', paste0(tidy(fit_mfp_complete)$term[-1], collapse = ' + '))
 
 tidy(fit_mfp_complete) %>%
-  gt_model_table(title = 'Reference model')
+  gt_model_table(title = 'global model')
+
+#Mc Fadden's R²
+#r_squared_mcfadden <- with(summary(fit_mfp_complete), 1 - deviance/null.deviance)
 
 #AUC
 AUC = auc(fit_mfp_complete$y, predict(fit_mfp_complete, type = 'response'))
 
-p_model_complete <- logreg_summary_plot(fit_mfp_complete, 'Reference model')
+p_model_complete <- logreg_summary_plot(fit_mfp_complete, 'global model')
 
 p_model_complete
 ```
 
-### Functional forms for reference model
+### Functional forms of global model
 
-We now take a look at the functional forms of the covariates in the reference model, which are determined by the fp algorithm. Besides scaling factors, only for t_WBC_noNEU the fp algorithm chose a non-linear transformation (note the '^0.5' in the term column). This means all other covariates enter the model in a linear fashion. In the following effect plots, each variable is adjusted to the median of the other variables in the model.
+We now take a look at the functional forms of the covariates in the global model, which are determined by the fp algorithm. Besides scaling factors, only for t_WBC_noNEU the fp algorithm chose a non-linear transformation (note the '^0.5' in the term column). This means all other covariates enter the model in a linear fashion. In the following effect plots, each variable is adjusted to the median of the other variables in the model.
 
-```{r reference model functional forms, message = FALSE, warning = FALSE}
+```{r global model functional forms, message = FALSE, warning = FALSE}
 
 # medians of all key predictors, selected variables will be adjusted to these medians in effect plots
 model_df_medians <- model_df_complete[,unique(c(key_predictors_orig, key_predictors_trans))] %>%
@@ -158,11 +146,10 @@ for(i in 1:length(key_predictors_trans)){
     yhat.lwr = pred_complete$fit - 1.96*pred_complete$se.fit,
     yhat.upr = pred_complete$fit + 1.96*pred_complete$se.fit
     ) %>%
-    as_tibble() %>% 
-    mutate(model = "reference model")
+    as_tibble() 
   
   p <- plot_df %>% 
-    ggplot(aes(x = x, y = yhat, ymin = yhat.lwr, ymax = yhat.upr, color=model, fill=model)) +
+    ggplot(aes(x = x, y = yhat, ymin = yhat.lwr, ymax = yhat.upr)) +
     geom_ribbon(alpha = .2, color = NA) +
     geom_line() +
     geom_rug(
@@ -180,33 +167,32 @@ for(i in 1:length(key_predictors_trans)){
   if(key_predictors_trans[i] == 'PLT'){ p_effect_PLT <- p} # save for example 5
 }
 
-
 ```
 
-## S1.2: to transform or not to transform
+## Example 1: to transform or not to transform
 
-Only for one out of the six key predictors did the fp algorithm chose a non-linear transformation. But out of those six variables, four were pseudo-log transformed before entering the model. In the first example we want to compare the reference model to a model using the key predictors on their original scale.
+Only for one out of the six key predictors did the fp algorithm chose a non-linear transformation. But out of those six variables, four were pseudo-log transformed before entering the model. In the first example we want to compare the global model to a model using the key predictors on their original scale.
 
-```{r reference model no trans, message = FALSE, warning = FALSE, fig.width=2, fig.height=3}
+```{r global model no trans, message = FALSE, warning = FALSE, fig.width=2, fig.height=3}
 # fit the complete mfp model using only original, non-transformed variables
-fit_mfp_complete_notrans <- mfp(as.formula(reference_formula %>% str_replace_all('t\\_', '')),
+fit_mfp_complete_notrans <- mfp(as.formula(global_formula %>% str_replace_all('t\\_', '')),
                      data = model_df_complete,
                      family = binomial)
 
-tidy(fit_mfp_complete_notrans) %>% gt_model_table('Model without pseudo-log tranformations')
+tidy(fit_mfp_complete_notrans) %>% gt_model_table('global model without pseudo-log tranformations')
 
 ```
 Note the different fp-transformation arising when the key predictors are not pseudo-log transformed. On the original scale, three covariates instead of one now enter the model via a non-linear fp-transformation. This suggests that a transfromation prior to the regression model 'outsources' the need for transformations within the model. Now let us compare the model performances.
 
 ```{r, message = FALSE, warning = FALSE, fig.width=4, fig.height=4}
-p_model_notrans <- logreg_summary_plot(fit_mfp_complete_notrans, 'Model \nwithout pseudo-log \ntransformations') # maybe side by side with reference model?
+p_model_notrans <- logreg_summary_plot(fit_mfp_complete_notrans, 'global model \nwithout pseudo-log \ntransformations') # maybe side by side with global model?
 
 p_model_complete + coord_cartesian(ylim = c(0,.8)) + p_model_notrans + theme(axis.title.y = element_blank()) + coord_cartesian(ylim = c(0,.8))
 ```
 
 With regards to McFadden's R² and the AUC, the differences between the two approaches is marginal.
 
-Next we will compare the differences of the functional forms in the two models for those covariates where a pseudo-log transformation was suggested in IDA. We will look at the log odds for bacteremia by each covariate on the original and the transformed scale, and compare the reference model using the original and the pseudo-log transformed covariates. Each variable is adjusted for the median of all other variables used.
+Next we will compare the differences of the functional forms in the two models for those covariates where a pseudo-log transformation was suggested in IDA. We will look at the log odds for bacteremia by each covariate on the original and the transformed scale, and compare the global model using the original and the pseudo-log transformed covariates. Each variable is adjusted for the median of all other variables used.
 
 ```{r trafo of variables, message = FALSE, warning = FALSE, fig.width=10, fig.height=4}
 
@@ -313,22 +299,16 @@ for(i in 1:length(key_predictors_trans)){
 
 ```
 
-## S1.3: the support of a model determines what it can explain
+## Example 2: the support of a model determines what it can explain
 
-Next we compare the reference model to a model were for an important variable, in our case we chose WBC_noNEU, the variable's support is reduced to the central 50% of the data (i.e. data within the 25% and 75% quantiles). Again, in the reduced models we use the same fp-transformations as in the reference model.
-
-The range and interquartile range of WBC_noNEU are: (`r min(model_df_complete$WBC_noNEU)`, `r max(model_df_complete$WBC_noNEU)`; (`r quantile(model_df_complete$WBC_noNEU, 0.25)`, `r quantile(model_df_complete$WBC_noNEU, 0.75)`).
-
-The range and interquartile range of t_WBC_noNEU are: (`r min(model_df_complete$t_WBC_noNEU)`, `r max(model_df_complete$t_WBC_noNEU)`; (`r quantile(model_df_complete$t_WBC_noNEU, 0.25)`, `r quantile(model_df_complete$t_WBC_noNEU, 0.75)`).
-
-
+Next we compare the global model to a model were for an important variable, in our case we chose age, the variable support is reduced to the central 50% of the data (i.e. data within the 25% and 75% quantiles). Again, in the reduced models we use the same fp-transformations as in the global model.
 
 ```{r prediction validity, message = FALSE, warning = FALSE, fig.width=6, fig.height=4}
 
 m_pct <- .5
 
-sel_central <- (model_df_complete$WBC_noNEU > quantile(model_df_complete$WBC_noNEU, 0.5-m_pct/2)) & 
-  (model_df_complete$WBC_noNEU < quantile(model_df_complete$WBC_noNEU, 0.5+m_pct/2)) #needed later
+sel_central <- (model_df_complete$Alter > quantile(model_df_complete$Alter, 0.5-m_pct/2)) & 
+  (model_df_complete$Alter < quantile(model_df_complete$Alter, 0.5+m_pct/2)) #needed later
 
 set.seed(2)
 sel_sample <- as.logical(round(runif(dim(model_df_complete)[1]))) # 50% random selection, needed later
@@ -355,7 +335,7 @@ r_squared_efron <- function(y, prediction){
 }
 
 tribble(
-  ~data, ~AUC, ~`scaled Brier score`,
+  ~data, ~AUC, ~`sacled Brier score`,
   'complete', auc(y_complete, pred_complete) %>% as.numeric(), cor(y_complete, pred_complete)^2,
   'central 50%', auc(y_central, pred_central) %>% as.numeric(), cor(y_central, pred_central)^2,
   '50% sample', auc(y_sample, pred_sample) %>% as.numeric(), cor(y_sample, pred_sample)^2,
@@ -373,59 +353,59 @@ p_ex2 <- rbind(
   tibble(
     BC = y_central,
     prediction = pred_central,
-    model = 'within IQR (WBC_noNEU)'
+    model = 'within IQR (age)'
   ),
   tibble(
     BC = y_sample,
     prediction = pred_sample,
     model = 'random 50% subsample'
   )) %>%
-  mutate(model = factor(model, levels = c('complete data', 'within IQR (WBC_noNEU)', 'random 50% subsample'))) %>%
+  mutate(model = factor(model, levels = c('complete data', 'within IQR (age)', 'random 50% subsample'))) %>%
   ggplot(aes(x = factor(BC), y = prediction, group = BC)) +
   geom_boxplot() + 
   facet_grid(~model) +
   theme_minimal() +
-  labs(x = 'Bacteremia')
+  labs(x = 'BC')
 
 p_ex2
 ```
 
-## S1.4: the limits of mulitiple imputation
+## Example 3: the limits of mulitiple imputation
 
 To show the effect of multiple imputation if the number of missing values is high, we construct a dataset with 50% artificially generated missing values in one variable. First, recall the output of the complete model, relying on the Bacteremia data with complete cases regarding the key predictors.
 
 ```{r, message = FALSE, warning = FALSE}
 
-tidy(fit_mfp_complete) %>% gt_model_table('reference model')
+tidy(fit_mfp_complete) %>% gt_model_table('global model')
 
 ```
 
-Creatinine's ('CREA') regression coefficient is significant at a level that might not survive substantial missingness. We thus create a dataset were we artificially introduce 50% missing creatinine values, missing completely at random.
+Creatinine ('KREA') is significant at a level that might not survive substantial missingness. We thus create a dataset were we artificially introduce 50% missing creatinine values, missing completely at random.
 
 ```{r create missing crea, message = FALSE, warning = FALSE, fig.width = 10, fig.height=6, fig.width=12}
-# create 50% missings for t_CREA
-set.seed(3) # with seed=3, z-statistic for t_CREA is 1.48
+# create 50% missings for t_KREA
+set.seed(3) # with seed=3, z-statistic for t_KREA is 1.48
 model_df_missings <- model_df_complete %>%
   mutate(
-    t_CREA = ifelse(
-      runif(dim(model_df_complete)[1]) < .5,  #~50%/50% TRUE/FALSE
-      t_CREA,
+    t_KREA = ifelse(
+      runif(dim(model_df_complete)[1]) < .5,  #~50%/50% TURE/FALSE
+      t_KREA,
       NA
     )
   )
 ```
 
-Next we fit a 'complete case' model in the case of missing creatinine data, using the fp-transformations from the reference model.
+Next we fit a 'complete case' model in the case of missing creatinine data, using the fp-transformations from the global model.
 
 ```{r, message = FALSE, warning = FALSE}
 
-fit_mfp_missing <- glm(as.formula(reference_formula_fp), #use same fp-trafos as in reference model
+fit_mfp_missing <- glm(as.formula(global_formula_fp), #use same fp-trafos as in global model
                        data = model_df_missings,
                        family = binomial)
 
 ```
 
-Now we impute the missing creatinine data using MICE with 50 imputations, fit the model using the fp-transformations from the reference model and pool the results.
+Now we impute the missing creatinine data using MICE with 50 imputations, fit the model using the fp-transformations from the global model and pool the results.
 
 ```{r multiple imputation, message = FALSE, warning = FALSE, results='hide'}
 
@@ -436,7 +416,7 @@ imp_data <- mice(model_df_missings %>%
 
 # fit imputed data
 imp_fits <- with(imp_data,
-                 glm(as.formula(reference_formula_fp), #use same fp-trafos as in reference model
+                 glm(as.formula(global_formula_fp), #use same fp-trafos as in global model
                  family = binomial)
   )
 
@@ -450,7 +430,7 @@ We now can compare the outputs of the complete model, the complete model with mi
 ```{r imputation comparison, message = FALSE, warning = FALSE}
 
 bind_rows(
-  tidy(fit_mfp_complete)  %>% mutate(model = 'reference model'),
+  tidy(fit_mfp_complete)  %>% mutate(model = 'global model'),
   tidy(fit_mfp_missing) %>% mutate(model = 'missing, complete cases'),
   summary(fit_pooled) %>% select(-df) %>% as_tibble() %>% mutate(model = 'missing, imputed')
   ) %>%
@@ -472,20 +452,18 @@ bind_rows(
   
 ```
 
-The z-statistic for creatinine drops from 2.98 to 1.49 when half the data is missing. Also in other variables the z-statistic is less extreme in the 'missing, complete case analysis' compared to the reference model. The interesting observations is that MI recreates estimates and standard errors very close to the reference model in most variables, but not in the one that was being imputed, namely creatinine. In variable selection, chreatinine, which is highly significant in the 'true' model, is likely to be dropped, based on the imputed data. 
+The z-statistic for creatinine drops from 2.98 to 1.49 when half the data is missing. Also in other variables the z-statistic is less extreme in the 'missing, complete case analysis' compared to the global model. The interesting observations is that MI recreates estimates and standard errors very close to the global model in most variables, but not in the one that was being imputed, namely creatinine. In variable selection, chreatinine, which is highly significant in the 'true' model, is likely to be dropped, based on the imputed data. 
 
 ```{r, message = FALSE, warning = FALSE}
-#pearson & spearman correlation of CREA and BUN
+#pearson & spearman correalation of CREA and BUN
 
-r_pearson  <- cor(model_df_complete$t_CREA, model_df_complete$BUN, method = 'pearson') %>% round(3)
-r_spearman <- cor(model_df_complete$t_CREA, model_df_complete$BUN, method = 'spearman') %>% round(3)
+r_pearson  <- cor(model_df_complete$t_KREA, model_df_complete$BUN, method = 'pearson') %>% round(3)
+r_spearman <- cor(model_df_complete$t_KREA, model_df_complete$BUN, method = 'spearman') %>% round(3)
 
-r_pearson
-r_spearman
 ```
 
 
-## S1.5: Interpretation of regression coefficient 'size'
+## Example 4: Interpretation of regression coefficient 'size'
 
 The variables WBC_noNEU and t_WBC_noNEU are on two very different scales:
 
@@ -513,8 +491,8 @@ model_df_complete %>%
   summarise(
     WBC_noNEU = sd(((t_WBC_noNEU + 0.1)^0.5) * fit_mfp_complete$coefficients[2]),
     NEU = sd((t_NEU + 0.1) * fit_mfp_complete$coefficients[3]),
-    Age = sd((AGE / 100) * fit_mfp_complete$coefficients[4]),
-    CREA = sd((t_CREA) * fit_mfp_complete$coefficients[5]),
+    Age = sd((Alter / 100) * fit_mfp_complete$coefficients[4]),
+    CREA = sd((t_KREA) * fit_mfp_complete$coefficients[5]),
     PLT = sd(((PLT + 1) / 100) * fit_mfp_complete$coefficients[6]),
     BUN = sd((t_BUN) * fit_mfp_complete$coefficients[7])
   ) %>%
@@ -542,7 +520,7 @@ bind_rows(
 ```
 (Suggestion: show this with models without fp trafo?)
 
-Because the fp-transformations further complicate the interpretation of the regression coefficients, let us consider two logistic regression models with WBC_noNEU and t_WBC_noNEU as single covariate, respectively.
+Because the fp-transformations further complicate the interpretation of the regression coefficients, let us consider two logisitc regression models with WBC_noNEU and t_WBC_noNEU as single covariate, respectively.
 
 ```{r}
 
