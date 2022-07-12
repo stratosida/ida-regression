@@ -15,13 +15,13 @@
 #' @examples
 
 ida_plot_univar_orig_vs_trans <- function(data, var, n_dodge = 1, 
-                                          bin_width = diff(range(data[[var]],na.rm=T))/min(length(unique(data[[var]])),100), 
-                                          sigma = NA, n_bars=100, transform = TRUE){
+                                       bin_width = diff(range(data[[var]],na.rm=T))/min(length(unique(data[[var]])),100), 
+                                       sigma = NA, n_bars=100, transform = TRUE){
   if(is.na(sigma)){
     p_out <- ida_plot_univar(data = data, var = var, n_dodge = n_dodge, 
                              bin_width = bin_width, 
                              sigma = sigma, n_bars=n_bars, transform = transform) 
-    return(p_out)
+   return(p_out)
     
   } else {
     
@@ -32,7 +32,6 @@ ida_plot_univar_orig_vs_trans <- function(data, var, n_dodge = 1,
     p_transformed <- ida_plot_univar(data = data, var = var, n_dodge = n_dodge, 
                                      bin_width = bin_width, 
                                      sigma = sigma, n_bars=n_bars, transform = TRUE)
-    
     
     p_out <- p_original | p_transformed 
     

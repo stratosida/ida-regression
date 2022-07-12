@@ -1,6 +1,6 @@
 # Univariate distribution checks
 
-This section reports a series of univariate summary checks of the CRASH-2 dataset.
+This section reports a series of univariate summary checks of the bacteremia dataset.
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 library(here)
@@ -132,7 +132,7 @@ Next we investigate whether a transformation of continuous variables may improve
 variables<- c("AGE", structural_vars, key_predictors, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars, remaining_vars)
 unique.variables <- unique(variables)
 
-res<-sapply(unique.variables, function(X) ida_trans(b_bact[,X])$const)
+res<-sapply(unique.variables, function(X) ida_trans(b_bact[,X])$const) #takes long, calculate once, and save?
 
 res
 ```
@@ -197,6 +197,30 @@ for(j in 1:length(unique.variables)){
 ```{r}
 save(list=c("c_bact", "bact_variables", "sigma_values", "bact_transformed"), 
      file=here::here("data", "bact_env_c.rda"))
+```
+
+### Univariate distribution with variables using only the original variable without the suggested transformations
+
+```{r}
+for(j in 1:length(unique.variables)){
+  print(ida_plot_univar(b_bact, unique.variables[j], sigma=res[j], n_bars=100, transform = FALSE))
+#  if(!is.na(res[j])){
+#    print(ida_plot_univar(b_bact, paste("t_",variables[j],sep="")))
+#  }
+}
+```
+
+### Comparison of univariate distributions with and without pseudo-log transformation
+
+The comparison is only shown for variables where a transformation is suggested.
+
+```{r, fig.width=12}
+for(j in 1:length(unique.variables)){
+#  print(ida_plot_univar_orig_vs_trans(b_bact, unique.variables[j], sigma=res[j], n_bars=100))
+ if(!is.na(res[j])){
+   print(ida_plot_univar_orig_vs_trans(b_bact, unique.variables[j], sigma=res[j], n_bars=100))
+ }
+}
 ```
 
 

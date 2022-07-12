@@ -35,23 +35,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 <hr><h4>Data frame:crash2</h4>20207 observations and 44 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable764251 {
+ .hmisctable299912 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable764251 td {
+ .hmisctable299912 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable764251 th {
+ .hmisctable299912 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable764251" border="1">
+ <table class="hmisctable299912" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>source</td><td>Method of Transmission of Entry Form to CC</td><td></td><td><a href="#levels.source">  5</a></td><td></td><td>integer</td><td>    0</td></tr>
@@ -101,23 +101,23 @@ Display the source dataset contents. This dataset is in the **data-raw** folder 
 
  <hr>
  <style>
- .hmisctable433936 {
+ .hmisctable688738 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable433936 td {
+ .hmisctable688738 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable433936 th {
+ .hmisctable688738 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable433936" border="1">
+ <table class="hmisctable688738" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.source">source</a></td><td>telephone</td></tr>
  <tr><td></td><td>telephone entered manually</td></tr>
@@ -184,23 +184,23 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 <hr><h4>Data frame:a_crash2</h4>20207 observations and 14 variables, maximum # NAs:17121  
  <hr>
  <style>
- .hmisctable255605 {
+ .hmisctable667455 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable255605 td {
+ .hmisctable667455 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable255605 th {
+ .hmisctable667455 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable255605" border="1">
+ <table class="hmisctable667455" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Levels</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>entryid</td><td>Unique Numbers for Entry Forms</td><td></td><td></td><td>integer</td><td>integer</td><td>    0</td></tr>
  <tr><td>trandomised</td><td>Date of Randomization</td><td></td><td></td><td>Date</td><td>double</td><td>    0</td></tr>
@@ -220,23 +220,23 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 
  <hr>
  <style>
- .hmisctable552812 {
+ .hmisctable619152 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable552812 td {
+ .hmisctable619152 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable552812 th {
+ .hmisctable619152 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable552812" border="1">
+ <table class="hmisctable619152" border="1">
  <tr><th>Variable</th><th>Levels</th></tr>
  <tr><td><a name="levels.sex">sex</a></td><td>male</td></tr>
  <tr><td></td><td>female</td></tr>
@@ -253,53 +253,52 @@ New object size:	1385720 bytes;	14 variables	20207 observations
 
 
 ```
-## R version 4.1.0 (2021-05-18)
+## R version 4.1.3 (2022-03-10)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
+## Running under: Windows 10 x64 (build 17763)
 ## 
 ## Matrix products: default
 ## 
 ## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
+## [1] LC_COLLATE=English_Austria.1252  LC_CTYPE=English_Austria.1252   
+## [3] LC_MONETARY=English_Austria.1252 LC_NUMERIC=C                    
+## [5] LC_TIME=English_Austria.1252    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] Hmisc_4.5-0     Formula_1.2-4   survival_3.2-11 lattice_0.20-44
-##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.6     purrr_0.3.4    
-##  [9] readr_1.4.0     tidyr_1.1.3     tibble_3.1.2    ggplot2_3.3.3  
+##  [1] Hmisc_4.6-0     Formula_1.2-4   survival_3.2-13 lattice_0.20-45
+##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.8     purrr_0.3.4    
+##  [9] readr_2.1.2     tidyr_1.2.0     tibble_3.1.6    ggplot2_3.3.5  
 ## [13] tidyverse_1.3.1 here_1.0.1     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] httr_1.4.2          sass_0.4.0          jsonlite_1.7.2     
-##  [4] splines_4.1.0       modelr_0.1.8        bslib_0.2.5.1      
+##  [1] httr_1.4.2          sass_0.4.1          jsonlite_1.8.0     
+##  [4] splines_4.1.3       modelr_0.1.8        bslib_0.3.1        
 ##  [7] assertthat_0.2.1    latticeExtra_0.6-29 cellranger_1.1.0   
-## [10] yaml_2.2.1          pillar_1.6.1        backports_1.2.1    
-## [13] glue_1.4.2          digest_0.6.27       checkmate_2.0.0    
-## [16] RColorBrewer_1.1-2  rvest_1.0.0         colorspace_2.0-1   
-## [19] htmltools_0.5.1.1   Matrix_1.3-3        pkgconfig_2.0.3    
-## [22] broom_0.7.6         haven_2.4.1         bookdown_0.22      
-## [25] scales_1.1.1        jpeg_0.1-8.1        htmlTable_2.2.1    
-## [28] generics_0.1.0      ellipsis_0.3.2      withr_2.4.2        
-## [31] nnet_7.3-16         cli_2.5.0           magrittr_2.0.1     
-## [34] crayon_1.4.1        readxl_1.3.1        evaluate_0.14      
-## [37] fs_1.5.0            fansi_0.4.2         xml2_1.3.2         
-## [40] foreign_0.8-81      data.table_1.14.0   tools_4.1.0        
-## [43] hms_1.1.0           lifecycle_1.0.0     munsell_0.5.0      
-## [46] reprex_2.0.0        cluster_2.1.2       compiler_4.1.0     
-## [49] jquerylib_0.1.4     rlang_0.4.11        grid_4.1.0         
-## [52] rstudioapi_0.13     htmlwidgets_1.5.3   base64enc_0.1-3    
-## [55] rmarkdown_2.8       gtable_0.3.0        DBI_1.1.1          
-## [58] R6_2.5.0            gridExtra_2.3       lubridate_1.7.10   
-## [61] knitr_1.33          utf8_1.2.1          rprojroot_2.0.2    
-## [64] stringi_1.6.2       Rcpp_1.0.6          vctrs_0.3.8        
-## [67] rpart_4.1-15        png_0.1-7           dbplyr_2.1.1       
-## [70] tidyselect_1.1.1    xfun_0.23
+## [10] yaml_2.3.5          pillar_1.7.0        backports_1.4.1    
+## [13] glue_1.6.2          digest_0.6.29       checkmate_2.0.0    
+## [16] RColorBrewer_1.1-2  rvest_1.0.2         colorspace_2.0-3   
+## [19] htmltools_0.5.2     Matrix_1.4-0        pkgconfig_2.0.3    
+## [22] broom_0.7.12        haven_2.4.3         bookdown_0.25      
+## [25] scales_1.1.1        jpeg_0.1-9          tzdb_0.2.0         
+## [28] htmlTable_2.4.0     generics_0.1.2      ellipsis_0.3.2     
+## [31] withr_2.5.0         nnet_7.3-17         cli_3.2.0          
+## [34] magrittr_2.0.2      crayon_1.5.1        readxl_1.3.1       
+## [37] evaluate_0.15       fs_1.5.2            fansi_1.0.3        
+## [40] xml2_1.3.3          foreign_0.8-82      data.table_1.14.2  
+## [43] tools_4.1.3         hms_1.1.1           lifecycle_1.0.1    
+## [46] munsell_0.5.0       reprex_2.0.1        cluster_2.1.2      
+## [49] compiler_4.1.3      jquerylib_0.1.4     rlang_1.0.2        
+## [52] grid_4.1.3          rstudioapi_0.13     htmlwidgets_1.5.4  
+## [55] base64enc_0.1-3     rmarkdown_2.13      gtable_0.3.0       
+## [58] DBI_1.1.2           R6_2.5.1            gridExtra_2.3      
+## [61] lubridate_1.8.0     knitr_1.38          fastmap_1.1.0      
+## [64] utf8_1.2.2          rprojroot_2.0.2     stringi_1.7.6      
+## [67] Rcpp_1.0.8.3        vctrs_0.3.8         rpart_4.1.16       
+## [70] png_0.1-7           dbplyr_2.1.1        tidyselect_1.1.2   
+## [73] xfun_0.30
 ```
 
 

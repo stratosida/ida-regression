@@ -27,7 +27,6 @@ ida_plot_univar <- function(data, var, n_dodge = 1,
   if(!is.na(sigma)) trans<-TRUE
   if(!transform) trans<-FALSE
   
-  
   ## number of missing observations
   nmiss <-
     data %>% dplyr::filter(is.na(.data[[var]])) %>% dplyr::tally()

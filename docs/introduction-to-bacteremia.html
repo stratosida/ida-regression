@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Introduction to Bacteremia | Regression without regrets</title>
   <meta name="description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Introduction to Bacteremia | Regression without regrets" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="The focus of this document/website is to provide guidance on conducting initial data analysis in a reproducible manner in the context of intended regression analyses." />
   <meta name="github-repo" content="bailliem/ida-regression-private" />
@@ -24,7 +23,7 @@
 <meta name="author" content="M. Baillie, G. Heinze &amp; M. Huebner" />
 
 
-<meta name="date" content="2021-06-16" />
+<meta name="date" content="2022-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="bacteremia.html"/>
 <link rel="next" href="ida-plan.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,21 +49,21 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.18/datatables.js"></script>
-<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/datatables-binding-0.22/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -497,256 +496,259 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">IDA report</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="1" data-path="ida-framework.html"><a href="ida-framework.html"><i class="fa fa-check"></i><b>1</b> IDA Framework</a></li>
-<li class="chapter" data-level="2" data-path="scope-of-the-regression-analyses-for-the-examples.html"><a href="scope-of-the-regression-analyses-for-the-examples.html"><i class="fa fa-check"></i><b>2</b> Scope of the regression analyses for the examples</a></li>
-<li class="chapter" data-level="3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html"><i class="fa fa-check"></i><b>3</b> Data screening and possible actions</a>
+<li><a href="index.html#overview">Overview<span></span></a></li>
+<li class="chapter" data-level="1" data-path="ida-framework.html"><a href="ida-framework.html"><i class="fa fa-check"></i><b>1</b> IDA Framework<span></span></a></li>
+<li class="chapter" data-level="2" data-path="scope-of-the-regression-analyses-for-the-examples.html"><a href="scope-of-the-regression-analyses-for-the-examples.html"><i class="fa fa-check"></i><b>2</b> Scope of the regression analyses for the examples<span></span></a></li>
+<li class="chapter" data-level="3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html"><i class="fa fa-check"></i><b>3</b> Data screening and possible actions<span></span></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#univariate-distributions"><i class="fa fa-check"></i><b>3.1</b> Univariate distributions</a></li>
-<li class="chapter" data-level="3.2" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#bivariate-distributions"><i class="fa fa-check"></i><b>3.2</b> Bivariate distributions</a></li>
-<li class="chapter" data-level="3.3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#missing-values"><i class="fa fa-check"></i><b>3.3</b> Missing values</a></li>
+<li class="chapter" data-level="3.1" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#univariate-distributions"><i class="fa fa-check"></i><b>3.1</b> Univariate distributions<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#bivariate-distributions"><i class="fa fa-check"></i><b>3.2</b> Bivariate distributions<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="data-screening-and-possible-actions.html"><a href="data-screening-and-possible-actions.html#missing-values"><i class="fa fa-check"></i><b>3.3</b> Missing values<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>I CRASH-2</b></span></li>
-<li class="chapter" data-level="4" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html"><i class="fa fa-check"></i><b>4</b> Introduction to CRASH-2</a>
+<li class="part"><span><b>I CRASH-2<span></span></b></span></li>
+<li class="chapter" data-level="4" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html"><i class="fa fa-check"></i><b>4</b> Introduction to CRASH-2<span></span></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash-2-description"><i class="fa fa-check"></i><b>4.1</b> CRASH-2 Description</a></li>
-<li class="chapter" data-level="4.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash2-dataset-contents"><i class="fa fa-check"></i><b>4.2</b> Crash2 dataset contents</a>
+<li class="chapter" data-level="4.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash-2-description"><i class="fa fa-check"></i><b>4.1</b> CRASH-2 Description<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#crash2-dataset-contents"><i class="fa fa-check"></i><b>4.2</b> Crash2 dataset contents<span></span></a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#source-dataset"><i class="fa fa-check"></i><b>4.2.1</b> Source dataset</a></li>
-<li class="chapter" data-level="4.2.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#updated-analysis-dataset"><i class="fa fa-check"></i><b>4.2.2</b> Updated analysis dataset</a></li>
+<li class="chapter" data-level="4.2.1" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#source-dataset"><i class="fa fa-check"></i><b>4.2.1</b> Source dataset<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#updated-analysis-dataset"><i class="fa fa-check"></i><b>4.2.2</b> Updated analysis dataset<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#section-session-info"><i class="fa fa-check"></i><b>4.3</b> Section session info</a></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-crash-2.html"><a href="introduction-to-crash-2.html#section-session-info"><i class="fa fa-check"></i><b>4.3</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html"><i class="fa fa-check"></i><b>5</b> Statistical analysis plan</a>
+<li class="chapter" data-level="5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html"><i class="fa fa-check"></i><b>5</b> Statistical analysis plan<span></span></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#outcome-variable"><i class="fa fa-check"></i><b>5.1</b> Outcome variable</a></li>
-<li class="chapter" data-level="5.2" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#statistical-methods"><i class="fa fa-check"></i><b>5.2</b> Statistical methods</a></li>
-<li class="chapter" data-level="5.3" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#remarks"><i class="fa fa-check"></i><b>5.3</b> Remarks</a></li>
-<li class="chapter" data-level="5.4" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#preparations"><i class="fa fa-check"></i><b>5.4</b> Preparations</a></li>
-<li class="chapter" data-level="5.5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#sources"><i class="fa fa-check"></i><b>5.5</b> Sources</a>
+<li class="chapter" data-level="5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#outcome-variable"><i class="fa fa-check"></i><b>5.1</b> Outcome variable<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#statistical-methods"><i class="fa fa-check"></i><b>5.2</b> Statistical methods<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#remarks"><i class="fa fa-check"></i><b>5.3</b> Remarks<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#preparations"><i class="fa fa-check"></i><b>5.4</b> Preparations<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#sources"><i class="fa fa-check"></i><b>5.5</b> Sources<span></span></a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#data-dictionary"><i class="fa fa-check"></i><b>5.5.1</b> Data dictionary</a></li>
+<li class="chapter" data-level="5.5.1" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#data-dictionary"><i class="fa fa-check"></i><b>5.5.1</b> Data dictionary<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#references"><i class="fa fa-check"></i><b>5.6</b> References</a></li>
+<li class="chapter" data-level="5.6" data-path="statistical-analysis-plan.html"><a href="statistical-analysis-plan.html#references"><i class="fa fa-check"></i><b>5.6</b> References<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>6</b> Missing data</a>
+<li class="chapter" data-level="6" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>6</b> Missing data<span></span></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="missing-data.html"><a href="missing-data.html#per-variable-missingness"><i class="fa fa-check"></i><b>6.1</b> Per variable missingness</a></li>
-<li class="chapter" data-level="6.2" data-path="missing-data.html"><a href="missing-data.html#missingness-patterns-over-variables"><i class="fa fa-check"></i><b>6.2</b> Missingness patterns over variables</a></li>
-<li class="chapter" data-level="6.3" data-path="missing-data.html"><a href="missing-data.html#incomplete-cases"><i class="fa fa-check"></i><b>6.3</b> (In)complete cases</a></li>
-<li class="chapter" data-level="6.4" data-path="missing-data.html"><a href="missing-data.html#section-session-info-1"><i class="fa fa-check"></i><b>6.4</b> Section session info</a></li>
+<li class="chapter" data-level="6.1" data-path="missing-data.html"><a href="missing-data.html#per-variable-missingness"><i class="fa fa-check"></i><b>6.1</b> Per variable missingness<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="missing-data.html"><a href="missing-data.html#missingness-patterns-over-variables"><i class="fa fa-check"></i><b>6.2</b> Missingness patterns over variables<span></span></a></li>
+<li class="chapter" data-level="6.3" data-path="missing-data.html"><a href="missing-data.html#incomplete-cases"><i class="fa fa-check"></i><b>6.3</b> (In)complete cases<span></span></a></li>
+<li class="chapter" data-level="6.4" data-path="missing-data.html"><a href="missing-data.html#section-session-info-1"><i class="fa fa-check"></i><b>6.4</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html"><i class="fa fa-check"></i><b>7</b> Univariate distribution checks</a>
+<li class="chapter" data-level="7" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html"><i class="fa fa-check"></i><b>7</b> Univariate distribution checks<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#data-set-overview"><i class="fa fa-check"></i><b>7.1</b> Data set overview</a>
+<li class="chapter" data-level="7.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#data-set-overview"><i class="fa fa-check"></i><b>7.1</b> Data set overview<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#demographic-variables"><i class="fa fa-check"></i><b>7.1.1</b> Demographic variables</a></li>
-<li class="chapter" data-level="7.1.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#physiological-measurements"><i class="fa fa-check"></i><b>7.1.2</b> Physiological measurements</a></li>
-<li class="chapter" data-level="7.1.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#characteristics-of-injury"><i class="fa fa-check"></i><b>7.1.3</b> Characteristics of injury</a></li>
+<li class="chapter" data-level="7.1.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#demographic-variables"><i class="fa fa-check"></i><b>7.1.1</b> Demographic variables<span></span></a></li>
+<li class="chapter" data-level="7.1.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#physiological-measurements"><i class="fa fa-check"></i><b>7.1.2</b> Physiological measurements<span></span></a></li>
+<li class="chapter" data-level="7.1.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#characteristics-of-injury"><i class="fa fa-check"></i><b>7.1.3</b> Characteristics of injury<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#categorical-variables"><i class="fa fa-check"></i><b>7.2</b> Categorical variables</a>
+<li class="chapter" data-level="7.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#categorical-variables"><i class="fa fa-check"></i><b>7.2</b> Categorical variables<span></span></a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#categorical-ordinal-plots"><i class="fa fa-check"></i><b>7.2.1</b> Categorical ordinal plots</a></li>
+<li class="chapter" data-level="7.2.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#categorical-ordinal-plots"><i class="fa fa-check"></i><b>7.2.1</b> Categorical ordinal plots<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#continuous-variables"><i class="fa fa-check"></i><b>7.3</b> Continuous variables</a>
+<li class="chapter" data-level="7.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#continuous-variables"><i class="fa fa-check"></i><b>7.3</b> Continuous variables<span></span></a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#age"><i class="fa fa-check"></i><b>7.3.1</b> Age</a></li>
-<li class="chapter" data-level="7.3.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#blood-pressure"><i class="fa fa-check"></i><b>7.3.2</b> Blood pressure</a></li>
-<li class="chapter" data-level="7.3.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#respiratory-rate"><i class="fa fa-check"></i><b>7.3.3</b> Respiratory rate</a></li>
-<li class="chapter" data-level="7.3.4" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#heart-rate"><i class="fa fa-check"></i><b>7.3.4</b> Heart rate</a></li>
-<li class="chapter" data-level="7.3.5" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#central-capillary-refill-time"><i class="fa fa-check"></i><b>7.3.5</b> Central capillary refill time</a></li>
-<li class="chapter" data-level="7.3.6" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#hours-since-injury"><i class="fa fa-check"></i><b>7.3.6</b> Hours since injury</a></li>
+<li class="chapter" data-level="7.3.1" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#age"><i class="fa fa-check"></i><b>7.3.1</b> Age<span></span></a></li>
+<li class="chapter" data-level="7.3.2" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#blood-pressure"><i class="fa fa-check"></i><b>7.3.2</b> Blood pressure<span></span></a></li>
+<li class="chapter" data-level="7.3.3" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#respiratory-rate"><i class="fa fa-check"></i><b>7.3.3</b> Respiratory rate<span></span></a></li>
+<li class="chapter" data-level="7.3.4" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#heart-rate"><i class="fa fa-check"></i><b>7.3.4</b> Heart rate<span></span></a></li>
+<li class="chapter" data-level="7.3.5" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#central-capillary-refill-time"><i class="fa fa-check"></i><b>7.3.5</b> Central capillary refill time<span></span></a></li>
+<li class="chapter" data-level="7.3.6" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#hours-since-injury"><i class="fa fa-check"></i><b>7.3.6</b> Hours since injury<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#section-session-info-2"><i class="fa fa-check"></i><b>7.4</b> Section session info</a></li>
+<li class="chapter" data-level="7.4" data-path="univariate-distribution-checks.html"><a href="univariate-distribution-checks.html#section-session-info-2"><i class="fa fa-check"></i><b>7.4</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html"><i class="fa fa-check"></i><b>8</b> Multivariate distributions</a>
+<li class="chapter" data-level="8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html"><i class="fa fa-check"></i><b>8</b> Multivariate distributions<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overview-1"><i class="fa fa-check"></i><b>8.1</b> Overview</a>
+<li class="chapter" data-level="8.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overview-1"><i class="fa fa-check"></i><b>8.1</b> Overview<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-correlation"><i class="fa fa-check"></i><b>8.1.1</b> Variable correlation</a></li>
-<li class="chapter" data-level="8.1.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-clustering"><i class="fa fa-check"></i><b>8.1.2</b> Variable clustering</a></li>
-<li class="chapter" data-level="8.1.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-redundancy"><i class="fa fa-check"></i><b>8.1.3</b> Variable redundancy</a></li>
+<li class="chapter" data-level="8.1.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-correlation"><i class="fa fa-check"></i><b>8.1.1</b> Variable correlation<span></span></a></li>
+<li class="chapter" data-level="8.1.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-clustering"><i class="fa fa-check"></i><b>8.1.2</b> Variable clustering<span></span></a></li>
+<li class="chapter" data-level="8.1.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#variable-redundancy"><i class="fa fa-check"></i><b>8.1.3</b> Variable redundancy<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-sex"><i class="fa fa-check"></i><b>8.2</b> Summary reports by sex</a>
+<li class="chapter" data-level="8.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-sex"><i class="fa fa-check"></i><b>8.2</b> Summary reports by sex<span></span></a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overall"><i class="fa fa-check"></i><b>8.2.1</b> Overall</a></li>
-<li class="chapter" data-level="8.2.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-age-by-sex"><i class="fa fa-check"></i><b>8.2.2</b> Distribution of age by sex</a></li>
-<li class="chapter" data-level="8.2.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-sex"><i class="fa fa-check"></i><b>8.2.3</b> Distribution of systolic blood pressure by sex</a></li>
-<li class="chapter" data-level="8.2.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-sex"><i class="fa fa-check"></i><b>8.2.4</b> Distribution of heart rate by sex</a></li>
-<li class="chapter" data-level="8.2.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-sex"><i class="fa fa-check"></i><b>8.2.5</b> Distribution of respiratory rate by sex</a></li>
-<li class="chapter" data-level="8.2.6" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-sex"><i class="fa fa-check"></i><b>8.2.6</b> Distribution of central capillary refille time by sex</a></li>
-<li class="chapter" data-level="8.2.7" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-hours-since-injury-by-sex"><i class="fa fa-check"></i><b>8.2.7</b> Distribution of hours since injury by sex</a></li>
-<li class="chapter" data-level="8.2.8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-glasgow-coma-score-by-sex"><i class="fa fa-check"></i><b>8.2.8</b> Distribution of Glasgow coma score by sex</a></li>
-<li class="chapter" data-level="8.2.9" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-injury-type-by-sex"><i class="fa fa-check"></i><b>8.2.9</b> Distribution of injury type by sex</a></li>
+<li class="chapter" data-level="8.2.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#overall"><i class="fa fa-check"></i><b>8.2.1</b> Overall<span></span></a></li>
+<li class="chapter" data-level="8.2.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-age-by-sex"><i class="fa fa-check"></i><b>8.2.2</b> Distribution of age by sex<span></span></a></li>
+<li class="chapter" data-level="8.2.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-sex"><i class="fa fa-check"></i><b>8.2.3</b> Distribution of systolic blood pressure by sex<span></span></a></li>
+<li class="chapter" data-level="8.2.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-sex"><i class="fa fa-check"></i><b>8.2.4</b> Distribution of heart rate by sex<span></span></a></li>
+<li class="chapter" data-level="8.2.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-sex"><i class="fa fa-check"></i><b>8.2.5</b> Distribution of respiratory rate by sex<span></span></a></li>
+<li class="chapter" data-level="8.2.6" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-sex"><i class="fa fa-check"></i><b>8.2.6</b> Distribution of central capillary refille time by sex<span></span></a></li>
+<li class="chapter" data-level="8.2.7" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-hours-since-injury-by-sex"><i class="fa fa-check"></i><b>8.2.7</b> Distribution of hours since injury by sex<span></span></a></li>
+<li class="chapter" data-level="8.2.8" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-glasgow-coma-score-by-sex"><i class="fa fa-check"></i><b>8.2.8</b> Distribution of Glasgow coma score by sex<span></span></a></li>
+<li class="chapter" data-level="8.2.9" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-injury-type-by-sex"><i class="fa fa-check"></i><b>8.2.9</b> Distribution of injury type by sex<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-age"><i class="fa fa-check"></i><b>8.3</b> Summary reports by age</a>
+<li class="chapter" data-level="8.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-age"><i class="fa fa-check"></i><b>8.3</b> Summary reports by age<span></span></a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-age-categories"><i class="fa fa-check"></i><b>8.3.1</b> Distribution of systolic blood pressure by age categories</a></li>
-<li class="chapter" data-level="8.3.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-age-categories"><i class="fa fa-check"></i><b>8.3.2</b> Distribution of heart rate by age categories</a></li>
-<li class="chapter" data-level="8.3.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-age-categories"><i class="fa fa-check"></i><b>8.3.3</b> Distribution of respiratory rate by age categories</a></li>
-<li class="chapter" data-level="8.3.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-age-categories"><i class="fa fa-check"></i><b>8.3.4</b> Distribution of central capillary refille time by age categories</a></li>
-<li class="chapter" data-level="8.3.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#wip-multivariate-scatter-plots"><i class="fa fa-check"></i><b>8.3.5</b> WIP: multivariate scatter plots</a></li>
-<li class="chapter" data-level="8.3.6" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#wip-scatter-plots-with-a-third-or-fourth-variable"><i class="fa fa-check"></i><b>8.3.6</b> WIP: Scatter plots with a third or fourth variable</a></li>
+<li class="chapter" data-level="8.3.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-age-categories"><i class="fa fa-check"></i><b>8.3.1</b> Distribution of systolic blood pressure by age categories<span></span></a></li>
+<li class="chapter" data-level="8.3.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-age-categories"><i class="fa fa-check"></i><b>8.3.2</b> Distribution of heart rate by age categories<span></span></a></li>
+<li class="chapter" data-level="8.3.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-age-categories"><i class="fa fa-check"></i><b>8.3.3</b> Distribution of respiratory rate by age categories<span></span></a></li>
+<li class="chapter" data-level="8.3.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-age-categories"><i class="fa fa-check"></i><b>8.3.4</b> Distribution of central capillary refille time by age categories<span></span></a></li>
+<li class="chapter" data-level="8.3.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#wip-multivariate-scatter-plots"><i class="fa fa-check"></i><b>8.3.5</b> WIP: multivariate scatter plots<span></span></a></li>
+<li class="chapter" data-level="8.3.6" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#wip-scatter-plots-with-a-third-or-fourth-variable"><i class="fa fa-check"></i><b>8.3.6</b> WIP: Scatter plots with a third or fourth variable<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4</b> Summary reports by Glasgow coma score</a>
+<li class="chapter" data-level="8.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#summary-reports-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4</b> Summary reports by Glasgow coma score<span></span></a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-age-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.1</b> Distribution of age by Glasgow coma score</a></li>
-<li class="chapter" data-level="8.4.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.2</b> Distribution of systolic blood pressure by Glasgow coma score</a></li>
-<li class="chapter" data-level="8.4.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.3</b> Distribution of heart rate by Glasgow coma score</a></li>
-<li class="chapter" data-level="8.4.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.4</b> Distribution of respiratory rate by Glasgow coma score</a></li>
-<li class="chapter" data-level="8.4.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.5</b> Distribution of central capillary refille time by Glasgow coma score</a></li>
+<li class="chapter" data-level="8.4.1" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-age-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.1</b> Distribution of age by Glasgow coma score<span></span></a></li>
+<li class="chapter" data-level="8.4.2" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-systolic-blood-pressure-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.2</b> Distribution of systolic blood pressure by Glasgow coma score<span></span></a></li>
+<li class="chapter" data-level="8.4.3" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-heart-rate-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.3</b> Distribution of heart rate by Glasgow coma score<span></span></a></li>
+<li class="chapter" data-level="8.4.4" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-respiratory-rate-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.4</b> Distribution of respiratory rate by Glasgow coma score<span></span></a></li>
+<li class="chapter" data-level="8.4.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#distribution-of-central-capillary-refille-time-by-glasgow-coma-score"><i class="fa fa-check"></i><b>8.4.5</b> Distribution of central capillary refille time by Glasgow coma score<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#section-session-info-3"><i class="fa fa-check"></i><b>8.5</b> Section session info</a></li>
+<li class="chapter" data-level="8.5" data-path="multivariate-distributions.html"><a href="multivariate-distributions.html#section-session-info-3"><i class="fa fa-check"></i><b>8.5</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="national-health-and-nutrition-examination-survey-nhanes.html"><a href="national-health-and-nutrition-examination-survey-nhanes.html"><i class="fa fa-check"></i>National Health and Nutrition Examination Survey (NHANES)</a></li>
-<li class="chapter" data-level="9" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html"><i class="fa fa-check"></i><b>9</b> Introduction to NHANES</a>
+<li><a href="national-health-and-nutrition-examination-survey-nhanes.html#national-health-and-nutrition-examination-survey-nhanes">National Health and Nutrition Examination Survey (NHANES)<span></span></a></li>
+<li class="chapter" data-level="9" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html"><i class="fa fa-check"></i><b>9</b> Introduction to NHANES<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-description"><i class="fa fa-check"></i><b>9.1</b> NHANES Dataset Description</a>
+<li class="chapter" data-level="9.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-description"><i class="fa fa-check"></i><b>9.1</b> NHANES Dataset Description<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#variables"><i class="fa fa-check"></i><b>9.1.1</b> Variables</a></li>
+<li class="chapter" data-level="9.1.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#variables"><i class="fa fa-check"></i><b>9.1.1</b> Variables<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-contents"><i class="fa fa-check"></i><b>9.2</b> NHANES dataset contents</a>
+<li class="chapter" data-level="9.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#nhanes-dataset-contents"><i class="fa fa-check"></i><b>9.2</b> NHANES dataset contents<span></span></a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#source-dataset-1"><i class="fa fa-check"></i><b>9.2.1</b> Source dataset</a></li>
-<li class="chapter" data-level="9.2.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#data-dictionary-1"><i class="fa fa-check"></i><b>9.2.2</b> Data dictionary</a></li>
+<li class="chapter" data-level="9.2.1" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#source-dataset-1"><i class="fa fa-check"></i><b>9.2.1</b> Source dataset<span></span></a></li>
+<li class="chapter" data-level="9.2.2" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#data-dictionary-1"><i class="fa fa-check"></i><b>9.2.2</b> Data dictionary<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#references-1"><i class="fa fa-check"></i><b>9.3</b> References</a></li>
-<li class="chapter" data-level="9.4" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#section-session-info-4"><i class="fa fa-check"></i><b>9.4</b> Section session info</a></li>
+<li class="chapter" data-level="9.3" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#references-1"><i class="fa fa-check"></i><b>9.3</b> References<span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="introduction-to-nhanes.html"><a href="introduction-to-nhanes.html#section-session-info-4"><i class="fa fa-check"></i><b>9.4</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html"><i class="fa fa-check"></i><b>10</b> Initial data analysis plan (IDAP)</a>
+<li class="chapter" data-level="10" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html"><i class="fa fa-check"></i><b>10</b> Initial data analysis plan (IDAP)<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#initial-data-analysis-strategy"><i class="fa fa-check"></i><b>10.1</b> Initial data analysis strategy</a>
+<li class="chapter" data-level="10.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#initial-data-analysis-strategy"><i class="fa fa-check"></i><b>10.1</b> Initial data analysis strategy<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-missing-values"><i class="fa fa-check"></i><b>10.1.1</b> IDA domain: missing values</a></li>
-<li class="chapter" data-level="10.1.2" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-univariate-distributions"><i class="fa fa-check"></i><b>10.1.2</b> IDA domain: univariate distributions</a></li>
-<li class="chapter" data-level="10.1.3" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-multivariate-system-of-variables"><i class="fa fa-check"></i><b>10.1.3</b> IDA domain: multivariate system of variables</a></li>
+<li class="chapter" data-level="10.1.1" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-missing-values"><i class="fa fa-check"></i><b>10.1.1</b> IDA domain: missing values<span></span></a></li>
+<li class="chapter" data-level="10.1.2" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-univariate-distributions"><i class="fa fa-check"></i><b>10.1.2</b> IDA domain: univariate distributions<span></span></a></li>
+<li class="chapter" data-level="10.1.3" data-path="initial-data-analysis-plan-idap.html"><a href="initial-data-analysis-plan-idap.html#ida-domain-multivariate-system-of-variables"><i class="fa fa-check"></i><b>10.1.3</b> IDA domain: multivariate system of variables<span></span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="missing-data-1.html"><a href="missing-data-1.html"><i class="fa fa-check"></i><b>11</b> Missing data</a>
+<li class="chapter" data-level="11" data-path="missing-data-1.html"><a href="missing-data-1.html"><i class="fa fa-check"></i><b>11</b> Missing data<span></span></a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="missing-data-1.html"><a href="missing-data-1.html#per-variable-missingness-1"><i class="fa fa-check"></i><b>11.1</b> Per variable missingness</a></li>
-<li class="chapter" data-level="11.2" data-path="missing-data-1.html"><a href="missing-data-1.html#variable-summaries-for-complete-vs-incomplete-cases"><i class="fa fa-check"></i><b>11.2</b> Variable summaries for complete vs incomplete cases</a></li>
-<li class="chapter" data-level="11.3" data-path="missing-data-1.html"><a href="missing-data-1.html#missingness-patterns-over-variables-1"><i class="fa fa-check"></i><b>11.3</b> Missingness patterns over variables</a></li>
-<li class="chapter" data-level="11.4" data-path="missing-data-1.html"><a href="missing-data-1.html#incomplete-cases-1"><i class="fa fa-check"></i><b>11.4</b> (In)complete cases</a></li>
-<li class="chapter" data-level="11.5" data-path="missing-data-1.html"><a href="missing-data-1.html#section-session-info-5"><i class="fa fa-check"></i><b>11.5</b> Section session info</a></li>
+<li class="chapter" data-level="11.1" data-path="missing-data-1.html"><a href="missing-data-1.html#per-variable-missingness-1"><i class="fa fa-check"></i><b>11.1</b> Per variable missingness<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="missing-data-1.html"><a href="missing-data-1.html#variable-summaries-for-complete-vs-incomplete-cases"><i class="fa fa-check"></i><b>11.2</b> Variable summaries for complete vs incomplete cases<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="missing-data-1.html"><a href="missing-data-1.html#missingness-patterns-over-variables-1"><i class="fa fa-check"></i><b>11.3</b> Missingness patterns over variables<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="missing-data-1.html"><a href="missing-data-1.html#incomplete-cases-1"><i class="fa fa-check"></i><b>11.4</b> (In)complete cases<span></span></a></li>
+<li class="chapter" data-level="11.5" data-path="missing-data-1.html"><a href="missing-data-1.html#section-session-info-5"><i class="fa fa-check"></i><b>11.5</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html"><i class="fa fa-check"></i><b>12</b> Univariate distribution checks</a>
+<li class="chapter" data-level="12" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html"><i class="fa fa-check"></i><b>12</b> Univariate distribution checks<span></span></a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#data-set-overview-1"><i class="fa fa-check"></i><b>12.1</b> Data set overview</a>
+<li class="chapter" data-level="12.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#data-set-overview-1"><i class="fa fa-check"></i><b>12.1</b> Data set overview<span></span></a>
 <ul>
-<li class="chapter" data-level="12.1.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#demographic-and-lifestyle-variables"><i class="fa fa-check"></i><b>12.1.1</b> Demographic and lifestyle variables</a></li>
-<li class="chapter" data-level="12.1.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#physiological-measurements-1"><i class="fa fa-check"></i><b>12.1.2</b> Physiological measurements</a></li>
-<li class="chapter" data-level="12.1.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#comorbidities"><i class="fa fa-check"></i><b>12.1.3</b> Comorbidities</a></li>
-<li class="chapter" data-level="12.1.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#physical-activity-variables"><i class="fa fa-check"></i><b>12.1.4</b> Physical activity variables</a></li>
+<li class="chapter" data-level="12.1.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#demographic-and-lifestyle-variables"><i class="fa fa-check"></i><b>12.1.1</b> Demographic and lifestyle variables<span></span></a></li>
+<li class="chapter" data-level="12.1.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#physiological-measurements-1"><i class="fa fa-check"></i><b>12.1.2</b> Physiological measurements<span></span></a></li>
+<li class="chapter" data-level="12.1.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#comorbidities"><i class="fa fa-check"></i><b>12.1.3</b> Comorbidities<span></span></a></li>
+<li class="chapter" data-level="12.1.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#physical-activity-variables"><i class="fa fa-check"></i><b>12.1.4</b> Physical activity variables<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#categorical-variables-1"><i class="fa fa-check"></i><b>12.2</b> Categorical variables</a></li>
-<li class="chapter" data-level="12.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#continuous-variables-1"><i class="fa fa-check"></i><b>12.3</b> Continuous variables</a>
+<li class="chapter" data-level="12.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#categorical-variables-1"><i class="fa fa-check"></i><b>12.2</b> Categorical variables<span></span></a></li>
+<li class="chapter" data-level="12.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#continuous-variables-1"><i class="fa fa-check"></i><b>12.3</b> Continuous variables<span></span></a>
 <ul>
-<li class="chapter" data-level="12.3.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#age-1"><i class="fa fa-check"></i><b>12.3.1</b> Age</a></li>
-<li class="chapter" data-level="12.3.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#blood-pressure-1"><i class="fa fa-check"></i><b>12.3.2</b> Blood pressure</a></li>
-<li class="chapter" data-level="12.3.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#body-mass-index"><i class="fa fa-check"></i><b>12.3.3</b> Body mass index</a></li>
-<li class="chapter" data-level="12.3.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#outcome-time-of-moderate-or-vigrous-physical-activity-and-related-variables"><i class="fa fa-check"></i><b>12.3.4</b> Outcome= Time of moderate or vigrous physical activity and related variables</a></li>
+<li class="chapter" data-level="12.3.1" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#age-1"><i class="fa fa-check"></i><b>12.3.1</b> Age<span></span></a></li>
+<li class="chapter" data-level="12.3.2" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#blood-pressure-1"><i class="fa fa-check"></i><b>12.3.2</b> Blood pressure<span></span></a></li>
+<li class="chapter" data-level="12.3.3" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#body-mass-index"><i class="fa fa-check"></i><b>12.3.3</b> Body mass index<span></span></a></li>
+<li class="chapter" data-level="12.3.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#outcome-time-of-moderate-or-vigrous-physical-activity-and-related-variables"><i class="fa fa-check"></i><b>12.3.4</b> Outcome= Time of moderate or vigrous physical activity and related variables<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#section-session-info-6"><i class="fa fa-check"></i><b>12.4</b> Section session info</a></li>
+<li class="chapter" data-level="12.4" data-path="univariate-distribution-checks-1.html"><a href="univariate-distribution-checks-1.html#section-session-info-6"><i class="fa fa-check"></i><b>12.4</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html"><i class="fa fa-check"></i><b>13</b> Multivariate distributions</a>
+<li class="chapter" data-level="13" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html"><i class="fa fa-check"></i><b>13</b> Multivariate distributions<span></span></a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#overview-2"><i class="fa fa-check"></i><b>13.1</b> Overview</a>
+<li class="chapter" data-level="13.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#overview-2"><i class="fa fa-check"></i><b>13.1</b> Overview<span></span></a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-correlation-1"><i class="fa fa-check"></i><b>13.1.1</b> Variable correlation</a></li>
-<li class="chapter" data-level="13.1.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-clustering-1"><i class="fa fa-check"></i><b>13.1.2</b> Variable clustering</a></li>
-<li class="chapter" data-level="13.1.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-redundancy-1"><i class="fa fa-check"></i><b>13.1.3</b> Variable redundancy</a></li>
+<li class="chapter" data-level="13.1.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-correlation-1"><i class="fa fa-check"></i><b>13.1.1</b> Variable correlation<span></span></a></li>
+<li class="chapter" data-level="13.1.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-clustering-1"><i class="fa fa-check"></i><b>13.1.2</b> Variable clustering<span></span></a></li>
+<li class="chapter" data-level="13.1.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#variable-redundancy-1"><i class="fa fa-check"></i><b>13.1.3</b> Variable redundancy<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-reports-by-pivotal-covariates-age-and-gender"><i class="fa fa-check"></i><b>13.2</b> Summary reports by pivotal covariates age and gender</a>
+<li class="chapter" data-level="13.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-reports-by-pivotal-covariates-age-and-gender"><i class="fa fa-check"></i><b>13.2</b> Summary reports by pivotal covariates age and gender<span></span></a>
 <ul>
-<li class="chapter" data-level="13.2.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-age-by-gender"><i class="fa fa-check"></i><b>13.2.1</b> Distribution of age by gender</a></li>
+<li class="chapter" data-level="13.2.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-age-by-gender"><i class="fa fa-check"></i><b>13.2.1</b> Distribution of age by gender<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-and-gender"><i class="fa fa-check"></i><b>13.3</b> Summary report by age group and gender</a>
+<li class="chapter" data-level="13.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-and-gender"><i class="fa fa-check"></i><b>13.3</b> Summary report by age group and gender<span></span></a>
 <ul>
-<li class="chapter" data-level="13.3.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-gender"><i class="fa fa-check"></i><b>13.3.1</b> Summary report by gender</a></li>
-<li class="chapter" data-level="13.3.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-for-men"><i class="fa fa-check"></i><b>13.3.2</b> Summary report by age group for men</a></li>
-<li class="chapter" data-level="13.3.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-for-women"><i class="fa fa-check"></i><b>13.3.3</b> Summary report by age group for women</a></li>
+<li class="chapter" data-level="13.3.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-gender"><i class="fa fa-check"></i><b>13.3.1</b> Summary report by gender<span></span></a></li>
+<li class="chapter" data-level="13.3.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-for-men"><i class="fa fa-check"></i><b>13.3.2</b> Summary report by age group for men<span></span></a></li>
+<li class="chapter" data-level="13.3.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#summary-report-by-age-group-for-women"><i class="fa fa-check"></i><b>13.3.3</b> Summary report by age group for women<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#continuous-variables-by-age-and-gender"><i class="fa fa-check"></i><b>13.4</b> Continuous variables by age and gender</a>
+<li class="chapter" data-level="13.4" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#continuous-variables-by-age-and-gender"><i class="fa fa-check"></i><b>13.4</b> Continuous variables by age and gender<span></span></a>
 <ul>
-<li class="chapter" data-level="13.4.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-systolic-blood-pressure"><i class="fa fa-check"></i><b>13.4.1</b> Distribution of systolic blood pressure</a></li>
-<li class="chapter" data-level="13.4.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-bmi"><i class="fa fa-check"></i><b>13.4.2</b> Distribution of BMI</a></li>
-<li class="chapter" data-level="13.4.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-wear-time"><i class="fa fa-check"></i><b>13.4.3</b> Distribution of wear time</a></li>
+<li class="chapter" data-level="13.4.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-systolic-blood-pressure"><i class="fa fa-check"></i><b>13.4.1</b> Distribution of systolic blood pressure<span></span></a></li>
+<li class="chapter" data-level="13.4.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-bmi"><i class="fa fa-check"></i><b>13.4.2</b> Distribution of BMI<span></span></a></li>
+<li class="chapter" data-level="13.4.3" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-wear-time"><i class="fa fa-check"></i><b>13.4.3</b> Distribution of wear time<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#physical-activity-data-outcome"><i class="fa fa-check"></i><b>13.5</b> Physical activity data (outcome)</a>
+<li class="chapter" data-level="13.5" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#physical-activity-data-outcome"><i class="fa fa-check"></i><b>13.5</b> Physical activity data (outcome)<span></span></a>
 <ul>
-<li class="chapter" data-level="13.5.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-mvpa"><i class="fa fa-check"></i><b>13.5.1</b> Distribution of MVPA</a></li>
-<li class="chapter" data-level="13.5.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-mvpa-and-total-log-activity-count-by-time-of-day"><i class="fa fa-check"></i><b>13.5.2</b> Distribution of MVPA and Total log activity count by time of day</a></li>
+<li class="chapter" data-level="13.5.1" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-mvpa"><i class="fa fa-check"></i><b>13.5.1</b> Distribution of MVPA<span></span></a></li>
+<li class="chapter" data-level="13.5.2" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#distribution-of-mvpa-and-total-log-activity-count-by-time-of-day"><i class="fa fa-check"></i><b>13.5.2</b> Distribution of MVPA and Total log activity count by time of day<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13.6" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#section-session-info-7"><i class="fa fa-check"></i><b>13.6</b> Section session info</a></li>
+<li class="chapter" data-level="13.6" data-path="multivariate-distributions-1.html"><a href="multivariate-distributions-1.html#section-session-info-7"><i class="fa fa-check"></i><b>13.6</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="bacteremia.html"><a href="bacteremia.html"><i class="fa fa-check"></i>Bacteremia</a></li>
-<li class="chapter" data-level="14" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html"><i class="fa fa-check"></i><b>14</b> Introduction to Bacteremia</a>
+<li><a href="bacteremia.html#bacteremia">Bacteremia<span></span></a></li>
+<li class="chapter" data-level="14" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html"><i class="fa fa-check"></i><b>14</b> Introduction to Bacteremia<span></span></a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#dataset-description"><i class="fa fa-check"></i><b>14.1</b> Dataset Description</a></li>
-<li class="chapter" data-level="14.2" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#bacteremia-dataset-contents"><i class="fa fa-check"></i><b>14.2</b> Bacteremia dataset contents</a>
+<li class="chapter" data-level="14.1" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#dataset-description"><i class="fa fa-check"></i><b>14.1</b> Dataset Description<span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#bacteremia-dataset-contents"><i class="fa fa-check"></i><b>14.2</b> Bacteremia dataset contents<span></span></a>
 <ul>
-<li class="chapter" data-level="14.2.1" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#source-dataset-2"><i class="fa fa-check"></i><b>14.2.1</b> Source dataset</a></li>
-<li class="chapter" data-level="14.2.2" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#updated-analysis-dataset-1"><i class="fa fa-check"></i><b>14.2.2</b> Updated analysis dataset</a></li>
+<li class="chapter" data-level="14.2.1" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#source-dataset-2"><i class="fa fa-check"></i><b>14.2.1</b> Source dataset<span></span></a></li>
+<li class="chapter" data-level="14.2.2" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#updated-analysis-dataset-1"><i class="fa fa-check"></i><b>14.2.2</b> Updated analysis dataset<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#section-session-info-8"><i class="fa fa-check"></i><b>14.3</b> Section session info</a></li>
+<li class="chapter" data-level="14.3" data-path="introduction-to-bacteremia.html"><a href="introduction-to-bacteremia.html#section-session-info-8"><i class="fa fa-check"></i><b>14.3</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="ida-plan.html"><a href="ida-plan.html"><i class="fa fa-check"></i><b>15</b> IDA plan</a>
+<li class="chapter" data-level="15" data-path="ida-plan.html"><a href="ida-plan.html"><i class="fa fa-check"></i><b>15</b> IDA plan<span></span></a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="ida-plan.html"><a href="ida-plan.html#preparations-1"><i class="fa fa-check"></i><b>15.1</b> Preparations</a></li>
-<li class="chapter" data-level="15.2" data-path="ida-plan.html"><a href="ida-plan.html#ida-domains"><i class="fa fa-check"></i><b>15.2</b> IDA domains</a>
+<li class="chapter" data-level="15.1" data-path="ida-plan.html"><a href="ida-plan.html#preparations-1"><i class="fa fa-check"></i><b>15.1</b> Preparations<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="ida-plan.html"><a href="ida-plan.html#ida-domains"><i class="fa fa-check"></i><b>15.2</b> IDA domains<span></span></a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-missing-values-1"><i class="fa fa-check"></i><b>15.2.1</b> IDA domain: missing values</a></li>
-<li class="chapter" data-level="15.2.2" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-univariate-distributions-1"><i class="fa fa-check"></i><b>15.2.2</b> IDA domain: univariate distributions</a></li>
-<li class="chapter" data-level="15.2.3" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-multivariate-system-of-variables-1"><i class="fa fa-check"></i><b>15.2.3</b> IDA domain: multivariate system of variables</a></li>
+<li class="chapter" data-level="15.2.1" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-missing-values-1"><i class="fa fa-check"></i><b>15.2.1</b> IDA domain: missing values<span></span></a></li>
+<li class="chapter" data-level="15.2.2" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-univariate-distributions-1"><i class="fa fa-check"></i><b>15.2.2</b> IDA domain: univariate distributions<span></span></a></li>
+<li class="chapter" data-level="15.2.3" data-path="ida-plan.html"><a href="ida-plan.html#ida-domain-multivariate-system-of-variables-1"><i class="fa fa-check"></i><b>15.2.3</b> IDA domain: multivariate system of variables<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="ida-plan.html"><a href="ida-plan.html#sources-1"><i class="fa fa-check"></i><b>15.3</b> Sources</a>
+<li class="chapter" data-level="15.3" data-path="ida-plan.html"><a href="ida-plan.html#sources-1"><i class="fa fa-check"></i><b>15.3</b> Sources<span></span></a>
 <ul>
-<li class="chapter" data-level="15.3.1" data-path="ida-plan.html"><a href="ida-plan.html#data-dictionary-2"><i class="fa fa-check"></i><b>15.3.1</b> Data dictionary</a></li>
+<li class="chapter" data-level="15.3.1" data-path="ida-plan.html"><a href="ida-plan.html#data-dictionary-2"><i class="fa fa-check"></i><b>15.3.1</b> Data dictionary<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="ida-plan.html"><a href="ida-plan.html#references-2"><i class="fa fa-check"></i><b>15.4</b> References</a></li>
+<li class="chapter" data-level="15.4" data-path="ida-plan.html"><a href="ida-plan.html#references-2"><i class="fa fa-check"></i><b>15.4</b> References<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="missing-data-2.html"><a href="missing-data-2.html"><i class="fa fa-check"></i><b>16</b> Missing data</a>
+<li class="chapter" data-level="16" data-path="missing-data-2.html"><a href="missing-data-2.html"><i class="fa fa-check"></i><b>16</b> Missing data<span></span></a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="missing-data-2.html"><a href="missing-data-2.html#per-variable-missingness-2"><i class="fa fa-check"></i><b>16.1</b> Per variable missingness</a></li>
-<li class="chapter" data-level="16.2" data-path="missing-data-2.html"><a href="missing-data-2.html#missingness-patterns-over-variables-2"><i class="fa fa-check"></i><b>16.2</b> Missingness patterns over variables</a></li>
-<li class="chapter" data-level="16.3" data-path="missing-data-2.html"><a href="missing-data-2.html#section-session-info-9"><i class="fa fa-check"></i><b>16.3</b> Section session info</a></li>
+<li class="chapter" data-level="16.1" data-path="missing-data-2.html"><a href="missing-data-2.html#per-variable-missingness-2"><i class="fa fa-check"></i><b>16.1</b> Per variable missingness<span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="missing-data-2.html"><a href="missing-data-2.html#missingness-patterns-over-variables-2"><i class="fa fa-check"></i><b>16.2</b> Missingness patterns over variables<span></span></a></li>
+<li class="chapter" data-level="16.3" data-path="missing-data-2.html"><a href="missing-data-2.html#section-session-info-9"><i class="fa fa-check"></i><b>16.3</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html"><i class="fa fa-check"></i><b>17</b> Univariate distribution checks</a>
+<li class="chapter" data-level="17" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html"><i class="fa fa-check"></i><b>17</b> Univariate distribution checks<span></span></a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#data-set-overview-2"><i class="fa fa-check"></i><b>17.1</b> Data set overview</a>
+<li class="chapter" data-level="17.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#data-set-overview-2"><i class="fa fa-check"></i><b>17.1</b> Data set overview<span></span></a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#demographic-variables-1"><i class="fa fa-check"></i><b>17.1.1</b> Demographic variables</a></li>
-<li class="chapter" data-level="17.1.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#pivotal-variables-and-very-important-predictors"><i class="fa fa-check"></i><b>17.1.2</b> Pivotal variables and very important predictors</a></li>
-<li class="chapter" data-level="17.1.3" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#further-variables-related-to-leukocyte-types-and-leukocyte-ratios"><i class="fa fa-check"></i><b>17.1.3</b> Further variables related to leukocyte types and leukocyte ratios</a></li>
-<li class="chapter" data-level="17.1.4" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#kidney-function-related-variables"><i class="fa fa-check"></i><b>17.1.4</b> Kidney function related variables</a></li>
-<li class="chapter" data-level="17.1.5" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#acute-phase-reaction-related-variables"><i class="fa fa-check"></i><b>17.1.5</b> Acute phase reaction related variables</a></li>
-<li class="chapter" data-level="17.1.6" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#remaining-variables"><i class="fa fa-check"></i><b>17.1.6</b> Remaining variables</a></li>
+<li class="chapter" data-level="17.1.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#demographic-variables-1"><i class="fa fa-check"></i><b>17.1.1</b> Demographic variables<span></span></a></li>
+<li class="chapter" data-level="17.1.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#pivotal-variables-and-very-important-predictors"><i class="fa fa-check"></i><b>17.1.2</b> Pivotal variables and very important predictors<span></span></a></li>
+<li class="chapter" data-level="17.1.3" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#further-variables-related-to-leukocyte-types-and-leukocyte-ratios"><i class="fa fa-check"></i><b>17.1.3</b> Further variables related to leukocyte types and leukocyte ratios<span></span></a></li>
+<li class="chapter" data-level="17.1.4" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#kidney-function-related-variables"><i class="fa fa-check"></i><b>17.1.4</b> Kidney function related variables<span></span></a></li>
+<li class="chapter" data-level="17.1.5" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#acute-phase-reaction-related-variables"><i class="fa fa-check"></i><b>17.1.5</b> Acute phase reaction related variables<span></span></a></li>
+<li class="chapter" data-level="17.1.6" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#remaining-variables"><i class="fa fa-check"></i><b>17.1.6</b> Remaining variables<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#categorical-variables-2"><i class="fa fa-check"></i><b>17.2</b> Categorical variables</a></li>
-<li class="chapter" data-level="17.3" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#continuous-variables-2"><i class="fa fa-check"></i><b>17.3</b> Continuous variables</a>
+<li class="chapter" data-level="17.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#categorical-variables-2"><i class="fa fa-check"></i><b>17.2</b> Categorical variables<span></span></a></li>
+<li class="chapter" data-level="17.3" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#continuous-variables-2"><i class="fa fa-check"></i><b>17.3</b> Continuous variables<span></span></a>
 <ul>
-<li class="chapter" data-level="17.3.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#suggested-transformations"><i class="fa fa-check"></i><b>17.3.1</b> Suggested transformations</a></li>
-<li class="chapter" data-level="17.3.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#univariate-distribution-with-variables-using-the-original-variable-and-the-suggested-transformations"><i class="fa fa-check"></i><b>17.3.2</b> Univariate distribution with variables using the original variable and the suggested transformations</a></li>
+<li class="chapter" data-level="17.3.1" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#suggested-transformations"><i class="fa fa-check"></i><b>17.3.1</b> Suggested transformations<span></span></a></li>
+<li class="chapter" data-level="17.3.2" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#univariate-distribution-with-variables-using-the-original-variable-and-the-suggested-transformations"><i class="fa fa-check"></i><b>17.3.2</b> Univariate distribution with variables using the original variable and the suggested transformations<span></span></a></li>
+<li class="chapter" data-level="17.3.3" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#univariate-distribution-with-variables-using-only-the-original-variable-without-the-suggested-transformations"><i class="fa fa-check"></i><b>17.3.3</b> Univariate distribution with variables using only the original variable without the suggested transformations<span></span></a></li>
+<li class="chapter" data-level="17.3.4" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#comparison-of-univariate-distributions-with-and-without-pseudo-log-transformation"><i class="fa fa-check"></i><b>17.3.4</b> Comparison of univariate distributions with and without pseudo-log transformation<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="17.4" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#section-session-info-10"><i class="fa fa-check"></i><b>17.4</b> Section session info</a></li>
+<li class="chapter" data-level="17.4" data-path="univariate-distribution-checks-2.html"><a href="univariate-distribution-checks-2.html#section-session-info-10"><i class="fa fa-check"></i><b>17.4</b> Section session info<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html"><i class="fa fa-check"></i><b>18</b> Multivariate distributions</a>
+<li class="chapter" data-level="18" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html"><i class="fa fa-check"></i><b>18</b> Multivariate distributions<span></span></a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#overview-3"><i class="fa fa-check"></i><b>18.1</b> Overview</a>
+<li class="chapter" data-level="18.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#overview-3"><i class="fa fa-check"></i><b>18.1</b> Overview<span></span></a>
 <ul>
-<li class="chapter" data-level="18.1.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#variable-correlation-2"><i class="fa fa-check"></i><b>18.1.1</b> Variable correlation</a></li>
-<li class="chapter" data-level="18.1.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#distribution-of-age-by-sex-1"><i class="fa fa-check"></i><b>18.1.2</b> Distribution of age by sex</a></li>
-<li class="chapter" data-level="18.1.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#distribution-of-leukocytes-by-age-coloured-by-sex"><i class="fa fa-check"></i><b>18.1.3</b> Distribution of leukocytes by age, coloured by sex</a></li>
-<li class="chapter" data-level="18.1.4" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#plot-all-variables-vs.-wbc-in-agesex-groups"><i class="fa fa-check"></i><b>18.1.4</b> Plot all variables vs. WBC in age/sex groups</a></li>
+<li class="chapter" data-level="18.1.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#variable-correlation-2"><i class="fa fa-check"></i><b>18.1.1</b> Variable correlation<span></span></a></li>
+<li class="chapter" data-level="18.1.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#distribution-of-age-by-sex-1"><i class="fa fa-check"></i><b>18.1.2</b> Distribution of age by sex<span></span></a></li>
+<li class="chapter" data-level="18.1.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#distribution-of-leukocytes-by-age-coloured-by-sex"><i class="fa fa-check"></i><b>18.1.3</b> Distribution of leukocytes by age, coloured by sex<span></span></a></li>
+<li class="chapter" data-level="18.1.4" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#plot-all-variables-vs.-wbc-in-agesex-groups"><i class="fa fa-check"></i><b>18.1.4</b> Plot all variables vs. WBC in age/sex groups<span></span></a></li>
+<li class="chapter" data-level="18.1.5" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#plot-all-variables-vs.-wbc-in-agesex-groups-loess-curves-only"><i class="fa fa-check"></i><b>18.1.5</b> Plot all variables vs. WBC in age/sex groups: loess curves only<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#variable-redundancy-2"><i class="fa fa-check"></i><b>18.2</b> Variable redundancy</a>
+<li class="chapter" data-level="18.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#variable-redundancy-2"><i class="fa fa-check"></i><b>18.2</b> Variable redundancy<span></span></a>
 <ul>
-<li class="chapter" data-level="18.2.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-very-important-predictors"><i class="fa fa-check"></i><b>18.2.1</b> Redundancy among very important predictors</a></li>
-<li class="chapter" data-level="18.2.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-leukocyte-related-variables"><i class="fa fa-check"></i><b>18.2.2</b> Redundancy among leukocyte-related variables</a></li>
-<li class="chapter" data-level="18.2.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-all-potential-predictors"><i class="fa fa-check"></i><b>18.2.3</b> Redundancy among all potential predictors</a></li>
+<li class="chapter" data-level="18.2.1" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-very-important-predictors"><i class="fa fa-check"></i><b>18.2.1</b> Redundancy among very important predictors<span></span></a></li>
+<li class="chapter" data-level="18.2.2" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-leukocyte-related-variables"><i class="fa fa-check"></i><b>18.2.2</b> Redundancy among leukocyte-related variables<span></span></a></li>
+<li class="chapter" data-level="18.2.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#redundancy-among-all-potential-predictors"><i class="fa fa-check"></i><b>18.2.3</b> Redundancy among all potential predictors<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="18.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#section-session-info-11"><i class="fa fa-check"></i><b>18.3</b> Section session info</a></li>
+<li class="chapter" data-level="18.3" data-path="multivariate-distributions-2.html"><a href="multivariate-distributions-2.html#section-session-info-11"><i class="fa fa-check"></i><b>18.3</b> Section session info<span></span></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -768,43 +770,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction-to-bacteremia" class="section level1" number="14">
-<h1><span class="header-section-number">Chapter 14</span> Introduction to Bacteremia</h1>
+<div id="introduction-to-bacteremia" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Introduction to Bacteremia<a href="introduction-to-bacteremia.html#introduction-to-bacteremia" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>To demonstrate the workflow and content of IDA, we created a hypothetical research aim and corresponding statistical analysis plan, which is described in more detail in the section <a href="Bact_SAP.Rmd">Bact_SAP.Rmd</a>.</p>
 <p><strong>Hypothetical research aim for IDA</strong> is to develop a multivariable diagnostic model for bacteremia using 49 continuous laboratory blood parameters, age and gender with the primary aim of prediction and a secondary aim of describing the association of each variable with the outcome (‘explaining’ the multivariable model).</p>
 <p>A diagnostic prediction model was developed based on this data set and validated in “A Risk Prediction Model for Screening Bacteremic Patients: A Cross Sectional Study” <a href="https://doi.org/10.1371/journal.pone.0106765">Ratzinger et al, PLoS One 2014</a>. The assumed research aim is in line with this diagnostic prediction model.</p>
-<div id="dataset-description" class="section level2" number="14.1">
-<h2><span class="header-section-number">14.1</span> Dataset Description</h2>
+<div id="dataset-description" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Dataset Description<a href="introduction-to-bacteremia.html#dataset-description" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Ratzinger et al (2014) performed a diagnostic study in which age, sex and 49 laboratory variables can be used to diagnose bacteremia status of a blood sample using a multivariable model. Between January 2006 and December 2010, patients with the clinical suspicion to suffer from bacteraemia were included if blood culture analysis was requested by the responsible physician and blood was sampled for assessment of haematology and biochemistry. The data consists of 14,691 observations from different patients.</p>
 <p>Our version of this data was slightly modified compared to original version, and this modified version was cleared by the Medical University of Vienna for public use (DC 2019-0054). Variable names have been kept as they were (partly German abbreviations). A data dictionary is available in the <strong>misc</strong> folder of the project directory (‘bacteremia-DataDictionary.csv’).</p>
 <p>In the original paper describing the study <a href="https://doi.org/10.1371/journal.pone.0106765">(Ratzinger et al, PLoS One 2014)</a>, a machine learning approach was taken to diagnose a positive status of blood culture. The true status was determined for all blood samples by blood culture analysis, which is the gold standard. Here we will make use of a multivariable logistic regression model.</p>
 </div>
-<div id="bacteremia-dataset-contents" class="section level2" number="14.2">
-<h2><span class="header-section-number">14.2</span> Bacteremia dataset contents</h2>
-<div id="source-dataset-2" class="section level3" number="14.2.1">
-<h3><span class="header-section-number">14.2.1</span> Source dataset</h3>
+<div id="bacteremia-dataset-contents" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Bacteremia dataset contents<a href="introduction-to-bacteremia.html#bacteremia-dataset-contents" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="source-dataset-2" class="section level3 hasAnchor" number="14.2.1">
+<h3><span class="header-section-number">14.2.1</span> Source dataset<a href="introduction-to-bacteremia.html#source-dataset-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We refer to the source data set as the dataset available in this repository.</p>
 <p>Display the source dataset contents. This dataset is in the <strong>data</strong> folder of the project directory.</p>
 <hr><h4>Data frame:bact</h4>14691 observations and 53 variables, maximum # NAs:7114  
  <hr>
  <style>
- .hmisctable574495 {
+ .hmisctable802188 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable574495 td {
+ .hmisctable802188 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable574495 th {
+ .hmisctable802188 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable574495" border="1">
+ <table class="hmisctable802188" border="1">
  <tr><th>Name</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>ID</td><td>integer</td><td>   0</td></tr>
  <tr><td>sex</td><td>integer</td><td>   0</td></tr>
@@ -864,11 +866,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <hr>
 
 </div>
-<div id="updated-analysis-dataset-1" class="section level3" number="14.2.2">
-<h3><span class="header-section-number">14.2.2</span> Updated analysis dataset</h3>
+<div id="updated-analysis-dataset-1" class="section level3 hasAnchor" number="14.2.2">
+<h3><span class="header-section-number">14.2.2</span> Updated analysis dataset<a href="introduction-to-bacteremia.html#updated-analysis-dataset-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Additional meta-data is added to the original <em>source</em> data set. We write this new modified (annotated) data set back to the <strong>data</strong> folder after adding additional meta-data for all variables. The meta-data is taken from the data dictionary.</p>
 <p>At the stage we could select the variables of interest to take in to the IDA phase by dropping variables we do not check in IDA.</p>
-<p>As a cross check we display the contents again to ensure the additional data is added, and then write the changes to the data folder in the file “data/a_bact.rda.”</p>
+<p>As a cross check we display the contents again to ensure the additional data is added, and then write the changes to the data folder in the file “data/a_bact.rda”.</p>
 <p>Input object size: 5119632 bytes; 53 variables 14691 observations
 New object size: 5159904 bytes; 53 variables 14691 observations
 Input object size: 5277552 bytes; 54 variables 14691 observations
@@ -876,23 +878,23 @@ New object size: 5219544 bytes; 54 variables 14691 observations</p>
 <hr><h4>Data frame:a_bact</h4>14691 observations and 54 variables, maximum # NAs:7114  
  <hr>
  <style>
- .hmisctable738034 {
+ .hmisctable970763 {
  border: 1px solid gray;
  border-collapse: collapse;
  font-size: 100%;
  }
- .hmisctable738034 td {
+ .hmisctable970763 td {
  text-align: right;
  padding: 0 1ex 0 1ex;
  }
- .hmisctable738034 th {
+ .hmisctable970763 th {
  color: Black;
  text-align: center;
  padding: 0 1ex 0 1ex;
  font-weight: bold;
  }
  </style>
- <table class="hmisctable738034" border="1">
+ <table class="hmisctable970763" border="1">
  <tr><th>Name</th><th>Labels</th><th>Units</th><th>Class</th><th>Storage</th><th>NAs</th></tr>
  <tr><td>ID</td><td>Patient Identification</td><td>1-14691</td><td>integer</td><td>integer</td><td>   0</td></tr>
  <tr><td>sex</td><td>Patient Sex</td><td>1=male, 2=female</td><td>integer</td><td>integer</td><td>   0</td></tr>
@@ -954,55 +956,54 @@ New object size: 5219544 bytes; 54 variables 14691 observations</p>
 
 </div>
 </div>
-<div id="section-session-info-8" class="section level2" number="14.3">
-<h2><span class="header-section-number">14.3</span> Section session info</h2>
-<pre><code>## R version 4.1.0 (2021-05-18)
+<div id="section-session-info-8" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Section session info<a href="introduction-to-bacteremia.html#section-session-info-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>## R version 4.1.3 (2022-03-10)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
+## Running under: Windows 10 x64 (build 17763)
 ## 
 ## Matrix products: default
 ## 
 ## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
+## [1] LC_COLLATE=English_Austria.1252  LC_CTYPE=English_Austria.1252   
+## [3] LC_MONETARY=English_Austria.1252 LC_NUMERIC=C                    
+## [5] LC_TIME=English_Austria.1252    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] Hmisc_4.5-0     Formula_1.2-4   survival_3.2-11 lattice_0.20-44
-##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.6     purrr_0.3.4    
-##  [9] readr_1.4.0     tidyr_1.1.3     tibble_3.1.2    ggplot2_3.3.3  
+##  [1] Hmisc_4.6-0     Formula_1.2-4   survival_3.2-13 lattice_0.20-45
+##  [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.8     purrr_0.3.4    
+##  [9] readr_2.1.2     tidyr_1.2.0     tibble_3.1.6    ggplot2_3.3.5  
 ## [13] tidyverse_1.3.1 here_1.0.1     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] httr_1.4.2          sass_0.4.0          jsonlite_1.7.2     
-##  [4] splines_4.1.0       modelr_0.1.8        bslib_0.2.5.1      
+##  [1] httr_1.4.2          sass_0.4.1          jsonlite_1.8.0     
+##  [4] splines_4.1.3       modelr_0.1.8        bslib_0.3.1        
 ##  [7] assertthat_0.2.1    latticeExtra_0.6-29 cellranger_1.1.0   
-## [10] yaml_2.2.1          pillar_1.6.1        backports_1.2.1    
-## [13] glue_1.4.2          digest_0.6.27       checkmate_2.0.0    
-## [16] RColorBrewer_1.1-2  rvest_1.0.0         colorspace_2.0-1   
-## [19] htmltools_0.5.1.1   Matrix_1.3-3        pkgconfig_2.0.3    
-## [22] broom_0.7.6         haven_2.4.1         bookdown_0.22      
-## [25] scales_1.1.1        jpeg_0.1-8.1        htmlTable_2.2.1    
-## [28] generics_0.1.0      ellipsis_0.3.2      withr_2.4.2        
-## [31] nnet_7.3-16         cli_2.5.0           magrittr_2.0.1     
-## [34] crayon_1.4.1        readxl_1.3.1        evaluate_0.14      
-## [37] fs_1.5.0            fansi_0.4.2         xml2_1.3.2         
-## [40] foreign_0.8-81      data.table_1.14.0   tools_4.1.0        
-## [43] hms_1.1.0           lifecycle_1.0.0     munsell_0.5.0      
-## [46] reprex_2.0.0        cluster_2.1.2       compiler_4.1.0     
-## [49] jquerylib_0.1.4     rlang_0.4.11        grid_4.1.0         
-## [52] rstudioapi_0.13     htmlwidgets_1.5.3   base64enc_0.1-3    
-## [55] rmarkdown_2.8       gtable_0.3.0        DBI_1.1.1          
-## [58] R6_2.5.0            gridExtra_2.3       lubridate_1.7.10   
-## [61] knitr_1.33          utf8_1.2.1          rprojroot_2.0.2    
-## [64] stringi_1.6.2       Rcpp_1.0.6          vctrs_0.3.8        
-## [67] rpart_4.1-15        png_0.1-7           dbplyr_2.1.1       
-## [70] tidyselect_1.1.1    xfun_0.23</code></pre>
+## [10] yaml_2.3.5          pillar_1.7.0        backports_1.4.1    
+## [13] glue_1.6.2          digest_0.6.29       checkmate_2.0.0    
+## [16] RColorBrewer_1.1-2  rvest_1.0.2         colorspace_2.0-3   
+## [19] htmltools_0.5.2     Matrix_1.4-0        pkgconfig_2.0.3    
+## [22] broom_0.7.12        haven_2.4.3         bookdown_0.25      
+## [25] scales_1.1.1        jpeg_0.1-9          tzdb_0.2.0         
+## [28] htmlTable_2.4.0     generics_0.1.2      ellipsis_0.3.2     
+## [31] withr_2.5.0         nnet_7.3-17         cli_3.2.0          
+## [34] magrittr_2.0.2      crayon_1.5.1        readxl_1.3.1       
+## [37] evaluate_0.15       fs_1.5.2            fansi_1.0.3        
+## [40] xml2_1.3.3          foreign_0.8-82      data.table_1.14.2  
+## [43] tools_4.1.3         hms_1.1.1           lifecycle_1.0.1    
+## [46] munsell_0.5.0       reprex_2.0.1        cluster_2.1.2      
+## [49] compiler_4.1.3      jquerylib_0.1.4     rlang_1.0.2        
+## [52] grid_4.1.3          rstudioapi_0.13     htmlwidgets_1.5.4  
+## [55] base64enc_0.1-3     rmarkdown_2.13      gtable_0.3.0       
+## [58] DBI_1.1.2           R6_2.5.1            gridExtra_2.3      
+## [61] lubridate_1.8.0     knitr_1.38          fastmap_1.1.0      
+## [64] utf8_1.2.2          rprojroot_2.0.2     stringi_1.7.6      
+## [67] Rcpp_1.0.8.3        vctrs_0.3.8         rpart_4.1.16       
+## [70] png_0.1-7           dbplyr_2.1.1        tidyselect_1.1.2   
+## [73] xfun_0.30</code></pre>
 
 </div>
 </div>
@@ -1016,7 +1017,6 @@ New object size: 5219544 bytes; 54 variables 14691 observations</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1056,6 +1056,10 @@ gitbook.start({
 "text": null
 },
 "download": ["https://github.com/bailliem/ida-regression-private/raw/master/Bact_intro.Rmd"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
