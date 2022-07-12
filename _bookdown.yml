@@ -11,21 +11,10 @@ rmd_files: [
   "IDA_framework.Rmd",
   "scope.Rmd",
   "data_screen.Rmd",
-  "Crash2_intro.Rmd",
-  "Crash2_SAP.Rmd",
-  "Crash2_missing.Rmd",
-  "Crash2_univar.Rmd",
-  "Crash2_multivar.Rmd",
-  "nhanes_intro.Rmd",
-  "nhanes_IDAP.Rmd",
-  "nhanes_missing.Rmd",
-  "nhanes_univar.Rmd",
-  "nhanes_multivar.Rmd",
   "Bact_intro.Rmd",
   "Bact_SAP.Rmd",
   "bact_missing.Rmd",
   "Bact_univar.Rmd",
   "Bact_multivar.Rmd",
-  "Bact_suppl.Rmd"
-  
+  "Bact_suppl.Rmd"  
 ]

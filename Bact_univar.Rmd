@@ -1,12 +1,13 @@
 # Univariate distribution checks
 
-This section reports a series of univariate summary checks of the CRASH-2 dataset.
+This section reports a series of univariate summary checks of the bacteremia dataset.
 
 ```{r, message =FALSE, warning =FALSE , echo=FALSE}
 library(here)
 library(tidyverse)
 library(Hmisc)
 source(here("R", "ida_plot_univar.R"))  ## function to plot univariate summaries. 
+source(here("R", "ida_plot_univar_orig_vs_trans.R"))  ## function for side-by-side comparison of original vs. transformed scale, calls ida_plot_univar.R
 source(here("R", "ida_trans.R"))  ## function to determine transformation (log(x+c) or identity). 
 
 ## Load the dataset.
@@ -28,12 +29,12 @@ b_bact %>%
 ```
 
 
-### Pivotal variables and very important predictors
+### Structural covariates and key predictors
 
 ```{r desc_b_bact_2, message = FALSE, results='asis', warning=FALSE, , echo=FALSE}
 b_bact %>%
-  dplyr::select(all_of(c(pivotal_vars, vip_vars))) %>%
-  Hmisc::describe(descript = "Pivotal variables and VIPs") %>%
+  dplyr::select(all_of(c(structural_vars, key_predictors))) %>%
+  Hmisc::describe(descript = "Structural covariates and key predictors") %>%
   Hmisc::html(size = 80)
 ```
 
@@ -79,7 +80,7 @@ We now provide a closer visual examination of the categorical predictors.
 
 ```{r catplot, message=FALSE, warning =FALSE , echo=FALSE}
 b_bact %>%
-  dplyr::select(sex, BC) %>%
+  dplyr::select(SEX, BC) %>%
   dplyr::mutate_all(forcats::as_factor) %>%   
   dplyr::mutate_all(forcats::fct_explicit_na, "NA") %>%
   tidyr::pivot_longer(
@@ -94,7 +95,7 @@ b_bact %>%
     freq = N / sum(N),
     pct = round((freq * 100), 1),
     axis_lab = paste0(value, ' ', '(N = ', N, ')'),
-    var_label = case_when(var == "sex" ~ "Sex",
+    var_label = case_when(var == "SEX" ~ "Sex",
                           var == "BC" ~ "Bacteremia")
   ) %>%
   ggplot(aes(
@@ -128,11 +129,10 @@ b_bact %>%
 Next we investigate whether a transformation of continuous variables may improve any further analyses to reduce disproportional impact of highly influential points, also in multivariate summaries. We employ a function `ida_trans` for this purpose, which optimises the parameter `sigma` of the pseudo-logarithm for that purpose. The optimization targets the best possible linear correlation of the transformed values with normal deviates. If no better transformation can be found, no transformation is suggested.
 
 ```{r}
-variables<- c("Alter", pivotal_vars, vip_vars, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars, remaining_vars)
+variables<- c("AGE", structural_vars, key_predictors, leuko_related_vars, leuko_ratio_vars, kidney_related_vars, acute_related_vars, remaining_vars)
 unique.variables <- unique(variables)
-#variables<- c("Alter", pivotal_vars, vip_vars)
 
-res<-sapply(unique.variables, function(X) ida_trans(b_bact[,X])$const)
+res<-sapply(unique.variables, function(X) ida_trans(b_bact[,X])$const) #takes long, calculate once, and save?
 
 res
 ```
@@ -181,11 +181,46 @@ for(j in 1:length(unique.variables)){
 #  }
 }
 ```
+### Comparison of univariate distributions with and without pseudo-log transformation
 
+The comparison is only shown for variables where a transformation is suggested.
+
+```{r, fig.width=12}
+for(j in 1:length(unique.variables)){
+#  print(ida_plot_univar_orig_vs_trans(b_bact, unique.variables[j], sigma=res[j], n_bars=100))
+ if(!is.na(res[j])){
+   print(ida_plot_univar_orig_vs_trans(b_bact, unique.variables[j], sigma=res[j], n_bars=100))
+ }
+}
+```
 
 ```{r}
 save(list=c("c_bact", "bact_variables", "sigma_values", "bact_transformed"), 
      file=here::here("data", "bact_env_c.rda"))
+```
+
+### Univariate distribution with variables using only the original variable without the suggested transformations
+
+```{r}
+for(j in 1:length(unique.variables)){
+  print(ida_plot_univar(b_bact, unique.variables[j], sigma=res[j], n_bars=100, transform = FALSE))
+#  if(!is.na(res[j])){
+#    print(ida_plot_univar(b_bact, paste("t_",variables[j],sep="")))
+#  }
+}
+```
+
+### Comparison of univariate distributions with and without pseudo-log transformation
+
+The comparison is only shown for variables where a transformation is suggested.
+
+```{r, fig.width=12}
+for(j in 1:length(unique.variables)){
+#  print(ida_plot_univar_orig_vs_trans(b_bact, unique.variables[j], sigma=res[j], n_bars=100))
+ if(!is.na(res[j])){
+   print(ida_plot_univar_orig_vs_trans(b_bact, unique.variables[j], sigma=res[j], n_bars=100))
+ }
+}
 ```
 
 

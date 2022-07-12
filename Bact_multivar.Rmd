@@ -11,6 +11,8 @@ library(ggcorrplot)
 library(mice)
 ## Read data 
 load(here::here("data", "bact_env_c.rda"))
+
+alpha_value <- 0.1
 ```
 
 
@@ -25,8 +27,8 @@ Compute correlations between the independent variables or their suggested transf
 
 ```{r}
 variables <- unique(c(bact_transformed$demog_vars, 
-                      bact_transformed$pivotal_vars,
-                      bact_transformed$vip_vars,
+                      bact_transformed$structural_vars,
+                      bact_transformed$key_predictors,
                       bact_transformed$leuko_related_vars,
                       bact_transformed$leuko_ratio_vars,
                       bact_transformed$kidney_related_vars,
@@ -58,30 +60,30 @@ vc_bact<-Hmisc::varclus(as.matrix(c_bact[,variables]))
 plot(vc_bact, cex=0.7)
 ```
 
-Some of the clusters that pop up here are related to width/volume of blood cells (MPV, PDW), red blood cells (RBC, HGB, HCT; MCV, MCH), and some further 'known' associations such as that between KREA and eGFR (which follows from the construction of eGFR), and between ASAT and ALAT, between AMY and PAMY or between TP and ALB).
+Some of the clusters that pop up here are related to width/volume of blood cells (MPV, PDW), red blood cells (RBC, HGB, HCT; MCV, MCH), and some further 'known' associations such as that between CREA and eGFR (which follows from the construction of eGFR), and between ASAT and ALAT, between AMY and PAMY or between TP and ALB).
 
 In the following scatterplots we have a look at those associations:
 
 ```{r}
-ggplot(c_bact, aes(MPV, PDW))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(MPV, PDW))+geom_point(alpha = alpha_value, shape = 20) + geom_smooth()
 
-ggplot(c_bact, aes(RBC, HGB))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(RBC, HGB))+geom_point(alpha = alpha_value, shape = 20) + geom_smooth()
 
-ggplot(c_bact, aes(RBC, HCT))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(RBC, HCT))+geom_point(alpha = alpha_value, shape = 20) + geom_smooth()
 
-ggplot(c_bact, aes(HGB, HCT))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(HGB, HCT))+geom_point(alpha = alpha_value, shape = 20) + geom_smooth()
 
-ggplot(c_bact, aes(MCV, MCH))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(MCV, MCH))+geom_point(alpha = alpha_value, shape = 20) + geom_smooth()
 
-ggplot(c_bact, aes(t_KREA, eGFR))+geom_point() + geom_smooth()
-
-
-ggplot(c_bact, aes(t_ASAT, t_ALAT))+geom_point() + geom_smooth()
-
-ggplot(c_bact, aes(t_AMY, t_PAMY))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(t_KREA, eGFR))+geom_point(alpha = alpha_value, shape = 20) + geom_smooth()
 
 
-ggplot(c_bact, aes(t_WBC, t_NEU))+geom_point() + geom_smooth()
+ggplot(c_bact, aes(t_ASAT, t_ALAT))+geom_point(alpha = alpha_value, shape = 20) + geom_smooth()
+
+ggplot(c_bact, aes(t_AMY, t_PAMY))+geom_point(alpha = alpha_value, shape = 20) + geom_smooth()
+
+
+ggplot(c_bact, aes(t_WBC, t_NEU))+geom_point(alpha = alpha_value, shape = 20) + geom_smooth()
 
 
 
@@ -94,7 +96,8 @@ Create scatterplots for pairs of variables with a large distance between Spearma
 ```{r}
 for(j in 1:(length(variables)-1)){
   for(jj in (j+1):(length(variables))){
-    if(abs(corrd[j, jj])>0.1) print(ggplot(data=c_bact, mapping=aes(x=.data[[variables[j]]],y=.data[[variables[jj]]]))+ geom_point()+geom_smooth())
+    if(abs(corrd[j, jj])>0.1) print(ggplot(data=c_bact, mapping=aes(x=.data[[variables[j]]],y=.data[[variables[jj]]]))+ geom_point(alpha = alpha_value)+geom_smooth() +
+    theme_minimal())
   }
 }
 
@@ -112,10 +115,10 @@ for(j in 1:(length(variables)-1)){
 ```{r, message=FALSE, warning =FALSE , echo=FALSE, fig.cap= "Distribution of age by sex"}
 # only plot observatons with a non-missing value for Sex
 c_bact %>%
-  filter(!(is.na(sex))) %>%
+  filter(!(is.na(SEX))) %>%
   with(., histboxp(
-    x = Alter,
-    group = sex,
+    x = AGE,
+    group = SEX,
     sd = TRUE,
     bins = 200
   ))
@@ -126,17 +129,17 @@ c_bact %>%
 ### Distribution of leukocytes by age, coloured by sex
 
 ```{r}
-c_bact$gender=factor(c_bact$sex, levels=c(1,2), labels=c("male","female"))
+c_bact$gender=factor(c_bact$SEX, levels=c(1,2), labels=c("male","female"))
 
 
 c_bact %>%
-ggplot(data=c_bact, mapping=aes(x=Alter, y=t_WBC, color=gender)) + geom_point() + geom_smooth()
+ggplot(data=c_bact, mapping=aes(x=Alter, y=t_WBC, color=gender)) + geom_point(shape = 20) + geom_smooth()
 ```
 
 ### Plot all variables vs. WBC in age/sex groups
 
 ```{r}
-c_bact$Agegroup <- factor(cut(c_bact$Alter, c(min(c_bact$Alter), 50, 65, max(c_bact$Alter))))
+c_bact$Agegroup <- factor(cut(c_bact$AGE, c(min(c_bact$AGE), 50, 65, max(c_bact$AGE))))
 table(c_bact$gender,c_bact$Agegroup)
 ```
 
@@ -148,9 +151,9 @@ for(j in 4:length(variables)){
       c_bact %>% 
       filter(!is.na(Agegroup)) %>% 
       ggplot(c_bact, mapping=aes(x=t_WBC,y=.data[[variables[j]]])) + 
-      geom_point() + 
+      geom_point(alpha = alpha_value, shape = 20) + 
       geom_smooth() +  
-      geom_rug() +
+      geom_rug(alpha = alpha_value) +
       facet_grid(gender ~ Agegroup)
     print(p1)
 }
@@ -159,17 +162,52 @@ for(j in 4:length(variables)){
 
 ```
 
+### Plot all variables vs. WBC in age/sex groups: loess curves only
+
+```{r}
+for(j in 4:length(variables)){
+    p1 <- 
+      c_bact %>% 
+      filter(!is.na(Agegroup)) %>% 
+      ggplot(c_bact, mapping=aes(x=t_WBC,y=.data[[variables[j]]])) + 
+     # geom_point(alpha = alpha_value) + 
+      geom_smooth() +  
+     # geom_rug() +
+      facet_grid(gender ~ Agegroup)
+    print(p1)
+}
+
+
+```
+
+### Plot all variables vs. WBC in age/sex groups: loess curves only
+
+```{r}
+for(j in 4:length(variables)){
+    p1 <- 
+      c_bact %>% 
+      filter(!is.na(Agegroup)) %>% 
+      ggplot(c_bact, mapping=aes(x=t_WBC,y=.data[[variables[j]]])) + 
+     # geom_point(alpha = alpha_value) + 
+      geom_smooth() +  
+     # geom_rug() +
+      facet_grid(gender ~ Agegroup, labeller=label_both)
+    print(p1) +
+    theme_minimal()
+}
+```
+
 ## Variable redundancy 
 
-### Redundancy among very important predictors
+### Redundancy among key predictors
 
 First we start with a redundancy analysis with the predictors deemed important by preceding studies.
 
 ```{r}
 formula <- as.formula(
-              paste("~Alter+",
-                    paste(unique(c(bact_transformed$pivotal_vars,
-                                   bact_transformed$vip_vars)),
+              paste("~AGE+",
+                    paste(unique(c(bact_transformed$structural_vars,
+                                   bact_transformed$key_predictors)),
                           collapse="+")))
 
 
@@ -205,25 +243,25 @@ This indicates very large $R^2$ values for NEU and WBC, meaning that probably be
 WBC_NEU <- c_bact$WBC - c_bact$NEU
 sum_noNEU <- apply(c_bact[,c("EOS","BASO","LYM","MONO")],1,sum)
 
-ggplot(c_bact, aes(NEU, WBC_NEU)) + geom_point() + geom_smooth() + scale_x_continuous(trans="pseudo_log") + scale_y_continuous(trans="pseudo_log")
+ggplot(c_bact, aes(NEU, WBC_NEU)) + geom_point(alpha = alpha_value) + geom_smooth() + scale_x_continuous(trans="pseudo_log") + scale_y_continuous(trans="pseudo_log")
 ```
 
 This variable is expected to be highly correlated with the sum of MONO, LYM, BASO and EOS:
 
 ```{r}
-ggplot(c_bact, aes(sum_noNEU, WBC_NEU)) + geom_point() + geom_smooth() + scale_x_continuous(trans="pseudo_log") + scale_y_continuous(trans="pseudo_log")
+ggplot(c_bact, aes(sum_noNEU, WBC_NEU)) + geom_point(alpha = alpha_value) + geom_smooth() + scale_x_continuous(trans="pseudo_log") + scale_y_continuous(trans="pseudo_log")
 
 ```
 
 ### Redundancy among all potential predictors
 
-Now we perform a full redundancy analysis, but omitting WBC, the leukocyte ratio variables, and BUN and KREA (for their use in constructing BUN_KREA and eGFR).
+Now we perform a full redundancy analysis, but omitting WBC, the leukocyte ratio variables, and BUN and KREA (for their use in constructing BUN_CREA and eGFR).
 
 ```{r}
 formula <- as.formula(
               paste("~I(t_EOS)+I(t_BASO)+t_LYM+MONO+t_NEU+",
                     paste(unique(c(bact_transformed$demog_vars,
-                                   c("t_BUN_KREA","eGFR","K"),
+                                   c("t_BUN_CREA","eGFR","POTASS"),
                                    bact_transformed$acute_related_vars,
                                    bact_transformed$remaining_vars)),collapse="+")))
 
@@ -231,7 +269,7 @@ formula <- as.formula(
 Hmisc::redun(formula, data=c_bact)
 ```
 
-This analysis suggests that HCT, MCH, HGB and MPV may be redundant on top of the other variables. Note that BUN, KREA and WBC were already omitted from this redundancy analysis.
+This analysis suggests that HCT, MCH, HGB and MPV may be redundant on top of the other variables. Note that BUN, CREA and WBC were already omitted from this redundancy analysis.
 
 
 
