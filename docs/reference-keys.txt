@@ -176,6 +176,8 @@ categorical-variables-2
 continuous-variables-2
 suggested-transformations
 univariate-distribution-with-variables-using-the-original-variable-and-the-suggested-transformations
+univariate-distribution-with-variables-using-only-the-original-variable-without-the-suggested-transformations
+comparison-of-univariate-distributions-with-and-without-pseudo-log-transformation
 section-session-info-10
 multivariate-distributions-2
 overview-3
@@ -183,6 +185,7 @@ variable-correlation-2
 distribution-of-age-by-sex-1
 distribution-of-leukocytes-by-age-coloured-by-sex
 plot-all-variables-vs.-wbc-in-agesex-groups
+plot-all-variables-vs.-wbc-in-agesex-groups-loess-curves-only
 variable-redundancy-2
 redundancy-among-very-important-predictors
 redundancy-among-leukocyte-related-variables
